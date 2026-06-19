@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>FieldReport Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F5F7;--surface:#FFFFFF;--surface2:#FAFAFA;
+  --blue:#0071E3;--blue-hover:#0077ED;--blue-light:#E8F1FC;
+  --text:#1D1D1F;--text2:#6E6E73;--text3:#AEAEB2;
+  --border:#D2D2D7;--border2:#E5E5EA;
+  --success:#34C759;--warn:#FF9500;--danger:#FF3B30;
+  --radius:14px;--radius-sm:10px;--radius-xs:8px;
+  --shadow:0 4px 24px rgba(0,0,0,.08);--shadow-lg:0 12px 48px rgba(0,0,0,.14);
+  --font:'Inter',system-ui,sans-serif;
+  --transition:all .2s cubic-bezier(.4,0,.2,1);
+}
+html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+
+/* ── UTILITIES ── */
+.hidden{display:none!important}
+.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}.gap-6{gap:24px}
+.w-full{width:100%}.text-center{text-align:center}
+.text-sm{font-size:13px}.text-xs{font-size:11px}.text-lg{font-size:18px}.text-xl{font-size:22px}.text-2xl{font-size:28px}
+.font-medium{font-weight:500}.font-semibold{font-weight:600}.font-bold{font-weight:700}
+.text-blue{color:var(--blue)}.text-red{color:var(--danger)}.text-green{color:var(--success)}.text-muted{color:var(--text2)}
+.mt-1{margin-top:4px}.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mt-6{margin-top:24px}.mt-8{margin-top:32px}
+.mb-2{margin-bottom:8px}.mb-4{margin-bottom:16px}.mb-6{margin-bottom:24px}
+.p-4{padding:16px}.p-6{padding:24px}
+.rounded{border-radius:var(--radius)}.rounded-sm{border-radius:var(--radius-sm)}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.badge-blue{background:var(--blue-light);color:var(--blue)}
+.badge-green{background:#E3F9E5;color:#1B873A}
+.badge-warn{background:#FFF4E5;color:#B35900}
+.badge-red{background:#FFE5E5;color:#C0001A}
+.divider{height:1px;background:var(--border2);margin:0}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+
+/* ── SCREENS ── */
+.screen{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column}
+
+/* ── LOGIN ── */
+#screen-login{background:linear-gradient(160deg,#0a0a0a 0%,#111827 50%,#0a0a0a 100%);align-items:center;justify-content:center}
+.login-card{background:rgba(255,255,255,.04);backdrop-filter:blur(40px) saturate(180%);border:1px solid rgba(255,255,255,.10);border-radius:28px;padding:52px 44px;width:100%;max-width:420px;box-shadow:0 32px 80px rgba(0,0,0,.5);margin:20px}
+.login-logo-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:44px}
+.login-logo{width:80px;height:80px;border-radius:22px;background:linear-gradient(145deg,#0071E3,#00C7FF);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,113,227,.5);margin-bottom:20px;overflow:hidden}
+.login-logo img{width:100%;height:100%;object-fit:cover;border-radius:22px}
+.login-logo-placeholder{font-size:36px;font-weight:800;color:#fff;letter-spacing:-2px}
+.login-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-.5px;text-align:center}
+.login-sub{font-size:14px;color:rgba(255,255,255,.45);margin-top:6px;text-align:center;font-weight:400}
+.login-field{margin-bottom:16px}
+.login-label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.login-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:15px;color:#fff;font-family:var(--font);outline:none;transition:var(--transition)}
+.login-input::placeholder{color:rgba(255,255,255,.25)}
+.login-input:focus{border-color:rgba(0,113,227,.7);background:rgba(0,113,227,.08);box-shadow:0 0 0 3px rgba(0,113,227,.2)}
+.login-btn{width:100%;padding:15px;background:var(--blue);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;font-family:var(--font);cursor:pointer;transition:var(--transition);margin-top:8px;letter-spacing:.01em}
+.login-btn:hover{background:var(--blue-hover);transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,113,227,.4)}
+.login-btn:active{transform:translateY(0);box-shadow:none}
+.login-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.login-error{background:rgba(255,59,48,.15);border:1px solid rgba(255,59,48,.3);border-radius:10px;padding:12px 14px;font-size:13px;color:#FF6B6B;text-align:center;margin-top:12px}
+.login-footer{margin-top:28px;text-align:center;font-size:12px;color:rgba(255,255,255,.2)}
+
+/* ── TOP NAV ── */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border2);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between}
+.topnav-logo{display:flex;align-items:center;gap:10px}
+.topnav-logo-icon{width:32px;height:32px;border-radius:9px;background:linear-gradient(145deg,#0071E3,#00C7FF);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.topnav-logo-icon img{width:100%;height:100%;object-fit:cover;border-radius:9px}
+.topnav-logo-text{font-size:16px;font-weight:700;letter-spacing:-.3px}
+.topnav-right{display:flex;align-items:center;gap:12px}
+.topnav-user{font-size:13px;font-weight:500;color:var(--text2)}
+.topnav-btn{background:transparent;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:var(--transition);font-family:var(--font)}
+.topnav-btn:hover{background:var(--bg);color:var(--text)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;font-family:var(--font);cursor:pointer;border:none;transition:var(--transition);text-decoration:none;white-space:nowrap}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-hover);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,113,227,.35)}
+.btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--border2)}
+.btn-danger{background:#FFF0F0;color:var(--danger);border:1px solid #FFD0CE}
+.btn-danger:hover{background:#FFE0DE}
+.btn-ghost{background:transparent;color:var(--blue);padding:10px 16px}
+.btn-ghost:hover{background:var(--blue-light)}
+.btn-sm{padding:8px 14px;font-size:13px;border-radius:8px}
+.btn-lg{padding:16px 32px;font-size:16px;border-radius:12px}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.btn-full{width:100%}
+
+/* ── FORM ── */
+.form-screen-content{max-width:720px;margin:0 auto;padding:32px 24px 80px}
+.form-header{margin-bottom:32px}
+.form-header-title{font-size:24px;font-weight:700;letter-spacing:-.4px}
+.form-header-sub{font-size:14px;color:var(--text2);margin-top:6px}
+.form-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border2);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px}
+.form-q{padding:20px 24px;border-bottom:1px solid var(--border2)}
+.form-q:last-child{border-bottom:none}
+.form-q-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--blue-light);color:var(--blue);border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px}
+.form-q-label{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+.form-q-hint{font-size:12px;color:var(--text3);margin-bottom:12px}
+.form-input,.form-textarea,.form-select{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius-xs);padding:12px 14px;font-size:14px;color:var(--text);font-family:var(--font);outline:none;transition:var(--transition)}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(0,113,227,.12)}
+.form-textarea{resize:vertical;min-height:90px;line-height:1.6}
+.form-date-input{cursor:pointer}
+
+/* Activities multi-input */
+.activities-wrap{display:flex;flex-direction:column;gap:0}
+.activity-item{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed var(--border2)}
+.activity-item:last-child{border-bottom:none;padding-bottom:0}
+.activity-num{display:flex;align-items:center;justify-content:center;width:28px;height:28px;min-width:28px;background:var(--blue);color:#fff;border-radius:50%;font-size:12px;font-weight:700;margin-top:10px}
+.activity-textarea{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius-xs);padding:10px 12px;font-size:14px;color:var(--text);font-family:var(--font);outline:none;resize:vertical;min-height:80px;transition:var(--transition);line-height:1.6}
+.activity-textarea:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(0,113,227,.12)}
+.activity-remove{width:28px;height:28px;min-width:28px;background:#FFF0F0;color:var(--danger);border:none;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;margin-top:10px;transition:var(--transition)}
+.activity-remove:hover{background:#FFD8D6}
+.add-activity-btn{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--blue-light);color:var(--blue);border:1.5px dashed var(--blue);border-radius:var(--radius-xs);font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);margin-top:12px;width:100%;justify-content:center;font-family:var(--font)}
+.add-activity-btn:hover{background:#D6E8FB}
+
+/* Photo upload */
+.photos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
+.photo-slot{aspect-ratio:1;border-radius:var(--radius-sm);border:2px dashed var(--border);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);overflow:hidden;position:relative}
+.photo-slot:hover{border-color:var(--blue);background:var(--blue-light)}
+.photo-slot.filled{border-style:solid;border-color:var(--border);padding:0}
+.photo-slot img{width:100%;height:100%;object-fit:cover;border-radius:calc(var(--radius-sm) - 2px)}
+.photo-slot-icon{font-size:24px;color:var(--text3);margin-bottom:4px}
+.photo-slot-label{font-size:10px;font-weight:600;color:var(--text3);letter-spacing:.04em;text-transform:uppercase}
+.photo-remove-btn{position:absolute;top:4px;right:4px;width:22px;height:22px;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:50%;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--transition)}
+.photo-slot:hover .photo-remove-btn{opacity:1}
+
+/* Form action bar */
+.form-actions{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-top:1px solid var(--border2);padding:16px 24px;display:flex;gap:12px;justify-content:flex-end;z-index:50}
+
+/* ── PREVIEW ── */
+.preview-content{max-width:760px;margin:0 auto;padding:32px 24px 100px}
+.preview-header-card{background:linear-gradient(135deg,#0071E3 0%,#00C7FF 100%);border-radius:var(--radius);padding:28px 32px;color:#fff;margin-bottom:20px}
+.preview-company{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+.preview-title{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:16px}
+.preview-meta{display:flex;flex-wrap:wrap;gap:16px}
+.preview-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;opacity:.85}
+.preview-meta-icon{font-size:14px;opacity:.75}
+.preview-section{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border2);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px}
+.preview-section-title{padding:16px 24px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);border-bottom:1px solid var(--border2);background:var(--surface2)}
+.preview-row{display:flex;padding:14px 24px;border-bottom:1px solid var(--border2)}
+.preview-row:last-child{border-bottom:none}
+.preview-row-label{font-size:13px;font-weight:500;color:var(--text2);width:180px;min-width:180px;padding-right:16px}
+.preview-row-value{font-size:14px;color:var(--text);line-height:1.6;flex:1}
+.preview-activities{padding:16px 24px}
+.preview-activity-item{padding:12px 16px;background:var(--bg);border-radius:var(--radius-sm);margin-bottom:10px;border-left:3px solid var(--blue)}
+.preview-activity-item:last-child{margin-bottom:0}
+.preview-activity-num{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.preview-activity-text{font-size:14px;color:var(--text);line-height:1.6}
+.preview-photos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 24px}
+.preview-photo{aspect-ratio:1;border-radius:var(--radius-sm);overflow:hidden;background:var(--bg);border:1px solid var(--border2)}
+.preview-photo img{width:100%;height:100%;object-fit:cover}
+.preview-photo-empty{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--text3)}
+
+/* ── ADMIN ── */
+.admin-layout{display:flex;min-height:calc(100vh - 58px);background:var(--bg)}
+.admin-sidebar{width:240px;min-width:240px;background:var(--surface);border-right:1px solid var(--border2);padding:20px 0;display:flex;flex-direction:column;position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto}
+.admin-sidebar-section{padding:6px 16px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-top:12px;margin-bottom:4px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 16px;margin:1px 8px;border-radius:var(--radius-xs);font-size:14px;font-weight:500;color:var(--text2);cursor:pointer;transition:var(--transition)}
+.sidebar-item:hover{background:var(--bg);color:var(--text)}
+.sidebar-item.active{background:var(--blue-light);color:var(--blue);font-weight:600}
+.sidebar-item-icon{font-size:16px;width:20px;text-align:center}
+.admin-main{flex:1;padding:32px;overflow-y:auto}
+.admin-page-title{font-size:24px;font-weight:700;letter-spacing:-.4px;margin-bottom:4px}
+.admin-page-sub{font-size:14px;color:var(--text2);margin-bottom:28px}
+
+/* Stats cards */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+.stat-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border2);padding:20px 22px;box-shadow:var(--shadow)}
+.stat-value{font-size:32px;font-weight:700;letter-spacing:-.5px;margin:8px 0 4px}
+.stat-label{font-size:13px;color:var(--text2);font-weight:500}
+.stat-icon{font-size:22px}
+
+/* Table */
+.data-table-wrap{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border2);box-shadow:var(--shadow);overflow:hidden}
+.data-table-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border2)}
+.data-table-title{font-size:16px;font-weight:600}
+.data-table{width:100%;border-collapse:collapse}
+.data-table th{padding:12px 20px;text-align:left;font-size:12px;font-weight:700;color:var(--text2);letter-spacing:.05em;text-transform:uppercase;background:var(--surface2);border-bottom:1px solid var(--border2)}
+.data-table td{padding:14px 20px;font-size:14px;border-bottom:1px solid var(--border2);color:var(--text)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:var(--bg)}
+.table-actions{display:flex;gap:6px}
+.tbl-btn{padding:5px 11px;border-radius:7px;font-size:12px;font-weight:600;font-family:var(--font);cursor:pointer;border:none;transition:var(--transition)}
+.tbl-btn-edit{background:#F0F0F5;color:var(--text)}
+.tbl-btn-edit:hover{background:#E0E0EA}
+.tbl-btn-del{background:#FFF0F0;color:var(--danger)}
+.tbl-btn-del:hover{background:#FFD8D6}
+.tbl-btn-view{background:var(--blue-light);color:var(--blue)}
+.tbl-btn-view:hover{background:#D6E8FB}
+.empty-state{padding:60px 24px;text-align:center;color:var(--text3)}
+.empty-state-icon{font-size:48px;margin-bottom:12px}
+.empty-state-text{font-size:15px;font-weight:500}
+.empty-state-sub{font-size:13px;margin-top:6px}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:var(--surface);border-radius:20px;width:100%;max-width:520px;box-shadow:var(--shadow-lg);overflow:hidden;animation:modalIn .2s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:none}}
+.modal-header{padding:22px 26px;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-size:18px;font-weight:700}
+.modal-close{width:30px;height:30px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;font-size:18px;color:var(--text2);display:flex;align-items:center;justify-content:center;transition:var(--transition);font-family:var(--font)}
+.modal-close:hover{background:var(--border2);color:var(--text)}
+.modal-body{padding:24px 26px}
+.modal-footer{padding:18px 26px;border-top:1px solid var(--border2);display:flex;gap:10px;justify-content:flex-end}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius-xs);padding:11px 13px;font-size:14px;color:var(--text);font-family:var(--font);outline:none;transition:var(--transition)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(0,113,227,.12)}
+.form-group select{cursor:pointer}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* Toast */
+.toast-container{position:fixed;top:80px;right:24px;z-index:999;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:var(--surface);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow-lg);border:1px solid var(--border2);font-size:14px;font-weight:500;min-width:260px;max-width:360px;display:flex;align-items:center;gap:10px;pointer-events:all;animation:toastIn .25s ease;border-left:3px solid var(--blue)}
+.toast.toast-success{border-left-color:var(--success)}
+.toast.toast-error{border-left-color:var(--danger)}
+.toast.toast-warn{border-left-color:var(--warn)}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.toast-icon{font-size:18px}
+.toast-msg{flex:1;color:var(--text)}
+
+/* Progress / spinner */
+.spinner{display:inline-block;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner-blue{border-color:rgba(0,113,227,.2);border-top-color:var(--blue)}
+
+/* Confirm dialog */
+.confirm-modal{max-width:400px}
+.confirm-icon{font-size:44px;text-align:center;margin-bottom:12px}
+.confirm-title{font-size:20px;font-weight:700;text-align:center;margin-bottom:8px}
+.confirm-text{font-size:14px;color:var(--text2);text-align:center;line-height:1.6}
+
+/* Responsive */
+@media(max-width:768px){
+  .admin-layout{flex-direction:column}
+  .admin-sidebar{width:100%;height:auto;position:relative;top:0;border-right:none;border-bottom:1px solid var(--border2);flex-direction:row;flex-wrap:wrap;padding:8px}
+  .admin-sidebar-section{display:none}
+  .sidebar-item{padding:8px 12px;font-size:12px}
+  .sidebar-item-icon{font-size:14px}
+  .admin-main{padding:20px 16px}
+  .photos-grid{grid-template-columns:repeat(2,1fr)}
+  .preview-row{flex-direction:column}
+  .preview-row-label{width:100%;margin-bottom:4px}
+  .form-screen-content{padding:20px 16px 80px}
+  .form-actions{padding:12px 16px}
+  .data-table{font-size:12px}
+  .data-table th,.data-table td{padding:10px 12px}
+  .modal{margin:10px}
+}
+
+/* Report type picker */
+.export-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.export-card{border:2px solid var(--border);border-radius:var(--radius-sm);padding:18px;cursor:pointer;transition:var(--transition);text-align:center;background:var(--surface)}
+.export-card:hover{border-color:var(--blue);background:var(--blue-light)}
+.export-card.selected{border-color:var(--blue);background:var(--blue-light)}
+.export-card-icon{font-size:28px;margin-bottom:8px}
+.export-card-label{font-size:14px;font-weight:600}
+.export-card-sub{font-size:12px;color:var(--text2);margin-top:3px}
+
+/* Shift selector */
+.shift-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.shift-option{border:1.5px solid var(--border);border-radius:var(--radius-xs);padding:12px;cursor:pointer;transition:var(--transition);text-align:center;background:var(--bg)}
+.shift-option:hover{border-color:var(--blue);background:var(--blue-light)}
+.shift-option.selected{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}
+.shift-option-time{font-size:13px;font-weight:700}
+.shift-option-label{font-size:11px;color:var(--text2);margin-top:2px}
+.shift-option.selected .shift-option-label{color:var(--blue);opacity:.7}
+
+/* Success screen */
+#screen-success{background:var(--bg);align-items:center;justify-content:center}
+.success-card{background:var(--surface);border-radius:24px;padding:52px 44px;text-align:center;max-width:440px;width:100%;margin:20px;box-shadow:var(--shadow-lg);border:1px solid var(--border2)}
+.success-icon{font-size:56px;margin-bottom:20px}
+.success-title{font-size:24px;font-weight:700;letter-spacing:-.4px;margin-bottom:10px}
+.success-text{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:32px}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     TOAST CONTAINER
+════════════════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN: LOGIN
+════════════════════════════════════════════════ -->
+<div class="screen" id="screen-login">
+  <div class="login-card">
+    <div class="login-logo-wrap">
+      <div class="login-logo" id="loginLogoWrap">
+        <span class="login-logo-placeholder" id="loginLogoPlaceholder">FR</span>
+      </div>
+      <div class="login-title" id="loginAppName">FieldReport Pro</div>
+      <div class="login-sub">Sistema de Relatórios de Campo</div>
+    </div>
+    <div class="login-field">
+      <label class="login-label">Login</label>
+      <input class="login-input" id="loginUser" type="text" placeholder="Seu login" autocomplete="username">
+    </div>
+    <div class="login-field">
+      <label class="login-label">Senha</label>
+      <input class="login-input" id="loginPass" type="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">Entrar</button>
+    <div id="loginError" class="login-error hidden"></div>
+    <div class="login-footer">FieldReport Pro v1.0 • Acesso restrito</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN: FORM (Supervisor)
+════════════════════════════════════════════════ -->
+<div class="screen hidden" id="screen-form">
+  <div class="topnav">
+    <div class="topnav-logo">
+      <div class="topnav-logo-icon" id="navLogo"><span style="color:#fff;font-weight:800;font-size:13px" id="navLogoText">FR</span></div>
+      <span class="topnav-logo-text" id="navAppName">FieldReport Pro</span>
+    </div>
+    <div class="topnav-right">
+      <span class="topnav-user" id="navUserName"></span>
+      <button class="topnav-btn" onclick="doLogout()">Sair</button>
+    </div>
+  </div>
+
+  <div class="form-screen-content">
+    <div class="form-header">
+      <div class="form-header-title">Novo Relatório</div>
+      <div class="form-header-sub" id="formContractLabel">Contrato: —</div>
+    </div>
+
+    <div class="form-card">
+      <!-- Q1: Date -->
+      <div class="form-q">
+        <div class="form-q-num">1</div>
+        <div class="form-q-label">Informe a data</div>
+        <div class="form-q-hint">Selecione a data da atividade no calendário</div>
+        <input class="form-input form-date-input" type="date" id="fDate">
+      </div>
+      <!-- Q2: Location -->
+      <div class="form-q">
+        <div class="form-q-num">2</div>
+        <div class="form-q-label">Qual o local de atividade?</div>
+        <textarea class="form-textarea" id="fLocation" placeholder="Ex: Canteiro de obras Norte, Bloco A, Setor 3…" rows="2"></textarea>
+      </div>
+      <!-- Q3: Shift -->
+      <div class="form-q">
+        <div class="form-q-num">3</div>
+        <div class="form-q-label">Qual o horário de turno/expediente?</div>
+        <div class="form-q-hint">Selecione um turno padrão ou defina um horário personalizado</div>
+        <div class="shift-grid" id="shiftGrid">
+          <div class="shift-option" onclick="selectShift(this,'00:00 – 06:00')">
+            <div class="shift-option-time">00:00 – 06:00</div>
+            <div class="shift-option-label">Turno Madrugada</div>
+          </div>
+          <div class="shift-option" onclick="selectShift(this,'06:00 – 12:00')">
+            <div class="shift-option-time">06:00 – 12:00</div>
+            <div class="shift-option-label">Turno Manhã</div>
+          </div>
+          <div class="shift-option" onclick="selectShift(this,'12:00 – 18:00')">
+            <div class="shift-option-time">12:00 – 18:00</div>
+            <div class="shift-option-label">Turno Tarde</div>
+          </div>
+          <div class="shift-option" onclick="selectShift(this,'18:00 – 00:00')">
+            <div class="shift-option-time">18:00 – 00:00</div>
+            <div class="shift-option-label">Turno Noite</div>
+          </div>
+        </div>
+        <input class="form-input mt-3" id="fShift" placeholder="Ou digite um horário personalizado…">
+      </div>
+    </div>
+
+    <!-- Q4: Activities -->
+    <div class="form-card">
+      <div class="form-q">
+        <div class="form-q-num">4</div>
+        <div class="form-q-label">Quais atividades foram desenvolvidas?</div>
+        <div class="form-q-hint">Adicione cada atividade separadamente clicando em "+ Nova Atividade"</div>
+        <div class="activities-wrap" id="activitiesWrap"></div>
+        <button class="add-activity-btn" onclick="addActivity()">＋ Nova Atividade</button>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <!-- Q5: Inspections -->
+      <div class="form-q">
+        <div class="form-q-num">5</div>
+        <div class="form-q-label">Houve inspeções e visitas na atividade?</div>
+        <textarea class="form-textarea" id="fInspections" placeholder="Descreva inspeções, visitas técnicas ou fiscalizações ocorridas. Se não houve, escreva 'Não houve.'"></textarea>
+      </div>
+      <!-- Q6: Interruptions -->
+      <div class="form-q">
+        <div class="form-q-num">6</div>
+        <div class="form-q-label">Houveram interrupções ou desvios na atividade?</div>
+        <textarea class="form-textarea" id="fInterruptions" placeholder="Descreva interrupções, paradas ou desvios de planejamento. Se não houve, escreva 'Não houve.'"></textarea>
+      </div>
+      <!-- Q7: Safety -->
+      <div class="form-q">
+        <div class="form-q-num">7</div>
+        <div class="form-q-label">Houveram desvios de segurança na atividade?</div>
+        <textarea class="form-textarea" id="fSafety" placeholder="Descreva desvios de segurança, não conformidades ou incidentes. Se não houve, escreva 'Não houve.'"></textarea>
+      </div>
+      <!-- Q8: Involved -->
+      <div class="form-q">
+        <div class="form-q-num">8</div>
+        <div class="form-q-label">Descreva os nomes dos envolvidos na atividade</div>
+        <textarea class="form-textarea" id="fInvolved" placeholder="Liste os nomes dos colaboradores, terceiros e responsáveis presentes na atividade…"></textarea>
+      </div>
+    </div>
+
+    <!-- Photos -->
+    <div class="form-card">
+      <div class="form-q">
+        <div style="margin-bottom:12px">
+          <div class="form-q-label">📷 Envie as fotos da atividade</div>
+          <div class="form-q-hint">Adicione até 4 fotos representativas da atividade realizada</div>
+        </div>
+        <div class="photos-grid" id="photosGrid"></div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhotoSelect(event)">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn-secondary" onclick="cancelForm()">✕ Cancelar Relatório</button>
+    <button class="btn btn-primary" onclick="goToPreview()">Visualizar Resumo →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN: PREVIEW
+════════════════════════════════════════════════ -->
+<div class="screen hidden" id="screen-preview">
+  <div class="topnav">
+    <div class="topnav-logo">
+      <div class="topnav-logo-icon" id="navLogo2"><span style="color:#fff;font-weight:800;font-size:13px" id="navLogoText2">FR</span></div>
+      <span class="topnav-logo-text" id="navAppName2">FieldReport Pro</span>
+    </div>
+    <div class="topnav-right">
+      <button class="topnav-btn" onclick="doLogout()">Sair</button>
+    </div>
+  </div>
+
+  <div class="preview-content">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+      <button class="btn btn-ghost btn-sm" onclick="backToForm()">← Voltar</button>
+      <div>
+        <div style="font-size:20px;font-weight:700">Revisão do Relatório</div>
+        <div style="font-size:13px;color:var(--text2)">Confira os dados antes de confirmar o envio</div>
+      </div>
+    </div>
+
+    <div class="preview-header-card">
+      <div class="preview-company" id="pvCompany">RELATÓRIO DIÁRIO DE OBRA</div>
+      <div class="preview-title" id="pvTitle">—</div>
+      <div class="preview-meta" id="pvMeta"></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">Informações Gerais</div>
+      <div class="preview-row"><span class="preview-row-label">Data</span><span class="preview-row-value" id="pvDate">—</span></div>
+      <div class="preview-row"><span class="preview-row-label">Local</span><span class="preview-row-value" id="pvLocation">—</span></div>
+      <div class="preview-row"><span class="preview-row-label">Turno/Horário</span><span class="preview-row-value" id="pvShift">—</span></div>
+      <div class="preview-row"><span class="preview-row-label">Supervisor</span><span class="preview-row-value" id="pvSupervisor">—</span></div>
+      <div class="preview-row"><span class="preview-row-label">Contrato</span><span class="preview-row-value" id="pvContract">—</span></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">Atividades Desenvolvidas</div>
+      <div class="preview-activities" id="pvActivities"></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">Ocorrências</div>
+      <div class="preview-row"><span class="preview-row-label">Inspeções / Visitas</span><span class="preview-row-value" id="pvInspections">—</span></div>
+      <div class="preview-row"><span class="preview-row-label">Interrupções / Desvios</span><span class="preview-row-value" id="pvInterruptions">—</span></div>
+      <div class="preview-row"><span class="preview-row-label">Desvios de Segurança</span><span class="preview-row-value" id="pvSafety">—</span></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">Equipe Envolvida</div>
+      <div class="preview-row"><span class="preview-row-label">Nomes</span><span class="preview-row-value" id="pvInvolved">—</span></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">Registros Fotográficos</div>
+      <div class="preview-photos-grid" id="pvPhotos"></div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn-secondary" onclick="backToForm()">← Editar Relatório</button>
+    <button class="btn btn-primary btn-lg" id="confirmBtn" onclick="confirmReport()">✓ Confirmar e Enviar</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN: SUCCESS
+════════════════════════════════════════════════ -->
+<div class="screen hidden" id="screen-success">
+  <div class="success-card">
+    <div class="success-icon">✅</div>
+    <div class="success-title">Relatório Enviado!</div>
+    <div class="success-text" id="successText">Seu relatório foi registrado com sucesso e está disponível para geração de PDF e Excel pelo administrador.</div>
+    <button class="btn btn-primary btn-full btn-lg" onclick="newReport()">+ Novo Relatório</button>
+    <button class="btn btn-secondary btn-full mt-2" onclick="viewMyReports()">Ver meus relatórios</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN: ADMIN
+════════════════════════════════════════════════ -->
+<div class="screen hidden" id="screen-admin">
+  <div class="topnav">
+    <div class="topnav-logo">
+      <div class="topnav-logo-icon" id="navLogoAdmin"><span style="color:#fff;font-weight:800;font-size:13px" id="navLogoTextAdmin">FR</span></div>
+      <span class="topnav-logo-text" id="navAppNameAdmin">FieldReport Pro</span>
+      <span class="badge badge-blue" style="margin-left:4px">Admin</span>
+    </div>
+    <div class="topnav-right">
+      <span class="topnav-user" id="navAdminName"></span>
+      <button class="topnav-btn" onclick="doLogout()">Sair</button>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-section">Principal</div>
+      <div class="sidebar-item active" onclick="adminNav('dashboard',this)"><span class="sidebar-item-icon">📊</span>Dashboard</div>
+      <div class="sidebar-item" onclick="adminNav('reports',this)"><span class="sidebar-item-icon">📋</span>Relatórios</div>
+      <div class="admin-sidebar-section">Cadastros</div>
+      <div class="sidebar-item" onclick="adminNav('users',this)"><span class="sidebar-item-icon">👤</span>Colaboradores</div>
+      <div class="sidebar-item" onclick="adminNav('contracts',this)"><span class="sidebar-item-icon">📁</span>Contratos</div>
+      <div class="sidebar-item" onclick="adminNav('templates',this)"><span class="sidebar-item-icon">📄</span>Modelos de Relatório</div>
+      <div class="admin-sidebar-section">Configurações</div>
+      <div class="sidebar-item" onclick="adminNav('settings',this)"><span class="sidebar-item-icon">⚙️</span>Configurações</div>
+      <div class="sidebar-item" onclick="adminNav('appconfig',this)"><span class="sidebar-item-icon">🎨</span>Identidade Visual</div>
+    </div>
+
+    <div class="admin-main" id="adminMain"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN: MY REPORTS (Supervisor view)
+════════════════════════════════════════════════ -->
+<div class="screen hidden" id="screen-myreports">
+  <div class="topnav">
+    <div class="topnav-logo">
+      <div class="topnav-logo-icon"><span style="color:#fff;font-weight:800;font-size:13px" id="navLogoMyR">FR</span></div>
+      <span class="topnav-logo-text">Meus Relatórios</span>
+    </div>
+    <div class="topnav-right">
+      <button class="btn btn-primary btn-sm" onclick="showScreen('screen-form')">+ Novo</button>
+      <button class="topnav-btn" onclick="doLogout()">Sair</button>
+    </div>
+  </div>
+  <div style="max-width:760px;margin:0 auto;padding:32px 24px 60px">
+    <div class="admin-page-title">Meus Relatórios</div>
+    <div class="admin-page-sub">Relatórios enviados por você</div>
+    <div class="data-table-wrap" id="myReportsTable"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MODALS
+════════════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal" id="modalBox">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Modal</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<!-- Export chooser modal -->
+<div class="modal-overlay hidden" id="exportModal">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header">
+      <span class="modal-title">Gerar Relatório</span>
+      <button class="modal-close" onclick="closeExportModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:14px;color:var(--text2);margin-bottom:18px">Escolha o formato de exportação para o relatório selecionado:</div>
+      <div class="export-options">
+        <div class="export-card selected" id="expPDF" onclick="selectExport('pdf')">
+          <div class="export-card-icon">📄</div>
+          <div class="export-card-label">PDF</div>
+          <div class="export-card-sub">Relatório formatado</div>
+        </div>
+        <div class="export-card" id="expXLS" onclick="selectExport('xlsx')">
+          <div class="export-card-icon">📊</div>
+          <div class="export-card-label">Excel (.xlsx)</div>
+          <div class="export-card-sub">Planilha completa</div>
+        </div>
+        <div class="export-card" id="expSheets" onclick="selectExport('sheets')">
+          <div class="export-card-icon">🟢</div>
+          <div class="export-card-label">Google Sheets</div>
+          <div class="export-card-sub">Enviar para planilha</div>
+        </div>
+        <div class="export-card" id="expAll" onclick="selectExport('all')">
+          <div class="export-card-icon">⚡</div>
+          <div class="export-card-label">Todos os formatos</div>
+          <div class="export-card-sub">PDF + Excel + Sheets</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeExportModal()">Cancelar</button>
+      <button class="btn btn-primary" id="doExportBtn" onclick="executeExport()">Gerar →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════
+// FIREBASE CONFIG — preencha com suas credenciais
+// ═══════════════════════════════════
+const FIREBASE_CONFIG = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "SEU_PROJECT.firebaseapp.com",
+  projectId: "SEU_PROJECT_ID",
+  storageBucket: "SEU_PROJECT.appspot.com",
+  messagingSenderId: "SEU_SENDER_ID",
+  appId: "SEU_APP_ID"
+};
+// Google Sheets API
+const GSHEETS_API_KEY = "SUA_GSHEETS_API_KEY";
+const GSHEETS_SPREADSHEET_ID = "SEU_SPREADSHEET_ID";
+
+// ═══════════════════════════════════
+// APP STATE & LOCAL STORAGE DB
+// ═══════════════════════════════════
+let APP = {
+  currentUser: null,
+  currentReport: null,
+  photoSlots: [null,null,null,null],
+  currentPhotoSlot: 0,
+  activities: [''],
+  exportType: 'pdf',
+  exportTargetReport: null
+};
+
+// ─── Demo data (localStorage fallback) ───
+function loadDB(){
+  try{ return JSON.parse(localStorage.getItem('frpDB')) || defaultDB(); }
+  catch(e){ return defaultDB(); }
+}
+function saveDB(db){ localStorage.setItem('frpDB', JSON.stringify(db)); }
+function defaultDB(){
+  return {
+    appConfig: { name:'FieldReport Pro', logo:null, logoText:'FR', companyName:'Minha Empresa' },
+    users:[
+      { id:'admin-001', name:'Administrador', login:'admin', password:'admin123', role:'admin', contractId:null, matricula:'ADM-001', active:true }
+    ],
+    contracts:[
+      { id:'contract-001', name:'Tubulações', description:'Contrato de instalação de tubulações', active:true }
+    ],
+    templates:[
+      { id:'tpl-001', contractId:'contract-001', name:'RDO Padrão – Tubulações', fields:[] }
+    ],
+    reports:[]
+  };
+}
+let DB = loadDB();
+
+// ─── App Config helpers ───
+function applyAppConfig(){
+  const cfg = DB.appConfig;
+  // Login screen
+  document.getElementById('loginAppName').textContent = cfg.name || 'FieldReport Pro';
+  document.getElementById('loginLogoPlaceholder').textContent = cfg.logoText || 'FR';
+  if(cfg.logo){
+    const img = document.createElement('img');
+    img.src = cfg.logo;
+    document.getElementById('loginLogoWrap').innerHTML = '';
+    document.getElementById('loginLogoWrap').appendChild(img);
+  }
+  // Navbars
+  ['navLogoText','navLogoText2','navLogoTextAdmin','navLogoMyR'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.textContent = cfg.logoText||'FR';
+  });
+  ['navAppName','navAppName2','navAppNameAdmin'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.textContent = cfg.name||'FieldReport Pro';
+  });
+  if(cfg.logo){
+    ['navLogo','navLogo2','navLogoAdmin'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el){
+        el.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = cfg.logo;
+        img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:9px';
+        el.appendChild(img);
+      }
+    });
+  }
+}
+
+// ═══════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════
+const SCREENS = ['screen-login','screen-form','screen-preview','screen-success','screen-admin','screen-myreports'];
+function showScreen(id){
+  SCREENS.forEach(s=>{ document.getElementById(s).classList.add('hidden'); });
+  document.getElementById(id).classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+// ═══════════════════════════════════
+// AUTH
+// ═══════════════════════════════════
+function doLogin(){
+  const login = document.getElementById('loginUser').value.trim();
+  const pass  = document.getElementById('loginPass').value.trim();
+  const btn   = document.getElementById('loginBtn');
+  const err   = document.getElementById('loginError');
+  if(!login||!pass){ showLoginError('Preencha login e senha.'); return; }
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div>';
+  setTimeout(()=>{
+    const user = DB.users.find(u=>u.login===login && u.password===pass && u.active!==false);
+    if(!user){ showLoginError('Login ou senha incorretos.'); btn.disabled=false; btn.innerHTML='Entrar'; return; }
+    APP.currentUser = user;
+    err.classList.add('hidden');
+    btn.disabled=false; btn.innerHTML='Entrar';
+    document.getElementById('loginUser').value='';
+    document.getElementById('loginPass').value='';
+    if(user.role==='admin'){
+      document.getElementById('navAdminName').textContent = user.name;
+      showScreen('screen-admin');
+      adminNav('dashboard', document.querySelector('.sidebar-item'));
+    } else {
+      document.getElementById('navUserName').textContent = user.name;
+      const contract = DB.contracts.find(c=>c.id===user.contractId);
+      document.getElementById('formContractLabel').textContent = 'Contrato: '+(contract?contract.name:'—');
+      initForm();
+      showScreen('screen-form');
+    }
+  },600);
+}
+function showLoginError(msg){ const e=document.getElementById('loginError'); e.textContent=msg; e.classList.remove('hidden'); }
+function doLogout(){ APP.currentUser=null; APP.currentReport=null; showScreen('screen-login'); }
+
+// Enter key on login
+document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById('loginUser').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('loginPass').focus(); });
+
+// ═══════════════════════════════════
+// FORM
+// ═══════════════════════════════════
+function initForm(){
+  // Set today's date
+  document.getElementById('fDate').value = new Date().toISOString().split('T')[0];
+  // Clear fields
+  ['fLocation','fShift','fInspections','fInterruptions','fSafety','fInvolved'].forEach(id=>{
+    document.getElementById(id).value='';
+  });
+  // Reset shift
+  document.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected'));
+  // Reset activities
+  APP.activities = [''];
+  renderActivities();
+  // Reset photos
+  APP.photoSlots = [null,null,null,null];
+  renderPhotoSlots();
+}
+
+function selectShift(el,val){
+  document.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('fShift').value = val;
+}
+
+// ─── Activities ───
+function renderActivities(){
+  const wrap = document.getElementById('activitiesWrap');
+  wrap.innerHTML = '';
+  APP.activities.forEach((a,i)=>{
+    const div = document.createElement('div');
+    div.className = 'activity-item';
+    div.innerHTML = `
+      <div class="activity-num">${i+1}</div>
+      <textarea class="activity-textarea" placeholder="Descreva a atividade ${i+1}…" onchange="APP.activities[${i}]=this.value" oninput="APP.activities[${i}]=this.value">${a}</textarea>
+      ${APP.activities.length>1?`<button class="activity-remove" onclick="removeActivity(${i})" title="Remover">✕</button>`:''}
+    `;
+    wrap.appendChild(div);
+  });
+}
+function addActivity(){ APP.activities.push(''); renderActivities(); }
+function removeActivity(i){ APP.activities.splice(i,1); renderActivities(); }
+
+// ─── Photos ───
+function renderPhotoSlots(){
+  const grid = document.getElementById('photosGrid');
+  grid.innerHTML='';
+  APP.photoSlots.forEach((p,i)=>{
+    const slot = document.createElement('div');
+    slot.className = 'photo-slot'+(p?' filled':'');
+    if(p){
+      slot.innerHTML=`<img src="${p}" alt="Foto ${i+1}"><button class="photo-remove-btn" onclick="removePhoto(${i},event)">✕</button>`;
+    } else {
+      slot.innerHTML=`<div class="photo-slot-icon">📷</div><div class="photo-slot-label">Foto ${i+1}</div>`;
+      slot.onclick=()=>openPhotoPicker(i);
+    }
+    grid.appendChild(slot);
+  });
+}
+function openPhotoPicker(i){ APP.currentPhotoSlot=i; document.getElementById('photoInput').click(); }
+function handlePhotoSelect(e){
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{ APP.photoSlots[APP.currentPhotoSlot]=ev.target.result; renderPhotoSlots(); };
+  reader.readAsDataURL(file);
+  e.target.value='';
+}
+function removePhoto(i,e){ e.stopPropagation(); APP.photoSlots[i]=null; renderPhotoSlots(); }
+
+function cancelForm(){ showConfirm('Cancelar relatório?','Todos os dados preenchidos serão perdidos.',()=>{ initForm(); }); }
+
+// ─── Validate & Preview ───
+function goToPreview(){
+  const date=document.getElementById('fDate').value;
+  const loc=document.getElementById('fLocation').value.trim();
+  const shift=document.getElementById('fShift').value.trim();
+  const acts=APP.activities.filter(a=>a.trim());
+  if(!date){ toast('Informe a data','error'); return; }
+  if(!loc){ toast('Informe o local de atividade','error'); return; }
+  if(!shift){ toast('Informe o turno/expediente','error'); return; }
+  if(!acts.length){ toast('Informe ao menos uma atividade','error'); return; }
+  const u=APP.currentUser;
+  const contract=DB.contracts.find(c=>c.id===u.contractId);
+  APP.currentReport = {
+    id: 'rep-'+Date.now(),
+    date, location:loc, shift,
+    activities:acts,
+    inspections:document.getElementById('fInspections').value.trim()||'Não informado',
+    interruptions:document.getElementById('fInterruptions').value.trim()||'Não informado',
+    safety:document.getElementById('fSafety').value.trim()||'Não informado',
+    involved:document.getElementById('fInvolved').value.trim()||'Não informado',
+    photos:[...APP.photoSlots],
+    supervisorId:u.id, supervisorName:u.name,
+    contractId:u.contractId, contractName:contract?contract.name:'—',
+    status:'pending', createdAt:new Date().toISOString()
+  };
+  renderPreview();
+  showScreen('screen-preview');
+}
+
+function renderPreview(){
+  const r=APP.currentReport;
+  const dateStr = r.date ? new Date(r.date+'T12:00').toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'}) : '—';
+  document.getElementById('pvTitle').textContent='Relatório Diário – '+r.contractName;
+  document.getElementById('pvCompany').textContent='RELATÓRIO DIÁRIO DE OBRA';
+  document.getElementById('pvMeta').innerHTML=`
+    <span class="preview-meta-item"><span class="preview-meta-icon">📅</span>${dateStr}</span>
+    <span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span>
+    <span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span>
+  `;
+  document.getElementById('pvDate').textContent=dateStr;
+  document.getElementById('pvLocation').textContent=r.location;
+  document.getElementById('pvShift').textContent=r.shift;
+  document.getElementById('pvSupervisor').textContent=r.supervisorName;
+  document.getElementById('pvContract').textContent=r.contractName;
+  // Activities
+  const acts=document.getElementById('pvActivities');
+  acts.innerHTML=r.activities.map((a,i)=>`
+    <div class="preview-activity-item">
+      <div class="preview-activity-num">Atividade ${i+1}</div>
+      <div class="preview-activity-text">${a}</div>
+    </div>
+  `).join('');
+  document.getElementById('pvInspections').textContent=r.inspections;
+  document.getElementById('pvInterruptions').textContent=r.interruptions;
+  document.getElementById('pvSafety').textContent=r.safety;
+  document.getElementById('pvInvolved').textContent=r.involved;
+  // Photos
+  const pg=document.getElementById('pvPhotos');
+  pg.innerHTML=r.photos.map((p,i)=>p
+    ?`<div class="preview-photo"><img src="${p}" alt="Foto ${i+1}"></div>`
+    :`<div class="preview-photo preview-photo-empty">📷</div>`
+  ).join('');
+}
+
+function backToForm(){ showScreen('screen-form'); }
+
+function confirmReport(){
+  const btn=document.getElementById('confirmBtn');
+  btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Enviando…';
+  setTimeout(()=>{
+    DB.reports.push(APP.currentReport);
+    saveDB(DB);
+    btn.disabled=false; btn.innerHTML='✓ Confirmar e Enviar';
+    document.getElementById('successText').textContent=
+      `Relatório do contrato "${APP.currentReport.contractName}" enviado com sucesso em ${new Date().toLocaleString('pt-BR')}.`;
+    showScreen('screen-success');
+    toast('Relatório enviado com sucesso!','success');
+  },1200);
+}
+
+function newReport(){ initForm(); showScreen('screen-form'); }
+function viewMyReports(){ renderMyReports(); showScreen('screen-myreports'); }
+
+function renderMyReports(){
+  const u=APP.currentUser;
+  const reps=DB.reports.filter(r=>r.supervisorId===u.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+  const wrap=document.getElementById('myReportsTable');
+  if(!reps.length){
+    wrap.innerHTML=`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div></div>`;
+    return;
+  }
+  wrap.innerHTML=`
+    <div class="data-table-header"><span class="data-table-title">Meus Relatórios</span></div>
+    <table class="data-table"><thead><tr>
+      <th>Data</th><th>Local</th><th>Turno</th><th>Contrato</th><th>Ações</th>
+    </tr></thead><tbody>
+    ${reps.map(r=>`<tr>
+      <td>${fmtDate(r.date)}</td>
+      <td>${r.location}</td>
+      <td>${r.shift}</td>
+      <td>${r.contractName}</td>
+      <td><div class="table-actions">
+        <button class="tbl-btn tbl-btn-view" onclick="previewStoredReport('${r.id}')">👁 Ver</button>
+      </div></td>
+    </tr>`).join('')}
+    </tbody></table>`;
+}
+
+function previewStoredReport(id){
+  const r=DB.reports.find(r=>r.id===id); if(!r) return;
+  APP.currentReport=r; renderPreview(); showScreen('screen-preview');
+}
+
+// ═══════════════════════════════════
+// ADMIN PANEL
+// ═══════════════════════════════════
+function adminNav(page,el){
+  document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const main=document.getElementById('adminMain');
+  const renders={dashboard:renderDashboard,reports:renderReports,users:renderUsers,contracts:renderContracts,templates:renderTemplates,settings:renderSettings,appconfig:renderAppConfig};
+  if(renders[page]) renders[page](main);
+}
+
+// ─── Dashboard ───
+function renderDashboard(main){
+  const reps=DB.reports; const users=DB.users.filter(u=>u.role!=='admin'); const contracts=DB.contracts;
+  const today=new Date().toISOString().split('T')[0];
+  const todayReps=reps.filter(r=>r.date===today);
+  main.innerHTML=`
+    <div class="admin-page-title">Dashboard</div>
+    <div class="admin-page-sub">Visão geral do sistema</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${reps.length}</div><div class="stat-label">Total de Relatórios</div></div>
+      <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">${todayReps.length}</div><div class="stat-label">Relatórios Hoje</div></div>
+      <div class="stat-card"><div class="stat-icon">👤</div><div class="stat-value">${users.length}</div><div class="stat-label">Supervisores</div></div>
+      <div class="stat-card"><div class="stat-icon">📁</div><div class="stat-value">${contracts.length}</div><div class="stat-label">Contratos Ativos</div></div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-header">
+        <span class="data-table-title">Últimos Relatórios</span>
+        <button class="btn btn-primary btn-sm" onclick="adminNav('reports',null)">Ver todos</button>
+      </div>
+      ${reps.length===0?`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div><div class="empty-state-sub">Os supervisores ainda não enviaram relatórios</div></div>`:
+      `<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Ações</th></tr></thead><tbody>
+      ${[...reps].reverse().slice(0,5).map(r=>`<tr>
+        <td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td>
+        <td><div class="table-actions">
+          <button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button>
+          <button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button>
+        </div></td>
+      </tr>`).join('')}
+      </tbody></table>`}
+    </div>`;
+}
+
+// ─── Reports ───
+function renderReports(main){
+  const reps=[...DB.reports].reverse();
+  main.innerHTML=`
+    <div class="admin-page-title">Relatórios</div>
+    <div class="admin-page-sub">Todos os relatórios enviados pelos supervisores</div>
+    <div style="display:flex;gap:12px;margin-bottom:20px">
+      <input class="form-input" id="reportSearch" placeholder="Buscar por supervisor, contrato…" oninput="filterReports()" style="max-width:340px">
+      <button class="btn btn-primary btn-sm" onclick="openExportModal(null)">⬇ Exportar Diário</button>
+    </div>
+    <div class="data-table-wrap" id="reportsTableWrap">
+      ${buildReportsTable(reps)}
+    </div>`;
+}
+
+function buildReportsTable(reps){
+  if(!reps.length) return `<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório encontrado</div></div>`;
+  return `<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Local</th><th>Ações</th></tr></thead><tbody>
+  ${reps.map(r=>`<tr>
+    <td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td>${r.location}</td>
+    <td><div class="table-actions">
+      <button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button>
+      <button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button>
+      <button class="tbl-btn tbl-btn-del" onclick="deleteReport('${r.id}')">🗑</button>
+    </div></td>
+  </tr>`).join('')}
+  </tbody></table>`;
+}
+
+function filterReports(){
+  const q=document.getElementById('reportSearch').value.toLowerCase();
+  const filtered=DB.reports.filter(r=>r.supervisorName.toLowerCase().includes(q)||r.contractName.toLowerCase().includes(q)||r.date.includes(q)||r.location.toLowerCase().includes(q));
+  document.getElementById('reportsTableWrap').innerHTML=buildReportsTable([...filtered].reverse());
+}
+
+function adminViewReport(id){
+  const r=DB.reports.find(r=>r.id===id); if(!r) return;
+  APP.currentReport=r; renderPreview();
+  // Show in modal
+  openModal('Relatório – '+r.contractName,`
+    <div class="preview-header-card" style="margin-bottom:16px">
+      <div class="preview-title">${r.contractName} — ${fmtDate(r.date)}</div>
+      <div class="preview-meta" style="margin-top:10px">
+        <span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span>
+        <span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span>
+        <span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span>
+      </div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px">Atividades</div>
+    ${r.activities.map((a,i)=>`<div class="preview-activity-item mb-4"><div class="preview-activity-num">Atividade ${i+1}</div><div class="preview-activity-text">${a}</div></div>`).join('')}
+    <div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Ocorrências</div>
+    <div style="display:grid;gap:8px">
+      <div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Inspeções</div><div style="font-size:13px">${r.inspections}</div></div>
+      <div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Interrupções</div><div style="font-size:13px">${r.interruptions}</div></div>
+      <div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Segurança</div><div style="font-size:13px">${r.safety}</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Envolvidos</div>
+    <div style="font-size:13px;line-height:1.7">${r.involved}</div>
+    ${r.photos.some(p=>p)?`<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Fotos</div>
+    <div class="preview-photos-grid" style="padding:0">${r.photos.map((p,i)=>p?`<div class="preview-photo"><img src="${p}"></div>`:`<div class="preview-photo preview-photo-empty">📷</div>`).join('')}</div>`:''}
+  `,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button><button class="btn btn-primary" onclick="closeModal();openExportModal('${r.id}')">⬇ Exportar</button>`);
+}
+
+function deleteReport(id){
+  showConfirm('Excluir relatório?','Esta ação não pode ser desfeita.',()=>{
+    DB.reports=DB.reports.filter(r=>r.id!==id); saveDB(DB);
+    renderReports(document.getElementById('adminMain'));
+    toast('Relatório excluído','warn');
+  });
+}
+
+// ─── Users ───
+function renderUsers(main){
+  const users=DB.users.filter(u=>u.role!=='admin');
+  main.innerHTML=`
+    <div class="admin-page-title">Colaboradores</div>
+    <div class="admin-page-sub">Gerencie os supervisores e seus acessos</div>
+    <div class="data-table-wrap">
+      <div class="data-table-header">
+        <span class="data-table-title">Supervisores (${users.length})</span>
+        <button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Novo Colaborador</button>
+      </div>
+      ${users.length===0?`<div class="empty-state"><div class="empty-state-icon">👤</div><div class="empty-state-text">Nenhum colaborador cadastrado</div><div class="empty-state-sub">Adicione supervisores para que possam enviar relatórios</div></div>`
+      :`<table class="data-table"><thead><tr><th>Nome</th><th>Login</th><th>Matrícula</th><th>Contrato</th><th>Status</th><th>Ações</th></tr></thead><tbody>
+      ${users.map(u=>{
+        const c=DB.contracts.find(c=>c.id===u.contractId);
+        return `<tr>
+          <td><b>${u.name}</b></td><td>${u.login}</td><td>${u.matricula||'—'}</td>
+          <td>${c?c.name:'<span class="text-muted">Nenhum</span>'}</td>
+          <td><span class="badge ${u.active!==false?'badge-green':'badge-red'}">${u.active!==false?'Ativo':'Inativo'}</span></td>
+          <td><div class="table-actions">
+            <button class="tbl-btn tbl-btn-edit" onclick="openUserModal('${u.id}')">✏ Editar</button>
+            <button class="tbl-btn tbl-btn-del" onclick="deleteUser('${u.id}')">🗑</button>
+          </div></td>
+        </tr>`;
+      }).join('')}
+      </tbody></table>`}
+    </div>`;
+}
+
+function openUserModal(id){
+  const u=id?DB.users.find(u=>u.id===id):null;
+  const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${u&&u.contractId===c.id?'selected':''}>${c.name}</option>`).join('');
+  openModal(u?'Editar Colaborador':'Novo Colaborador',`
+    <div class="form-row-2">
+      <div class="form-group"><label>Nome Completo</label><input id="uName" value="${u?u.name:''}" placeholder="Nome do supervisor"></div>
+      <div class="form-group"><label>Matrícula</label><input id="uMat" value="${u?u.matricula||'':''}" placeholder="Ex: SUP-001"></div>
+    </div>
+    <div class="form-row-2">
+      <div class="form-group"><label>Login</label><input id="uLogin" value="${u?u.login:''}" placeholder="login de acesso"></div>
+      <div class="form-group"><label>${u?'Nova Senha (deixe em branco para manter)':'Senha'}</label><input id="uPass" type="password" placeholder="••••••••"></div>
+    </div>
+    <div class="form-group"><label>Contrato Vinculado</label><select id="uContract"><option value="">Nenhum</option>${contractOptions}</select></div>
+    <div class="form-group"><label>Status</label><select id="uActive"><option value="true" ${u&&u.active!==false?'selected':''}>Ativo</option><option value="false" ${u&&u.active===false?'selected':''}>Inativo</option></select></div>
+  `,`
+    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveUser('${id||''}')">Salvar</button>
+  `);
+}
+
+function saveUser(id){
+  const name=document.getElementById('uName').value.trim();
+  const login=document.getElementById('uLogin').value.trim();
+  const pass=document.getElementById('uPass').value;
+  const mat=document.getElementById('uMat').value.trim();
+  const contract=document.getElementById('uContract').value;
+  const active=document.getElementById('uActive').value==='true';
+  if(!name||!login){ toast('Nome e login são obrigatórios','error'); return; }
+  const existing=DB.users.find(u=>u.login===login&&u.id!==id);
+  if(existing){ toast('Login já em uso por outro colaborador','error'); return; }
+  if(id){
+    const u=DB.users.find(u=>u.id===id);
+    u.name=name; u.login=login; u.matricula=mat; u.contractId=contract||null; u.active=active;
+    if(pass) u.password=pass;
+  } else {
+    if(!pass){ toast('Defina uma senha','error'); return; }
+    DB.users.push({ id:'user-'+Date.now(), name, login, password:pass, role:'supervisor', matricula:mat, contractId:contract||null, active });
+  }
+  saveDB(DB); closeModal();
+  renderUsers(document.getElementById('adminMain'));
+  toast(id?'Colaborador atualizado':'Colaborador cadastrado','success');
+}
+
+function deleteUser(id){
+  showConfirm('Excluir colaborador?','O histórico de relatórios será mantido.',()=>{
+    DB.users=DB.users.filter(u=>u.id!==id); saveDB(DB);
+    renderUsers(document.getElementById('adminMain'));
+    toast('Colaborador removido','warn');
+  });
+}
+
+// ─── Contracts ───
+function renderContracts(main){
+  const contracts=DB.contracts;
+  main.innerHTML=`
+    <div class="admin-page-title">Contratos</div>
+    <div class="admin-page-sub">Gerencie os contratos e obras</div>
+    <div class="data-table-wrap">
+      <div class="data-table-header">
+        <span class="data-table-title">Contratos (${contracts.length})</span>
+        <button class="btn btn-primary btn-sm" onclick="openContractModal()">+ Novo Contrato</button>
+      </div>
+      ${contracts.length===0?`<div class="empty-state"><div class="empty-state-icon">📁</div><div class="empty-state-text">Nenhum contrato cadastrado</div></div>`
+      :`<table class="data-table"><thead><tr><th>Nome</th><th>Descrição</th><th>Supervisores</th><th>Relatórios</th><th>Status</th><th>Ações</th></tr></thead><tbody>
+      ${contracts.map(c=>{
+        const sups=DB.users.filter(u=>u.contractId===c.id).length;
+        const reps=DB.reports.filter(r=>r.contractId===c.id).length;
+        return `<tr>
+          <td><b>${c.name}</b></td><td>${c.description||'—'}</td><td>${sups}</td><td>${reps}</td>
+          <td><span class="badge ${c.active!==false?'badge-green':'badge-red'}">${c.active!==false?'Ativo':'Inativo'}</span></td>
+          <td><div class="table-actions">
+            <button class="tbl-btn tbl-btn-edit" onclick="openContractModal('${c.id}')">✏ Editar</button>
+            <button class="tbl-btn tbl-btn-del" onclick="deleteContract('${c.id}')">🗑</button>
+          </div></td>
+        </tr>`;
+      }).join('')}
+      </tbody></table>`}
+    </div>`;
+}
+
+function openContractModal(id){
+  const c=id?DB.contracts.find(c=>c.id===id):null;
+  openModal(c?'Editar Contrato':'Novo Contrato',`
+    <div class="form-group"><label>Nome do Contrato</label><input id="cName" value="${c?c.name:''}" placeholder="Ex: Tubulações – Fase 2"></div>
+    <div class="form-group"><label>Descrição</label><textarea id="cDesc" rows="3" placeholder="Descrição do contrato…">${c?c.description||'':''}</textarea></div>
+    <div class="form-group"><label>Status</label><select id="cActive"><option value="true" ${c&&c.active!==false?'selected':''}>Ativo</option><option value="false" ${c&&c.active===false?'selected':''}>Inativo</option></select></div>
+  `,`
+    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveContract('${id||''}')">Salvar</button>
+  `);
+}
+
+function saveContract(id){
+  const name=document.getElementById('cName').value.trim();
+  const desc=document.getElementById('cDesc').value.trim();
+  const active=document.getElementById('cActive').value==='true';
+  if(!name){ toast('Nome do contrato é obrigatório','error'); return; }
+  if(id){
+    const c=DB.contracts.find(c=>c.id===id);
+    c.name=name; c.description=desc; c.active=active;
+  } else {
+    DB.contracts.push({ id:'contract-'+Date.now(), name, description:desc, active });
+  }
+  saveDB(DB); closeModal();
+  renderContracts(document.getElementById('adminMain'));
+  toast(id?'Contrato atualizado':'Contrato cadastrado','success');
+}
+
+function deleteContract(id){
+  showConfirm('Excluir contrato?','Os relatórios vinculados serão mantidos.',()=>{
+    DB.contracts=DB.contracts.filter(c=>c.id!==id); saveDB(DB);
+    renderContracts(document.getElementById('adminMain'));
+    toast('Contrato removido','warn');
+  });
+}
+
+// ─── Templates ───
+function renderTemplates(main){
+  const tpls=DB.templates;
+  main.innerHTML=`
+    <div class="admin-page-title">Modelos de Relatório</div>
+    <div class="admin-page-sub">Carregue modelos Excel que serão usados na geração dos relatórios</div>
+    <div class="data-table-wrap">
+      <div class="data-table-header">
+        <span class="data-table-title">Modelos (${tpls.length})</span>
+        <button class="btn btn-primary btn-sm" onclick="openTemplateModal()">+ Novo Modelo</button>
+      </div>
+      ${tpls.length===0?`<div class="empty-state"><div class="empty-state-icon">📄</div><div class="empty-state-text">Nenhum modelo cadastrado</div><div class="empty-state-sub">Carregue modelos Excel para cada contrato</div></div>`
+      :`<table class="data-table"><thead><tr><th>Nome</th><th>Contrato</th><th>Arquivo</th><th>Ações</th></tr></thead><tbody>
+      ${tpls.map(t=>{
+        const c=DB.contracts.find(c=>c.id===t.contractId);
+        return `<tr>
+          <td><b>${t.name}</b></td>
+          <td>${c?c.name:'<span class="text-muted">—</span>'}</td>
+          <td>${t.fileName||'<span class="text-muted">Sem arquivo</span>'}</td>
+          <td><div class="table-actions">
+            <button class="tbl-btn tbl-btn-edit" onclick="openTemplateModal('${t.id}')">✏ Editar</button>
+            <button class="tbl-btn tbl-btn-del" onclick="deleteTemplate('${t.id}')">🗑</button>
+          </div></td>
+        </tr>`;
+      }).join('')}
+      </tbody></table>`}
+    </div>`;
+}
+
+function openTemplateModal(id){
+  const t=id?DB.templates.find(t=>t.id===id):null;
+  const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${t&&t.contractId===c.id?'selected':''}>${c.name}</option>`).join('');
+  openModal(t?'Editar Modelo':'Novo Modelo',`
+    <div class="form-group"><label>Nome do Modelo</label><input id="tName" value="${t?t.name:''}" placeholder="Ex: RDO Padrão – Tubulações"></div>
+    <div class="form-group"><label>Contrato</label><select id="tContract"><option value="">Selecione…</option>${contractOptions}</select></div>
+    <div class="form-group">
+      <label>Arquivo Excel (.xlsx) — Modelo</label>
+      <div style="background:var(--bg);border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer" onclick="document.getElementById('tplFile').click()">
+        <div style="font-size:28px;margin-bottom:6px">📊</div>
+        <div style="font-size:13px;font-weight:600" id="tplFileName">${t&&t.fileName?t.fileName:'Clique para selecionar o arquivo Excel'}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">Formatos: .xlsx, .xls</div>
+      </div>
+      <input type="file" id="tplFile" accept=".xlsx,.xls" style="display:none" onchange="handleTemplateFile(event)">
+    </div>
+    <div class="form-group"><label>Observações</label><textarea id="tNotes" rows="2" placeholder="Notas sobre este modelo…">${t?t.notes||'':''}</textarea></div>
+  `,`
+    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveTemplate('${id||''}')">Salvar</button>
+  `);
+}
+
+let _tplFileData=null;
+function handleTemplateFile(e){
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    _tplFileData={ name:file.name, data:ev.target.result };
+    document.getElementById('tplFileName').textContent=file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveTemplate(id){
+  const name=document.getElementById('tName').value.trim();
+  const contract=document.getElementById('tContract').value;
+  const notes=document.getElementById('tNotes').value.trim();
+  if(!name){ toast('Nome do modelo é obrigatório','error'); return; }
+  if(id){
+    const t=DB.templates.find(t=>t.id===id);
+    t.name=name; t.contractId=contract||null; t.notes=notes;
+    if(_tplFileData){ t.fileName=_tplFileData.name; t.fileData=_tplFileData.data; }
+  } else {
+    DB.templates.push({ id:'tpl-'+Date.now(), name, contractId:contract||null, notes, fileName:_tplFileData?_tplFileData.name:null, fileData:_tplFileData?_tplFileData.data:null });
+  }
+  _tplFileData=null;
+  saveDB(DB); closeModal();
+  renderTemplates(document.getElementById('adminMain'));
+  toast(id?'Modelo atualizado':'Modelo cadastrado','success');
+}
+
+function deleteTemplate(id){
+  showConfirm('Excluir modelo?','Esta ação não pode ser desfeita.',()=>{
+    DB.templates=DB.templates.filter(t=>t.id!==id); saveDB(DB);
+    renderTemplates(document.getElementById('adminMain'));
+    toast('Modelo removido','warn');
+  });
+}
+
+// ─── Settings ───
+function renderSettings(main){
+  main.innerHTML=`
+    <div class="admin-page-title">Configurações</div>
+    <div class="admin-page-sub">Gerencie senhas, integrações e configurações do sistema</div>
+    <div class="data-table-wrap mb-6" style="margin-bottom:24px">
+      <div class="data-table-header"><span class="data-table-title">Minha Senha (Admin)</span></div>
+      <div style="padding:24px">
+        <div class="form-row-2" style="max-width:400px">
+          <div class="form-group"><label>Nova Senha</label><input type="password" id="newPass1" placeholder="Nova senha"></div>
+          <div class="form-group"><label>Confirmar Senha</label><input type="password" id="newPass2" placeholder="Confirmar"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="changeAdminPass()">Alterar Senha</button>
+      </div>
+    </div>
+    <div class="data-table-wrap mb-6" style="margin-bottom:24px">
+      <div class="data-table-header"><span class="data-table-title">🟢 Google Sheets — Integração</span></div>
+      <div style="padding:24px">
+        <div class="form-group" style="max-width:500px"><label>ID da Planilha (Spreadsheet ID)</label>
+          <input id="gsId" value="${DB.appConfig.sheetsId||''}" placeholder="Exemplo: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms">
+        </div>
+        <div class="form-group" style="max-width:500px"><label>API Key do Google Sheets</label>
+          <input id="gsKey" value="${DB.appConfig.sheetsKey||''}" placeholder="AIzaSy…">
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="saveGSConfig()">Salvar Configuração</button>
+        <div style="margin-top:12px;background:var(--blue-light);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--blue)">
+          💡 <b>Como configurar:</b> No Google Cloud Console, ative a API Google Sheets, crie uma chave de API e compartilhe sua planilha com acesso de edição. Cole o ID da planilha e a chave acima.
+        </div>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-header"><span class="data-table-title">⚡ Exportação Padrão</span></div>
+      <div style="padding:24px">
+        <div class="form-group" style="max-width:300px"><label>Formato padrão ao exportar</label>
+          <select id="defExport">
+            <option value="pdf" ${(DB.appConfig.defaultExport||'pdf')==='pdf'?'selected':''}>PDF</option>
+            <option value="xlsx" ${DB.appConfig.defaultExport==='xlsx'?'selected':''}>Excel (.xlsx)</option>
+            <option value="all" ${DB.appConfig.defaultExport==='all'?'selected':''}>Todos (PDF + Excel + Sheets)</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="saveExportConfig()">Salvar</button>
+      </div>
+    </div>`;
+}
+
+function changeAdminPass(){
+  const p1=document.getElementById('newPass1').value;
+  const p2=document.getElementById('newPass2').value;
+  if(!p1){ toast('Digite a nova senha','error'); return; }
+  if(p1!==p2){ toast('As senhas não coincidem','error'); return; }
+  const admin=DB.users.find(u=>u.role==='admin');
+  admin.password=p1; saveDB(DB);
+  toast('Senha alterada com sucesso','success');
+  document.getElementById('newPass1').value='';
+  document.getElementById('newPass2').value='';
+}
+
+function saveGSConfig(){
+  DB.appConfig.sheetsId=document.getElementById('gsId').value.trim();
+  DB.appConfig.sheetsKey=document.getElementById('gsKey').value.trim();
+  saveDB(DB); toast('Configuração Google Sheets salva','success');
+}
+
+function saveExportConfig(){
+  DB.appConfig.defaultExport=document.getElementById('defExport').value;
+  saveDB(DB); toast('Formato padrão salvo','success');
+}
+
+// ─── App Config ───
+function renderAppConfig(main){
+  const cfg=DB.appConfig;
+  main.innerHTML=`
+    <div class="admin-page-title">Identidade Visual</div>
+    <div class="admin-page-sub">Configure o nome, logo e aparência do aplicativo</div>
+    <div class="data-table-wrap">
+      <div style="padding:28px;max-width:480px">
+        <div class="form-group"><label>Nome do Aplicativo</label><input id="cfgName" value="${cfg.name||'FieldReport Pro'}" placeholder="Ex: Relatórios da Empresa"></div>
+        <div class="form-group"><label>Nome da Empresa</label><input id="cfgCompany" value="${cfg.companyName||''}" placeholder="Ex: Construtora XYZ"></div>
+        <div class="form-group"><label>Iniciais para o ícone (2 letras)</label><input id="cfgLogoText" value="${cfg.logoText||'FR'}" maxlength="3" placeholder="Ex: FR"></div>
+        <div class="form-group">
+          <label>Logo da empresa (PNG/JPG)</label>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:64px;height:64px;border-radius:18px;background:linear-gradient(145deg,#0071E3,#00C7FF);display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--border2)" id="cfgLogoPreview">
+              ${cfg.logo?`<img src="${cfg.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:16px">`:`<span style="color:#fff;font-weight:800;font-size:22px">${cfg.logoText||'FR'}</span>`}
+            </div>
+            <div>
+              <button class="btn btn-secondary btn-sm" onclick="document.getElementById('cfgLogoFile').click()">📷 Carregar Logo</button>
+              ${cfg.logo?`<button class="btn btn-danger btn-sm mt-2" onclick="removeLogo()">Remover</button>`:''}
+              <div style="font-size:11px;color:var(--text3);margin-top:6px">Recomendado: 200×200px, PNG</div>
+            </div>
+          </div>
+          <input type="file" id="cfgLogoFile" accept="image/*" style="display:none" onchange="handleLogoUpload(event)">
+        </div>
+        <button class="btn btn-primary" onclick="saveAppConfig()">Salvar Identidade Visual</button>
+      </div>
+    </div>`;
+}
+
+function handleLogoUpload(e){
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    DB.appConfig.logo=ev.target.result;
+    const prev=document.getElementById('cfgLogoPreview');
+    prev.innerHTML=`<img src="${ev.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:16px">`;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeLogo(){ DB.appConfig.logo=null; renderAppConfig(document.getElementById('adminMain')); }
+
+function saveAppConfig(){
+  DB.appConfig.name=document.getElementById('cfgName').value.trim()||'FieldReport Pro';
+  DB.appConfig.companyName=document.getElementById('cfgCompany').value.trim();
+  DB.appConfig.logoText=document.getElementById('cfgLogoText').value.trim().toUpperCase()||'FR';
+  saveDB(DB); applyAppConfig();
+  toast('Identidade visual salva','success');
+}
+
+// ═══════════════════════════════════
+// EXPORT — PDF, Excel, Google Sheets
+// ═══════════════════════════════════
+let _exportReportId=null;
+
+function openExportModal(reportId){
+  _exportReportId=reportId;
+  APP.exportType=DB.appConfig.defaultExport||'pdf';
+  document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('exp'+APP.exportType.charAt(0).toUpperCase()+APP.exportType.slice(1))?.classList.add('selected');
+  document.getElementById('exportModal').classList.remove('hidden');
+}
+function closeExportModal(){ document.getElementById('exportModal').classList.add('hidden'); }
+function selectExport(type){
+  APP.exportType=type;
+  document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('exp'+type.charAt(0).toUpperCase()+type.slice(1)).classList.add('selected');
+}
+
+function getExportReports(){
+  if(_exportReportId){ return [DB.reports.find(r=>r.id===_exportReportId)].filter(Boolean); }
+  // Daily: all reports for today grouped by contract
+  const today=new Date().toISOString().split('T')[0];
+  return DB.reports.filter(r=>r.date===today);
+}
+
+function executeExport(){
+  const reports=getExportReports();
+  if(!reports.length){ toast('Nenhum relatório para exportar','warn'); closeExportModal(); return; }
+  const btn=document.getElementById('doExportBtn');
+  btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
+  setTimeout(()=>{
+    try{
+      const type=APP.exportType;
+      if(type==='pdf'||type==='all') exportPDF(reports);
+      if(type==='xlsx'||type==='all') exportXLSX(reports);
+      if(type==='sheets'||type==='all') exportToSheets(reports);
+      toast('Exportação concluída!','success');
+    } catch(e){ toast('Erro ao exportar: '+e.message,'error'); }
+    btn.disabled=false; btn.innerHTML='Gerar →';
+    closeExportModal();
+  },800);
+}
+
+// ─── PDF ───
+function exportPDF(reports){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+  const cfg = DB.appConfig;
+  const W=210, M=18;
+
+  reports.forEach((r,ri)=>{
+    if(ri>0) doc.addPage();
+    // Header bar
+    doc.setFillColor(0,113,227); doc.rect(0,0,W,38,'F');
+    doc.setTextColor(255,255,255);
+    doc.setFont('helvetica','bold'); doc.setFontSize(16);
+    doc.text('RELATÓRIO DIÁRIO DE OBRA',M,16);
+    doc.setFont('helvetica','normal'); doc.setFontSize(10);
+    doc.text(cfg.companyName||cfg.name||'FieldReport Pro',M,24);
+    doc.text(`Contrato: ${r.contractName}`,M,30);
+    doc.setFontSize(9);
+    doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`,W-M,30,'right');
+    doc.setTextColor(30,30,30);
+
+    let y=46;
+    // Info box
+    const infoItems=[['Data',fmtDate(r.date)],['Local',r.location],['Turno',r.shift],['Supervisor',r.supervisorName]];
+    doc.setFillColor(245,245,247); doc.rect(M,y,W-2*M,30,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115);
+    doc.text('INFORMAÇÕES GERAIS',M+3,y+6);
+    doc.setTextColor(30,30,30);
+    infoItems.forEach((item,i)=>{
+      const col=Math.floor(i/2), row=i%2;
+      const x=M+3+col*90, iy=y+14+row*8;
+      doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115);
+      doc.text(item[0].toUpperCase(),x,iy);
+      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
+      doc.text(String(item[1]).substring(0,50),x+22,iy);
+    });
+    y+=36;
+
+    // Activities
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
+    doc.text('ATIVIDADES DESENVOLVIDAS',M,y); y+=6;
+    doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
+    r.activities.forEach((act,i)=>{
+      doc.setFillColor(235,242,252); doc.rect(M,y-2,W-2*M,6,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(0,113,227);
+      doc.text(`ATIVIDADE ${i+1}`,M+2,y+2); y+=8;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
+      const lines=doc.splitTextToSize(act,W-2*M-4);
+      lines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M+2,y); y+=5; });
+      y+=3;
+    });
+
+    // Occurrences
+    y+=2;
+    if(y>240) { doc.addPage(); y=20; }
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
+    doc.text('OCORRÊNCIAS',M,y); y+=6;
+    doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
+    [['Inspeções / Visitas',r.inspections],['Interrupções / Desvios',r.interruptions],['Desvios de Segurança',r.safety]].forEach(([label,val])=>{
+      doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115);
+      doc.text(label.toUpperCase(),M,y); y+=5;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
+      const lines=doc.splitTextToSize(val||'—',W-2*M);
+      lines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M,y); y+=5; });
+      y+=3;
+    });
+
+    // Involved
+    y+=2;
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
+    doc.text('EQUIPE ENVOLVIDA',M,y); y+=6;
+    doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
+    const involvedLines=doc.splitTextToSize(r.involved||'—',W-2*M);
+    involvedLines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M,y); y+=5; });
+
+    // Photos
+    const photos=r.photos.filter(p=>p);
+    if(photos.length){
+      y+=6;
+      if(y>220){ doc.addPage(); y=20; }
+      doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
+      doc.text('REGISTROS FOTOGRÁFICOS',M,y); y+=6;
+      doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
+      const pw=42, ph=34, gap=4;
+      photos.forEach((p,i)=>{
+        const px=M+(pw+gap)*(i%4);
+        if(i>0&&i%4===0) y+=ph+gap+6;
+        if(y+ph>280){ doc.addPage(); y=20; }
+        try{ doc.addImage(p,'JPEG',px,y,pw,ph); }catch(e){}
+      });
+    }
+
+    // Footer
+    doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(180,180,180);
+    doc.text(`${cfg.name||'FieldReport Pro'} • Gerado em ${new Date().toLocaleString('pt-BR')} • Pág. ${ri+1}`,W/2,290,'center');
+  });
+
+  const fname=`RDO_${reports[0].contractName.replace(/\s/g,'_')}_${reports[0].date}.pdf`;
+  doc.save(fname);
+}
+
+// ─── Excel ───
+function exportXLSX(reports){
+  const wb=XLSX.utils.book_new();
+  const cfg=DB.appConfig;
+
+  // Group by contract
+  const byContract={};
+  reports.forEach(r=>{ (byContract[r.contractId]||(byContract[r.contractId]=[])).push(r); });
+
+  Object.values(byContract).forEach(reps=>{
+    const rows=[];
+    rows.push([cfg.companyName||cfg.name,'','','','','','','']);
+    rows.push(['RELATÓRIO DIÁRIO DE OBRA','','','','','','','']);
+    rows.push(['Contrato:',reps[0].contractName,'','Data:',fmtDate(reps[0].date),'','','']);
+    rows.push([]);
+    rows.push(['#','TURNO','SUPERVISOR','LOCAL','ATIVIDADES','INSPEÇÕES','INTERRUPÇÕES','SEGURANÇA','ENVOLVIDOS']);
+    reps.forEach((r,i)=>{
+      rows.push([
+        i+1, r.shift, r.supervisorName, r.location,
+        r.activities.join('\n\n'), r.inspections, r.interruptions, r.safety, r.involved
+      ]);
+    });
+    const ws=XLSX.utils.aoa_to_sheet(rows);
+    ws['!cols']=[{wch:4},{wch:18},{wch:20},{wch:24},{wch:50},{wch:30},{wch:30},{wch:30},{wch:40}];
+    XLSX.utils.book_append_sheet(wb,ws,reps[0].contractName.substring(0,28));
+  });
+
+  const fname=`RDO_${reports[0].date}.xlsx`;
+  XLSX.writeFile(wb,fname);
+}
+
+// ─── Google Sheets ───
+async function exportToSheets(reports){
+  const sheetId=DB.appConfig.sheetsId;
+  const apiKey=DB.appConfig.sheetsKey;
+  if(!sheetId||!apiKey){
+    toast('Configure o Google Sheets em Configurações antes de exportar','warn'); return;
+  }
+  const rows=reports.map(r=>[
+    fmtDate(r.date), r.shift, r.supervisorName, r.contractName, r.location,
+    r.activities.join(' | '), r.inspections, r.interruptions, r.safety, r.involved,
+    new Date(r.createdAt).toLocaleString('pt-BR')
+  ]);
+  try{
+    const res=await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append?valueInputOption=USER_ENTERED&key=${apiKey}`,
+      { method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ values:rows }) }
+    );
+    if(!res.ok) throw new Error('Resposta inválida do Google Sheets');
+    toast('Dados enviados ao Google Sheets!','success');
+  } catch(e){
+    toast('Erro ao enviar para Google Sheets: '+e.message,'error');
+  }
+}
+
+// ═══════════════════════════════════
+// MODAL HELPERS
+// ═══════════════════════════════════
+function openModal(title,body,footer){
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalBody').innerHTML=body;
+  document.getElementById('modalFooter').innerHTML=footer||'';
+  document.getElementById('modalOverlay').classList.remove('hidden');
+}
+function closeModal(){ document.getElementById('modalOverlay').classList.add('hidden'); }
+document.getElementById('modalOverlay').addEventListener('click',e=>{ if(e.target===document.getElementById('modalOverlay')) closeModal(); });
+
+function showConfirm(title,text,onConfirm){
+  openModal('',`
+    <div class="confirm-icon">⚠️</div>
+    <div class="confirm-title">${title}</div>
+    <div class="confirm-text">${text}</div>
+  `,`
+    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-danger" onclick="closeModal();(${onConfirm.toString()})()">Confirmar</button>
+  `);
+}
+
+// ═══════════════════════════════════
+// TOAST
+// ═══════════════════════════════════
+function toast(msg,type='info'){
+  const icons={success:'✅',error:'❌',warn:'⚠️',info:'ℹ️'};
+  const t=document.createElement('div');
+  t.className=`toast toast-${type}`;
+  t.innerHTML=`<span class="toast-icon">${icons[type]||'ℹ️'}</span><span class="toast-msg">${msg}</span>`;
+  document.getElementById('toastContainer').appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(20px)'; t.style.transition='all .3s'; setTimeout(()=>t.remove(),300); },3500);
+}
+
+// ═══════════════════════════════════
+// UTILS
+// ═══════════════════════════════════
+function fmtDate(d){
+  if(!d) return '—';
+  try{ return new Date(d+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}); }
+  catch(e){ return d; }
+}
+
+// ═══════════════════════════════════
+// INIT
+// ═══════════════════════════════════
+applyAppConfig();
+showScreen('screen-login');
+</script>
+</body>
+</html>
