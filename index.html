@@ -1624,12 +1624,17 @@ function saveAppConfig(){
 let _exportReportId=null;
 let _exportDailyGroup=null;
 
+// IDs reais dos cartões no modal (ver #exportModal): expPDF, expXLS, expSheets, expAll
+function exportCardId(type){
+  return { pdf:'expPDF', xlsx:'expXLS', sheets:'expSheets', all:'expAll' }[type];
+}
+
 function openExportModal(reportId){
   _exportReportId=reportId;
   _exportDailyGroup=null;
   APP.exportType=DB.appConfig.defaultExport||'pdf';
   document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('exp'+APP.exportType.charAt(0).toUpperCase()+APP.exportType.slice(1))?.classList.add('selected');
+  document.getElementById(exportCardId(APP.exportType))?.classList.add('selected');
   document.getElementById('exportModal').classList.remove('hidden');
 }
 // Exportação do relatório compilado do dia (contrato + data) — só chamado quando o dia já fechou (06:00 do dia seguinte).
@@ -1640,14 +1645,14 @@ function openExportDaily(contractId,date){
   _exportDailyGroup={ contractId, date, reports:reps };
   APP.exportType=DB.appConfig.defaultExport||'xlsx';
   document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('exp'+APP.exportType.charAt(0).toUpperCase()+APP.exportType.slice(1))?.classList.add('selected');
+  document.getElementById(exportCardId(APP.exportType))?.classList.add('selected');
   document.getElementById('exportModal').classList.remove('hidden');
 }
 function closeExportModal(){ document.getElementById('exportModal').classList.add('hidden'); }
 function selectExport(type){
   APP.exportType=type;
   document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('exp'+type.charAt(0).toUpperCase()+type.slice(1)).classList.add('selected');
+  document.getElementById(exportCardId(type))?.classList.add('selected');
 }
 
 function getExportReports(){
