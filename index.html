@@ -2045,15 +2045,21 @@ function openModal(title,body,footer){
 function closeModal(){ document.getElementById('modalOverlay').classList.add('hidden'); }
 document.getElementById('modalOverlay').addEventListener('click',e=>{ if(e.target===document.getElementById('modalOverlay')) closeModal(); });
 
+let _confirmCallback=null;
 function showConfirm(title,text,onConfirm){
+  _confirmCallback=onConfirm;
   openModal('',`
     <div class="confirm-icon">⚠️</div>
     <div class="confirm-title">${title}</div>
     <div class="confirm-text">${text}</div>
   `,`
     <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-    <button class="btn btn-danger" onclick="closeModal();(${onConfirm.toString()})()">Confirmar</button>
+    <button class="btn btn-danger" onclick="closeModal();runConfirmCallback()">Confirmar</button>
   `);
+}
+function runConfirmCallback(){
+  const cb=_confirmCallback; _confirmCallback=null;
+  if(typeof cb==='function') cb();
 }
 
 // ═══════════════════════════════════
