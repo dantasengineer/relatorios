@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -682,7 +683,16 @@ function loadDB(){
   try{ return JSON.parse(localStorage.getItem('frpDB')) || defaultDB(); }
   catch(e){ return defaultDB(); }
 }
-function saveDB(db){ localStorage.setItem('frpDB', JSON.stringify(db)); }
+function saveDB(db){
+  try{
+    localStorage.setItem('frpDB', JSON.stringify(db));
+    return true;
+  } catch(e){
+    console.error('saveDB failed', e);
+    toast('Não foi possível salvar: armazenamento do navegador cheio. Libere espaço (fotos/relatórios antigos) ou use um arquivo de modelo menor.','error');
+    return false;
+  }
+}
 function defaultDB(){
   return {
     appConfig: { name:'FieldReport Pro', logo:null, logoText:'FR', companyName:'Minha Empresa' },
@@ -858,10 +868,34 @@ function renderPhotoSlots(){
 function openPhotoPicker(i){ APP.currentPhotoSlot=i; document.getElementById('photoInput').click(); }
 function handlePhotoSelect(e){
   const file=e.target.files[0]; if(!file) return;
+  const slot=APP.currentPhotoSlot;
   const reader=new FileReader();
-  reader.onload=ev=>{ APP.photoSlots[APP.currentPhotoSlot]=ev.target.result; renderPhotoSlots(); };
+  reader.onload=ev=>{
+    compressImage(ev.target.result, 1280, 0.72).then(compressed=>{
+      APP.photoSlots[slot]=compressed; renderPhotoSlots();
+    }).catch(()=>{ APP.photoSlots[slot]=ev.target.result; renderPhotoSlots(); });
+  };
   reader.readAsDataURL(file);
   e.target.value='';
+}
+// Downscale + JPEG-compress photos before storing, since localStorage has a small quota
+// and uncompressed phone photos quickly exhaust it (this was blocking template uploads too).
+function compressImage(dataUrl, maxDim, quality){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.width, h=img.height;
+      if(w>maxDim||h>maxDim){ const scale=maxDim/Math.max(w,h); w=Math.round(w*scale); h=Math.round(h*scale); }
+      const canvas=document.createElement('canvas');
+      canvas.width=w; canvas.height=h;
+      const ctx=canvas.getContext('2d');
+      ctx.drawImage(img,0,0,w,h);
+      try{ resolve(canvas.toDataURL('image/jpeg',quality)); }
+      catch(e){ reject(e); }
+    };
+    img.onerror=reject;
+    img.src=dataUrl;
+  });
 }
 function removePhoto(i,e){ e.stopPropagation(); APP.photoSlots[i]=null; renderPhotoSlots(); }
 
@@ -938,8 +972,9 @@ function confirmReport(){
   btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Enviando…';
   setTimeout(()=>{
     DB.reports.push(APP.currentReport);
-    saveDB(DB);
+    const ok=saveDB(DB);
     btn.disabled=false; btn.innerHTML='✓ Confirmar e Enviar';
+    if(!ok){ DB.reports.pop(); return; }
     document.getElementById('successText').textContent=
       `Relatório do contrato "${APP.currentReport.contractName}" enviado com sucesso em ${new Date().toLocaleString('pt-BR')}.`;
     showScreen('screen-success');
@@ -1024,18 +1059,58 @@ function renderDashboard(main){
 }
 
 // ─── Reports ───
+// Premissa do app: o relatório compilado do dia de um contrato só "fecha" (fica
+// disponível para exportação final) às 06:00 do dia seguinte à data do relatório.
+function isDayClosed(dateStr){
+  const closeAt=new Date(dateStr+'T06:00:00');
+  closeAt.setDate(closeAt.getDate()+1);
+  return new Date()>=closeAt;
+}
+function closesAtLabel(dateStr){
+  const closeAt=new Date(dateStr+'T06:00:00');
+  closeAt.setDate(closeAt.getDate()+1);
+  return closeAt.toLocaleDateString('pt-BR')+' às 06:00';
+}
+
+let _reportsTab='individual';
 function renderReports(main){
-  const reps=[...DB.reports].reverse();
   main.innerHTML=`
     <div class="admin-page-title">Relatórios</div>
-    <div class="admin-page-sub">Todos os relatórios enviados pelos supervisores</div>
-    <div style="display:flex;gap:12px;margin-bottom:20px">
-      <input class="form-input" id="reportSearch" placeholder="Buscar por supervisor, contrato…" oninput="filterReports()" style="max-width:340px">
-      <button class="btn btn-primary btn-sm" onclick="openExportModal(null)">⬇ Exportar Diário</button>
+    <div class="admin-page-sub">Relatórios enviados pelos supervisores</div>
+    <div style="display:flex;gap:8px;margin-bottom:20px">
+      <button class="btn ${_reportsTab==='individual'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('individual')">Relatórios Individuais</button>
+      <button class="btn ${_reportsTab==='daily'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('daily')">Compilados por Dia</button>
     </div>
-    <div class="data-table-wrap" id="reportsTableWrap">
-      ${buildReportsTable(reps)}
-    </div>`;
+    <div id="reportsTabContent"></div>`;
+  renderReportsTabContent();
+}
+function switchReportsTab(tab){ _reportsTab=tab; renderReports(document.getElementById('adminMain')); }
+function renderReportsTabContent(){
+  const el=document.getElementById('reportsTabContent');
+  el.innerHTML = _reportsTab==='individual' ? individualReportsView() : dailyReportsView();
+}
+
+// ── Individual reports: filter by supervisor, contract, date range ──
+function individualReportsView(){
+  const supervisors=DB.users.filter(u=>u.role==='supervisor');
+  const contracts=DB.contracts;
+  return `
+    <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
+      <select class="form-input" id="filtSupervisor" style="max-width:200px" onchange="applyIndividualFilters()">
+        <option value="">Todos os supervisores</option>
+        ${supervisors.map(u=>`<option value="${u.id}">${u.name}</option>`).join('')}
+      </select>
+      <select class="form-input" id="filtContract" style="max-width:220px" onchange="applyIndividualFilters()">
+        <option value="">Todos os contratos</option>
+        ${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}
+      </select>
+      <input class="form-input" type="date" id="filtDateFrom" style="max-width:160px" onchange="applyIndividualFilters()">
+      <span style="color:var(--text3);font-size:12px">até</span>
+      <input class="form-input" type="date" id="filtDateTo" style="max-width:160px" onchange="applyIndividualFilters()">
+      <button class="btn btn-secondary btn-sm" onclick="clearIndividualFilters()">Limpar filtros</button>
+      <button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openExportModal(null)">⬇ Exportar Diário</button>
+    </div>
+    <div class="data-table-wrap" id="reportsTableWrap">${buildReportsTable([...DB.reports].reverse())}</div>`;
 }
 
 function buildReportsTable(reps){
@@ -1052,10 +1127,102 @@ function buildReportsTable(reps){
   </tbody></table>`;
 }
 
-function filterReports(){
-  const q=document.getElementById('reportSearch').value.toLowerCase();
-  const filtered=DB.reports.filter(r=>r.supervisorName.toLowerCase().includes(q)||r.contractName.toLowerCase().includes(q)||r.date.includes(q)||r.location.toLowerCase().includes(q));
-  document.getElementById('reportsTableWrap').innerHTML=buildReportsTable([...filtered].reverse());
+function applyIndividualFilters(){
+  const sup=document.getElementById('filtSupervisor').value;
+  const con=document.getElementById('filtContract').value;
+  const from=document.getElementById('filtDateFrom').value;
+  const to=document.getElementById('filtDateTo').value;
+  let filtered=[...DB.reports];
+  if(sup) filtered=filtered.filter(r=>r.supervisorId===sup);
+  if(con) filtered=filtered.filter(r=>r.contractId===con);
+  if(from) filtered=filtered.filter(r=>r.date>=from);
+  if(to) filtered=filtered.filter(r=>r.date<=to);
+  document.getElementById('reportsTableWrap').innerHTML=buildReportsTable(filtered.reverse());
+}
+function clearIndividualFilters(){
+  document.getElementById('filtSupervisor').value='';
+  document.getElementById('filtContract').value='';
+  document.getElementById('filtDateFrom').value='';
+  document.getElementById('filtDateTo').value='';
+  applyIndividualFilters();
+}
+function filterReports(){ applyIndividualFilters(); }
+
+// ── Compiled-by-day: one row per contract+date, closes at 06:00 next day ──
+function getDailyGroups(contractFilter,fromFilter,toFilter){
+  const map={};
+  DB.reports.forEach(r=>{
+    if(contractFilter && r.contractId!==contractFilter) return;
+    if(fromFilter && r.date<fromFilter) return;
+    if(toFilter && r.date>toFilter) return;
+    const key=r.contractId+'|'+r.date;
+    if(!map[key]) map[key]={ contractId:r.contractId, contractName:r.contractName, date:r.date, reports:[] };
+    map[key].reports.push(r);
+  });
+  return Object.values(map).sort((a,b)=>b.date.localeCompare(a.date));
+}
+
+function dailyReportsView(){
+  const contracts=DB.contracts;
+  return `
+    <div class="admin-page-sub" style="margin-top:-8px;margin-bottom:16px">Cada linha reúne todos os relatórios do mesmo contrato no mesmo dia — essa é a unidade que vira uma única aba na planilha exportada. O relatório do dia fecha automaticamente às 06:00 do dia seguinte.</div>
+    <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
+      <select class="form-input" id="filtDailyContract" style="max-width:220px" onchange="applyDailyFilters()">
+        <option value="">Todos os contratos</option>
+        ${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}
+      </select>
+      <input class="form-input" type="date" id="filtDailyFrom" style="max-width:160px" onchange="applyDailyFilters()">
+      <span style="color:var(--text3);font-size:12px">até</span>
+      <input class="form-input" type="date" id="filtDailyTo" style="max-width:160px" onchange="applyDailyFilters()">
+      <button class="btn btn-secondary btn-sm" onclick="clearDailyFilters()">Limpar filtros</button>
+    </div>
+    <div class="data-table-wrap" id="dailyTableWrap">${buildDailyTable(getDailyGroups())}</div>`;
+}
+
+function buildDailyTable(groups){
+  if(!groups.length) return `<div class="empty-state"><div class="empty-state-icon">📅</div><div class="empty-state-text">Nenhum relatório compilado encontrado</div></div>`;
+  return `<table class="data-table"><thead><tr><th>Data</th><th>Contrato</th><th>Relatórios no dia</th><th>Status</th><th>Ações</th></tr></thead><tbody>
+  ${groups.map(g=>{
+    const closed=isDayClosed(g.date);
+    return `<tr>
+      <td>${fmtDate(g.date)}</td><td>${g.contractName}</td><td>${g.reports.length}</td>
+      <td><span class="badge ${closed?'badge-green':'badge-warn'}" title="${closed?'':'Fecha em '+closesAtLabel(g.date)}">${closed?'Fechado':'Aberto até 06:00'}</span></td>
+      <td><div class="table-actions">
+        <button class="tbl-btn tbl-btn-view" onclick="viewDailyGroup('${g.contractId}','${g.date}')">👁 Ver</button>
+        <button class="tbl-btn tbl-btn-edit" ${closed?`onclick="openExportDaily('${g.contractId}','${g.date}')"`:'disabled style="opacity:.4;cursor:not-allowed" title="Disponível a partir das 06:00 do dia seguinte"'}>⬇ Exportar</button>
+      </div></td>
+    </tr>`;
+  }).join('')}
+  </tbody></table>`;
+}
+
+function applyDailyFilters(){
+  const con=document.getElementById('filtDailyContract').value;
+  const from=document.getElementById('filtDailyFrom').value;
+  const to=document.getElementById('filtDailyTo').value;
+  document.getElementById('dailyTableWrap').innerHTML=buildDailyTable(getDailyGroups(con||null,from||null,to||null));
+}
+function clearDailyFilters(){
+  document.getElementById('filtDailyContract').value='';
+  document.getElementById('filtDailyFrom').value='';
+  document.getElementById('filtDailyTo').value='';
+  applyDailyFilters();
+}
+
+function viewDailyGroup(contractId,date){
+  const reps=DB.reports.filter(r=>r.contractId===contractId&&r.date===date);
+  if(!reps.length) return;
+  openModal(`Relatórios do dia — ${fmtDate(date)}`,`
+    <div style="font-size:13px;color:var(--text2);margin-bottom:14px">${reps[0].contractName} · ${reps.length} relatório(s) individual(is) compilados nesta data</div>
+    ${reps.map(r=>`
+      <div class="preview-header-card mb-4" style="cursor:pointer" onclick="closeModal();adminViewReport('${r.id}')">
+        <div class="preview-title">${r.shift}</div>
+        <div class="preview-meta" style="margin-top:8px">
+          <span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span>
+          <span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span>
+        </div>
+      </div>`).join('')}
+  `,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${isDayClosed(date)?`<button class="btn btn-primary" onclick="closeModal();openExportDaily('${contractId}','${date}')">⬇ Exportar compilado</button>`:''}`);
 }
 
 function adminViewReport(id){
@@ -1306,15 +1473,20 @@ function saveTemplate(id){
   const contract=document.getElementById('tContract').value;
   const notes=document.getElementById('tNotes').value.trim();
   if(!name){ toast('Nome do modelo é obrigatório','error'); return; }
+  let rollback;
   if(id){
     const t=DB.templates.find(t=>t.id===id);
+    rollback={ name:t.name, contractId:t.contractId, notes:t.notes, fileName:t.fileName, fileData:t.fileData };
     t.name=name; t.contractId=contract||null; t.notes=notes;
     if(_tplFileData){ t.fileName=_tplFileData.name; t.fileData=_tplFileData.data; }
+    if(!saveDB(DB)){ Object.assign(t,rollback); return; }
   } else {
-    DB.templates.push({ id:'tpl-'+Date.now(), name, contractId:contract||null, notes, fileName:_tplFileData?_tplFileData.name:null, fileData:_tplFileData?_tplFileData.data:null });
+    const newTpl={ id:'tpl-'+Date.now(), name, contractId:contract||null, notes, fileName:_tplFileData?_tplFileData.name:null, fileData:_tplFileData?_tplFileData.data:null };
+    DB.templates.push(newTpl);
+    if(!saveDB(DB)){ DB.templates=DB.templates.filter(t=>t.id!==newTpl.id); return; }
   }
   _tplFileData=null;
-  saveDB(DB); closeModal();
+  closeModal();
   renderTemplates(document.getElementById('adminMain'));
   toast(id?'Modelo atualizado':'Modelo cadastrado','success');
 }
@@ -1450,10 +1622,23 @@ function saveAppConfig(){
 // EXPORT — PDF, Excel, Google Sheets
 // ═══════════════════════════════════
 let _exportReportId=null;
+let _exportDailyGroup=null;
 
 function openExportModal(reportId){
   _exportReportId=reportId;
+  _exportDailyGroup=null;
   APP.exportType=DB.appConfig.defaultExport||'pdf';
+  document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('exp'+APP.exportType.charAt(0).toUpperCase()+APP.exportType.slice(1))?.classList.add('selected');
+  document.getElementById('exportModal').classList.remove('hidden');
+}
+// Exportação do relatório compilado do dia (contrato + data) — só chamado quando o dia já fechou (06:00 do dia seguinte).
+function openExportDaily(contractId,date){
+  const reps=DB.reports.filter(r=>r.contractId===contractId&&r.date===date);
+  if(!reps.length) return;
+  _exportReportId=null;
+  _exportDailyGroup={ contractId, date, reports:reps };
+  APP.exportType=DB.appConfig.defaultExport||'xlsx';
   document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
   document.getElementById('exp'+APP.exportType.charAt(0).toUpperCase()+APP.exportType.slice(1))?.classList.add('selected');
   document.getElementById('exportModal').classList.remove('hidden');
@@ -1467,6 +1652,7 @@ function selectExport(type){
 
 function getExportReports(){
   if(_exportReportId){ return [DB.reports.find(r=>r.id===_exportReportId)].filter(Boolean); }
+  if(_exportDailyGroup){ return _exportDailyGroup.reports; }
   // Daily: all reports for today grouped by contract
   const today=new Date().toISOString().split('T')[0];
   return DB.reports.filter(r=>r.date===today);
@@ -1477,12 +1663,12 @@ function executeExport(){
   if(!reports.length){ toast('Nenhum relatório para exportar','warn'); closeExportModal(); return; }
   const btn=document.getElementById('doExportBtn');
   btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
-  setTimeout(()=>{
+  setTimeout(async ()=>{
     try{
       const type=APP.exportType;
       if(type==='pdf'||type==='all') exportPDF(reports);
-      if(type==='xlsx'||type==='all') exportXLSX(reports);
-      if(type==='sheets'||type==='all') exportToSheets(reports);
+      if(type==='xlsx'||type==='all') await exportXLSX(reports);
+      if(type==='sheets'||type==='all') await exportToSheets(reports);
       toast('Exportação concluída!','success');
     } catch(e){ toast('Erro ao exportar: '+e.message,'error'); }
     btn.disabled=false; btn.innerHTML='Gerar →';
@@ -1593,34 +1779,228 @@ function exportPDF(reports){
 }
 
 // ─── Excel ───
-function exportXLSX(reports){
-  const wb=XLSX.utils.book_new();
-  const cfg=DB.appConfig;
+// Premissa do app: todos os relatórios do MESMO contrato no MESMO dia viram uma
+// ÚNICA aba na planilha exportada (ex.: os 4 relatórios de turno de um contrato
+// no mesmo dia = 1 aba só, não 4). As fotos de cada relatório entram na aba
+// compilada em quantidade proporcional ao número de relatórios do dia, para caber
+// no número fixo de espaços de foto da planilha (ver distributePhotosForExport).
+function uniqueSheetName(base,usedNames){
+  const clean=base.replace(/[\\\/\?\*\[\]:]/g,'-').trim()||'Relatório';
+  let name=clean.substring(0,31);
+  let i=2;
+  while(usedNames.has(name)){
+    const suffix=' ('+i+')';
+    name=clean.substring(0,Math.max(1,31-suffix.length))+suffix;
+    i++;
+  }
+  usedNames.add(name);
+  return name;
+}
 
-  // Group by contract
-  const byContract={};
-  reports.forEach(r=>{ (byContract[r.contractId]||(byContract[r.contractId]=[])).push(r); });
+// Distribui as fotos dos N relatórios do dia pelos T espaços de foto da planilha
+// resultado. Ex.: 4 relatórios com 4 fotos cada, 4 espaços -> 1 foto de cada.
+// 2 relatórios, 4 espaços -> 2 fotos de cada. Sobra de espaços vai para os
+// primeiros relatórios da lista.
+function distributePhotosForExport(reports,totalSlots){
+  const n=reports.length;
+  if(!n||!totalSlots) return [];
+  const base=Math.floor(totalSlots/n);
+  let remainder=totalSlots-base*n;
+  const result=[];
+  reports.forEach(r=>{
+    let take=base+(remainder>0?1:0);
+    if(remainder>0) remainder--;
+    const photos=(r.photos||[]).filter(p=>p).slice(0,take);
+    photos.forEach(p=>result.push({ src:p, shift:r.shift, supervisor:r.supervisorName }));
+  });
+  return result.slice(0,totalSlots);
+}
 
-  Object.values(byContract).forEach(reps=>{
-    const rows=[];
-    rows.push([cfg.companyName||cfg.name,'','','','','','','']);
-    rows.push(['RELATÓRIO DIÁRIO DE OBRA','','','','','','','']);
-    rows.push(['Contrato:',reps[0].contractName,'','Data:',fmtDate(reps[0].date),'','','']);
-    rows.push([]);
-    rows.push(['#','TURNO','SUPERVISOR','LOCAL','ATIVIDADES','INSPEÇÕES','INTERRUPÇÕES','SEGURANÇA','ENVOLVIDOS']);
-    reps.forEach((r,i)=>{
-      rows.push([
-        i+1, r.shift, r.supervisorName, r.location,
-        r.activities.join('\n\n'), r.inspections, r.interruptions, r.safety, r.involved
-      ]);
+function dataUrlToArrayBuffer(dataUrl){
+  const base64=dataUrl.split(',')[1];
+  const binary=atob(base64);
+  const buf=new Uint8Array(binary.length);
+  for(let i=0;i<binary.length;i++) buf[i]=binary.charCodeAt(i);
+  return buf.buffer;
+}
+
+// Se o contrato tiver um modelo Excel cadastrado (Modelos de Relatório), suas abas
+// originais são copiadas para o arquivo exportado EXATAMENTE como enviadas —
+// formatação, bordas e o bloco de assinaturas do modelo ficam preservados,
+// porque copiamos o arquivo real em vez de recriá-lo do zero.
+async function appendTemplateSheets(destWb,dataUrl,labelPrefix,usedNames){
+  try{
+    const srcWb=new ExcelJS.Workbook();
+    await srcWb.xlsx.load(dataUrlToArrayBuffer(dataUrl));
+    srcWb.worksheets.forEach(srcWs=>{
+      const name=uniqueSheetName(labelPrefix+' - '+srcWs.name,usedNames);
+      const destWs=destWb.addWorksheet(name,{ pageSetup:srcWs.pageSetup });
+      if(srcWs.columns) destWs.columns=srcWs.columns.map(c=>({ width:c.width }));
+      srcWs.eachRow({ includeEmpty:true },(row,rowNumber)=>{
+        const destRow=destWs.getRow(rowNumber);
+        row.eachCell({ includeEmpty:true },(cell,colNumber)=>{
+          const destCell=destRow.getCell(colNumber);
+          destCell.value=cell.value;
+          if(cell.style) destCell.style=JSON.parse(JSON.stringify(cell.style));
+        });
+        if(row.height) destRow.height=row.height;
+        destRow.commit();
+      });
+      const merges=srcWs.model&&srcWs.model.merges?srcWs.model.merges:[];
+      merges.forEach(range=>{ try{ destWs.mergeCells(range); }catch(e){} });
     });
-    const ws=XLSX.utils.aoa_to_sheet(rows);
-    ws['!cols']=[{wch:4},{wch:18},{wch:20},{wch:24},{wch:50},{wch:30},{wch:30},{wch:30},{wch:40}];
-    XLSX.utils.book_append_sheet(wb,ws,reps[0].contractName.substring(0,28));
+    return true;
+  }catch(e){
+    console.error('appendTemplateSheets failed',e);
+    toast('Não foi possível ler o modelo Excel deste contrato — verifique se o arquivo não está corrompido.','warn');
+    return false;
+  }
+}
+
+async function buildContractDaySheet(wb,group,cfg,usedNames){
+  const THIN={ style:'thin', color:{ argb:'FF000000' } };
+  const FULL={ top:THIN, left:THIN, bottom:THIN, right:THIN };
+  const lastCol=9;
+  const sheetName=uniqueSheetName(group.contractName+' '+fmtDate(group.date),usedNames);
+  const ws=wb.addWorksheet(sheetName,{ pageSetup:{ paperSize:9, orientation:'landscape', fitToPage:true, fitToWidth:1, fitToHeight:0, margins:{ left:0.4,right:0.4,top:0.5,bottom:0.5,header:0.2,footer:0.2 } } });
+  ws.columns=[{width:4},{width:16},{width:20},{width:24},{width:46},{width:26},{width:26},{width:26},{width:30}];
+
+  let row=1;
+  ws.mergeCells(row,1,row,lastCol);
+  ws.getCell(row,1).value=(cfg.companyName||cfg.name||'').toUpperCase();
+  ws.getCell(row,1).font={ bold:true, size:14 };
+  ws.getCell(row,1).alignment={ horizontal:'center' };
+  row++;
+
+  ws.mergeCells(row,1,row,lastCol);
+  ws.getCell(row,1).value='RELATÓRIO DIÁRIO DE OBRA — COMPILADO DO DIA';
+  ws.getCell(row,1).font={ bold:true, size:12 };
+  ws.getCell(row,1).alignment={ horizontal:'center' };
+  row++;
+
+  ws.mergeCells(row,1,row,4);
+  ws.getCell(row,1).value='Contrato: '+group.contractName;
+  ws.getCell(row,1).font={ bold:true };
+  ws.mergeCells(row,5,row,lastCol);
+  ws.getCell(row,5).value='Data: '+fmtDate(group.date)+'  ·  '+group.reports.length+' relatório(s) compilado(s)';
+  ws.getCell(row,5).font={ bold:true };
+  row+=2;
+
+  const headerRow=row;
+  ['#','TURNO','SUPERVISOR','LOCAL','ATIVIDADES','INSPEÇÕES','INTERRUPÇÕES','SEGURANÇA','ENVOLVIDOS'].forEach((h,i)=>{
+    const cell=ws.getCell(headerRow,i+1);
+    cell.value=h;
+    cell.font={ bold:true, color:{ argb:'FFFFFFFF' } };
+    cell.fill={ type:'pattern', pattern:'solid', fgColor:{ argb:'FF0071E3' } };
+    cell.alignment={ horizontal:'center', vertical:'middle', wrapText:true };
+    cell.border=FULL;
+  });
+  row++;
+
+  group.reports.forEach((r,i)=>{
+    const r0=row;
+    [i+1,r.shift,r.supervisorName,r.location,r.activities.join('\n\n'),r.inspections,r.interruptions,r.safety,r.involved].forEach((v,ci)=>{
+      const cell=ws.getCell(r0,ci+1);
+      cell.value=v;
+      cell.alignment={ vertical:'top', wrapText:true };
+      cell.border=FULL;
+    });
+    const lineCount=(r.activities.join('\n').match(/\n/g)||[]).length+3;
+    ws.getRow(r0).height=Math.max(60,Math.min(220,16*lineCount));
+    row++;
+  });
+  row++;
+
+  // Fotos — distribuídas proporcionalmente entre os relatórios do dia (ver distributePhotosForExport)
+  const PHOTO_SLOTS=4;
+  const distributed=distributePhotosForExport(group.reports,PHOTO_SLOTS);
+  if(distributed.length){
+    ws.mergeCells(row,1,row,lastCol);
+    ws.getCell(row,1).value='REGISTROS FOTOGRÁFICOS';
+    ws.getCell(row,1).font={ bold:true };
+    row++;
+    const photoRow=row;
+    const colsPerPhoto=Math.max(1,Math.floor(lastCol/PHOTO_SLOTS));
+    for(let i=0;i<distributed.length;i++){
+      const startCol=1+i*colsPerPhoto;
+      const endCol=(i===distributed.length-1)?lastCol:Math.min(startCol+colsPerPhoto-1,lastCol);
+      ws.mergeCells(photoRow,startCol,photoRow+8,endCol);
+      ws.getCell(photoRow,startCol).border=FULL;
+      try{
+        const ext=distributed[i].src.includes('image/png')?'png':'jpeg';
+        const imgId=wb.addImage({ base64:distributed[i].src.split(',')[1], extension:ext });
+        ws.addImage(imgId,{ tl:{ col:startCol-1+0.15, row:photoRow-1+0.15 }, ext:{ width:150, height:110 } });
+      }catch(e){ console.error('photo embed failed',e); }
+    }
+    row=photoRow+9;
+  }
+  row++;
+
+  // Assinaturas
+  ws.mergeCells(row,1,row,lastCol);
+  ws.getCell(row,1).value='ASSINATURAS';
+  ws.getCell(row,1).font={ bold:true };
+  row++;
+  const sigLabels=['Supervisor Responsável','Fiscalização / Contratante','Engenheiro Responsável'];
+  const sigColSpan=Math.floor(lastCol/sigLabels.length);
+  const sigRowStart=row;
+  sigLabels.forEach((label,i)=>{
+    const startCol=1+i*sigColSpan;
+    const endCol=(i===sigLabels.length-1)?lastCol:startCol+sigColSpan-1;
+    ws.mergeCells(sigRowStart,startCol,sigRowStart+2,endCol);
+    ws.getCell(sigRowStart,startCol).border=FULL;
+    ws.mergeCells(sigRowStart+3,startCol,sigRowStart+3,endCol);
+    const lc=ws.getCell(sigRowStart+3,startCol);
+    lc.value=label; lc.alignment={ horizontal:'center' }; lc.font={ size:10 };
+    lc.border={ top:THIN };
+  });
+  row=sigRowStart+4;
+
+  // Borda externa fiel ao redor de toda a área usada da planilha
+  const usedLastRow=row-1;
+  for(let rr=1;rr<=usedLastRow;rr++){
+    for(let cc=1;cc<=lastCol;cc++){
+      const cell=ws.getCell(rr,cc);
+      const b=Object.assign({},cell.border);
+      if(rr===1) b.top=THIN;
+      if(rr===usedLastRow) b.bottom=THIN;
+      if(cc===1) b.left=THIN;
+      if(cc===lastCol) b.right=THIN;
+      cell.border=b;
+    }
+  }
+}
+
+async function exportXLSX(reports){
+  if(typeof ExcelJS==='undefined'){ toast('Biblioteca de exportação XLSX não carregou — verifique a conexão e tente novamente.','error'); return; }
+  const cfg=DB.appConfig;
+  const wb=new ExcelJS.Workbook();
+  wb.creator=cfg.companyName||cfg.name||'FieldReport Pro';
+  wb.created=new Date();
+
+  // Agrupa por contrato + data: essa é a unidade que vira uma única aba
+  const byKey={};
+  reports.forEach(r=>{
+    const key=r.contractId+'|'+r.date;
+    if(!byKey[key]) byKey[key]={ contractId:r.contractId, contractName:r.contractName, date:r.date, reports:[] };
+    byKey[key].reports.push(r);
   });
 
+  const usedNames=new Set();
+  for(const key of Object.keys(byKey)){
+    const group=byKey[key];
+    const tpl=DB.templates.find(t=>t.contractId===group.contractId && t.fileData);
+    if(tpl) await appendTemplateSheets(wb, tpl.fileData, group.contractName+' '+fmtDate(group.date), usedNames);
+    await buildContractDaySheet(wb, group, cfg, usedNames);
+  }
+
+  const buf=await wb.xlsx.writeBuffer();
+  const blob=new Blob([buf],{ type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
   const fname=`RDO_${reports[0].date}.xlsx`;
-  XLSX.writeFile(wb,fname);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=fname;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
 
 // ─── Google Sheets ───
