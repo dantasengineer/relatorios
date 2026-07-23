@@ -357,8 +357,30 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <div class="form-q">
         <div class="form-q-num">3</div>
         <div class="form-q-label">Qual o horário de turno/expediente?</div>
-        <div class="form-q-hint">Selecione um turno padrão ou defina um horário personalizado</div>
-        <div class="shift-grid" id="shiftGrid">
+        <div class="form-q-hint">Primeiro selecione o tipo de horário</div>
+        <div class="shift-grid" id="shiftTypeGrid">
+          <div class="shift-option" id="shiftTypeAdmin" onclick="selectShiftType('admin')">
+            <div class="shift-option-time">Administrativo</div>
+            <div class="shift-option-label">Horário fixo de escritório</div>
+          </div>
+          <div class="shift-option" id="shiftTypeTurno" onclick="selectShiftType('turno')">
+            <div class="shift-option-time">Turno</div>
+            <div class="shift-option-label">Escala de turno</div>
+          </div>
+        </div>
+
+        <div class="shift-grid mt-3 hidden" id="shiftGridAdmin">
+          <div class="shift-option" onclick="selectShift(this,'07:00 – 17:00')">
+            <div class="shift-option-time">07:00 – 17:00</div>
+            <div class="shift-option-label">Administrativo</div>
+          </div>
+          <div class="shift-option" onclick="selectShift(this,'08:00 – 18:00')">
+            <div class="shift-option-time">08:00 – 18:00</div>
+            <div class="shift-option-label">Administrativo</div>
+          </div>
+        </div>
+
+        <div class="shift-grid mt-3 hidden" id="shiftGridTurno">
           <div class="shift-option" onclick="selectShift(this,'00:00 – 06:00')">
             <div class="shift-option-time">00:00 – 06:00</div>
             <div class="shift-option-label">Turno Madrugada</div>
@@ -371,11 +393,12 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
             <div class="shift-option-time">12:00 – 18:00</div>
             <div class="shift-option-label">Turno Tarde</div>
           </div>
-          <div class="shift-option" onclick="selectShift(this,'18:00 – 00:00')">
-            <div class="shift-option-time">18:00 – 00:00</div>
+          <div class="shift-option" onclick="selectShift(this,'18:00 – 23:59')">
+            <div class="shift-option-time">18:00 – 23:59</div>
             <div class="shift-option-label">Turno Noite</div>
           </div>
         </div>
+
         <input class="form-input mt-3" id="fShift" placeholder="Ou digite um horário personalizado…">
       </div>
     </div>
@@ -773,6 +796,8 @@ function initForm(){
   });
   // Reset shift
   document.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('shiftGridAdmin').classList.add('hidden');
+  document.getElementById('shiftGridTurno').classList.add('hidden');
   // Reset activities
   APP.activities = [''];
   renderActivities();
@@ -781,8 +806,17 @@ function initForm(){
   renderPhotoSlots();
 }
 
+function selectShiftType(type){
+  document.getElementById('shiftTypeAdmin').classList.toggle('selected', type==='admin');
+  document.getElementById('shiftTypeTurno').classList.toggle('selected', type==='turno');
+  document.getElementById('shiftGridAdmin').classList.toggle('hidden', type!=='admin');
+  document.getElementById('shiftGridTurno').classList.toggle('hidden', type!=='turno');
+  document.querySelectorAll('#shiftGridAdmin .shift-option, #shiftGridTurno .shift-option').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('fShift').value = '';
+}
+
 function selectShift(el,val){
-  document.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected'));
+  el.parentElement.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById('fShift').value = val;
 }
