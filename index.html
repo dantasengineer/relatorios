@@ -991,6 +991,7 @@ function distributePhotosForExport(reports,totalSlots){
 }
 function dataUrlToArrayBuffer(dataUrl){ const base64=dataUrl.split(',')[1]; const binary=atob(base64); const buf=new Uint8Array(binary.length); for(let i=0;i<binary.length;i++) buf[i]=binary.charCodeAt(i); return buf.buffer; }
 async function appendTemplateSheets(destWb,arrayBuffer,labelPrefix,usedNames){
+  const created=[];
   try{
     const srcWb=new ExcelJS.Workbook(); await srcWb.xlsx.load(arrayBuffer);
     srcWb.worksheets.forEach(srcWs=>{
@@ -998,9 +999,75 @@ async function appendTemplateSheets(destWb,arrayBuffer,labelPrefix,usedNames){
       if(srcWs.columns) destWs.columns=srcWs.columns.map(c=>({ width:c.width }));
       srcWs.eachRow({ includeEmpty:true },(row,rowNumber)=>{ const destRow=destWs.getRow(rowNumber); row.eachCell({ includeEmpty:true },(cell,colNumber)=>{ const destCell=destRow.getCell(colNumber); destCell.value=cell.value; if(cell.style) destCell.style=JSON.parse(JSON.stringify(cell.style)); }); if(row.height) destRow.height=row.height; destRow.commit(); });
       const merges=srcWs.model&&srcWs.model.merges?srcWs.model.merges:[]; merges.forEach(range=>{ try{ destWs.mergeCells(range); }catch(e){} });
+      created.push(destWs);
     });
-    return true;
-  }catch(e){ console.error('appendTemplateSheets failed',e); toast('Não foi possível ler o modelo Excel deste contrato — verifique se o arquivo não está corrompido.','warn'); return false; }
+    return created;
+  }catch(e){ console.error('appendTemplateSheets failed',e); toast('Não foi possível ler o modelo Excel deste contrato — verifique se o arquivo não está corrompido.','warn'); return created; }
+}
+function colLetterToNum(s){ let n=0; for(let i=0;i<s.length;i++) n=n*26+(s.charCodeAt(i)-64); return n; }
+function parseRangeStr(rangeStr){ const m=String(rangeStr).match(/^([A-Z]+)(\d+):([A-Z]+)(\d+)$/); if(!m) return null; return { c1:colLetterToNum(m[1]), r1:parseInt(m[2]), c2:colLetterToNum(m[3]), r2:parseInt(m[4]) }; }
+function findLabelCell(ws,patterns){
+  let found=null;
+  ws.eachRow({ includeEmpty:false },(row,rowNumber)=>{
+    if(found) return;
+    row.eachCell({ includeEmpty:false },(cell,colNumber)=>{
+      if(found) return;
+      const v=cell.value; if(v==null) return;
+      const txt = typeof v==='object' ? (v.richText ? v.richText.map(t=>t.text).join('') : '') : String(v);
+      const up=txt.toUpperCase();
+      if(patterns.some(p=>up.includes(p))) found={ row:rowNumber, col:colNumber, text:txt };
+    });
+  });
+  return found;
+}
+function computeRdoNumber(allReports,contractId,date){
+  const dates=new Set((allReports||[]).filter(r=>r.contractId===contractId && r.date<=date).map(r=>r.date));
+  return dates.size;
+}
+async function fillTemplateWithData(wb,ws,group,cfg,allReports){
+  const rdoNumber=computeRdoNumber(allReports,group.contractId,group.date);
+  const dataLabel=findLabelCell(ws,['DATA:','DATA :']);
+  if(dataLabel){ const vc=ws.getCell(dataLabel.row,dataLabel.col+1); const [y,m,d]=group.date.split('-').map(Number); vc.value=new Date(Date.UTC(y,m-1,d)); if(!vc.numFmt) vc.numFmt='dd/mm/yyyy'; }
+  const rdoLabel=findLabelCell(ws,['RDO N']);
+  if(rdoLabel){ ws.getCell(rdoLabel.row,rdoLabel.col+1).value=rdoNumber; }
+  const photoLabel=findLabelCell(ws,['FOTOGR']);
+  let photoSlots=[];
+  if(photoLabel){
+    const merges=(ws.model && ws.model.merges) ? ws.model.merges : [];
+    photoSlots=merges.map(parseRangeStr).filter(Boolean).filter(m=>m.r1>photoLabel.row && (m.r2-m.r1)>=3 && (m.c2-m.c1)>=2).sort((a,b)=>(a.r1-b.r1)||(a.c1-b.c1)).slice(0,4);
+  }
+  const svcHeader=findLabelCell(ws,['DESCRI']);
+  if(svcHeader){
+    let itemCol=null, turmaCol=null; const descCol=svcHeader.col;
+    ws.getRow(svcHeader.row).eachCell({ includeEmpty:false },(cell,colNumber)=>{ const t=String(cell.value||'').toUpperCase(); if(t.includes('ITEM')) itemCol=colNumber; if(t.includes('TURMA')) turmaCol=colNumber; });
+    const rowsData=[]; group.reports.forEach(r=>{ (r.activities||[]).filter(a=>a && String(a).trim()).forEach(a=>{ rowsData.push({ turma:r.shift||'', desc:a }); }); });
+    const startRow=svcHeader.row+1;
+    const endRow=photoLabel ? photoLabel.row : startRow+40;
+    const templateRowCount=Math.max(1,endRow-startRow);
+    const overflow=rowsData.length>templateRowCount;
+    const fillCount=overflow ? templateRowCount : rowsData.length;
+    for(let i=0;i<fillCount;i++){
+      const r=startRow+i; const isLast=overflow && i===fillCount-1;
+      if(itemCol) ws.getCell(r,itemCol).value=i+1;
+      if(turmaCol) ws.getCell(r,turmaCol).value=rowsData[i].turma;
+      if(isLast){ const rest=rowsData.slice(i).map(x=>x.desc); ws.getCell(r,descCol).value=rest.join('\n'); ws.getRow(r).height=Math.max(ws.getRow(r).height||15,15*rest.length); }
+      else{ ws.getCell(r,descCol).value=rowsData[i].desc; }
+    }
+    for(let i=fillCount;i<templateRowCount;i++){ const r=startRow+i; if(itemCol) ws.getCell(r,itemCol).value=null; if(turmaCol) ws.getCell(r,turmaCol).value=null; ws.getCell(r,descCol).value=null; }
+  }
+  if(photoSlots.length){
+    const distributed=distributePhotosForExport(group.reports,photoSlots.length);
+    for(let i=0;i<Math.min(distributed.length,photoSlots.length);i++){
+      const slot=photoSlots[i];
+      try{
+        const photoSrc=distributed[i].src; let imgId;
+        if(photoSrc.startsWith('data:')){ const ext=photoSrc.includes('image/png')?'png':'jpeg'; imgId=wb.addImage({ base64:photoSrc.split(',')[1], extension:ext }); }
+        else{ const resp=await fetch(photoSrc); if(!resp.ok) throw new Error('download failed: '+resp.status); const ct=resp.headers.get('content-type')||''; const ext=(ct.includes('png')||photoSrc.toLowerCase().includes('.png'))?'png':'jpeg'; const buffer=await resp.arrayBuffer(); imgId=wb.addImage({ buffer, extension:ext }); }
+        ws.addImage(imgId,{ tl:{ col:slot.c1-1+0.05, row:slot.r1-1+0.05 }, br:{ col:slot.c2-0.05, row:slot.r2-0.05 }, editAs:'oneCell' });
+      }catch(e){ console.error('template photo embed failed',e); }
+    }
+  }
+  return true;
 }
 async function buildContractDaySheet(wb,group,cfg,usedNames){
   const THIN={ style:'thin', color:{ argb:'FF000000' } }; const FULL={ top:THIN, left:THIN, bottom:THIN, right:THIN }; const lastCol=9;
@@ -1033,10 +1100,26 @@ async function buildContractDaySheet(wb,group,cfg,usedNames){
 }
 async function exportXLSX(reports){
   if(typeof ExcelJS==='undefined'){ toast('Biblioteca de exportação XLSX não carregou — verifique a conexão e tente novamente.','error'); return; }
+  if(!DB.templates || !DB.templates.length){ try{ const tplRes=await apiData('templates','list'); DB.templates=tplRes.templates||[]; }catch(e){ console.error('preload templates failed',e); } }
   const cfg=DB.appConfig; const wb=new ExcelJS.Workbook(); wb.creator=cfg.companyName||cfg.name||'FieldReport Pro'; wb.created=new Date();
   const byKey={}; reports.forEach(r=>{ const key=r.contractId+'|'+r.date; if(!byKey[key]) byKey[key]={ contractId:r.contractId, contractName:r.contractName, date:r.date, reports:[] }; byKey[key].reports.push(r); });
   const usedNames=new Set();
-  for(const key of Object.keys(byKey)){ const group=byKey[key]; const tpl=DB.templates.find(t=>t.contractId===group.contractId && t.storagePath); if(tpl){ try{ const buf=await fetchTemplateArrayBuffer(tpl.storagePath); await appendTemplateSheets(wb, buf, group.contractName+' '+fmtDate(group.date), usedNames); }catch(e){ console.error('template load failed',e); toast('Não foi possível carregar o modelo Excel deste contrato — usando formato padrão.','warn'); } } await buildContractDaySheet(wb, group, cfg, usedNames); }
+  for(const key of Object.keys(byKey)){
+    const group=byKey[key];
+    const tpl=DB.templates.find(t=>t.contractId===group.contractId && t.storagePath);
+    let filledFromTemplate=false;
+    if(tpl){
+      try{
+        const buf=await fetchTemplateArrayBuffer(tpl.storagePath);
+        const sheets=await appendTemplateSheets(wb, buf, group.contractName+' '+fmtDate(group.date), usedNames);
+        if(sheets && sheets.length){
+          for(const ws of sheets){ await fillTemplateWithData(wb, ws, group, cfg, DB.reports); }
+          filledFromTemplate=true;
+        }
+      }catch(e){ console.error('template load/fill failed',e); toast('Não foi possível preencher o modelo Excel deste contrato — usando formato padrão.','warn'); }
+    }
+    if(!filledFromTemplate) await buildContractDaySheet(wb, group, cfg, usedNames);
+  }
   const buf=await wb.xlsx.writeBuffer(); const blob=new Blob([buf],{ type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }); const fname=`RDO_${reports[0].date}.xlsx`;
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
