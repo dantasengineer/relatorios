@@ -1932,8 +1932,19 @@ async function buildContractDaySheet(wb,group,cfg,usedNames){
       ws.mergeCells(photoRow,startCol,photoRow+8,endCol);
       ws.getCell(photoRow,startCol).border=FULL;
       try{
-        const ext=distributed[i].src.includes('image/png')?'png':'jpeg';
-        const imgId=wb.addImage({ base64:distributed[i].src.split(',')[1], extension:ext });
+        const photoSrc=distributed[i].src;
+        let imgId;
+        if(photoSrc.startsWith('data:')){
+          const ext=photoSrc.includes('image/png')?'png':'jpeg';
+          imgId=wb.addImage({ base64:photoSrc.split(',')[1], extension:ext });
+        }else{
+          const resp=await fetch(photoSrc);
+          if(!resp.ok) throw new Error('download failed: '+resp.status);
+          const ct=resp.headers.get('content-type')||'';
+          const ext=(ct.includes('png')||photoSrc.toLowerCase().includes('.png'))?'png':'jpeg';
+          const buffer=await resp.arrayBuffer();
+          imgId=wb.addImage({ buffer, extension:ext });
+        }
         ws.addImage(imgId,{ tl:{ col:startCol-1+0.15, row:photoRow-1+0.15 }, ext:{ width:150, height:110 } });
       }catch(e){ console.error('photo embed failed',e); }
     }
