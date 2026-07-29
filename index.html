@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>FieldReport Pro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
@@ -23,8 +22,6 @@
   --transition:all .2s cubic-bezier(.4,0,.2,1);
 }
 html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-
-/* ── UTILITIES ── */
 .hidden{display:none!important}
 .flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}.gap-6{gap:24px}
 .w-full{width:100%}.text-center{text-align:center}
@@ -41,16 +38,10 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .badge-warn{background:#FFF4E5;color:#B35900}
 .badge-red{background:#FFE5E5;color:#C0001A}
 .divider{height:1px;background:var(--border2);margin:0}
-
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
-
-/* ── SCREENS ── */
 .screen{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column}
-
-/* ── LOGIN ── */
 #screen-login{background:linear-gradient(160deg,#0a0a0a 0%,#111827 50%,#0a0a0a 100%);align-items:center;justify-content:center}
 .login-card{background:rgba(255,255,255,.04);backdrop-filter:blur(40px) saturate(180%);border:1px solid rgba(255,255,255,.10);border-radius:28px;padding:52px 44px;width:100%;max-width:420px;box-shadow:0 32px 80px rgba(0,0,0,.5);margin:20px}
 .login-logo-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:44px}
@@ -70,8 +61,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .login-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .login-error{background:rgba(255,59,48,.15);border:1px solid rgba(255,59,48,.3);border-radius:10px;padding:12px 14px;font-size:13px;color:#FF6B6B;text-align:center;margin-top:12px}
 .login-footer{margin-top:28px;text-align:center;font-size:12px;color:rgba(255,255,255,.2)}
-
-/* ── TOP NAV ── */
 .topnav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border2);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between}
 .topnav-logo{display:flex;align-items:center;gap:10px}
 .topnav-logo-icon{width:32px;height:32px;border-radius:9px;background:linear-gradient(145deg,#0071E3,#00C7FF);display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -81,8 +70,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .topnav-user{font-size:13px;font-weight:500;color:var(--text2)}
 .topnav-btn{background:transparent;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:var(--transition);font-family:var(--font)}
 .topnav-btn:hover{background:var(--bg);color:var(--text)}
-
-/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;font-family:var(--font);cursor:pointer;border:none;transition:var(--transition);text-decoration:none;white-space:nowrap}
 .btn-primary{background:var(--blue);color:#fff}
 .btn-primary:hover{background:var(--blue-hover);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,113,227,.35)}
@@ -96,8 +83,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .btn-lg{padding:16px 32px;font-size:16px;border-radius:12px}
 .btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important;box-shadow:none!important}
 .btn-full{width:100%}
-
-/* ── FORM ── */
 .form-screen-content{max-width:720px;margin:0 auto;padding:32px 24px 80px}
 .form-header{margin-bottom:32px}
 .form-header-title{font-size:24px;font-weight:700;letter-spacing:-.4px}
@@ -112,8 +97,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(0,113,227,.12)}
 .form-textarea{resize:vertical;min-height:90px;line-height:1.6}
 .form-date-input{cursor:pointer}
-
-/* Activities multi-input */
 .activities-wrap{display:flex;flex-direction:column;gap:0}
 .activity-item{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed var(--border2)}
 .activity-item:last-child{border-bottom:none;padding-bottom:0}
@@ -124,8 +107,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .activity-remove:hover{background:#FFD8D6}
 .add-activity-btn{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--blue-light);color:var(--blue);border:1.5px dashed var(--blue);border-radius:var(--radius-xs);font-size:13px;font-weight:600;cursor:pointer;transition:var(--transition);margin-top:12px;width:100%;justify-content:center;font-family:var(--font)}
 .add-activity-btn:hover{background:#D6E8FB}
-
-/* Photo upload */
 .photos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
 .photo-slot{aspect-ratio:1;border-radius:var(--radius-sm);border:2px dashed var(--border);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);overflow:hidden;position:relative}
 .photo-slot:hover{border-color:var(--blue);background:var(--blue-light)}
@@ -135,11 +116,7 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .photo-slot-label{font-size:10px;font-weight:600;color:var(--text3);letter-spacing:.04em;text-transform:uppercase}
 .photo-remove-btn{position:absolute;top:4px;right:4px;width:22px;height:22px;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:50%;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--transition)}
 .photo-slot:hover .photo-remove-btn{opacity:1}
-
-/* Form action bar */
 .form-actions{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-top:1px solid var(--border2);padding:16px 24px;display:flex;gap:12px;justify-content:flex-end;z-index:50}
-
-/* ── PREVIEW ── */
 .preview-content{max-width:760px;margin:0 auto;padding:32px 24px 100px}
 .preview-header-card{background:linear-gradient(135deg,#0071E3 0%,#00C7FF 100%);border-radius:var(--radius);padding:28px 32px;color:#fff;margin-bottom:20px}
 .preview-company{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
@@ -162,8 +139,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .preview-photo{aspect-ratio:1;border-radius:var(--radius-sm);overflow:hidden;background:var(--bg);border:1px solid var(--border2)}
 .preview-photo img{width:100%;height:100%;object-fit:cover}
 .preview-photo-empty{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--text3)}
-
-/* ── ADMIN ── */
 .admin-layout{display:flex;min-height:calc(100vh - 58px);background:var(--bg)}
 .admin-sidebar{width:240px;min-width:240px;background:var(--surface);border-right:1px solid var(--border2);padding:20px 0;display:flex;flex-direction:column;position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto}
 .admin-sidebar-section{padding:6px 16px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-top:12px;margin-bottom:4px}
@@ -174,15 +149,11 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .admin-main{flex:1;padding:32px;overflow-y:auto}
 .admin-page-title{font-size:24px;font-weight:700;letter-spacing:-.4px;margin-bottom:4px}
 .admin-page-sub{font-size:14px;color:var(--text2);margin-bottom:28px}
-
-/* Stats cards */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:28px}
 .stat-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border2);padding:20px 22px;box-shadow:var(--shadow)}
 .stat-value{font-size:32px;font-weight:700;letter-spacing:-.5px;margin:8px 0 4px}
 .stat-label{font-size:13px;color:var(--text2);font-weight:500}
 .stat-icon{font-size:22px}
-
-/* Table */
 .data-table-wrap{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border2);box-shadow:var(--shadow);overflow:hidden}
 .data-table-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border2)}
 .data-table-title{font-size:16px;font-weight:600}
@@ -203,8 +174,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .empty-state-icon{font-size:48px;margin-bottom:12px}
 .empty-state-text{font-size:15px;font-weight:500}
 .empty-state-sub{font-size:13px;margin-top:6px}
-
-/* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
 .modal{background:var(--surface);border-radius:20px;width:100%;max-width:520px;box-shadow:var(--shadow-lg);overflow:hidden;animation:modalIn .2s ease}
 @keyframes modalIn{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:none}}
@@ -220,8 +189,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(0,113,227,.12)}
 .form-group select{cursor:pointer}
 .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-
-/* Toast */
 .toast-container{position:fixed;top:80px;right:24px;z-index:999;display:flex;flex-direction:column;gap:10px;pointer-events:none}
 .toast{background:var(--surface);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow-lg);border:1px solid var(--border2);font-size:14px;font-weight:500;min-width:260px;max-width:360px;display:flex;align-items:center;gap:10px;pointer-events:all;animation:toastIn .25s ease;border-left:3px solid var(--blue)}
 .toast.toast-success{border-left-color:var(--success)}
@@ -230,19 +197,13 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
 .toast-icon{font-size:18px}
 .toast-msg{flex:1;color:var(--text)}
-
-/* Progress / spinner */
 .spinner{display:inline-block;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinner-blue{border-color:rgba(0,113,227,.2);border-top-color:var(--blue)}
-
-/* Confirm dialog */
 .confirm-modal{max-width:400px}
 .confirm-icon{font-size:44px;text-align:center;margin-bottom:12px}
 .confirm-title{font-size:20px;font-weight:700;text-align:center;margin-bottom:8px}
 .confirm-text{font-size:14px;color:var(--text2);text-align:center;line-height:1.6}
-
-/* Responsive */
 @media(max-width:768px){
   .admin-layout{flex-direction:column}
   .admin-sidebar{width:100%;height:auto;position:relative;top:0;border-right:none;border-bottom:1px solid var(--border2);flex-direction:row;flex-wrap:wrap;padding:8px}
@@ -259,8 +220,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
   .data-table th,.data-table td{padding:10px 12px}
   .modal{margin:10px}
 }
-
-/* Report type picker */
 .export-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
 .export-card{border:2px solid var(--border);border-radius:var(--radius-sm);padding:18px;cursor:pointer;transition:var(--transition);text-align:center;background:var(--surface)}
 .export-card:hover{border-color:var(--blue);background:var(--blue-light)}
@@ -268,8 +227,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .export-card-icon{font-size:28px;margin-bottom:8px}
 .export-card-label{font-size:14px;font-weight:600}
 .export-card-sub{font-size:12px;color:var(--text2);margin-top:3px}
-
-/* Shift selector */
 .shift-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .shift-option{border:1.5px solid var(--border);border-radius:var(--radius-xs);padding:12px;cursor:pointer;transition:var(--transition);text-align:center;background:var(--bg)}
 .shift-option:hover{border-color:var(--blue);background:var(--blue-light)}
@@ -277,8 +234,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .shift-option-time{font-size:13px;font-weight:700}
 .shift-option-label{font-size:11px;color:var(--text2);margin-top:2px}
 .shift-option.selected .shift-option-label{color:var(--blue);opacity:.7}
-
-/* Success screen */
 #screen-success{background:var(--bg);align-items:center;justify-content:center}
 .success-card{background:var(--surface);border-radius:24px;padding:52px 44px;text-align:center;max-width:440px;width:100%;margin:20px;box-shadow:var(--shadow-lg);border:1px solid var(--border2)}
 .success-icon{font-size:56px;margin-bottom:20px}
@@ -287,21 +242,11 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 </style>
 </head>
 <body>
-
-<!-- ═══════════════════════════════════════════════
-     TOAST CONTAINER
-════════════════════════════════════════════════ -->
 <div class="toast-container" id="toastContainer"></div>
-
-<!-- ═══════════════════════════════════════════════
-     SCREEN: LOGIN
-════════════════════════════════════════════════ -->
 <div class="screen" id="screen-login">
   <div class="login-card">
     <div class="login-logo-wrap">
-      <div class="login-logo" id="loginLogoWrap">
-        <span class="login-logo-placeholder" id="loginLogoPlaceholder">FR</span>
-      </div>
+      <div class="login-logo" id="loginLogoWrap"><img src="https://oadwwyithsezvbdqgwle.supabase.co/storage/v1/object/public/logos/app/1784344516916_LOGOMARCA.png"></div>
       <div class="login-title" id="loginAppName">FieldReport Pro</div>
       <div class="login-sub">Sistema de Relatórios de Campo</div>
     </div>
@@ -318,14 +263,10 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     <div class="login-footer">FieldReport Pro v1.0 • Acesso restrito</div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════
-     SCREEN: FORM (Supervisor)
-════════════════════════════════════════════════ -->
 <div class="screen hidden" id="screen-form">
   <div class="topnav">
     <div class="topnav-logo">
-      <div class="topnav-logo-icon" id="navLogo"><span style="color:#fff;font-weight:800;font-size:13px" id="navLogoText">FR</span></div>
+      <div class="topnav-logo-icon" id="navLogo"><img src="https://oadwwyithsezvbdqgwle.supabase.co/storage/v1/object/public/logos/app/1784344516916_LOGOMARCA.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px;"></div>
       <span class="topnav-logo-text" id="navAppName">FieldReport Pro</span>
     </div>
     <div class="topnav-right">
@@ -333,28 +274,23 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <button class="topnav-btn" onclick="doLogout()">Sair</button>
     </div>
   </div>
-
   <div class="form-screen-content">
     <div class="form-header">
       <div class="form-header-title">Novo Relatório</div>
       <div class="form-header-sub" id="formContractLabel">Contrato: —</div>
     </div>
-
     <div class="form-card">
-      <!-- Q1: Date -->
       <div class="form-q">
         <div class="form-q-num">1</div>
         <div class="form-q-label">Informe a data</div>
         <div class="form-q-hint">Selecione a data da atividade no calendário</div>
         <input class="form-input form-date-input" type="date" id="fDate">
       </div>
-      <!-- Q2: Location -->
       <div class="form-q">
         <div class="form-q-num">2</div>
         <div class="form-q-label">Qual o local de atividade?</div>
         <textarea class="form-textarea" id="fLocation" placeholder="Ex: Canteiro de obras Norte, Bloco A, Setor 3…" rows="2"></textarea>
       </div>
-      <!-- Q3: Shift -->
       <div class="form-q">
         <div class="form-q-num">3</div>
         <div class="form-q-label">Qual o horário de turno/expediente?</div>
@@ -369,7 +305,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
             <div class="shift-option-label">Escala de turno</div>
           </div>
         </div>
-
         <div class="shift-grid mt-3 hidden" id="shiftGridAdmin">
           <div class="shift-option" onclick="selectShift(this,'07:00 – 17:00')">
             <div class="shift-option-time">07:00 – 17:00</div>
@@ -380,7 +315,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
             <div class="shift-option-label">Administrativo</div>
           </div>
         </div>
-
         <div class="shift-grid mt-3 hidden" id="shiftGridTurno">
           <div class="shift-option" onclick="selectShift(this,'00:00 – 06:00')">
             <div class="shift-option-time">00:00 – 06:00</div>
@@ -399,12 +333,9 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
             <div class="shift-option-label">Turno Noite</div>
           </div>
         </div>
-
         <input class="form-input mt-3" id="fShift" placeholder="Ou digite um horário personalizado…">
       </div>
     </div>
-
-    <!-- Q4: Activities -->
     <div class="form-card">
       <div class="form-q">
         <div class="form-q-num">4</div>
@@ -414,35 +345,28 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
         <button class="add-activity-btn" onclick="addActivity()">＋ Nova Atividade</button>
       </div>
     </div>
-
     <div class="form-card">
-      <!-- Q5: Inspections -->
       <div class="form-q">
         <div class="form-q-num">5</div>
         <div class="form-q-label">Houve inspeções e visitas na atividade?</div>
         <textarea class="form-textarea" id="fInspections" placeholder="Descreva inspeções, visitas técnicas ou fiscalizações ocorridas. Se não houve, escreva 'Não houve.'"></textarea>
       </div>
-      <!-- Q6: Interruptions -->
       <div class="form-q">
         <div class="form-q-num">6</div>
         <div class="form-q-label">Houveram interrupções ou desvios na atividade?</div>
         <textarea class="form-textarea" id="fInterruptions" placeholder="Descreva interrupções, paradas ou desvios de planejamento. Se não houve, escreva 'Não houve.'"></textarea>
       </div>
-      <!-- Q7: Safety -->
       <div class="form-q">
         <div class="form-q-num">7</div>
         <div class="form-q-label">Houveram desvios de segurança na atividade?</div>
         <textarea class="form-textarea" id="fSafety" placeholder="Descreva desvios de segurança, não conformidades ou incidentes. Se não houve, escreva 'Não houve.'"></textarea>
       </div>
-      <!-- Q8: Involved -->
       <div class="form-q">
         <div class="form-q-num">8</div>
         <div class="form-q-label">Descreva os nomes dos envolvidos na atividade</div>
         <textarea class="form-textarea" id="fInvolved" placeholder="Liste os nomes dos colaboradores, terceiros e responsáveis presentes na atividade…"></textarea>
       </div>
     </div>
-
-    <!-- Photos -->
     <div class="form-card">
       <div class="form-q">
         <div style="margin-bottom:12px">
@@ -454,27 +378,21 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       </div>
     </div>
   </div>
-
   <div class="form-actions">
     <button class="btn btn-secondary" onclick="cancelForm()">✕ Cancelar Relatório</button>
     <button class="btn btn-primary" onclick="goToPreview()">Visualizar Resumo →</button>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════
-     SCREEN: PREVIEW
-════════════════════════════════════════════════ -->
 <div class="screen hidden" id="screen-preview">
   <div class="topnav">
     <div class="topnav-logo">
-      <div class="topnav-logo-icon" id="navLogo2"><span style="color:#fff;font-weight:800;font-size:13px" id="navLogoText2">FR</span></div>
+      <div class="topnav-logo-icon" id="navLogo2"><img src="https://oadwwyithsezvbdqgwle.supabase.co/storage/v1/object/public/logos/app/1784344516916_LOGOMARCA.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px;"></div>
       <span class="topnav-logo-text" id="navAppName2">FieldReport Pro</span>
     </div>
     <div class="topnav-right">
       <button class="topnav-btn" onclick="doLogout()">Sair</button>
     </div>
   </div>
-
   <div class="preview-content">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
       <button class="btn btn-ghost btn-sm" onclick="backToForm()">← Voltar</button>
@@ -483,13 +401,11 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
         <div style="font-size:13px;color:var(--text2)">Confira os dados antes de confirmar o envio</div>
       </div>
     </div>
-
     <div class="preview-header-card">
       <div class="preview-company" id="pvCompany">RELATÓRIO DIÁRIO DE OBRA</div>
       <div class="preview-title" id="pvTitle">—</div>
       <div class="preview-meta" id="pvMeta"></div>
     </div>
-
     <div class="preview-section">
       <div class="preview-section-title">Informações Gerais</div>
       <div class="preview-row"><span class="preview-row-label">Data</span><span class="preview-row-value" id="pvDate">—</span></div>
@@ -498,39 +414,30 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <div class="preview-row"><span class="preview-row-label">Supervisor</span><span class="preview-row-value" id="pvSupervisor">—</span></div>
       <div class="preview-row"><span class="preview-row-label">Contrato</span><span class="preview-row-value" id="pvContract">—</span></div>
     </div>
-
     <div class="preview-section">
       <div class="preview-section-title">Atividades Desenvolvidas</div>
       <div class="preview-activities" id="pvActivities"></div>
     </div>
-
     <div class="preview-section">
       <div class="preview-section-title">Ocorrências</div>
       <div class="preview-row"><span class="preview-row-label">Inspeções / Visitas</span><span class="preview-row-value" id="pvInspections">—</span></div>
       <div class="preview-row"><span class="preview-row-label">Interrupções / Desvios</span><span class="preview-row-value" id="pvInterruptions">—</span></div>
       <div class="preview-row"><span class="preview-row-label">Desvios de Segurança</span><span class="preview-row-value" id="pvSafety">—</span></div>
     </div>
-
     <div class="preview-section">
       <div class="preview-section-title">Equipe Envolvida</div>
       <div class="preview-row"><span class="preview-row-label">Nomes</span><span class="preview-row-value" id="pvInvolved">—</span></div>
     </div>
-
     <div class="preview-section">
       <div class="preview-section-title">Registros Fotográficos</div>
       <div class="preview-photos-grid" id="pvPhotos"></div>
     </div>
   </div>
-
   <div class="form-actions">
     <button class="btn btn-secondary" onclick="backToForm()">← Editar Relatório</button>
     <button class="btn btn-primary btn-lg" id="confirmBtn" onclick="confirmReport()">✓ Confirmar e Enviar</button>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════
-     SCREEN: SUCCESS
-════════════════════════════════════════════════ -->
 <div class="screen hidden" id="screen-success">
   <div class="success-card">
     <div class="success-icon">✅</div>
@@ -540,44 +447,34 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     <button class="btn btn-secondary btn-full mt-2" onclick="viewMyReports()">Ver meus relatórios</button>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════
-     SCREEN: ADMIN
-════════════════════════════════════════════════ -->
 <div class="screen hidden" id="screen-admin">
   <div class="topnav">
     <div class="topnav-logo">
-      <div class="topnav-logo-icon" id="navLogoAdmin"><span style="color:#fff;font-weight:800;font-size:13px" id="navLogoTextAdmin">FR</span></div>
+      <div class="topnav-logo-icon" id="navLogoAdmin"><img src="https://oadwwyithsezvbdqgwle.supabase.co/storage/v1/object/public/logos/app/1784344516916_LOGOMARCA.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px;"></div>
       <span class="topnav-logo-text" id="navAppNameAdmin">FieldReport Pro</span>
-      <span class="badge badge-blue" style="margin-left:4px">Admin</span>
+      <span class="badge badge-blue" style="margin-left:4px" id="roleBadge">Admin</span>
     </div>
     <div class="topnav-right">
       <span class="topnav-user" id="navAdminName"></span>
       <button class="topnav-btn" onclick="doLogout()">Sair</button>
     </div>
   </div>
-
   <div class="admin-layout">
     <div class="admin-sidebar">
       <div class="admin-sidebar-section">Principal</div>
       <div class="sidebar-item active" onclick="adminNav('dashboard',this)"><span class="sidebar-item-icon">📊</span>Dashboard</div>
       <div class="sidebar-item" onclick="adminNav('reports',this)"><span class="sidebar-item-icon">📋</span>Relatórios</div>
-      <div class="admin-sidebar-section">Cadastros</div>
-      <div class="sidebar-item" onclick="adminNav('users',this)"><span class="sidebar-item-icon">👤</span>Colaboradores</div>
+      <div class="admin-sidebar-section" id="sidebarSectionCadastros">Cadastros</div>
+      <div class="sidebar-item" id="sidebarItemUsers" onclick="adminNav('users',this)"><span class="sidebar-item-icon">👤</span>Colaboradores</div>
       <div class="sidebar-item" onclick="adminNav('contracts',this)"><span class="sidebar-item-icon">📁</span>Contratos</div>
-      <div class="sidebar-item" onclick="adminNav('templates',this)"><span class="sidebar-item-icon">📄</span>Modelos de Relatório</div>
-      <div class="admin-sidebar-section">Configurações</div>
-      <div class="sidebar-item" onclick="adminNav('settings',this)"><span class="sidebar-item-icon">⚙️</span>Configurações</div>
-      <div class="sidebar-item" onclick="adminNav('appconfig',this)"><span class="sidebar-item-icon">🎨</span>Identidade Visual</div>
+      <div class="sidebar-item" id="sidebarItemTemplates" onclick="adminNav('templates',this)"><span class="sidebar-item-icon">📄</span>Modelos de Relatório</div>
+      <div class="admin-sidebar-section" id="sidebarSectionConfig">Configurações</div>
+      <div class="sidebar-item" id="sidebarItemSettings" onclick="adminNav('settings',this)"><span class="sidebar-item-icon">⚙️</span>Configurações</div>
+      <div class="sidebar-item" id="sidebarItemAppConfig" onclick="adminNav('appconfig',this)"><span class="sidebar-item-icon">🎨</span>Identidade Visual</div>
     </div>
-
     <div class="admin-main" id="adminMain"></div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════
-     SCREEN: MY REPORTS (Supervisor view)
-════════════════════════════════════════════════ -->
 <div class="screen hidden" id="screen-myreports">
   <div class="topnav">
     <div class="topnav-logo">
@@ -595,10 +492,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     <div class="data-table-wrap" id="myReportsTable"></div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════
-     MODALS
-════════════════════════════════════════════════ -->
 <div class="modal-overlay hidden" id="modalOverlay">
   <div class="modal" id="modalBox">
     <div class="modal-header">
@@ -609,8 +502,6 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     <div class="modal-footer" id="modalFooter"></div>
   </div>
 </div>
-
-<!-- Export chooser modal -->
 <div class="modal-overlay hidden" id="exportModal">
   <div class="modal" style="max-width:480px">
     <div class="modal-header">
@@ -618,7 +509,16 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <button class="modal-close" onclick="closeExportModal()">✕</button>
     </div>
     <div class="modal-body">
-      <div style="font-size:14px;color:var(--text2);margin-bottom:18px">Escolha o formato de exportação para o relatório selecionado:</div>
+      <div id="exportFiltersWrap" class="hidden" style="margin-bottom:18px">
+        <div style="font-size:14px;color:var(--text2);margin-bottom:10px">Selecione de qual <b>dia</b> e de qual <b>contrato</b> deseja exportar o relatório:</div>
+        <div class="form-row-2">
+          <div class="form-group"><label>Contrato</label><select id="expFiltContract" onchange="updateExportFilterCount()"></select></div>
+          <div class="form-group"><label>Dia</label><input type="date" id="expFiltDate" onchange="updateExportFilterCount()"></div>
+        </div>
+        <div id="expFiltCount" class="text-sm text-muted mt-1" style="margin-bottom:6px"></div>
+        <div class="divider mb-4"></div>
+      </div>
+      <div id="exportFormatIntro" style="font-size:14px;color:var(--text2);margin-bottom:18px">Escolha o formato de exportação para o relatório selecionado:</div>
       <div class="export-options">
         <div class="export-card selected" id="expPDF" onclick="selectExport('pdf')">
           <div class="export-card-icon">📄</div>
@@ -648,174 +548,106 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     </div>
   </div>
 </div>
-
 <script>
-// ═══════════════════════════════════
-// FIREBASE CONFIG — preencha com suas credenciais
-// ═══════════════════════════════════
-const FIREBASE_CONFIG = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJECT.firebaseapp.com",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_PROJECT.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SEU_APP_ID"
-};
-// Google Sheets API
-const GSHEETS_API_KEY = "SUA_GSHEETS_API_KEY";
-const GSHEETS_SPREADSHEET_ID = "SEU_SPREADSHEET_ID";
-
-// ═══════════════════════════════════
-// APP STATE & LOCAL STORAGE DB
-// ═══════════════════════════════════
-let APP = {
-  currentUser: null,
-  currentReport: null,
-  photoSlots: [null,null,null,null],
-  currentPhotoSlot: 0,
-  activities: [''],
-  exportType: 'pdf',
-  exportTargetReport: null
-};
-
-// ─── Demo data (localStorage fallback) ───
-function loadDB(){
-  try{ return JSON.parse(localStorage.getItem('frpDB')) || defaultDB(); }
-  catch(e){ return defaultDB(); }
+const SUPABASE_URL = "https://oadwwyithsezvbdqgwle.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hZHd3eWl0aHNlenZiZHFnd2xlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzMjcxMzYsImV4cCI6MjA5OTkwMzEzNn0.nkfLgGQLYWN_-aoeTlh1cuQtDfglwcj33Ys2bn5FVi4";
+const API_LOGIN = SUPABASE_URL + "/functions/v1/login";
+const API_DATA = SUPABASE_URL + "/functions/v1/data";
+const API_PUBLIC_CONFIG = SUPABASE_URL + "/functions/v1/public-config";
+let SESSION_TOKEN = null;
+async function apiLogin(login, password){
+  const res = await fetch(API_LOGIN, { method: "POST", headers: { "Content-Type": "application/json", "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer "+SUPABASE_ANON_KEY }, body: JSON.stringify({ login, password }) });
+  const data = await res.json().catch(()=>({}));
+  if(!res.ok) throw new Error(data.error || "login_failed");
+  return data;
 }
-function saveDB(db){
+async function apiData(resource, action, payload){
+  const res = await fetch(API_DATA, { method: "POST", headers: { "Content-Type": "application/json", "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer "+SUPABASE_ANON_KEY }, body: JSON.stringify({ token: SESSION_TOKEN, resource, action, payload }) });
+  const data = await res.json().catch(()=>({}));
+  if(!res.ok) throw new Error(data.error || "request_failed");
+  return data;
+}
+async function apiPublicConfig(){
+  try{ const res = await fetch(API_PUBLIC_CONFIG, { headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer "+SUPABASE_ANON_KEY } }); if(!res.ok) return null; return await res.json(); }catch(e){ return null; }
+}
+let APP = { currentUser: null, currentReport: null, photoSlots: [null,null,null,null], currentPhotoSlot: 0, activities: [''], exportType: 'pdf', exportTargetReport: null };
+function emptyDB(){ return { appConfig:{ name:'FieldReport Pro', logo:null, logoText:'FR', companyName:'' }, users:[], contracts:[], templates:[], reports:[] }; }
+let DB = emptyDB();
+async function loadPublicBranding(){
+  const cfg = await apiPublicConfig();
+  if(cfg){ DB.appConfig.name = cfg.name || 'FieldReport Pro'; DB.appConfig.logoText = cfg.logoText || 'FR'; DB.appConfig.companyName = cfg.companyName || ''; DB.appConfig.logo = cfg.logoUrl || null; }
+  applyAppConfig();
+}
+async function bootstrapAfterLogin(){
+  const role = APP.currentUser.role;
   try{
-    localStorage.setItem('frpDB', JSON.stringify(db));
+    const contractsRes = await apiData('contracts','list');
+    DB.contracts = contractsRes.contracts || [];
+    const reportsRes = await apiData('reports','list');
+    DB.reports = reportsRes.reports || [];
+    if(role==='admin'){
+      const settingsRes = await apiData('settings','get').catch(()=>null);
+      if(settingsRes && settingsRes.settings){ const s = settingsRes.settings; DB.appConfig = { name:s.name, logo:s.logo_url, logoText:s.logo_text, companyName:s.company_name, sheetsId:s.sheets_id, sheetsKey:s.sheets_key, defaultExport:s.default_export }; }
+    }
     return true;
-  } catch(e){
-    console.error('saveDB failed', e);
-    toast('Não foi possível salvar: armazenamento do navegador cheio. Libere espaço (fotos/relatórios antigos) ou use um arquivo de modelo menor.','error');
-    return false;
-  }
+  }catch(e){ console.error('bootstrap failed', e); toast('Não foi possível carregar seus dados do servidor: '+e.message,'error'); return false; }
 }
-function defaultDB(){
-  return {
-    appConfig: { name:'FieldReport Pro', logo:null, logoText:'FR', companyName:'Minha Empresa' },
-    users:[
-      { id:'admin-001', name:'Administrador', login:'admin', password:'admin123', role:'admin', contractId:null, matricula:'ADM-001', active:true }
-    ],
-    contracts:[
-      { id:'contract-001', name:'Tubulações', description:'Contrato de instalação de tubulações', active:true }
-    ],
-    templates:[
-      { id:'tpl-001', contractId:'contract-001', name:'RDO Padrão – Tubulações', fields:[] }
-    ],
-    reports:[]
-  };
-}
-let DB = loadDB();
-
-// ─── App Config helpers ───
 function applyAppConfig(){
   const cfg = DB.appConfig;
-  // Login screen
   document.getElementById('loginAppName').textContent = cfg.name || 'FieldReport Pro';
   document.getElementById('loginLogoPlaceholder').textContent = cfg.logoText || 'FR';
-  if(cfg.logo){
-    const img = document.createElement('img');
-    img.src = cfg.logo;
-    document.getElementById('loginLogoWrap').innerHTML = '';
-    document.getElementById('loginLogoWrap').appendChild(img);
-  }
-  // Navbars
-  ['navLogoText','navLogoText2','navLogoTextAdmin','navLogoMyR'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.textContent = cfg.logoText||'FR';
-  });
-  ['navAppName','navAppName2','navAppNameAdmin'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.textContent = cfg.name||'FieldReport Pro';
-  });
-  if(cfg.logo){
-    ['navLogo','navLogo2','navLogoAdmin'].forEach(id=>{
-      const el = document.getElementById(id);
-      if(el){
-        el.innerHTML = '';
-        const img = document.createElement('img');
-        img.src = cfg.logo;
-        img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:9px';
-        el.appendChild(img);
-      }
-    });
-  }
+  if(cfg.logo){ const img = document.createElement('img'); img.src = cfg.logo; document.getElementById('loginLogoWrap').innerHTML = ''; document.getElementById('loginLogoWrap').appendChild(img); }
+  ['navLogoText','navLogoText2','navLogoTextAdmin','navLogoMyR'].forEach(id=>{ const el = document.getElementById(id); if(el) el.textContent = cfg.logoText||'FR'; });
+  ['navAppName','navAppName2','navAppNameAdmin'].forEach(id=>{ const el = document.getElementById(id); if(el) el.textContent = cfg.name||'FieldReport Pro'; });
+  if(cfg.logo){ ['navLogo','navLogo2','navLogoAdmin'].forEach(id=>{ const el = document.getElementById(id); if(el){ el.innerHTML = ''; const img = document.createElement('img'); img.src = cfg.logo; img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:9px'; el.appendChild(img); } }); }
 }
-
-// ═══════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════
 const SCREENS = ['screen-login','screen-form','screen-preview','screen-success','screen-admin','screen-myreports'];
-function showScreen(id){
-  SCREENS.forEach(s=>{ document.getElementById(s).classList.add('hidden'); });
-  document.getElementById(id).classList.remove('hidden');
-  window.scrollTo(0,0);
-}
-
-// ═══════════════════════════════════
-// AUTH
-// ═══════════════════════════════════
-function doLogin(){
+function showScreen(id){ SCREENS.forEach(s=>{ document.getElementById(s).classList.add('hidden'); }); document.getElementById(id).classList.remove('hidden'); window.scrollTo(0,0); }
+async function doLogin(){
   const login = document.getElementById('loginUser').value.trim();
   const pass  = document.getElementById('loginPass').value.trim();
   const btn   = document.getElementById('loginBtn');
   const err   = document.getElementById('loginError');
   if(!login||!pass){ showLoginError('Preencha login e senha.'); return; }
-  btn.disabled = true;
-  btn.innerHTML = '<div class="spinner"></div>';
-  setTimeout(()=>{
-    const user = DB.users.find(u=>u.login===login && u.password===pass && u.active!==false);
-    if(!user){ showLoginError('Login ou senha incorretos.'); btn.disabled=false; btn.innerHTML='Entrar'; return; }
-    APP.currentUser = user;
-    err.classList.add('hidden');
+  btn.disabled = true; btn.innerHTML = '<div class="spinner"></div>';
+  try{
+    const res = await apiLogin(login, pass);
+    SESSION_TOKEN = res.token; APP.currentUser = res.user;
+    err.classList.add('hidden'); document.getElementById('loginUser').value=''; document.getElementById('loginPass').value='';
+    const ok = await bootstrapAfterLogin();
     btn.disabled=false; btn.innerHTML='Entrar';
-    document.getElementById('loginUser').value='';
-    document.getElementById('loginPass').value='';
-    if(user.role==='admin'){
+    if(!ok){ SESSION_TOKEN=null; APP.currentUser=null; return; }
+    const user = APP.currentUser;
+    if(user.role==='admin'||user.role==='coordenador'){
       document.getElementById('navAdminName').textContent = user.name;
-      showScreen('screen-admin');
-      adminNav('dashboard', document.querySelector('.sidebar-item'));
+      applyRolePermissions(user.role); showScreen('screen-admin'); adminNav('dashboard', document.querySelector('.sidebar-item'));
     } else {
       document.getElementById('navUserName').textContent = user.name;
       const contract = DB.contracts.find(c=>c.id===user.contractId);
       document.getElementById('formContractLabel').textContent = 'Contrato: '+(contract?contract.name:'—');
-      initForm();
-      showScreen('screen-form');
+      initForm(); showScreen('screen-form');
     }
-  },600);
+  }catch(e){ const msg = e.message==='invalid_credentials' ? 'Login ou senha incorretos.' : 'Não foi possível entrar: '+e.message; showLoginError(msg); btn.disabled=false; btn.innerHTML='Entrar'; }
 }
 function showLoginError(msg){ const e=document.getElementById('loginError'); e.textContent=msg; e.classList.remove('hidden'); }
-function doLogout(){ APP.currentUser=null; APP.currentReport=null; showScreen('screen-login'); }
-
-// Enter key on login
+async function doLogout(){ if(SESSION_TOKEN){ apiData('session','logout').catch(()=>{}); } SESSION_TOKEN=null; APP.currentUser=null; APP.currentReport=null; DB = emptyDB(); showScreen('screen-login'); loadPublicBranding(); }
+function isCoordenador(){ return !!APP.currentUser && APP.currentUser.role==='coordenador'; }
+function isAdminUser(){ return !!APP.currentUser && APP.currentUser.role==='admin'; }
+function canManage(){ return isAdminUser(); }
+function applyRolePermissions(role){
+  const badge=document.getElementById('roleBadge');
+  const restrictedIds=['sidebarItemUsers','sidebarItemTemplates','sidebarItemSettings','sidebarItemAppConfig','sidebarSectionConfig'];
+  if(role==='coordenador'){ badge.textContent='Coordenador'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.add('hidden')); } else { badge.textContent='Admin'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.remove('hidden')); }
+}
 document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
 document.getElementById('loginUser').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('loginPass').focus(); });
-
-// ═══════════════════════════════════
-// FORM
-// ═══════════════════════════════════
 function initForm(){
-  // Set today's date
   document.getElementById('fDate').value = new Date().toISOString().split('T')[0];
-  // Clear fields
-  ['fLocation','fShift','fInspections','fInterruptions','fSafety','fInvolved'].forEach(id=>{
-    document.getElementById(id).value='';
-  });
-  // Reset shift
+  ['fLocation','fShift','fInspections','fInterruptions','fSafety','fInvolved'].forEach(id=>{ document.getElementById(id).value=''; });
   document.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected'));
-  document.getElementById('shiftGridAdmin').classList.add('hidden');
-  document.getElementById('shiftGridTurno').classList.add('hidden');
-  // Reset activities
-  APP.activities = [''];
-  renderActivities();
-  // Reset photos
-  APP.photoSlots = [null,null,null,null];
-  renderPhotoSlots();
+  document.getElementById('shiftGridAdmin').classList.add('hidden'); document.getElementById('shiftGridTurno').classList.add('hidden');
+  APP.activities = ['']; renderActivities(); APP.photoSlots = [null,null,null,null]; renderPhotoSlots();
 }
-
 function selectShiftType(type){
   document.getElementById('shiftTypeAdmin').classList.toggle('selected', type==='admin');
   document.getElementById('shiftTypeTurno').classList.toggle('selected', type==='turno');
@@ -824,1281 +656,409 @@ function selectShiftType(type){
   document.querySelectorAll('#shiftGridAdmin .shift-option, #shiftGridTurno .shift-option').forEach(o=>o.classList.remove('selected'));
   document.getElementById('fShift').value = '';
 }
-
-function selectShift(el,val){
-  el.parentElement.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected'));
-  el.classList.add('selected');
-  document.getElementById('fShift').value = val;
-}
-
-// ─── Activities ───
+function selectShift(el,val){ el.parentElement.querySelectorAll('.shift-option').forEach(o=>o.classList.remove('selected')); el.classList.add('selected'); document.getElementById('fShift').value = val; }
 function renderActivities(){
-  const wrap = document.getElementById('activitiesWrap');
-  wrap.innerHTML = '';
+  const wrap = document.getElementById('activitiesWrap'); wrap.innerHTML = '';
   APP.activities.forEach((a,i)=>{
-    const div = document.createElement('div');
-    div.className = 'activity-item';
-    div.innerHTML = `
-      <div class="activity-num">${i+1}</div>
-      <textarea class="activity-textarea" placeholder="Descreva a atividade ${i+1}…" onchange="APP.activities[${i}]=this.value" oninput="APP.activities[${i}]=this.value">${a}</textarea>
-      ${APP.activities.length>1?`<button class="activity-remove" onclick="removeActivity(${i})" title="Remover">✕</button>`:''}
-    `;
+    const div = document.createElement('div'); div.className = 'activity-item';
+    div.innerHTML = `<div class="activity-num">${i+1}</div><textarea class="activity-textarea" placeholder="Descreva a atividade ${i+1}…" onchange="APP.activities[${i}]=this.value" oninput="APP.activities[${i}]=this.value">${a}</textarea>${APP.activities.length>1?`<button class="activity-remove" onclick="removeActivity(${i})" title="Remover">✕</button>`:''}`;
     wrap.appendChild(div);
   });
 }
 function addActivity(){ APP.activities.push(''); renderActivities(); }
 function removeActivity(i){ APP.activities.splice(i,1); renderActivities(); }
-
-// ─── Photos ───
 function renderPhotoSlots(){
-  const grid = document.getElementById('photosGrid');
-  grid.innerHTML='';
+  const grid = document.getElementById('photosGrid'); grid.innerHTML='';
   APP.photoSlots.forEach((p,i)=>{
-    const slot = document.createElement('div');
-    slot.className = 'photo-slot'+(p?' filled':'');
-    if(p){
-      slot.innerHTML=`<img src="${p}" alt="Foto ${i+1}"><button class="photo-remove-btn" onclick="removePhoto(${i},event)">✕</button>`;
-    } else {
-      slot.innerHTML=`<div class="photo-slot-icon">📷</div><div class="photo-slot-label">Foto ${i+1}</div>`;
-      slot.onclick=()=>openPhotoPicker(i);
-    }
+    const slot = document.createElement('div'); slot.className = 'photo-slot'+(p?' filled':'');
+    if(p){ slot.innerHTML=`<img src="${p}" alt="Foto ${i+1}"><button class="photo-remove-btn" onclick="removePhoto(${i},event)">✕</button>`; } else { slot.innerHTML=`<div class="photo-slot-icon">📷</div><div class="photo-slot-label">Foto ${i+1}</div>`; slot.onclick=()=>openPhotoPicker(i); }
     grid.appendChild(slot);
   });
 }
 function openPhotoPicker(i){ APP.currentPhotoSlot=i; document.getElementById('photoInput').click(); }
 function handlePhotoSelect(e){
   const file=e.target.files[0]; if(!file) return;
-  const slot=APP.currentPhotoSlot;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    compressImage(ev.target.result, 1280, 0.72).then(compressed=>{
-      APP.photoSlots[slot]=compressed; renderPhotoSlots();
-    }).catch(()=>{ APP.photoSlots[slot]=ev.target.result; renderPhotoSlots(); });
-  };
-  reader.readAsDataURL(file);
-  e.target.value='';
+  const slot=APP.currentPhotoSlot; const reader=new FileReader();
+  reader.onload=ev=>{ compressImage(ev.target.result, 1280, 0.72).then(compressed=>{ APP.photoSlots[slot]=compressed; renderPhotoSlots(); }).catch(()=>{ APP.photoSlots[slot]=ev.target.result; renderPhotoSlots(); }); };
+  reader.readAsDataURL(file); e.target.value='';
 }
-// Downscale + JPEG-compress photos before storing, since localStorage has a small quota
-// and uncompressed phone photos quickly exhaust it (this was blocking template uploads too).
 function compressImage(dataUrl, maxDim, quality){
   return new Promise((resolve,reject)=>{
     const img=new Image();
-    img.onload=()=>{
-      let w=img.width, h=img.height;
-      if(w>maxDim||h>maxDim){ const scale=maxDim/Math.max(w,h); w=Math.round(w*scale); h=Math.round(h*scale); }
-      const canvas=document.createElement('canvas');
-      canvas.width=w; canvas.height=h;
-      const ctx=canvas.getContext('2d');
-      ctx.drawImage(img,0,0,w,h);
-      try{ resolve(canvas.toDataURL('image/jpeg',quality)); }
-      catch(e){ reject(e); }
-    };
-    img.onerror=reject;
-    img.src=dataUrl;
+    img.onload=()=>{ let w=img.width, h=img.height; if(w>maxDim||h>maxDim){ const scale=maxDim/Math.max(w,h); w=Math.round(w*scale); h=Math.round(h*scale); } const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h; const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,w,h); try{ resolve(canvas.toDataURL('image/jpeg',quality)); } catch(e){ reject(e); } };
+    img.onerror=reject; img.src=dataUrl;
   });
 }
 function removePhoto(i,e){ e.stopPropagation(); APP.photoSlots[i]=null; renderPhotoSlots(); }
-
 function cancelForm(){ showConfirm('Cancelar relatório?','Todos os dados preenchidos serão perdidos.',()=>{ initForm(); }); }
-
-// ─── Validate & Preview ───
 function goToPreview(){
-  const date=document.getElementById('fDate').value;
-  const loc=document.getElementById('fLocation').value.trim();
-  const shift=document.getElementById('fShift').value.trim();
-  const acts=APP.activities.filter(a=>a.trim());
-  if(!date){ toast('Informe a data','error'); return; }
-  if(!loc){ toast('Informe o local de atividade','error'); return; }
-  if(!shift){ toast('Informe o turno/expediente','error'); return; }
-  if(!acts.length){ toast('Informe ao menos uma atividade','error'); return; }
-  const u=APP.currentUser;
-  const contract=DB.contracts.find(c=>c.id===u.contractId);
-  APP.currentReport = {
-    id: 'rep-'+Date.now(),
-    date, location:loc, shift,
-    activities:acts,
-    inspections:document.getElementById('fInspections').value.trim()||'Não informado',
-    interruptions:document.getElementById('fInterruptions').value.trim()||'Não informado',
-    safety:document.getElementById('fSafety').value.trim()||'Não informado',
-    involved:document.getElementById('fInvolved').value.trim()||'Não informado',
-    photos:[...APP.photoSlots],
-    supervisorId:u.id, supervisorName:u.name,
-    contractId:u.contractId, contractName:contract?contract.name:'—',
-    status:'pending', createdAt:new Date().toISOString()
-  };
-  renderPreview();
-  showScreen('screen-preview');
+  const date=document.getElementById('fDate').value; const loc=document.getElementById('fLocation').value.trim(); const shift=document.getElementById('fShift').value.trim(); const acts=APP.activities.filter(a=>a.trim());
+  if(!date){ toast('Informe a data','error'); return; } if(!loc){ toast('Informe o local de atividade','error'); return; } if(!shift){ toast('Informe o turno/expediente','error'); return; } if(!acts.length){ toast('Informe ao menos uma atividade','error'); return; }
+  const u=APP.currentUser; const contract=DB.contracts.find(c=>c.id===u.contractId);
+  APP.currentReport = { id: 'rep-'+Date.now(), date, location:loc, shift, activities:acts, inspections:document.getElementById('fInspections').value.trim()||'Não informado', interruptions:document.getElementById('fInterruptions').value.trim()||'Não informado', safety:document.getElementById('fSafety').value.trim()||'Não informado', involved:document.getElementById('fInvolved').value.trim()||'Não informado', photos:[...APP.photoSlots], supervisorId:u.id, supervisorName:u.name, contractId:u.contractId, contractName:contract?contract.name:'—', status:'pending', createdAt:new Date().toISOString() };
+  renderPreview(); showScreen('screen-preview');
 }
-
 function renderPreview(){
-  const r=APP.currentReport;
-  const dateStr = r.date ? new Date(r.date+'T12:00').toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'}) : '—';
-  document.getElementById('pvTitle').textContent='Relatório Diário – '+r.contractName;
-  document.getElementById('pvCompany').textContent='RELATÓRIO DIÁRIO DE OBRA';
-  document.getElementById('pvMeta').innerHTML=`
-    <span class="preview-meta-item"><span class="preview-meta-icon">📅</span>${dateStr}</span>
-    <span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span>
-    <span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span>
-  `;
-  document.getElementById('pvDate').textContent=dateStr;
-  document.getElementById('pvLocation').textContent=r.location;
-  document.getElementById('pvShift').textContent=r.shift;
-  document.getElementById('pvSupervisor').textContent=r.supervisorName;
-  document.getElementById('pvContract').textContent=r.contractName;
-  // Activities
-  const acts=document.getElementById('pvActivities');
-  acts.innerHTML=r.activities.map((a,i)=>`
-    <div class="preview-activity-item">
-      <div class="preview-activity-num">Atividade ${i+1}</div>
-      <div class="preview-activity-text">${a}</div>
-    </div>
-  `).join('');
-  document.getElementById('pvInspections').textContent=r.inspections;
-  document.getElementById('pvInterruptions').textContent=r.interruptions;
-  document.getElementById('pvSafety').textContent=r.safety;
-  document.getElementById('pvInvolved').textContent=r.involved;
-  // Photos
-  const pg=document.getElementById('pvPhotos');
-  pg.innerHTML=r.photos.map((p,i)=>p
-    ?`<div class="preview-photo"><img src="${p}" alt="Foto ${i+1}"></div>`
-    :`<div class="preview-photo preview-photo-empty">📷</div>`
-  ).join('');
+  const r=APP.currentReport; const dateStr = r.date ? new Date(r.date+'T12:00').toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'}) : '—';
+  document.getElementById('pvTitle').textContent='Relatório Diário – '+r.contractName; document.getElementById('pvCompany').textContent='RELATÓRIO DIÁRIO DE OBRA';
+  document.getElementById('pvMeta').innerHTML=`<span class="preview-meta-item"><span class="preview-meta-icon">📅</span>${dateStr}</span><span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span><span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span>`;
+  document.getElementById('pvDate').textContent=dateStr; document.getElementById('pvLocation').textContent=r.location; document.getElementById('pvShift').textContent=r.shift; document.getElementById('pvSupervisor').textContent=r.supervisorName; document.getElementById('pvContract').textContent=r.contractName;
+  const acts=document.getElementById('pvActivities'); acts.innerHTML=r.activities.map((a,i)=>`<div class="preview-activity-item"><div class="preview-activity-num">Atividade ${i+1}</div><div class="preview-activity-text">${a}</div></div>`).join('');
+  document.getElementById('pvInspections').textContent=r.inspections; document.getElementById('pvInterruptions').textContent=r.interruptions; document.getElementById('pvSafety').textContent=r.safety; document.getElementById('pvInvolved').textContent=r.involved;
+  const pg=document.getElementById('pvPhotos'); pg.innerHTML=r.photos.map((p,i)=>p?`<div class="preview-photo"><img src="${p}" alt="Foto ${i+1}"></div>`:`<div class="preview-photo preview-photo-empty">📷</div>`).join('');
 }
-
 function backToForm(){ showScreen('screen-form'); }
-
-function confirmReport(){
-  const btn=document.getElementById('confirmBtn');
-  btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Enviando…';
-  setTimeout(()=>{
-    DB.reports.push(APP.currentReport);
-    const ok=saveDB(DB);
-    btn.disabled=false; btn.innerHTML='✓ Confirmar e Enviar';
-    if(!ok){ DB.reports.pop(); return; }
-    document.getElementById('successText').textContent=
-      `Relatório do contrato "${APP.currentReport.contractName}" enviado com sucesso em ${new Date().toLocaleString('pt-BR')}.`;
-    showScreen('screen-success');
-    toast('Relatório enviado com sucesso!','success');
-  },1200);
+async function confirmReport(){
+  const btn=document.getElementById('confirmBtn'); btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Enviando…';
+  try{
+    const r=APP.currentReport;
+    const res=await apiData('reports','create',{ date:r.date, location:r.location, shift:r.shift, activities:r.activities, inspections:r.inspections, interruptions:r.interruptions, safety:r.safety, involved:r.involved, photos:r.photos });
+    DB.reports.push(res.report); btn.disabled=false; btn.innerHTML='✓ Confirmar e Enviar';
+    document.getElementById('successText').textContent=`Relatório do contrato "${res.report.contractName}" enviado com sucesso em ${new Date().toLocaleString('pt-BR')}.`;
+    showScreen('screen-success'); toast('Relatório enviado com sucesso!','success');
+  }catch(e){ btn.disabled=false; btn.innerHTML='✓ Confirmar e Enviar'; toast('Não foi possível enviar o relatório: '+e.message,'error'); }
 }
-
 function newReport(){ initForm(); showScreen('screen-form'); }
 function viewMyReports(){ renderMyReports(); showScreen('screen-myreports'); }
-
 function renderMyReports(){
-  const u=APP.currentUser;
-  const reps=DB.reports.filter(r=>r.supervisorId===u.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+  const u=APP.currentUser; const reps=DB.reports.filter(r=>r.supervisorId===u.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
   const wrap=document.getElementById('myReportsTable');
-  if(!reps.length){
-    wrap.innerHTML=`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div></div>`;
-    return;
-  }
-  wrap.innerHTML=`
-    <div class="data-table-header"><span class="data-table-title">Meus Relatórios</span></div>
-    <table class="data-table"><thead><tr>
-      <th>Data</th><th>Local</th><th>Turno</th><th>Contrato</th><th>Ações</th>
-    </tr></thead><tbody>
-    ${reps.map(r=>`<tr>
-      <td>${fmtDate(r.date)}</td>
-      <td>${r.location}</td>
-      <td>${r.shift}</td>
-      <td>${r.contractName}</td>
-      <td><div class="table-actions">
-        <button class="tbl-btn tbl-btn-view" onclick="previewStoredReport('${r.id}')">👁 Ver</button>
-      </div></td>
-    </tr>`).join('')}
-    </tbody></table>`;
+  if(!reps.length){ wrap.innerHTML=`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div></div>`; return; }
+  wrap.innerHTML=`<div class="data-table-header"><span class="data-table-title">Meus Relatórios</span></div><table class="data-table"><thead><tr><th>Data</th><th>Local</th><th>Turno</th><th>Contrato</th><th>Ações</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${r.location}</td><td>${r.shift}</td><td>${r.contractName}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="previewStoredReport('${r.id}')">👁 Ver</button></div></td></tr>`).join('')}</tbody></table>`;
 }
-
-function previewStoredReport(id){
-  const r=DB.reports.find(r=>r.id===id); if(!r) return;
-  APP.currentReport=r; renderPreview(); showScreen('screen-preview');
-}
-
-// ═══════════════════════════════════
-// ADMIN PANEL
-// ═══════════════════════════════════
+function previewStoredReport(id){ const r=DB.reports.find(r=>r.id===id); if(!r) return; APP.currentReport=r; renderPreview(); showScreen('screen-preview'); }
+const RESTRICTED_PAGES_FOR_COORDENADOR=['users','templates','settings','appconfig'];
 function adminNav(page,el){
-  document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
-  if(el) el.classList.add('active');
+  if(isCoordenador() && RESTRICTED_PAGES_FOR_COORDENADOR.includes(page)){ toast('Você não tem permissão para acessar esta área','error'); return; }
+  document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active')); if(el) el.classList.add('active');
   const main=document.getElementById('adminMain');
   const renders={dashboard:renderDashboard,reports:renderReports,users:renderUsers,contracts:renderContracts,templates:renderTemplates,settings:renderSettings,appconfig:renderAppConfig};
   if(renders[page]) renders[page](main);
 }
-
-// ─── Dashboard ───
-function renderDashboard(main){
-  const reps=DB.reports; const users=DB.users.filter(u=>u.role!=='admin'); const contracts=DB.contracts;
-  const today=new Date().toISOString().split('T')[0];
-  const todayReps=reps.filter(r=>r.date===today);
-  main.innerHTML=`
-    <div class="admin-page-title">Dashboard</div>
-    <div class="admin-page-sub">Visão geral do sistema</div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${reps.length}</div><div class="stat-label">Total de Relatórios</div></div>
-      <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">${todayReps.length}</div><div class="stat-label">Relatórios Hoje</div></div>
-      <div class="stat-card"><div class="stat-icon">👤</div><div class="stat-value">${users.length}</div><div class="stat-label">Supervisores</div></div>
-      <div class="stat-card"><div class="stat-icon">📁</div><div class="stat-value">${contracts.length}</div><div class="stat-label">Contratos Ativos</div></div>
-    </div>
-    <div class="data-table-wrap">
-      <div class="data-table-header">
-        <span class="data-table-title">Últimos Relatórios</span>
-        <button class="btn btn-primary btn-sm" onclick="adminNav('reports',null)">Ver todos</button>
-      </div>
-      ${reps.length===0?`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div><div class="empty-state-sub">Os supervisores ainda não enviaram relatórios</div></div>`:
-      `<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Ações</th></tr></thead><tbody>
-      ${[...reps].reverse().slice(0,5).map(r=>`<tr>
-        <td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td>
-        <td><div class="table-actions">
-          <button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button>
-          <button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button>
-        </div></td>
-      </tr>`).join('')}
-      </tbody></table>`}
-    </div>`;
+async function renderDashboard(main){
+  main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+  let stats; try{ stats = await apiData('dashboard','stats'); } catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Não foi possível carregar o dashboard: ${e.message}</div></div>`; return; }
+  const reps=stats.recent||[];
+  main.innerHTML=`<div class="admin-page-title">Dashboard</div><div class="admin-page-sub">Visão geral do sistema</div><div class="stats-grid"><div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${stats.totalReports}</div><div class="stat-label">Total de Relatórios</div></div><div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">${stats.todayReports}</div><div class="stat-label">Relatórios Hoje</div></div><div class="stat-card"><div class="stat-icon">👤</div><div class="stat-value">${stats.userCount}</div><div class="stat-label">Supervisores</div></div><div class="stat-card"><div class="stat-icon">📁</div><div class="stat-value">${stats.contractCount}</div><div class="stat-label">Contratos Ativos</div></div></div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Últimos Relatórios</span><button class="btn btn-primary btn-sm" onclick="adminNav('reports',null)">Ver todos</button></div>${reps.length===0?`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div><div class="empty-state-sub">Os supervisores ainda não enviaram relatórios</div></div>`:`<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Ações</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button></div></td></tr>`).join('')}</tbody></table>`}</div>`;
 }
-
-// ─── Reports ───
-// Premissa do app: o relatório compilado do dia de um contrato só "fecha" (fica
-// disponível para exportação final) às 06:00 do dia seguinte à data do relatório.
-function isDayClosed(dateStr){
-  const closeAt=new Date(dateStr+'T06:00:00');
-  closeAt.setDate(closeAt.getDate()+1);
-  return new Date()>=closeAt;
-}
-function closesAtLabel(dateStr){
-  const closeAt=new Date(dateStr+'T06:00:00');
-  closeAt.setDate(closeAt.getDate()+1);
-  return closeAt.toLocaleDateString('pt-BR')+' às 06:00';
-}
-
+function isDayClosed(dateStr){ const closeAt=new Date(dateStr+'T06:00:00'); closeAt.setDate(closeAt.getDate()+1); return new Date()>=closeAt; }
+function closesAtLabel(dateStr){ const closeAt=new Date(dateStr+'T06:00:00'); closeAt.setDate(closeAt.getDate()+1); return closeAt.toLocaleDateString('pt-BR')+' às 06:00'; }
 let _reportsTab='individual';
-function renderReports(main){
-  main.innerHTML=`
-    <div class="admin-page-title">Relatórios</div>
-    <div class="admin-page-sub">Relatórios enviados pelos supervisores</div>
-    <div style="display:flex;gap:8px;margin-bottom:20px">
-      <button class="btn ${_reportsTab==='individual'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('individual')">Relatórios Individuais</button>
-      <button class="btn ${_reportsTab==='daily'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('daily')">Compilados por Dia</button>
-    </div>
-    <div id="reportsTabContent"></div>`;
+async function renderReports(main){
+  main.innerHTML=`<div class="admin-page-title">Relatórios</div><div class="admin-page-sub">Relatórios enviados pelos supervisores</div><div style="display:flex;gap:8px;margin-bottom:20px"><button class="btn ${_reportsTab==='individual'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('individual')">Relatórios Individuais</button><button class="btn ${_reportsTab==='daily'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('daily')">Compilados por Dia</button></div><div id="reportsTabContent">Carregando…</div>`;
+  try{
+    const reportsRes = await apiData('reports','list'); DB.reports = reportsRes.reports || [];
+    if(isAdminUser()){ const usersRes = await apiData('users','list').catch(()=>null); if(usersRes) DB.users = usersRes.users || []; }
+  }catch(e){ toast('Erro ao carregar relatórios: '+e.message,'error'); }
   renderReportsTabContent();
 }
 function switchReportsTab(tab){ _reportsTab=tab; renderReports(document.getElementById('adminMain')); }
-function renderReportsTabContent(){
-  const el=document.getElementById('reportsTabContent');
-  el.innerHTML = _reportsTab==='individual' ? individualReportsView() : dailyReportsView();
-}
-
-// ── Individual reports: filter by supervisor, contract, date range ──
+function renderReportsTabContent(){ const el=document.getElementById('reportsTabContent'); el.innerHTML = _reportsTab==='individual' ? individualReportsView() : dailyReportsView(); }
 function individualReportsView(){
-  const supervisors=DB.users.filter(u=>u.role==='supervisor');
-  const contracts=DB.contracts;
-  return `
-    <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
-      <select class="form-input" id="filtSupervisor" style="max-width:200px" onchange="applyIndividualFilters()">
-        <option value="">Todos os supervisores</option>
-        ${supervisors.map(u=>`<option value="${u.id}">${u.name}</option>`).join('')}
-      </select>
-      <select class="form-input" id="filtContract" style="max-width:220px" onchange="applyIndividualFilters()">
-        <option value="">Todos os contratos</option>
-        ${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}
-      </select>
-      <input class="form-input" type="date" id="filtDateFrom" style="max-width:160px" onchange="applyIndividualFilters()">
-      <span style="color:var(--text3);font-size:12px">até</span>
-      <input class="form-input" type="date" id="filtDateTo" style="max-width:160px" onchange="applyIndividualFilters()">
-      <button class="btn btn-secondary btn-sm" onclick="clearIndividualFilters()">Limpar filtros</button>
-      <button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openExportModal(null)">⬇ Exportar Diário</button>
-    </div>
-    <div class="data-table-wrap" id="reportsTableWrap">${buildReportsTable([...DB.reports].reverse())}</div>`;
+  const supervisors=DB.users.filter(u=>u.role==='supervisor'); const contracts=DB.contracts;
+  return `<div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center"><select class="form-input" id="filtSupervisor" style="max-width:200px" onchange="applyIndividualFilters()"><option value="">Todos os supervisores</option>${supervisors.map(u=>`<option value="${u.id}">${u.name}</option>`).join('')}</select><select class="form-input" id="filtContract" style="max-width:220px" onchange="applyIndividualFilters()"><option value="">Todos os contratos</option>${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><input class="form-input" type="date" id="filtDateFrom" style="max-width:160px" onchange="applyIndividualFilters()"><span style="color:var(--text3);font-size:12px">até</span><input class="form-input" type="date" id="filtDateTo" style="max-width:160px" onchange="applyIndividualFilters()"><button class="btn btn-secondary btn-sm" onclick="clearIndividualFilters()">Limpar filtros</button><button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openExportBulk()">⬇ Exportar Diário</button></div><div class="data-table-wrap" id="reportsTableWrap">${buildReportsTable([...DB.reports].reverse())}</div>`;
 }
-
 function buildReportsTable(reps){
   if(!reps.length) return `<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório encontrado</div></div>`;
-  return `<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Local</th><th>Ações</th></tr></thead><tbody>
-  ${reps.map(r=>`<tr>
-    <td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td>${r.location}</td>
-    <td><div class="table-actions">
-      <button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button>
-      <button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button>
-      <button class="tbl-btn tbl-btn-del" onclick="deleteReport('${r.id}')">🗑</button>
-    </div></td>
-  </tr>`).join('')}
-  </tbody></table>`;
+  const readOnly=isCoordenador();
+  return `<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Local</th><th>Ações</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td>${r.location}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button>${readOnly?'':`<button class="tbl-btn tbl-btn-del" onclick="deleteReport('${r.id}')">🗑</button>`}</div></td></tr>`).join('')}</tbody></table>`;
 }
-
 function applyIndividualFilters(){
-  const sup=document.getElementById('filtSupervisor').value;
-  const con=document.getElementById('filtContract').value;
-  const from=document.getElementById('filtDateFrom').value;
-  const to=document.getElementById('filtDateTo').value;
-  let filtered=[...DB.reports];
-  if(sup) filtered=filtered.filter(r=>r.supervisorId===sup);
-  if(con) filtered=filtered.filter(r=>r.contractId===con);
-  if(from) filtered=filtered.filter(r=>r.date>=from);
-  if(to) filtered=filtered.filter(r=>r.date<=to);
+  const sup=document.getElementById('filtSupervisor').value; const con=document.getElementById('filtContract').value; const from=document.getElementById('filtDateFrom').value; const to=document.getElementById('filtDateTo').value;
+  let filtered=[...DB.reports]; if(sup) filtered=filtered.filter(r=>r.supervisorId===sup); if(con) filtered=filtered.filter(r=>r.contractId===con); if(from) filtered=filtered.filter(r=>r.date>=from); if(to) filtered=filtered.filter(r=>r.date<=to);
   document.getElementById('reportsTableWrap').innerHTML=buildReportsTable(filtered.reverse());
 }
-function clearIndividualFilters(){
-  document.getElementById('filtSupervisor').value='';
-  document.getElementById('filtContract').value='';
-  document.getElementById('filtDateFrom').value='';
-  document.getElementById('filtDateTo').value='';
-  applyIndividualFilters();
-}
+function clearIndividualFilters(){ document.getElementById('filtSupervisor').value=''; document.getElementById('filtContract').value=''; document.getElementById('filtDateFrom').value=''; document.getElementById('filtDateTo').value=''; applyIndividualFilters(); }
 function filterReports(){ applyIndividualFilters(); }
-
-// ── Compiled-by-day: one row per contract+date, closes at 06:00 next day ──
 function getDailyGroups(contractFilter,fromFilter,toFilter){
   const map={};
-  DB.reports.forEach(r=>{
-    if(contractFilter && r.contractId!==contractFilter) return;
-    if(fromFilter && r.date<fromFilter) return;
-    if(toFilter && r.date>toFilter) return;
-    const key=r.contractId+'|'+r.date;
-    if(!map[key]) map[key]={ contractId:r.contractId, contractName:r.contractName, date:r.date, reports:[] };
-    map[key].reports.push(r);
-  });
+  DB.reports.forEach(r=>{ if(contractFilter && r.contractId!==contractFilter) return; if(fromFilter && r.date<fromFilter) return; if(toFilter && r.date>toFilter) return; const key=r.contractId+'|'+r.date; if(!map[key]) map[key]={ contractId:r.contractId, contractName:r.contractName, date:r.date, reports:[] }; map[key].reports.push(r); });
   return Object.values(map).sort((a,b)=>b.date.localeCompare(a.date));
 }
-
 function dailyReportsView(){
   const contracts=DB.contracts;
-  return `
-    <div class="admin-page-sub" style="margin-top:-8px;margin-bottom:16px">Cada linha reúne todos os relatórios do mesmo contrato no mesmo dia — essa é a unidade que vira uma única aba na planilha exportada. O relatório do dia fecha automaticamente às 06:00 do dia seguinte.</div>
-    <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
-      <select class="form-input" id="filtDailyContract" style="max-width:220px" onchange="applyDailyFilters()">
-        <option value="">Todos os contratos</option>
-        ${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}
-      </select>
-      <input class="form-input" type="date" id="filtDailyFrom" style="max-width:160px" onchange="applyDailyFilters()">
-      <span style="color:var(--text3);font-size:12px">até</span>
-      <input class="form-input" type="date" id="filtDailyTo" style="max-width:160px" onchange="applyDailyFilters()">
-      <button class="btn btn-secondary btn-sm" onclick="clearDailyFilters()">Limpar filtros</button>
-    </div>
-    <div class="data-table-wrap" id="dailyTableWrap">${buildDailyTable(getDailyGroups())}</div>`;
+  return `<div class="admin-page-sub" style="margin-top:-8px;margin-bottom:16px">Cada linha reúne todos os relatórios do mesmo contrato no mesmo dia — essa é a unidade que vira uma única aba na planilha exportada. O relatório do dia fecha automaticamente às 06:00 do dia seguinte.</div><div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center"><select class="form-input" id="filtDailyContract" style="max-width:220px" onchange="applyDailyFilters()"><option value="">Todos os contratos</option>${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><input class="form-input" type="date" id="filtDailyFrom" style="max-width:160px" onchange="applyDailyFilters()"><span style="color:var(--text3);font-size:12px">até</span><input class="form-input" type="date" id="filtDailyTo" style="max-width:160px" onchange="applyDailyFilters()"><button class="btn btn-secondary btn-sm" onclick="clearDailyFilters()">Limpar filtros</button></div><div class="data-table-wrap" id="dailyTableWrap">${buildDailyTable(getDailyGroups())}</div>`;
 }
-
 function buildDailyTable(groups){
   if(!groups.length) return `<div class="empty-state"><div class="empty-state-icon">📅</div><div class="empty-state-text">Nenhum relatório compilado encontrado</div></div>`;
-  return `<table class="data-table"><thead><tr><th>Data</th><th>Contrato</th><th>Relatórios no dia</th><th>Status</th><th>Ações</th></tr></thead><tbody>
-  ${groups.map(g=>{
-    const closed=isDayClosed(g.date);
-    return `<tr>
-      <td>${fmtDate(g.date)}</td><td>${g.contractName}</td><td>${g.reports.length}</td>
-      <td><span class="badge ${closed?'badge-green':'badge-warn'}" title="${closed?'':'Fecha em '+closesAtLabel(g.date)}">${closed?'Fechado':'Aberto até 06:00'}</span></td>
-      <td><div class="table-actions">
-        <button class="tbl-btn tbl-btn-view" onclick="viewDailyGroup('${g.contractId}','${g.date}')">👁 Ver</button>
-        <button class="tbl-btn tbl-btn-edit" ${closed?`onclick="openExportDaily('${g.contractId}','${g.date}')"`:'disabled style="opacity:.4;cursor:not-allowed" title="Disponível a partir das 06:00 do dia seguinte"'}>⬇ Exportar</button>
-      </div></td>
-    </tr>`;
-  }).join('')}
-  </tbody></table>`;
+  return `<table class="data-table"><thead><tr><th>Data</th><th>Contrato</th><th>Relatórios no dia</th><th>Status</th><th>Ações</th></tr></thead><tbody>${groups.map(g=>{ const closed=isDayClosed(g.date); return `<tr><td>${fmtDate(g.date)}</td><td>${g.contractName}</td><td>${g.reports.length}</td><td><span class="badge ${closed?'badge-green':'badge-warn'}" title="${closed?'':'Fecha em '+closesAtLabel(g.date)}">${closed?'Fechado':'Aberto até 06:00'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="viewDailyGroup('${g.contractId}','${g.date}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" ${closed?`onclick="openExportDaily('${g.contractId}','${g.date}')"`:'disabled style="opacity:.4;cursor:not-allowed" title="Disponível a partir das 06:00 do dia seguinte"'}>⬇ Exportar</button></div></td></tr>`; }).join('')}</tbody></table>`;
 }
-
-function applyDailyFilters(){
-  const con=document.getElementById('filtDailyContract').value;
-  const from=document.getElementById('filtDailyFrom').value;
-  const to=document.getElementById('filtDailyTo').value;
-  document.getElementById('dailyTableWrap').innerHTML=buildDailyTable(getDailyGroups(con||null,from||null,to||null));
-}
-function clearDailyFilters(){
-  document.getElementById('filtDailyContract').value='';
-  document.getElementById('filtDailyFrom').value='';
-  document.getElementById('filtDailyTo').value='';
-  applyDailyFilters();
-}
-
+function applyDailyFilters(){ const con=document.getElementById('filtDailyContract').value; const from=document.getElementById('filtDailyFrom').value; const to=document.getElementById('filtDailyTo').value; document.getElementById('dailyTableWrap').innerHTML=buildDailyTable(getDailyGroups(con||null,from||null,to||null)); }
+function clearDailyFilters(){ document.getElementById('filtDailyContract').value=''; document.getElementById('filtDailyFrom').value=''; document.getElementById('filtDailyTo').value=''; applyDailyFilters(); }
 function viewDailyGroup(contractId,date){
-  const reps=DB.reports.filter(r=>r.contractId===contractId&&r.date===date);
-  if(!reps.length) return;
-  openModal(`Relatórios do dia — ${fmtDate(date)}`,`
-    <div style="font-size:13px;color:var(--text2);margin-bottom:14px">${reps[0].contractName} · ${reps.length} relatório(s) individual(is) compilados nesta data</div>
-    ${reps.map(r=>`
-      <div class="preview-header-card mb-4" style="cursor:pointer" onclick="closeModal();adminViewReport('${r.id}')">
-        <div class="preview-title">${r.shift}</div>
-        <div class="preview-meta" style="margin-top:8px">
-          <span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span>
-          <span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span>
-        </div>
-      </div>`).join('')}
-  `,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${isDayClosed(date)?`<button class="btn btn-primary" onclick="closeModal();openExportDaily('${contractId}','${date}')">⬇ Exportar compilado</button>`:''}`);
+  const reps=DB.reports.filter(r=>r.contractId===contractId&&r.date===date); if(!reps.length) return;
+  openModal(`Relatórios do dia — ${fmtDate(date)}`,`<div style="font-size:13px;color:var(--text2);margin-bottom:14px">${reps[0].contractName} · ${reps.length} relatório(s) individual(is) compilados nesta data</div>${reps.map(r=>`<div class="preview-header-card mb-4" style="cursor:pointer" onclick="closeModal();adminViewReport('${r.id}')"><div class="preview-title">${r.shift}</div><div class="preview-meta" style="margin-top:8px"><span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span><span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span></div></div>`).join('')}`,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${isDayClosed(date)?`<button class="btn btn-primary" onclick="closeModal();openExportDaily('${contractId}','${date}')">⬇ Exportar compilado</button>`:''}`);
 }
-
 function adminViewReport(id){
-  const r=DB.reports.find(r=>r.id===id); if(!r) return;
-  APP.currentReport=r; renderPreview();
-  // Show in modal
-  openModal('Relatório – '+r.contractName,`
-    <div class="preview-header-card" style="margin-bottom:16px">
-      <div class="preview-title">${r.contractName} — ${fmtDate(r.date)}</div>
-      <div class="preview-meta" style="margin-top:10px">
-        <span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span>
-        <span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span>
-        <span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span>
-      </div>
-    </div>
-    <div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px">Atividades</div>
-    ${r.activities.map((a,i)=>`<div class="preview-activity-item mb-4"><div class="preview-activity-num">Atividade ${i+1}</div><div class="preview-activity-text">${a}</div></div>`).join('')}
-    <div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Ocorrências</div>
-    <div style="display:grid;gap:8px">
-      <div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Inspeções</div><div style="font-size:13px">${r.inspections}</div></div>
-      <div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Interrupções</div><div style="font-size:13px">${r.interruptions}</div></div>
-      <div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Segurança</div><div style="font-size:13px">${r.safety}</div></div>
-    </div>
-    <div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Envolvidos</div>
-    <div style="font-size:13px;line-height:1.7">${r.involved}</div>
-    ${r.photos.some(p=>p)?`<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Fotos</div>
-    <div class="preview-photos-grid" style="padding:0">${r.photos.map((p,i)=>p?`<div class="preview-photo"><img src="${p}"></div>`:`<div class="preview-photo preview-photo-empty">📷</div>`).join('')}</div>`:''}
-  `,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button><button class="btn btn-primary" onclick="closeModal();openExportModal('${r.id}')">⬇ Exportar</button>`);
+  const r=DB.reports.find(r=>r.id===id); if(!r) return; APP.currentReport=r; renderPreview();
+  openModal('Relatório – '+r.contractName,`<div class="preview-header-card" style="margin-bottom:16px"><div class="preview-title">${r.contractName} — ${fmtDate(r.date)}</div><div class="preview-meta" style="margin-top:10px"><span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span><span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span><span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span></div></div><div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px">Atividades</div>${r.activities.map((a,i)=>`<div class="preview-activity-item mb-4"><div class="preview-activity-num">Atividade ${i+1}</div><div class="preview-activity-text">${a}</div></div>`).join('')}<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Ocorrências</div><div style="display:grid;gap:8px"><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Inspeções</div><div style="font-size:13px">${r.inspections}</div></div><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Interrupções</div><div style="font-size:13px">${r.interruptions}</div></div><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Segurança</div><div style="font-size:13px">${r.safety}</div></div></div><div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Envolvidos</div><div style="font-size:13px;line-height:1.7">${r.involved}</div>${r.photos.some(p=>p)?`<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Fotos</div><div class="preview-photos-grid" style="padding:0">${r.photos.map((p,i)=>p?`<div class="preview-photo"><img src="${p}"></div>`:`<div class="preview-photo preview-photo-empty">📷</div>`).join('')}</div>`:''}`,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button><button class="btn btn-primary" onclick="closeModal();openExportModal('${r.id}')">⬇ Exportar</button>`);
 }
-
 function deleteReport(id){
-  showConfirm('Excluir relatório?','Esta ação não pode ser desfeita.',()=>{
-    DB.reports=DB.reports.filter(r=>r.id!==id); saveDB(DB);
-    renderReports(document.getElementById('adminMain'));
-    toast('Relatório excluído','warn');
-  });
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  showConfirm('Excluir relatório?','Esta ação não pode ser desfeita.',async ()=>{ try{ await apiData('reports','delete',{ id }); DB.reports=DB.reports.filter(r=>r.id!==id); renderReports(document.getElementById('adminMain')); toast('Relatório excluído','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
-
-// ─── Users ───
-function renderUsers(main){
+const ROLE_LABELS={ supervisor:'Supervisor', coordenador:'Coordenador' };
+async function renderUsers(main){
+  if(isCoordenador()){ toast('Você não tem permissão para acessar esta área','error'); adminNav('dashboard',document.querySelector('.sidebar-item')); return; }
+  main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+  try{ const [usersRes, contractsRes] = await Promise.all([apiData('users','list'), apiData('contracts','list')]); DB.users = usersRes.users || []; DB.contracts = contractsRes.contracts || []; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar colaboradores: ${e.message}</div></div>`; return; }
   const users=DB.users.filter(u=>u.role!=='admin');
-  main.innerHTML=`
-    <div class="admin-page-title">Colaboradores</div>
-    <div class="admin-page-sub">Gerencie os supervisores e seus acessos</div>
-    <div class="data-table-wrap">
-      <div class="data-table-header">
-        <span class="data-table-title">Supervisores (${users.length})</span>
-        <button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Novo Colaborador</button>
-      </div>
-      ${users.length===0?`<div class="empty-state"><div class="empty-state-icon">👤</div><div class="empty-state-text">Nenhum colaborador cadastrado</div><div class="empty-state-sub">Adicione supervisores para que possam enviar relatórios</div></div>`
-      :`<table class="data-table"><thead><tr><th>Nome</th><th>Login</th><th>Matrícula</th><th>Contrato</th><th>Status</th><th>Ações</th></tr></thead><tbody>
-      ${users.map(u=>{
-        const c=DB.contracts.find(c=>c.id===u.contractId);
-        return `<tr>
-          <td><b>${u.name}</b></td><td>${u.login}</td><td>${u.matricula||'—'}</td>
-          <td>${c?c.name:'<span class="text-muted">Nenhum</span>'}</td>
-          <td><span class="badge ${u.active!==false?'badge-green':'badge-red'}">${u.active!==false?'Ativo':'Inativo'}</span></td>
-          <td><div class="table-actions">
-            <button class="tbl-btn tbl-btn-edit" onclick="openUserModal('${u.id}')">✏ Editar</button>
-            <button class="tbl-btn tbl-btn-del" onclick="deleteUser('${u.id}')">🗑</button>
-          </div></td>
-        </tr>`;
-      }).join('')}
-      </tbody></table>`}
-    </div>`;
+  main.innerHTML=`<div class="admin-page-title">Colaboradores</div><div class="admin-page-sub">Gerencie os supervisores, coordenadores e seus acessos</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Colaboradores (${users.length})</span><button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Novo Colaborador</button></div>${users.length===0?`<div class="empty-state"><div class="empty-state-icon">👤</div><div class="empty-state-text">Nenhum colaborador cadastrado</div><div class="empty-state-sub">Adicione supervisores ou coordenadores para acessar o sistema</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Login</th><th>Matrícula</th><th>Perfil</th><th>Contrato</th><th>Status</th><th>Ações</th></tr></thead><tbody>${users.map(u=>{ const c=DB.contracts.find(c=>c.id===u.contractId); return `<tr><td><b>${u.name}</b></td><td>${u.login}</td><td>${u.matricula||'—'}</td><td><span class="badge ${u.role==='coordenador'?'badge-blue':'badge-warn'}">${ROLE_LABELS[u.role]||u.role}</span></td><td>${u.role==='coordenador'?'<span class="text-muted">Todos</span>':(c?c.name:'<span class="text-muted">Nenhum</span>')}</td><td><span class="badge ${u.active!==false?'badge-green':'badge-red'}">${u.active!==false?'Ativo':'Inativo'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openUserModal('${u.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteUser('${u.id}')">🗑</button></div></td></tr>`; }).join('')}</tbody></table>`}</div>`;
 }
-
 function openUserModal(id){
-  const u=id?DB.users.find(u=>u.id===id):null;
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  const u=id?DB.users.find(u=>u.id===id):null; const role=u?u.role:'supervisor';
   const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${u&&u.contractId===c.id?'selected':''}>${c.name}</option>`).join('');
-  openModal(u?'Editar Colaborador':'Novo Colaborador',`
-    <div class="form-row-2">
-      <div class="form-group"><label>Nome Completo</label><input id="uName" value="${u?u.name:''}" placeholder="Nome do supervisor"></div>
-      <div class="form-group"><label>Matrícula</label><input id="uMat" value="${u?u.matricula||'':''}" placeholder="Ex: SUP-001"></div>
-    </div>
-    <div class="form-row-2">
-      <div class="form-group"><label>Login</label><input id="uLogin" value="${u?u.login:''}" placeholder="login de acesso"></div>
-      <div class="form-group"><label>${u?'Nova Senha (deixe em branco para manter)':'Senha'}</label><input id="uPass" type="password" placeholder="••••••••"></div>
-    </div>
-    <div class="form-group"><label>Contrato Vinculado</label><select id="uContract"><option value="">Nenhum</option>${contractOptions}</select></div>
-    <div class="form-group"><label>Status</label><select id="uActive"><option value="true" ${u&&u.active!==false?'selected':''}>Ativo</option><option value="false" ${u&&u.active===false?'selected':''}>Inativo</option></select></div>
-  `,`
-    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-    <button class="btn btn-primary" onclick="saveUser('${id||''}')">Salvar</button>
-  `);
+  openModal(u?'Editar Colaborador':'Novo Colaborador',`<div class="form-row-2"><div class="form-group"><label>Nome Completo</label><input id="uName" value="${u?u.name:''}" placeholder="Nome do colaborador"></div><div class="form-group"><label>Matrícula</label><input id="uMat" value="${u?u.matricula||'':''}" placeholder="Ex: SUP-001"></div></div><div class="form-row-2"><div class="form-group"><label>Login</label><input id="uLogin" value="${u?u.login:''}" placeholder="login de acesso"></div><div class="form-group"><label>${u?'Nova Senha (deixe em branco para manter)':'Senha'}</label><input id="uPass" type="password" placeholder="••••••••"></div></div><div class="form-row-2"><div class="form-group"><label>Perfil</label><select id="uRole" onchange="toggleUserContractField()"><option value="supervisor" ${role==='supervisor'?'selected':''}>Supervisor</option><option value="coordenador" ${role==='coordenador'?'selected':''}>Coordenador</option></select></div><div class="form-group"><label>Status</label><select id="uActive"><option value="true" ${u&&u.active!==false?'selected':''}>Ativo</option><option value="false" ${u&&u.active===false?'selected':''}>Inativo</option></select></div></div><div class="form-group" id="uContractWrap" style="${role==='coordenador'?'display:none':''}"><label>Contrato Vinculado</label><select id="uContract"><option value="">Nenhum</option>${contractOptions}</select></div><div id="uCoordHint" class="text-sm text-muted" style="${role==='coordenador'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Coordenadores visualizam relatórios e contratos de todos os contratos automaticamente e podem exportar relatórios, mas não podem cadastrar, editar ou excluir nada, nem acessar esta aba de Colaboradores.</div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveUser('${id||''}')">Salvar</button>`);
 }
-
-function saveUser(id){
-  const name=document.getElementById('uName').value.trim();
-  const login=document.getElementById('uLogin').value.trim();
-  const pass=document.getElementById('uPass').value;
-  const mat=document.getElementById('uMat').value.trim();
-  const contract=document.getElementById('uContract').value;
-  const active=document.getElementById('uActive').value==='true';
-  if(!name||!login){ toast('Nome e login são obrigatórios','error'); return; }
-  const existing=DB.users.find(u=>u.login===login&&u.id!==id);
-  if(existing){ toast('Login já em uso por outro colaborador','error'); return; }
-  if(id){
-    const u=DB.users.find(u=>u.id===id);
-    u.name=name; u.login=login; u.matricula=mat; u.contractId=contract||null; u.active=active;
-    if(pass) u.password=pass;
-  } else {
-    if(!pass){ toast('Defina uma senha','error'); return; }
-    DB.users.push({ id:'user-'+Date.now(), name, login, password:pass, role:'supervisor', matricula:mat, contractId:contract||null, active });
-  }
-  saveDB(DB); closeModal();
-  renderUsers(document.getElementById('adminMain'));
-  toast(id?'Colaborador atualizado':'Colaborador cadastrado','success');
+function toggleUserContractField(){ const role=document.getElementById('uRole').value; document.getElementById('uContractWrap').style.display = role==='coordenador'?'none':''; document.getElementById('uCoordHint').style.display = role==='coordenador'?'':'none'; }
+async function saveUser(id){
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  const name=document.getElementById('uName').value.trim(); const login=document.getElementById('uLogin').value.trim(); const pass=document.getElementById('uPass').value; const mat=document.getElementById('uMat').value.trim(); const role=document.getElementById('uRole').value; const contract=document.getElementById('uContract').value; const active=document.getElementById('uActive').value==='true';
+  if(!name||!login){ toast('Nome e login são obrigatórios','error'); return; } if(!id && !pass){ toast('Defina uma senha','error'); return; }
+  try{
+    if(id){ await apiData('users','update',{ id, name, login, matricula:mat, role, contractId:contract||null, active, password:pass||null }); } else { await apiData('users','create',{ name, login, password:pass, matricula:mat, role, contractId:contract||null, active }); }
+    closeModal(); renderUsers(document.getElementById('adminMain')); toast(id?'Colaborador atualizado':'Colaborador cadastrado','success');
+  }catch(e){ const msg = e.message==='login_taken' ? 'Login já em uso por outro colaborador' : 'Não foi possível salvar: '+e.message; toast(msg,'error'); }
 }
-
 function deleteUser(id){
-  showConfirm('Excluir colaborador?','O histórico de relatórios será mantido.',()=>{
-    DB.users=DB.users.filter(u=>u.id!==id); saveDB(DB);
-    renderUsers(document.getElementById('adminMain'));
-    toast('Colaborador removido','warn');
-  });
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  showConfirm('Excluir colaborador?','O histórico de relatórios será mantido.',async ()=>{ try{ await apiData('users','delete',{ id }); DB.users=DB.users.filter(u=>u.id!==id); renderUsers(document.getElementById('adminMain')); toast('Colaborador removido','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
-
-// ─── Contracts ───
-function renderContracts(main){
-  const contracts=DB.contracts;
-  main.innerHTML=`
-    <div class="admin-page-title">Contratos</div>
-    <div class="admin-page-sub">Gerencie os contratos e obras</div>
-    <div class="data-table-wrap">
-      <div class="data-table-header">
-        <span class="data-table-title">Contratos (${contracts.length})</span>
-        <button class="btn btn-primary btn-sm" onclick="openContractModal()">+ Novo Contrato</button>
-      </div>
-      ${contracts.length===0?`<div class="empty-state"><div class="empty-state-icon">📁</div><div class="empty-state-text">Nenhum contrato cadastrado</div></div>`
-      :`<table class="data-table"><thead><tr><th>Nome</th><th>Descrição</th><th>Supervisores</th><th>Relatórios</th><th>Status</th><th>Ações</th></tr></thead><tbody>
-      ${contracts.map(c=>{
-        const sups=DB.users.filter(u=>u.contractId===c.id).length;
-        const reps=DB.reports.filter(r=>r.contractId===c.id).length;
-        return `<tr>
-          <td><b>${c.name}</b></td><td>${c.description||'—'}</td><td>${sups}</td><td>${reps}</td>
-          <td><span class="badge ${c.active!==false?'badge-green':'badge-red'}">${c.active!==false?'Ativo':'Inativo'}</span></td>
-          <td><div class="table-actions">
-            <button class="tbl-btn tbl-btn-edit" onclick="openContractModal('${c.id}')">✏ Editar</button>
-            <button class="tbl-btn tbl-btn-del" onclick="deleteContract('${c.id}')">🗑</button>
-          </div></td>
-        </tr>`;
-      }).join('')}
-      </tbody></table>`}
-    </div>`;
+async function renderContracts(main){
+  main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+  try{ const contractsRes = await apiData('contracts','list'); DB.contracts = contractsRes.contracts || []; if(isAdminUser()){ const usersRes = await apiData('users','list').catch(()=>null); if(usersRes) DB.users = usersRes.users || []; } }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar contratos: ${e.message}</div></div>`; return; }
+  const contracts=DB.contracts; const readOnly=isCoordenador();
+  main.innerHTML=`<div class="admin-page-title">Contratos</div><div class="admin-page-sub">${readOnly?'Visualize os contratos e obras':'Gerencie os contratos e obras'}</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Contratos (${contracts.length})</span>${readOnly?'':'<button class="btn btn-primary btn-sm" onclick="openContractModal()">+ Novo Contrato</button>'}</div>${contracts.length===0?`<div class="empty-state"><div class="empty-state-icon">📁</div><div class="empty-state-text">Nenhum contrato cadastrado</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Descrição</th><th>Supervisores</th><th>Relatórios</th><th>Status</th>${readOnly?'':'<th>Ações</th>'}</tr></thead><tbody>${contracts.map(c=>{ const sups=DB.users.filter(u=>u.contractId===c.id).length; const reps=DB.reports.filter(r=>r.contractId===c.id).length; return `<tr><td><b>${c.name}</b></td><td>${c.description||'—'}</td><td>${sups}</td><td>${reps}</td><td><span class="badge ${c.active!==false?'badge-green':'badge-red'}">${c.active!==false?'Ativo':'Inativo'}</span></td>${readOnly?'':`<td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openContractModal('${c.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteContract('${c.id}')">🗑</button></div></td>`}</tr>`; }).join('')}</tbody></table>`}</div>`;
 }
-
 function openContractModal(id){
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
   const c=id?DB.contracts.find(c=>c.id===id):null;
-  openModal(c?'Editar Contrato':'Novo Contrato',`
-    <div class="form-group"><label>Nome do Contrato</label><input id="cName" value="${c?c.name:''}" placeholder="Ex: Tubulações – Fase 2"></div>
-    <div class="form-group"><label>Descrição</label><textarea id="cDesc" rows="3" placeholder="Descrição do contrato…">${c?c.description||'':''}</textarea></div>
-    <div class="form-group"><label>Status</label><select id="cActive"><option value="true" ${c&&c.active!==false?'selected':''}>Ativo</option><option value="false" ${c&&c.active===false?'selected':''}>Inativo</option></select></div>
-  `,`
-    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-    <button class="btn btn-primary" onclick="saveContract('${id||''}')">Salvar</button>
-  `);
+  openModal(c?'Editar Contrato':'Novo Contrato',`<div class="form-group"><label>Nome do Contrato</label><input id="cName" value="${c?c.name:''}" placeholder="Ex: Tubulações – Fase 2"></div><div class="form-group"><label>Descrição</label><textarea id="cDesc" rows="3" placeholder="Descrição do contrato…">${c?c.description||'':''}</textarea></div><div class="form-group"><label>Status</label><select id="cActive"><option value="true" ${c&&c.active!==false?'selected':''}>Ativo</option><option value="false" ${c&&c.active===false?'selected':''}>Inativo</option></select></div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveContract('${id||''}')">Salvar</button>`);
 }
-
-function saveContract(id){
-  const name=document.getElementById('cName').value.trim();
-  const desc=document.getElementById('cDesc').value.trim();
-  const active=document.getElementById('cActive').value==='true';
+async function saveContract(id){
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  const name=document.getElementById('cName').value.trim(); const desc=document.getElementById('cDesc').value.trim(); const active=document.getElementById('cActive').value==='true';
   if(!name){ toast('Nome do contrato é obrigatório','error'); return; }
-  if(id){
-    const c=DB.contracts.find(c=>c.id===id);
-    c.name=name; c.description=desc; c.active=active;
-  } else {
-    DB.contracts.push({ id:'contract-'+Date.now(), name, description:desc, active });
-  }
-  saveDB(DB); closeModal();
-  renderContracts(document.getElementById('adminMain'));
-  toast(id?'Contrato atualizado':'Contrato cadastrado','success');
+  try{ if(id) await apiData('contracts','update',{ id, name, description:desc, active }); else await apiData('contracts','create',{ name, description:desc, active }); closeModal(); renderContracts(document.getElementById('adminMain')); toast(id?'Contrato atualizado':'Contrato cadastrado','success'); }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
 }
-
 function deleteContract(id){
-  showConfirm('Excluir contrato?','Os relatórios vinculados serão mantidos.',()=>{
-    DB.contracts=DB.contracts.filter(c=>c.id!==id); saveDB(DB);
-    renderContracts(document.getElementById('adminMain'));
-    toast('Contrato removido','warn');
-  });
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  showConfirm('Excluir contrato?','Os relatórios vinculados serão mantidos.',async ()=>{ try{ await apiData('contracts','delete',{ id }); DB.contracts=DB.contracts.filter(c=>c.id!==id); renderContracts(document.getElementById('adminMain')); toast('Contrato removido','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
-
-// ─── Templates ───
-function renderTemplates(main){
+async function renderTemplates(main){
+  main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+  try{ const [tplRes, contractsRes] = await Promise.all([apiData('templates','list'), apiData('contracts','list')]); DB.templates = tplRes.templates || []; DB.contracts = contractsRes.contracts || []; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar modelos: ${e.message}</div></div>`; return; }
   const tpls=DB.templates;
-  main.innerHTML=`
-    <div class="admin-page-title">Modelos de Relatório</div>
-    <div class="admin-page-sub">Carregue modelos Excel que serão usados na geração dos relatórios</div>
-    <div class="data-table-wrap">
-      <div class="data-table-header">
-        <span class="data-table-title">Modelos (${tpls.length})</span>
-        <button class="btn btn-primary btn-sm" onclick="openTemplateModal()">+ Novo Modelo</button>
-      </div>
-      ${tpls.length===0?`<div class="empty-state"><div class="empty-state-icon">📄</div><div class="empty-state-text">Nenhum modelo cadastrado</div><div class="empty-state-sub">Carregue modelos Excel para cada contrato</div></div>`
-      :`<table class="data-table"><thead><tr><th>Nome</th><th>Contrato</th><th>Arquivo</th><th>Ações</th></tr></thead><tbody>
-      ${tpls.map(t=>{
-        const c=DB.contracts.find(c=>c.id===t.contractId);
-        return `<tr>
-          <td><b>${t.name}</b></td>
-          <td>${c?c.name:'<span class="text-muted">—</span>'}</td>
-          <td>${t.fileName||'<span class="text-muted">Sem arquivo</span>'}</td>
-          <td><div class="table-actions">
-            <button class="tbl-btn tbl-btn-edit" onclick="openTemplateModal('${t.id}')">✏ Editar</button>
-            <button class="tbl-btn tbl-btn-del" onclick="deleteTemplate('${t.id}')">🗑</button>
-          </div></td>
-        </tr>`;
-      }).join('')}
-      </tbody></table>`}
-    </div>`;
+  main.innerHTML=`<div class="admin-page-title">Modelos de Relatório</div><div class="admin-page-sub">Carregue modelos Excel que serão usados na geração dos relatórios</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Modelos (${tpls.length})</span><button class="btn btn-primary btn-sm" onclick="openTemplateModal()">+ Novo Modelo</button></div>${tpls.length===0?`<div class="empty-state"><div class="empty-state-icon">📄</div><div class="empty-state-text">Nenhum modelo cadastrado</div><div class="empty-state-sub">Carregue modelos Excel para cada contrato</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Contrato</th><th>Arquivo</th><th>Ações</th></tr></thead><tbody>${tpls.map(t=>{ const c=DB.contracts.find(c=>c.id===t.contractId); return `<tr><td><b>${t.name}</b></td><td>${c?c.name:'<span class="text-muted">—</span>'}</td><td>${t.fileName||'<span class="text-muted">Sem arquivo</span>'}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openTemplateModal('${t.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteTemplate('${t.id}')">🗑</button></div></td></tr>`; }).join('')}</tbody></table>`}</div>`;
 }
-
 function openTemplateModal(id){
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
   const t=id?DB.templates.find(t=>t.id===id):null;
   const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${t&&t.contractId===c.id?'selected':''}>${c.name}</option>`).join('');
-  openModal(t?'Editar Modelo':'Novo Modelo',`
-    <div class="form-group"><label>Nome do Modelo</label><input id="tName" value="${t?t.name:''}" placeholder="Ex: RDO Padrão – Tubulações"></div>
-    <div class="form-group"><label>Contrato</label><select id="tContract"><option value="">Selecione…</option>${contractOptions}</select></div>
-    <div class="form-group">
-      <label>Arquivo Excel (.xlsx) — Modelo</label>
-      <div style="background:var(--bg);border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer" onclick="document.getElementById('tplFile').click()">
-        <div style="font-size:28px;margin-bottom:6px">📊</div>
-        <div style="font-size:13px;font-weight:600" id="tplFileName">${t&&t.fileName?t.fileName:'Clique para selecionar o arquivo Excel'}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">Formatos: .xlsx, .xls</div>
-      </div>
-      <input type="file" id="tplFile" accept=".xlsx,.xls" style="display:none" onchange="handleTemplateFile(event)">
-    </div>
-    <div class="form-group"><label>Observações</label><textarea id="tNotes" rows="2" placeholder="Notas sobre este modelo…">${t?t.notes||'':''}</textarea></div>
-  `,`
-    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-    <button class="btn btn-primary" onclick="saveTemplate('${id||''}')">Salvar</button>
-  `);
+  openModal(t?'Editar Modelo':'Novo Modelo',`<div class="form-group"><label>Nome do Modelo</label><input id="tName" value="${t?t.name:''}" placeholder="Ex: RDO Padrão – Tubulações"></div><div class="form-group"><label>Contrato</label><select id="tContract"><option value="">Selecione…</option>${contractOptions}</select></div><div class="form-group"><label>Arquivo Excel (.xlsx) — Modelo</label><div style="background:var(--bg);border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer" onclick="document.getElementById('tplFile').click()"><div style="font-size:28px;margin-bottom:6px">📊</div><div style="font-size:13px;font-weight:600" id="tplFileName">${t&&t.fileName?t.fileName:'Clique para selecionar o arquivo Excel'}</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Formatos: .xlsx, .xls</div></div><input type="file" id="tplFile" accept=".xlsx,.xls" style="display:none" onchange="handleTemplateFile(event)"></div><div class="form-group"><label>Observações</label><textarea id="tNotes" rows="2" placeholder="Notas sobre este modelo…">${t?t.notes||'':''}</textarea></div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveTemplate('${id||''}')">Salvar</button>`);
 }
-
 let _tplFileData=null;
-function handleTemplateFile(e){
-  const file=e.target.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    _tplFileData={ name:file.name, data:ev.target.result };
-    document.getElementById('tplFileName').textContent=file.name;
-  };
-  reader.readAsDataURL(file);
+function handleTemplateFile(e){ const file=e.target.files[0]; if(!file) return; _tplFileData={ name:file.name, file:file }; document.getElementById('tplFileName').textContent=file.name; }
+async function uploadTemplateFile(file, contractId){
+  const path = `${contractId||'geral'}/${Date.now()}_${file.name}`;
+  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/templates/${path.split('/').map(encodeURIComponent).join('/')}`, { method:'POST', headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer '+SUPABASE_ANON_KEY, 'Content-Type': file.type||'application/octet-stream', 'x-upsert':'true' }, body: file });
+  if(!res.ok) throw new Error('Falha ao enviar o arquivo do modelo para o armazenamento');
+  return path;
 }
-
-function saveTemplate(id){
-  const name=document.getElementById('tName').value.trim();
-  const contract=document.getElementById('tContract').value;
-  const notes=document.getElementById('tNotes').value.trim();
+async function fetchTemplateArrayBuffer(storagePath){
+  const url = `${SUPABASE_URL}/storage/v1/object/public/templates/${storagePath.split('/').map(encodeURIComponent).join('/')}`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('Não foi possível baixar o modelo Excel do armazenamento');
+  return await res.arrayBuffer();
+}
+async function saveTemplate(id){
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  const name=document.getElementById('tName').value.trim(); const contract=document.getElementById('tContract').value; const notes=document.getElementById('tNotes').value.trim();
   if(!name){ toast('Nome do modelo é obrigatório','error'); return; }
-  let rollback;
-  if(id){
-    const t=DB.templates.find(t=>t.id===id);
-    rollback={ name:t.name, contractId:t.contractId, notes:t.notes, fileName:t.fileName, fileData:t.fileData };
-    t.name=name; t.contractId=contract||null; t.notes=notes;
-    if(_tplFileData){ t.fileName=_tplFileData.name; t.fileData=_tplFileData.data; }
-    if(!saveDB(DB)){ Object.assign(t,rollback); return; }
-  } else {
-    const newTpl={ id:'tpl-'+Date.now(), name, contractId:contract||null, notes, fileName:_tplFileData?_tplFileData.name:null, fileData:_tplFileData?_tplFileData.data:null };
-    DB.templates.push(newTpl);
-    if(!saveDB(DB)){ DB.templates=DB.templates.filter(t=>t.id!==newTpl.id); return; }
-  }
-  _tplFileData=null;
-  closeModal();
-  renderTemplates(document.getElementById('adminMain'));
-  toast(id?'Modelo atualizado':'Modelo cadastrado','success');
+  const fileName = _tplFileData ? _tplFileData.name : (id ? (DB.templates.find(t=>t.id===id)||{}).fileName : null);
+  const btn=document.querySelector('#modalFooter .btn-primary'); if(btn){ btn.disabled=true; }
+  try{
+    let storagePath;
+    if(_tplFileData && _tplFileData.file){ storagePath = await uploadTemplateFile(_tplFileData.file, contract||null); }
+    if(id) await apiData('templates','update',{ id, name, contractId:contract||null, notes, fileName, storagePath });
+    else await apiData('templates','create',{ name, contractId:contract||null, notes, fileName, storagePath });
+    _tplFileData=null; closeModal(); renderTemplates(document.getElementById('adminMain')); toast(id?'Modelo atualizado':'Modelo cadastrado','success');
+  }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
+  finally{ if(btn){ btn.disabled=false; } }
 }
-
 function deleteTemplate(id){
-  showConfirm('Excluir modelo?','Esta ação não pode ser desfeita.',()=>{
-    DB.templates=DB.templates.filter(t=>t.id!==id); saveDB(DB);
-    renderTemplates(document.getElementById('adminMain'));
-    toast('Modelo removido','warn');
-  });
+  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  showConfirm('Excluir modelo?','Esta ação não pode ser desfeita.',async ()=>{ try{ await apiData('templates','delete',{ id }); DB.templates=DB.templates.filter(t=>t.id!==id); renderTemplates(document.getElementById('adminMain')); toast('Modelo removido','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
-
-// ─── Settings ───
-function renderSettings(main){
-  main.innerHTML=`
-    <div class="admin-page-title">Configurações</div>
-    <div class="admin-page-sub">Gerencie senhas, integrações e configurações do sistema</div>
-    <div class="data-table-wrap mb-6" style="margin-bottom:24px">
-      <div class="data-table-header"><span class="data-table-title">Minha Senha (Admin)</span></div>
-      <div style="padding:24px">
-        <div class="form-row-2" style="max-width:400px">
-          <div class="form-group"><label>Nova Senha</label><input type="password" id="newPass1" placeholder="Nova senha"></div>
-          <div class="form-group"><label>Confirmar Senha</label><input type="password" id="newPass2" placeholder="Confirmar"></div>
-        </div>
-        <button class="btn btn-primary btn-sm" onclick="changeAdminPass()">Alterar Senha</button>
-      </div>
-    </div>
-    <div class="data-table-wrap mb-6" style="margin-bottom:24px">
-      <div class="data-table-header"><span class="data-table-title">🟢 Google Sheets — Integração</span></div>
-      <div style="padding:24px">
-        <div class="form-group" style="max-width:500px"><label>ID da Planilha (Spreadsheet ID)</label>
-          <input id="gsId" value="${DB.appConfig.sheetsId||''}" placeholder="Exemplo: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms">
-        </div>
-        <div class="form-group" style="max-width:500px"><label>API Key do Google Sheets</label>
-          <input id="gsKey" value="${DB.appConfig.sheetsKey||''}" placeholder="AIzaSy…">
-        </div>
-        <button class="btn btn-primary btn-sm" onclick="saveGSConfig()">Salvar Configuração</button>
-        <div style="margin-top:12px;background:var(--blue-light);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--blue)">
-          💡 <b>Como configurar:</b> No Google Cloud Console, ative a API Google Sheets, crie uma chave de API e compartilhe sua planilha com acesso de edição. Cole o ID da planilha e a chave acima.
-        </div>
-      </div>
-    </div>
-    <div class="data-table-wrap">
-      <div class="data-table-header"><span class="data-table-title">⚡ Exportação Padrão</span></div>
-      <div style="padding:24px">
-        <div class="form-group" style="max-width:300px"><label>Formato padrão ao exportar</label>
-          <select id="defExport">
-            <option value="pdf" ${(DB.appConfig.defaultExport||'pdf')==='pdf'?'selected':''}>PDF</option>
-            <option value="xlsx" ${DB.appConfig.defaultExport==='xlsx'?'selected':''}>Excel (.xlsx)</option>
-            <option value="all" ${DB.appConfig.defaultExport==='all'?'selected':''}>Todos (PDF + Excel + Sheets)</option>
-          </select>
-        </div>
-        <button class="btn btn-primary btn-sm" onclick="saveExportConfig()">Salvar</button>
-      </div>
-    </div>`;
+async function renderSettings(main){
+  main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+  try{ const res = await apiData('settings','get'); const s = res.settings; DB.appConfig = { name:s.name, logo:s.logo_url, logoText:s.logo_text, companyName:s.company_name, sheetsId:s.sheets_id, sheetsKey:s.sheets_key, defaultExport:s.default_export }; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar configurações: ${e.message}</div></div>`; return; }
+  main.innerHTML=`<div class="admin-page-title">Configurações</div><div class="admin-page-sub">Gerencie senhas, integrações e configurações do sistema</div><div class="data-table-wrap mb-6" style="margin-bottom:24px"><div class="data-table-header"><span class="data-table-title">Minha Senha (Admin)</span></div><div style="padding:24px"><div class="form-row-2" style="max-width:400px"><div class="form-group"><label>Nova Senha</label><input type="password" id="newPass1" placeholder="Nova senha"></div><div class="form-group"><label>Confirmar Senha</label><input type="password" id="newPass2" placeholder="Confirmar"></div></div><button class="btn btn-primary btn-sm" onclick="changeAdminPass()">Alterar Senha</button></div></div><div class="data-table-wrap mb-6" style="margin-bottom:24px"><div class="data-table-header"><span class="data-table-title">🟢 Google Sheets — Integração</span></div><div style="padding:24px"><div class="form-group" style="max-width:500px"><label>ID da Planilha (Spreadsheet ID)</label><input id="gsId" value="${DB.appConfig.sheetsId||''}" placeholder="Exemplo: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms"></div><div class="form-group" style="max-width:500px"><label>API Key do Google Sheets</label><input id="gsKey" value="${DB.appConfig.sheetsKey||''}" placeholder="AIzaSy…"></div><button class="btn btn-primary btn-sm" onclick="saveGSConfig()">Salvar Configuração</button><div style="margin-top:12px;background:var(--blue-light);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--blue)">💡 <b>Como configurar:</b> No Google Cloud Console, ative a API Google Sheets, crie uma chave de API e compartilhe sua planilha com acesso de edição. Cole o ID da planilha e a chave acima.</div></div></div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">⚡ Exportação Padrão</span></div><div style="padding:24px"><div class="form-group" style="max-width:300px"><label>Formato padrão ao exportar</label><select id="defExport"><option value="pdf" ${(DB.appConfig.defaultExport||'pdf')==='pdf'?'selected':''}>PDF</option><option value="xlsx" ${DB.appConfig.defaultExport==='xlsx'?'selected':''}>Excel (.xlsx)</option><option value="all" ${DB.appConfig.defaultExport==='all'?'selected':''}>Todos (PDF + Excel + Sheets)</option></select></div><button class="btn btn-primary btn-sm" onclick="saveExportConfig()">Salvar</button></div></div>`;
 }
-
-function changeAdminPass(){
-  const p1=document.getElementById('newPass1').value;
-  const p2=document.getElementById('newPass2').value;
-  if(!p1){ toast('Digite a nova senha','error'); return; }
-  if(p1!==p2){ toast('As senhas não coincidem','error'); return; }
-  const admin=DB.users.find(u=>u.role==='admin');
-  admin.password=p1; saveDB(DB);
-  toast('Senha alterada com sucesso','success');
-  document.getElementById('newPass1').value='';
-  document.getElementById('newPass2').value='';
+async function changeAdminPass(){
+  const p1=document.getElementById('newPass1').value; const p2=document.getElementById('newPass2').value;
+  if(!p1){ toast('Digite a nova senha','error'); return; } if(p1!==p2){ toast('As senhas não coincidem','error'); return; }
+  try{ await apiData('settings','changeOwnPassword',{ password:p1 }); toast('Senha alterada com sucesso','success'); document.getElementById('newPass1').value=''; document.getElementById('newPass2').value=''; }catch(e){ toast('Não foi possível alterar a senha: '+e.message,'error'); }
 }
-
-function saveGSConfig(){
-  DB.appConfig.sheetsId=document.getElementById('gsId').value.trim();
-  DB.appConfig.sheetsKey=document.getElementById('gsKey').value.trim();
-  saveDB(DB); toast('Configuração Google Sheets salva','success');
+async function saveGSConfig(){
+  const sheetsId=document.getElementById('gsId').value.trim(); const sheetsKey=document.getElementById('gsKey').value.trim();
+  try{ await apiData('settings','update',{ sheets_id:sheetsId, sheets_key:sheetsKey }); DB.appConfig.sheetsId=sheetsId; DB.appConfig.sheetsKey=sheetsKey; toast('Configuração Google Sheets salva','success'); }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
 }
-
-function saveExportConfig(){
-  DB.appConfig.defaultExport=document.getElementById('defExport').value;
-  saveDB(DB); toast('Formato padrão salvo','success');
+async function saveExportConfig(){
+  const val=document.getElementById('defExport').value;
+  try{ await apiData('settings','update',{ default_export:val }); DB.appConfig.defaultExport=val; toast('Formato padrão salvo','success'); }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
 }
-
-// ─── App Config ───
-function renderAppConfig(main){
+async function renderAppConfig(main){
+  main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+  try{ const res = await apiData('settings','get'); const s = res.settings; DB.appConfig = { name:s.name, logo:s.logo_url, logoText:s.logo_text, companyName:s.company_name, sheetsId:s.sheets_id, sheetsKey:s.sheets_key, defaultExport:s.default_export }; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar identidade visual: ${e.message}</div></div>`; return; }
   const cfg=DB.appConfig;
-  main.innerHTML=`
-    <div class="admin-page-title">Identidade Visual</div>
-    <div class="admin-page-sub">Configure o nome, logo e aparência do aplicativo</div>
-    <div class="data-table-wrap">
-      <div style="padding:28px;max-width:480px">
-        <div class="form-group"><label>Nome do Aplicativo</label><input id="cfgName" value="${cfg.name||'FieldReport Pro'}" placeholder="Ex: Relatórios da Empresa"></div>
-        <div class="form-group"><label>Nome da Empresa</label><input id="cfgCompany" value="${cfg.companyName||''}" placeholder="Ex: Construtora XYZ"></div>
-        <div class="form-group"><label>Iniciais para o ícone (2 letras)</label><input id="cfgLogoText" value="${cfg.logoText||'FR'}" maxlength="3" placeholder="Ex: FR"></div>
-        <div class="form-group">
-          <label>Logo da empresa (PNG/JPG)</label>
-          <div style="display:flex;align-items:center;gap:16px">
-            <div style="width:64px;height:64px;border-radius:18px;background:linear-gradient(145deg,#0071E3,#00C7FF);display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--border2)" id="cfgLogoPreview">
-              ${cfg.logo?`<img src="${cfg.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:16px">`:`<span style="color:#fff;font-weight:800;font-size:22px">${cfg.logoText||'FR'}</span>`}
-            </div>
-            <div>
-              <button class="btn btn-secondary btn-sm" onclick="document.getElementById('cfgLogoFile').click()">📷 Carregar Logo</button>
-              ${cfg.logo?`<button class="btn btn-danger btn-sm mt-2" onclick="removeLogo()">Remover</button>`:''}
-              <div style="font-size:11px;color:var(--text3);margin-top:6px">Recomendado: 200×200px, PNG</div>
-            </div>
-          </div>
-          <input type="file" id="cfgLogoFile" accept="image/*" style="display:none" onchange="handleLogoUpload(event)">
-        </div>
-        <button class="btn btn-primary" onclick="saveAppConfig()">Salvar Identidade Visual</button>
-      </div>
-    </div>`;
+  main.innerHTML=`<div class="admin-page-title">Identidade Visual</div><div class="admin-page-sub">Configure o nome, logo e aparência do aplicativo</div><div class="data-table-wrap"><div style="padding:28px;max-width:480px"><div class="form-group"><label>Nome do Aplicativo</label><input id="cfgName" value="${cfg.name||'FieldReport Pro'}" placeholder="Ex: Relatórios da Empresa"></div><div class="form-group"><label>Nome da Empresa</label><input id="cfgCompany" value="${cfg.companyName||''}" placeholder="Ex: Construtora XYZ"></div><div class="form-group"><label>Iniciais para o ícone (2 letras)</label><input id="cfgLogoText" value="${cfg.logoText||'FR'}" maxlength="3" placeholder="Ex: FR"></div><div class="form-group"><label>Logo da empresa (PNG/JPG)</label><div style="display:flex;align-items:center;gap:16px"><div style="width:64px;height:64px;border-radius:18px;background:linear-gradient(145deg,#0071E3,#00C7FF);display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid var(--border2)" id="cfgLogoPreview">${cfg.logo?`<img src="${cfg.logo}" style="width:100%;height:100%;object-fit:cover;border-radius:16px">`:`<span style="color:#fff;font-weight:800;font-size:22px">${cfg.logoText||'FR'}</span>`}</div><div><button class="btn btn-secondary btn-sm" onclick="document.getElementById('cfgLogoFile').click()">📷 Carregar Logo</button>${cfg.logo?`<button class="btn btn-danger btn-sm mt-2" onclick="removeLogo()">Remover</button>`:''}<div style="font-size:11px;color:var(--text3);margin-top:6px">Recomendado: 200×200px, PNG</div></div></div><input type="file" id="cfgLogoFile" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><button class="btn btn-primary" onclick="saveAppConfig()">Salvar Identidade Visual</button></div></div>`;
 }
-
-function handleLogoUpload(e){
-  const file=e.target.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    DB.appConfig.logo=ev.target.result;
-    const prev=document.getElementById('cfgLogoPreview');
-    prev.innerHTML=`<img src="${ev.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:16px">`;
-  };
-  reader.readAsDataURL(file);
-}
-
+function handleLogoUpload(e){ const file=e.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload=ev=>{ DB.appConfig.logo=ev.target.result; const prev=document.getElementById('cfgLogoPreview'); prev.innerHTML=`<img src="${ev.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:16px">`; }; reader.readAsDataURL(file); }
 function removeLogo(){ DB.appConfig.logo=null; renderAppConfig(document.getElementById('adminMain')); }
-
-function saveAppConfig(){
-  DB.appConfig.name=document.getElementById('cfgName').value.trim()||'FieldReport Pro';
-  DB.appConfig.companyName=document.getElementById('cfgCompany').value.trim();
-  DB.appConfig.logoText=document.getElementById('cfgLogoText').value.trim().toUpperCase()||'FR';
-  saveDB(DB); applyAppConfig();
-  toast('Identidade visual salva','success');
+async function saveAppConfig(){
+  const name=document.getElementById('cfgName').value.trim()||'FieldReport Pro'; const companyName=document.getElementById('cfgCompany').value.trim(); const logoText=document.getElementById('cfgLogoText').value.trim().toUpperCase()||'FR';
+  try{ await apiData('settings','update',{ name, company_name:companyName, logo_text:logoText, logo_url:DB.appConfig.logo||null }); DB.appConfig.name=name; DB.appConfig.companyName=companyName; DB.appConfig.logoText=logoText; applyAppConfig(); toast('Identidade visual salva','success'); }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
 }
-
-// ═══════════════════════════════════
-// EXPORT — PDF, Excel, Google Sheets
-// ═══════════════════════════════════
-let _exportReportId=null;
-let _exportDailyGroup=null;
-
-// IDs reais dos cartões no modal (ver #exportModal): expPDF, expXLS, expSheets, expAll
-function exportCardId(type){
-  return { pdf:'expPDF', xlsx:'expXLS', sheets:'expSheets', all:'expAll' }[type];
-}
-
+let _exportReportId=null; let _exportDailyGroup=null; let _exportBulkMode=false;
+function exportCardId(type){ return { pdf:'expPDF', xlsx:'expXLS', sheets:'expSheets', all:'expAll' }[type]; }
 function openExportModal(reportId){
-  _exportReportId=reportId;
-  _exportDailyGroup=null;
-  APP.exportType=DB.appConfig.defaultExport||'pdf';
-  document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById(exportCardId(APP.exportType))?.classList.add('selected');
-  document.getElementById('exportModal').classList.remove('hidden');
+  _exportReportId=reportId; _exportDailyGroup=null; _exportBulkMode=false;
+  document.getElementById('exportFiltersWrap').classList.add('hidden'); document.getElementById('exportFormatIntro').textContent='Escolha o formato de exportação para o relatório selecionado:';
+  APP.exportType=DB.appConfig.defaultExport||'pdf'; document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected')); document.getElementById(exportCardId(APP.exportType))?.classList.add('selected'); document.getElementById('exportModal').classList.remove('hidden');
 }
-// Exportação do relatório compilado do dia (contrato + data) — só chamado quando o dia já fechou (06:00 do dia seguinte).
 function openExportDaily(contractId,date){
-  const reps=DB.reports.filter(r=>r.contractId===contractId&&r.date===date);
-  if(!reps.length) return;
-  _exportReportId=null;
-  _exportDailyGroup={ contractId, date, reports:reps };
-  APP.exportType=DB.appConfig.defaultExport||'xlsx';
-  document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById(exportCardId(APP.exportType))?.classList.add('selected');
-  document.getElementById('exportModal').classList.remove('hidden');
+  const reps=DB.reports.filter(r=>r.contractId===contractId&&r.date===date); if(!reps.length) return;
+  _exportReportId=null; _exportDailyGroup={ contractId, date, reports:reps }; _exportBulkMode=false;
+  document.getElementById('exportFiltersWrap').classList.add('hidden'); document.getElementById('exportFormatIntro').textContent='Escolha o formato de exportação para o relatório compilado selecionado:';
+  APP.exportType=DB.appConfig.defaultExport||'xlsx'; document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected')); document.getElementById(exportCardId(APP.exportType))?.classList.add('selected'); document.getElementById('exportModal').classList.remove('hidden');
 }
+function openExportBulk(){
+  _exportReportId=null; _exportDailyGroup=null; _exportBulkMode=true;
+  const sel=document.getElementById('expFiltContract'); sel.innerHTML='<option value="">Todos os contratos</option>'+DB.contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
+  document.getElementById('expFiltDate').value=new Date().toISOString().split('T')[0];
+  document.getElementById('exportFiltersWrap').classList.remove('hidden'); document.getElementById('exportFormatIntro').textContent='Escolha o formato de exportação para os relatórios filtrados acima:';
+  APP.exportType=DB.appConfig.defaultExport||'pdf'; document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected')); document.getElementById(exportCardId(APP.exportType))?.classList.add('selected'); document.getElementById('exportModal').classList.remove('hidden'); updateExportFilterCount();
+}
+function updateExportFilterCount(){ const n=getExportReports().length; document.getElementById('expFiltCount').textContent = n+(n===1?' relatório encontrado para exportação.':' relatórios encontrados para exportação.'); }
 function closeExportModal(){ document.getElementById('exportModal').classList.add('hidden'); }
-function selectExport(type){
-  APP.exportType=type;
-  document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById(exportCardId(type))?.classList.add('selected');
-}
-
+function selectExport(type){ APP.exportType=type; document.querySelectorAll('.export-card').forEach(c=>c.classList.remove('selected')); document.getElementById(exportCardId(type))?.classList.add('selected'); }
 function getExportReports(){
   if(_exportReportId){ return [DB.reports.find(r=>r.id===_exportReportId)].filter(Boolean); }
   if(_exportDailyGroup){ return _exportDailyGroup.reports; }
-  // Daily: all reports for today grouped by contract
-  const today=new Date().toISOString().split('T')[0];
-  return DB.reports.filter(r=>r.date===today);
+  if(_exportBulkMode){ const date=document.getElementById('expFiltDate').value; const contract=document.getElementById('expFiltContract').value; let filtered=[...DB.reports]; if(date) filtered=filtered.filter(r=>r.date===date); if(contract) filtered=filtered.filter(r=>r.contractId===contract); return filtered; }
+  const today=new Date().toISOString().split('T')[0]; return DB.reports.filter(r=>r.date===today);
 }
-
 function executeExport(){
-  const reports=getExportReports();
-  if(!reports.length){ toast('Nenhum relatório para exportar','warn'); closeExportModal(); return; }
-  const btn=document.getElementById('doExportBtn');
-  btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
+  const reports=getExportReports(); if(!reports.length){ toast('Nenhum relatório para exportar','warn'); closeExportModal(); return; }
+  const btn=document.getElementById('doExportBtn'); btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
   setTimeout(async ()=>{
-    try{
-      const type=APP.exportType;
-      if(type==='pdf'||type==='all') exportPDF(reports);
-      if(type==='xlsx'||type==='all') await exportXLSX(reports);
-      if(type==='sheets'||type==='all') await exportToSheets(reports);
-      toast('Exportação concluída!','success');
-    } catch(e){ toast('Erro ao exportar: '+e.message,'error'); }
-    btn.disabled=false; btn.innerHTML='Gerar →';
-    closeExportModal();
+    try{ const type=APP.exportType; if(type==='pdf'||type==='all') exportPDF(reports); if(type==='xlsx'||type==='all') await exportXLSX(reports); if(type==='sheets'||type==='all') await exportToSheets(reports); toast('Exportação concluída!','success'); } catch(e){ toast('Erro ao exportar: '+e.message,'error'); }
+    btn.disabled=false; btn.innerHTML='Gerar →'; closeExportModal();
   },800);
 }
-
-// ─── PDF ───
 function exportPDF(reports){
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ unit:'mm', format:'a4' });
-  const cfg = DB.appConfig;
-  const W=210, M=18;
-
+  const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit:'mm', format:'a4' }); const cfg = DB.appConfig; const W=210, M=18;
   reports.forEach((r,ri)=>{
     if(ri>0) doc.addPage();
-    // Header bar
-    doc.setFillColor(0,113,227); doc.rect(0,0,W,38,'F');
-    doc.setTextColor(255,255,255);
-    doc.setFont('helvetica','bold'); doc.setFontSize(16);
-    doc.text('RELATÓRIO DIÁRIO DE OBRA',M,16);
-    doc.setFont('helvetica','normal'); doc.setFontSize(10);
-    doc.text(cfg.companyName||cfg.name||'FieldReport Pro',M,24);
-    doc.text(`Contrato: ${r.contractName}`,M,30);
-    doc.setFontSize(9);
-    doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`,W-M,30,'right');
-    doc.setTextColor(30,30,30);
-
+    doc.setFillColor(0,113,227); doc.rect(0,0,W,38,'F'); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(16); doc.text('RELATÓRIO DIÁRIO DE OBRA',M,16);
+    doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.text(cfg.companyName||cfg.name||'FieldReport Pro',M,24); doc.text(`Contrato: ${r.contractName}`,M,30);
+    doc.setFontSize(9); doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`,W-M,30,'right'); doc.setTextColor(30,30,30);
     let y=46;
-    // Info box
     const infoItems=[['Data',fmtDate(r.date)],['Local',r.location],['Turno',r.shift],['Supervisor',r.supervisorName]];
-    doc.setFillColor(245,245,247); doc.rect(M,y,W-2*M,30,'F');
-    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115);
-    doc.text('INFORMAÇÕES GERAIS',M+3,y+6);
-    doc.setTextColor(30,30,30);
-    infoItems.forEach((item,i)=>{
-      const col=Math.floor(i/2), row=i%2;
-      const x=M+3+col*90, iy=y+14+row*8;
-      doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115);
-      doc.text(item[0].toUpperCase(),x,iy);
-      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
-      doc.text(String(item[1]).substring(0,50),x+22,iy);
-    });
+    doc.setFillColor(245,245,247); doc.rect(M,y,W-2*M,30,'F'); doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115); doc.text('INFORMAÇÕES GERAIS',M+3,y+6); doc.setTextColor(30,30,30);
+    infoItems.forEach((item,i)=>{ const col=Math.floor(i/2), row=i%2; const x=M+3+col*90, iy=y+14+row*8; doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115); doc.text(item[0].toUpperCase(),x,iy); doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30); doc.text(String(item[1]).substring(0,50),x+22,iy); });
     y+=36;
-
-    // Activities
-    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
-    doc.text('ATIVIDADES DESENVOLVIDAS',M,y); y+=6;
-    doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
-    r.activities.forEach((act,i)=>{
-      doc.setFillColor(235,242,252); doc.rect(M,y-2,W-2*M,6,'F');
-      doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(0,113,227);
-      doc.text(`ATIVIDADE ${i+1}`,M+2,y+2); y+=8;
-      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
-      const lines=doc.splitTextToSize(act,W-2*M-4);
-      lines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M+2,y); y+=5; });
-      y+=3;
-    });
-
-    // Occurrences
-    y+=2;
-    if(y>240) { doc.addPage(); y=20; }
-    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
-    doc.text('OCORRÊNCIAS',M,y); y+=6;
-    doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
-    [['Inspeções / Visitas',r.inspections],['Interrupções / Desvios',r.interruptions],['Desvios de Segurança',r.safety]].forEach(([label,val])=>{
-      doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115);
-      doc.text(label.toUpperCase(),M,y); y+=5;
-      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
-      const lines=doc.splitTextToSize(val||'—',W-2*M);
-      lines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M,y); y+=5; });
-      y+=3;
-    });
-
-    // Involved
-    y+=2;
-    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
-    doc.text('EQUIPE ENVOLVIDA',M,y); y+=6;
-    doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
-    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30);
-    const involvedLines=doc.splitTextToSize(r.involved||'—',W-2*M);
-    involvedLines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M,y); y+=5; });
-
-    // Photos
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227); doc.text('ATIVIDADES DESENVOLVIDAS',M,y); y+=6; doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
+    r.activities.forEach((act,i)=>{ doc.setFillColor(235,242,252); doc.rect(M,y-2,W-2*M,6,'F'); doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(0,113,227); doc.text(`ATIVIDADE ${i+1}`,M+2,y+2); y+=8; doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30); const lines=doc.splitTextToSize(act,W-2*M-4); lines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M+2,y); y+=5; }); y+=3; });
+    y+=2; if(y>240) { doc.addPage(); y=20; }
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227); doc.text('OCORRÊNCIAS',M,y); y+=6; doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
+    [['Inspeções / Visitas',r.inspections],['Interrupções / Desvios',r.interruptions],['Desvios de Segurança',r.safety]].forEach(([label,val])=>{ doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(110,110,115); doc.text(label.toUpperCase(),M,y); y+=5; doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30); const lines=doc.splitTextToSize(val||'—',W-2*M); lines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M,y); y+=5; }); y+=3; });
+    y+=2; doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227); doc.text('EQUIPE ENVOLVIDA',M,y); y+=6; doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(30,30,30); const involvedLines=doc.splitTextToSize(r.involved||'—',W-2*M); involvedLines.forEach(l=>{ if(y>270){doc.addPage();y=20} doc.text(l,M,y); y+=5; });
     const photos=r.photos.filter(p=>p);
-    if(photos.length){
-      y+=6;
-      if(y>220){ doc.addPage(); y=20; }
-      doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227);
-      doc.text('REGISTROS FOTOGRÁFICOS',M,y); y+=6;
-      doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5;
-      const pw=42, ph=34, gap=4;
-      photos.forEach((p,i)=>{
-        const px=M+(pw+gap)*(i%4);
-        if(i>0&&i%4===0) y+=ph+gap+6;
-        if(y+ph>280){ doc.addPage(); y=20; }
-        try{ doc.addImage(p,'JPEG',px,y,pw,ph); }catch(e){}
-      });
-    }
-
-    // Footer
-    doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(180,180,180);
-    doc.text(`${cfg.name||'FieldReport Pro'} • Gerado em ${new Date().toLocaleString('pt-BR')} • Pág. ${ri+1}`,W/2,290,'center');
+    if(photos.length){ y+=6; if(y>220){ doc.addPage(); y=20; } doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(0,113,227); doc.text('REGISTROS FOTOGRÁFICOS',M,y); y+=6; doc.setDrawColor(0,113,227); doc.line(M,y,W-M,y); y+=5; const pw=42, ph=34, gap=4; photos.forEach((p,i)=>{ const px=M+(pw+gap)*(i%4); if(i>0&&i%4===0) y+=ph+gap+6; if(y+ph>280){ doc.addPage(); y=20; } try{ doc.addImage(p,'JPEG',px,y,pw,ph); }catch(e){} }); }
+    doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(180,180,180); doc.text(`${cfg.name||'FieldReport Pro'} • Gerado em ${new Date().toLocaleString('pt-BR')} • Pág. ${ri+1}`,W/2,290,'center');
   });
-
-  const fname=`RDO_${reports[0].contractName.replace(/\s/g,'_')}_${reports[0].date}.pdf`;
-  doc.save(fname);
+  const fname=`RDO_${reports[0].contractName.replace(/\s/g,'_')}_${reports[0].date}.pdf`; doc.save(fname);
 }
-
-// ─── Excel ───
-// Premissa do app: todos os relatórios do MESMO contrato no MESMO dia viram uma
-// ÚNICA aba na planilha exportada (ex.: os 4 relatórios de turno de um contrato
-// no mesmo dia = 1 aba só, não 4). As fotos de cada relatório entram na aba
-// compilada em quantidade proporcional ao número de relatórios do dia, para caber
-// no número fixo de espaços de foto da planilha (ver distributePhotosForExport).
-function uniqueSheetName(base,usedNames){
-  const clean=base.replace(/[\\\/\?\*\[\]:]/g,'-').trim()||'Relatório';
-  let name=clean.substring(0,31);
-  let i=2;
-  while(usedNames.has(name)){
-    const suffix=' ('+i+')';
-    name=clean.substring(0,Math.max(1,31-suffix.length))+suffix;
-    i++;
-  }
-  usedNames.add(name);
-  return name;
-}
-
-// Distribui as fotos dos N relatórios do dia pelos T espaços de foto da planilha
-// resultado. Ex.: 4 relatórios com 4 fotos cada, 4 espaços -> 1 foto de cada.
-// 2 relatórios, 4 espaços -> 2 fotos de cada. Sobra de espaços vai para os
-// primeiros relatórios da lista.
+function uniqueSheetName(base,usedNames){ const clean=base.replace(/[\\\/\?\*\[\]:]/g,'-').trim()||'Relatório'; let name=clean.substring(0,31); let i=2; while(usedNames.has(name)){ const suffix=' ('+i+')'; name=clean.substring(0,Math.max(1,31-suffix.length))+suffix; i++; } usedNames.add(name); return name; }
 function distributePhotosForExport(reports,totalSlots){
-  const n=reports.length;
-  if(!n||!totalSlots) return [];
-  const base=Math.floor(totalSlots/n);
-  let remainder=totalSlots-base*n;
-  const result=[];
-  reports.forEach(r=>{
-    let take=base+(remainder>0?1:0);
-    if(remainder>0) remainder--;
-    const photos=(r.photos||[]).filter(p=>p).slice(0,take);
-    photos.forEach(p=>result.push({ src:p, shift:r.shift, supervisor:r.supervisorName }));
-  });
+  const n=reports.length; if(!n||!totalSlots) return []; const base=Math.floor(totalSlots/n); let remainder=totalSlots-base*n; const result=[];
+  reports.forEach(r=>{ let take=base+(remainder>0?1:0); if(remainder>0) remainder--; const photos=(r.photos||[]).filter(p=>p).slice(0,take); photos.forEach(p=>result.push({ src:p, shift:r.shift, supervisor:r.supervisorName })); });
   return result.slice(0,totalSlots);
 }
-
-function dataUrlToArrayBuffer(dataUrl){
-  const base64=dataUrl.split(',')[1];
-  const binary=atob(base64);
-  const buf=new Uint8Array(binary.length);
-  for(let i=0;i<binary.length;i++) buf[i]=binary.charCodeAt(i);
-  return buf.buffer;
-}
-
-// Se o contrato tiver um modelo Excel cadastrado (Modelos de Relatório), suas abas
-// originais são copiadas para o arquivo exportado EXATAMENTE como enviadas —
-// formatação, bordas e o bloco de assinaturas do modelo ficam preservados,
-// porque copiamos o arquivo real em vez de recriá-lo do zero.
-async function appendTemplateSheets(destWb,dataUrl,labelPrefix,usedNames){
+function dataUrlToArrayBuffer(dataUrl){ const base64=dataUrl.split(',')[1]; const binary=atob(base64); const buf=new Uint8Array(binary.length); for(let i=0;i<binary.length;i++) buf[i]=binary.charCodeAt(i); return buf.buffer; }
+async function appendTemplateSheets(destWb,arrayBuffer,labelPrefix,usedNames){
   try{
-    const srcWb=new ExcelJS.Workbook();
-    await srcWb.xlsx.load(dataUrlToArrayBuffer(dataUrl));
+    const srcWb=new ExcelJS.Workbook(); await srcWb.xlsx.load(arrayBuffer);
     srcWb.worksheets.forEach(srcWs=>{
-      const name=uniqueSheetName(labelPrefix+' - '+srcWs.name,usedNames);
-      const destWs=destWb.addWorksheet(name,{ pageSetup:srcWs.pageSetup });
+      const name=uniqueSheetName(labelPrefix+' - '+srcWs.name,usedNames); const destWs=destWb.addWorksheet(name,{ pageSetup:srcWs.pageSetup });
       if(srcWs.columns) destWs.columns=srcWs.columns.map(c=>({ width:c.width }));
-      srcWs.eachRow({ includeEmpty:true },(row,rowNumber)=>{
-        const destRow=destWs.getRow(rowNumber);
-        row.eachCell({ includeEmpty:true },(cell,colNumber)=>{
-          const destCell=destRow.getCell(colNumber);
-          destCell.value=cell.value;
-          if(cell.style) destCell.style=JSON.parse(JSON.stringify(cell.style));
-        });
-        if(row.height) destRow.height=row.height;
-        destRow.commit();
-      });
-      const merges=srcWs.model&&srcWs.model.merges?srcWs.model.merges:[];
-      merges.forEach(range=>{ try{ destWs.mergeCells(range); }catch(e){} });
+      srcWs.eachRow({ includeEmpty:true },(row,rowNumber)=>{ const destRow=destWs.getRow(rowNumber); row.eachCell({ includeEmpty:true },(cell,colNumber)=>{ const destCell=destRow.getCell(colNumber); destCell.value=cell.value; if(cell.style) destCell.style=JSON.parse(JSON.stringify(cell.style)); }); if(row.height) destRow.height=row.height; destRow.commit(); });
+      const merges=srcWs.model&&srcWs.model.merges?srcWs.model.merges:[]; merges.forEach(range=>{ try{ destWs.mergeCells(range); }catch(e){} });
     });
     return true;
-  }catch(e){
-    console.error('appendTemplateSheets failed',e);
-    toast('Não foi possível ler o modelo Excel deste contrato — verifique se o arquivo não está corrompido.','warn');
-    return false;
-  }
+  }catch(e){ console.error('appendTemplateSheets failed',e); toast('Não foi possível ler o modelo Excel deste contrato — verifique se o arquivo não está corrompido.','warn'); return false; }
 }
-
 async function buildContractDaySheet(wb,group,cfg,usedNames){
-  const THIN={ style:'thin', color:{ argb:'FF000000' } };
-  const FULL={ top:THIN, left:THIN, bottom:THIN, right:THIN };
-  const lastCol=9;
+  const THIN={ style:'thin', color:{ argb:'FF000000' } }; const FULL={ top:THIN, left:THIN, bottom:THIN, right:THIN }; const lastCol=9;
   const sheetName=uniqueSheetName(group.contractName+' '+fmtDate(group.date),usedNames);
   const ws=wb.addWorksheet(sheetName,{ pageSetup:{ paperSize:9, orientation:'landscape', fitToPage:true, fitToWidth:1, fitToHeight:0, margins:{ left:0.4,right:0.4,top:0.5,bottom:0.5,header:0.2,footer:0.2 } } });
   ws.columns=[{width:4},{width:16},{width:20},{width:24},{width:46},{width:26},{width:26},{width:26},{width:30}];
-
   let row=1;
-  ws.mergeCells(row,1,row,lastCol);
-  ws.getCell(row,1).value=(cfg.companyName||cfg.name||'').toUpperCase();
-  ws.getCell(row,1).font={ bold:true, size:14 };
-  ws.getCell(row,1).alignment={ horizontal:'center' };
-  row++;
-
-  ws.mergeCells(row,1,row,lastCol);
-  ws.getCell(row,1).value='RELATÓRIO DIÁRIO DE OBRA — COMPILADO DO DIA';
-  ws.getCell(row,1).font={ bold:true, size:12 };
-  ws.getCell(row,1).alignment={ horizontal:'center' };
-  row++;
-
-  ws.mergeCells(row,1,row,4);
-  ws.getCell(row,1).value='Contrato: '+group.contractName;
-  ws.getCell(row,1).font={ bold:true };
-  ws.mergeCells(row,5,row,lastCol);
-  ws.getCell(row,5).value='Data: '+fmtDate(group.date)+'  ·  '+group.reports.length+' relatório(s) compilado(s)';
-  ws.getCell(row,5).font={ bold:true };
-  row+=2;
-
+  ws.mergeCells(row,1,row,lastCol); ws.getCell(row,1).value=(cfg.companyName||cfg.name||'').toUpperCase(); ws.getCell(row,1).font={ bold:true, size:14 }; ws.getCell(row,1).alignment={ horizontal:'center' }; row++;
+  ws.mergeCells(row,1,row,lastCol); ws.getCell(row,1).value='RELATÓRIO DIÁRIO DE OBRA — COMPILADO DO DIA'; ws.getCell(row,1).font={ bold:true, size:12 }; ws.getCell(row,1).alignment={ horizontal:'center' }; row++;
+  ws.mergeCells(row,1,row,4); ws.getCell(row,1).value='Contrato: '+group.contractName; ws.getCell(row,1).font={ bold:true };
+  ws.mergeCells(row,5,row,lastCol); ws.getCell(row,5).value='Data: '+fmtDate(group.date)+'  ·  '+group.reports.length+' relatório(s) compilado(s)'; ws.getCell(row,5).font={ bold:true }; row+=2;
   const headerRow=row;
-  ['#','TURNO','SUPERVISOR','LOCAL','ATIVIDADES','INSPEÇÕES','INTERRUPÇÕES','SEGURANÇA','ENVOLVIDOS'].forEach((h,i)=>{
-    const cell=ws.getCell(headerRow,i+1);
-    cell.value=h;
-    cell.font={ bold:true, color:{ argb:'FFFFFFFF' } };
-    cell.fill={ type:'pattern', pattern:'solid', fgColor:{ argb:'FF0071E3' } };
-    cell.alignment={ horizontal:'center', vertical:'middle', wrapText:true };
-    cell.border=FULL;
-  });
+  ['#','TURNO','SUPERVISOR','LOCAL','ATIVIDADES','INSPEÇÕES','INTERRUPÇÕES','SEGURANÇA','ENVOLVIDOS'].forEach((h,i)=>{ const cell=ws.getCell(headerRow,i+1); cell.value=h; cell.font={ bold:true, color:{ argb:'FFFFFFFF' } }; cell.fill={ type:'pattern', pattern:'solid', fgColor:{ argb:'FF0071E3' } }; cell.alignment={ horizontal:'center', vertical:'middle', wrapText:true }; cell.border=FULL; }); row++;
+  group.reports.forEach((r,i)=>{ const r0=row; [i+1,r.shift,r.supervisorName,r.location,r.activities.join('\n\n'),r.inspections,r.interruptions,r.safety,r.involved].forEach((v,ci)=>{ const cell=ws.getCell(r0,ci+1); cell.value=v; cell.alignment={ vertical:'top', wrapText:true }; cell.border=FULL; }); const lineCount=(r.activities.join('\n').match(/\n/g)||[]).length+3; ws.getRow(r0).height=Math.max(60,Math.min(220,16*lineCount)); row++; });
   row++;
-
-  group.reports.forEach((r,i)=>{
-    const r0=row;
-    [i+1,r.shift,r.supervisorName,r.location,r.activities.join('\n\n'),r.inspections,r.interruptions,r.safety,r.involved].forEach((v,ci)=>{
-      const cell=ws.getCell(r0,ci+1);
-      cell.value=v;
-      cell.alignment={ vertical:'top', wrapText:true };
-      cell.border=FULL;
-    });
-    const lineCount=(r.activities.join('\n').match(/\n/g)||[]).length+3;
-    ws.getRow(r0).height=Math.max(60,Math.min(220,16*lineCount));
-    row++;
-  });
-  row++;
-
-  // Fotos — distribuídas proporcionalmente entre os relatórios do dia (ver distributePhotosForExport)
-  const PHOTO_SLOTS=4;
-  const distributed=distributePhotosForExport(group.reports,PHOTO_SLOTS);
+  const PHOTO_SLOTS=4; const distributed=distributePhotosForExport(group.reports,PHOTO_SLOTS);
   if(distributed.length){
-    ws.mergeCells(row,1,row,lastCol);
-    ws.getCell(row,1).value='REGISTROS FOTOGRÁFICOS';
-    ws.getCell(row,1).font={ bold:true };
-    row++;
-    const photoRow=row;
-    const colsPerPhoto=Math.max(1,Math.floor(lastCol/PHOTO_SLOTS));
-    for(let i=0;i<distributed.length;i++){
-      const startCol=1+i*colsPerPhoto;
-      const endCol=(i===distributed.length-1)?lastCol:Math.min(startCol+colsPerPhoto-1,lastCol);
-      ws.mergeCells(photoRow,startCol,photoRow+8,endCol);
-      ws.getCell(photoRow,startCol).border=FULL;
-      try{
-        const photoSrc=distributed[i].src;
-        let imgId;
-        if(photoSrc.startsWith('data:')){
-          const ext=photoSrc.includes('image/png')?'png':'jpeg';
-          imgId=wb.addImage({ base64:photoSrc.split(',')[1], extension:ext });
-        }else{
-          const resp=await fetch(photoSrc);
-          if(!resp.ok) throw new Error('download failed: '+resp.status);
-          const ct=resp.headers.get('content-type')||'';
-          const ext=(ct.includes('png')||photoSrc.toLowerCase().includes('.png'))?'png':'jpeg';
-          const buffer=await resp.arrayBuffer();
-          imgId=wb.addImage({ buffer, extension:ext });
-        }
-        ws.addImage(imgId,{ tl:{ col:startCol-1+0.15, row:photoRow-1+0.15 }, ext:{ width:150, height:110 } });
-      }catch(e){ console.error('photo embed failed',e); }
-    }
+    ws.mergeCells(row,1,row,lastCol); ws.getCell(row,1).value='REGISTROS FOTOGRÁFICOS'; ws.getCell(row,1).font={ bold:true }; row++;
+    const photoRow=row; const colsPerPhoto=Math.max(1,Math.floor(lastCol/PHOTO_SLOTS));
+    for(let i=0;i<distributed.length;i++){ const startCol=1+i*colsPerPhoto; const endCol=(i===distributed.length-1)?lastCol:Math.min(startCol+colsPerPhoto-1,lastCol); ws.mergeCells(photoRow,startCol,photoRow+8,endCol); ws.getCell(photoRow,startCol).border=FULL; try{ const photoSrc=distributed[i].src; let imgId; if(photoSrc.startsWith('data:')){ const ext=photoSrc.includes('image/png')?'png':'jpeg'; imgId=wb.addImage({ base64:photoSrc.split(',')[1], extension:ext }); } else { const resp=await fetch(photoSrc); if(!resp.ok) throw new Error('download failed: '+resp.status); const ct=resp.headers.get('content-type')||''; const ext=(ct.includes('png')||photoSrc.toLowerCase().includes('.png'))?'png':'jpeg'; const buffer=await resp.arrayBuffer(); imgId=wb.addImage({ buffer, extension:ext }); } ws.addImage(imgId,{ tl:{ col:startCol-1+0.15, row:photoRow-1+0.15 }, ext:{ width:150, height:110 } }); }catch(e){ console.error('photo embed failed',e); } }
     row=photoRow+9;
   }
   row++;
-
-  // Assinaturas
-  ws.mergeCells(row,1,row,lastCol);
-  ws.getCell(row,1).value='ASSINATURAS';
-  ws.getCell(row,1).font={ bold:true };
-  row++;
-  const sigLabels=['Supervisor Responsável','Fiscalização / Contratante','Engenheiro Responsável'];
-  const sigColSpan=Math.floor(lastCol/sigLabels.length);
-  const sigRowStart=row;
-  sigLabels.forEach((label,i)=>{
-    const startCol=1+i*sigColSpan;
-    const endCol=(i===sigLabels.length-1)?lastCol:startCol+sigColSpan-1;
-    ws.mergeCells(sigRowStart,startCol,sigRowStart+2,endCol);
-    ws.getCell(sigRowStart,startCol).border=FULL;
-    ws.mergeCells(sigRowStart+3,startCol,sigRowStart+3,endCol);
-    const lc=ws.getCell(sigRowStart+3,startCol);
-    lc.value=label; lc.alignment={ horizontal:'center' }; lc.font={ size:10 };
-    lc.border={ top:THIN };
-  });
+  ws.mergeCells(row,1,row,lastCol); ws.getCell(row,1).value='ASSINATURAS'; ws.getCell(row,1).font={ bold:true }; row++;
+  const sigLabels=['Supervisor Responsável','Fiscalização / Contratante','Engenheiro Responsável']; const sigColSpan=Math.floor(lastCol/sigLabels.length); const sigRowStart=row;
+  sigLabels.forEach((label,i)=>{ const startCol=1+i*sigColSpan; const endCol=(i===sigLabels.length-1)?lastCol:startCol+sigColSpan-1; ws.mergeCells(sigRowStart,startCol,sigRowStart+2,endCol); ws.getCell(sigRowStart,startCol).border=FULL; ws.mergeCells(sigRowStart+3,startCol,sigRowStart+3,endCol); const lc=ws.getCell(sigRowStart+3,startCol); lc.value=label; lc.alignment={ horizontal:'center' }; lc.font={ size:10 }; lc.border={ top:THIN }; });
   row=sigRowStart+4;
-
-  // Borda externa fiel ao redor de toda a área usada da planilha
   const usedLastRow=row-1;
-  for(let rr=1;rr<=usedLastRow;rr++){
-    for(let cc=1;cc<=lastCol;cc++){
-      const cell=ws.getCell(rr,cc);
-      const b=Object.assign({},cell.border);
-      if(rr===1) b.top=THIN;
-      if(rr===usedLastRow) b.bottom=THIN;
-      if(cc===1) b.left=THIN;
-      if(cc===lastCol) b.right=THIN;
-      cell.border=b;
-    }
-  }
+  for(let rr=1;rr<=usedLastRow;rr++){ for(let cc=1;cc<=lastCol;cc++){ const cell=ws.getCell(rr,cc); const b=Object.assign({},cell.border); if(rr===1) b.top=THIN; if(rr===usedLastRow) b.bottom=THIN; if(cc===1) b.left=THIN; if(cc===lastCol) b.right=THIN; cell.border=b; } }
 }
-
 async function exportXLSX(reports){
   if(typeof ExcelJS==='undefined'){ toast('Biblioteca de exportação XLSX não carregou — verifique a conexão e tente novamente.','error'); return; }
-  const cfg=DB.appConfig;
-  const wb=new ExcelJS.Workbook();
-  wb.creator=cfg.companyName||cfg.name||'FieldReport Pro';
-  wb.created=new Date();
-
-  // Agrupa por contrato + data: essa é a unidade que vira uma única aba
-  const byKey={};
-  reports.forEach(r=>{
-    const key=r.contractId+'|'+r.date;
-    if(!byKey[key]) byKey[key]={ contractId:r.contractId, contractName:r.contractName, date:r.date, reports:[] };
-    byKey[key].reports.push(r);
-  });
-
+  const cfg=DB.appConfig; const wb=new ExcelJS.Workbook(); wb.creator=cfg.companyName||cfg.name||'FieldReport Pro'; wb.created=new Date();
+  const byKey={}; reports.forEach(r=>{ const key=r.contractId+'|'+r.date; if(!byKey[key]) byKey[key]={ contractId:r.contractId, contractName:r.contractName, date:r.date, reports:[] }; byKey[key].reports.push(r); });
   const usedNames=new Set();
-  for(const key of Object.keys(byKey)){
-    const group=byKey[key];
-    const tpl=DB.templates.find(t=>t.contractId===group.contractId && t.fileData);
-    if(tpl) await appendTemplateSheets(wb, tpl.fileData, group.contractName+' '+fmtDate(group.date), usedNames);
-    await buildContractDaySheet(wb, group, cfg, usedNames);
-  }
-
-  const buf=await wb.xlsx.writeBuffer();
-  const blob=new Blob([buf],{ type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-  const fname=`RDO_${reports[0].date}.xlsx`;
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob); a.download=fname;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  for(const key of Object.keys(byKey)){ const group=byKey[key]; const tpl=DB.templates.find(t=>t.contractId===group.contractId && t.storagePath); if(tpl){ try{ const buf=await fetchTemplateArrayBuffer(tpl.storagePath); await appendTemplateSheets(wb, buf, group.contractName+' '+fmtDate(group.date), usedNames); }catch(e){ console.error('template load failed',e); toast('Não foi possível carregar o modelo Excel deste contrato — usando formato padrão.','warn'); } } await buildContractDaySheet(wb, group, cfg, usedNames); }
+  const buf=await wb.xlsx.writeBuffer(); const blob=new Blob([buf],{ type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }); const fname=`RDO_${reports[0].date}.xlsx`;
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
-
-// ─── Google Sheets ───
 async function exportToSheets(reports){
-  const sheetId=DB.appConfig.sheetsId;
-  const apiKey=DB.appConfig.sheetsKey;
-  if(!sheetId||!apiKey){
-    toast('Configure o Google Sheets em Configurações antes de exportar','warn'); return;
-  }
-  const rows=reports.map(r=>[
-    fmtDate(r.date), r.shift, r.supervisorName, r.contractName, r.location,
-    r.activities.join(' | '), r.inspections, r.interruptions, r.safety, r.involved,
-    new Date(r.createdAt).toLocaleString('pt-BR')
-  ]);
-  try{
-    const res=await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append?valueInputOption=USER_ENTERED&key=${apiKey}`,
-      { method:'POST', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ values:rows }) }
-    );
-    if(!res.ok) throw new Error('Resposta inválida do Google Sheets');
-    toast('Dados enviados ao Google Sheets!','success');
-  } catch(e){
-    toast('Erro ao enviar para Google Sheets: '+e.message,'error');
-  }
+  const sheetId=DB.appConfig.sheetsId; const apiKey=DB.appConfig.sheetsKey;
+  if(!sheetId||!apiKey){ toast('Configure o Google Sheets em Configurações antes de exportar','warn'); return; }
+  const rows=reports.map(r=>[ fmtDate(r.date), r.shift, r.supervisorName, r.contractName, r.location, r.activities.join(' | '), r.inspections, r.interruptions, r.safety, r.involved, new Date(r.createdAt).toLocaleString('pt-BR') ]);
+  try{ const res=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append?valueInputOption=USER_ENTERED&key=${apiKey}`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ values:rows }) }); if(!res.ok) throw new Error('Resposta inválida do Google Sheets'); toast('Dados enviados ao Google Sheets!','success'); } catch(e){ toast('Erro ao enviar para Google Sheets: '+e.message,'error'); }
 }
-
-// ═══════════════════════════════════
-// MODAL HELPERS
-// ═══════════════════════════════════
-function openModal(title,body,footer){
-  document.getElementById('modalTitle').textContent=title;
-  document.getElementById('modalBody').innerHTML=body;
-  document.getElementById('modalFooter').innerHTML=footer||'';
-  document.getElementById('modalOverlay').classList.remove('hidden');
-}
+function openModal(title,body,footer){ document.getElementById('modalTitle').textContent=title; document.getElementById('modalBody').innerHTML=body; document.getElementById('modalFooter').innerHTML=footer||''; document.getElementById('modalOverlay').classList.remove('hidden'); }
 function closeModal(){ document.getElementById('modalOverlay').classList.add('hidden'); }
 document.getElementById('modalOverlay').addEventListener('click',e=>{ if(e.target===document.getElementById('modalOverlay')) closeModal(); });
-
 let _confirmCallback=null;
-function showConfirm(title,text,onConfirm){
-  _confirmCallback=onConfirm;
-  openModal('',`
-    <div class="confirm-icon">⚠️</div>
-    <div class="confirm-title">${title}</div>
-    <div class="confirm-text">${text}</div>
-  `,`
-    <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-    <button class="btn btn-danger" onclick="closeModal();runConfirmCallback()">Confirmar</button>
-  `);
-}
-function runConfirmCallback(){
-  const cb=_confirmCallback; _confirmCallback=null;
-  if(typeof cb==='function') cb();
-}
-
-// ═══════════════════════════════════
-// TOAST
-// ═══════════════════════════════════
+function showConfirm(title,text,onConfirm){ _confirmCallback=onConfirm; openModal('',`<div class="confirm-icon">⚠️</div><div class="confirm-title">${title}</div><div class="confirm-text">${text}</div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-danger" onclick="closeModal();runConfirmCallback()">Confirmar</button>`); }
+function runConfirmCallback(){ const cb=_confirmCallback; _confirmCallback=null; if(typeof cb==='function') cb(); }
 function toast(msg,type='info'){
-  const icons={success:'✅',error:'❌',warn:'⚠️',info:'ℹ️'};
-  const t=document.createElement('div');
-  t.className=`toast toast-${type}`;
-  t.innerHTML=`<span class="toast-icon">${icons[type]||'ℹ️'}</span><span class="toast-msg">${msg}</span>`;
-  document.getElementById('toastContainer').appendChild(t);
-  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(20px)'; t.style.transition='all .3s'; setTimeout(()=>t.remove(),300); },3500);
+  const icons={success:'✅',error:'❌',warn:'⚠️',info:'ℹ️'}; const t=document.createElement('div'); t.className=`toast toast-${type}`; t.innerHTML=`<span class="toast-icon">${icons[type]||'ℹ️'}</span><span class="toast-msg">${msg}</span>`;
+  document.getElementById('toastContainer').appendChild(t); setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(20px)'; t.style.transition='all .3s'; setTimeout(()=>t.remove(),300); },3500);
 }
-
-// ═══════════════════════════════════
-// UTILS
-// ═══════════════════════════════════
-function fmtDate(d){
-  if(!d) return '—';
-  try{ return new Date(d+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}); }
-  catch(e){ return d; }
-}
-
-// ═══════════════════════════════════
-// INIT
-// ═══════════════════════════════════
-applyAppConfig();
+function fmtDate(d){ if(!d) return '—'; try{ return new Date(d+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}); } catch(e){ return d; } }
 showScreen('screen-login');
+loadPublicBranding();
 </script>
-</body>
-</html>
+
+</body></html>
