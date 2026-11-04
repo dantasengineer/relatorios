@@ -239,6 +239,62 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .success-icon{font-size:56px;margin-bottom:20px}
 .success-title{font-size:24px;font-weight:700;letter-spacing:-.4px;margin-bottom:10px}
 .success-text{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:32px}
+/* ── Gestão financeira (perfil Gerência) ── */
+.fin{--fin-pos:#1B873A;--fin-neg:#C0001A;--fin-warn:#B35900;--fin-info:var(--blue);display:grid;gap:22px;min-width:0}
+.fin-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 20px}
+.fin-head .fin-title{margin-right:auto;min-width:0}
+.fin-comp{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em}
+.fin select,.fin input,.fin textarea{font:inherit;font-size:14px;color:var(--text);background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius-xs);padding:8px 10px;min-width:0;outline:none}
+.fin select:focus,.fin input:focus,.fin textarea:focus{border-color:var(--blue)}
+.fin-tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--border2)}
+.fin-tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;font:600 13px var(--font);color:var(--text2);cursor:pointer;white-space:nowrap}
+.fin-tabs button[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+.fin h2{font-size:17px;font-weight:700;letter-spacing:-.2px}
+.fin-sec{display:grid;gap:12px;min-width:0}
+.fin-sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.fin-sec-head p{color:var(--text2);font-size:13px}
+.fin-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.fin-kpi{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;display:grid;gap:4px;min-width:0}
+.fin-kpi .l{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);font-weight:700}
+.fin-kpi .v{font-size:22px;font-weight:700;letter-spacing:-.3px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.fin-kpi .s{font-size:12px;color:var(--text2)}
+.fin .num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.fin .pos{color:var(--fin-pos)}.fin .neg{color:var(--fin-neg)}.fin .muted{color:var(--text2)}
+.fin-tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:var(--shadow)}
+.fin-tbl table{border-collapse:collapse;width:100%;font-size:13px}
+.fin-tbl th,.fin-tbl td{padding:9px 14px;border-bottom:1px solid var(--border2);text-align:left;vertical-align:middle}
+.fin-tbl th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);font-weight:700;background:var(--surface2);white-space:nowrap}
+.fin-tbl tr:last-child td{border-bottom:0}
+.fin-tbl td:first-child{min-width:190px}
+.fin-tbl tr.tot td{font-weight:700;background:var(--surface2)}
+.fin-tbl tr.click{cursor:pointer}.fin-tbl tr.click:hover td{background:var(--blue-light)}
+.fin-tbl tr.l1 td{font-weight:600}
+.fin-tbl tr.ind td:first-child{padding-left:28px;color:var(--text2)}
+.fin-grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+@media (max-width:1100px){.fin-grid2{grid-template-columns:minmax(0,1fr)}}
+.fin-pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid currentColor;white-space:nowrap}
+.fin-alerts{display:grid;gap:8px}
+.fin-alert{display:grid;grid-template-columns:4px 1fr;gap:12px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 14px 10px 0;overflow:hidden}
+.fin-alert::before{content:"";background:var(--c,var(--fin-info));border-radius:0 3px 3px 0}
+.fin-alert b{display:block;font-size:13px}.fin-alert span{color:var(--text2);font-size:13px}
+.fin-bar{height:6px;background:var(--border2);border-radius:3px;overflow:hidden;min-width:60px}
+.fin-bar i{display:block;height:100%;background:var(--blue)}
+.fin-form{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;display:grid;gap:14px}
+.fin-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 12px}
+.fin-fields label{display:grid;gap:4px;font-size:12px;color:var(--text2);font-weight:600;min-width:0}
+.fin-fields label.wide{grid-column:1/-1}
+.fin-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fin .lnk{background:none;border:0;color:var(--blue);font:600 12px var(--font);cursor:pointer;padding:2px 4px}
+.fin .lnk.del{color:var(--danger)}
+.fin td input.inl{width:78px;padding:4px 6px;text-align:right}
+.fin td select.inl{padding:4px 6px;font-size:12px}
+.fin-empty{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);padding:22px;color:var(--text2);display:grid;gap:6px}
+.fin-empty b{color:var(--text)}
+.fin-note{font-size:12px;color:var(--text2);max-width:80ch}
+.fin-chart{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;overflow-x:auto}
+.fin-chart svg{display:block;min-width:640px;width:100%;height:auto}
+.fin-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--text2);padding:6px 4px 0}
+.fin-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 </style>
 </head>
 <body>
@@ -464,6 +520,8 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <div class="admin-sidebar-section">Principal</div>
       <div class="sidebar-item active" onclick="adminNav('dashboard',this)"><span class="sidebar-item-icon">📊</span>Dashboard</div>
       <div class="sidebar-item" onclick="adminNav('reports',this)"><span class="sidebar-item-icon">📋</span>Relatórios</div>
+      <div class="admin-sidebar-section hidden" id="sidebarSectionGerencia">Gerência</div>
+      <div class="sidebar-item hidden" id="sidebarItemFinance" onclick="adminNav('finance',this)"><span class="sidebar-item-icon">💰</span>Gestão financeira</div>
       <div class="admin-sidebar-section" id="sidebarSectionCadastros">Cadastros</div>
       <div class="sidebar-item" id="sidebarItemUsers" onclick="adminNav('users',this)"><span class="sidebar-item-icon">👤</span>Colaboradores</div>
       <div class="sidebar-item" onclick="adminNav('contracts',this)"><span class="sidebar-item-icon">📁</span>Contratos</div>
@@ -585,7 +643,7 @@ async function bootstrapAfterLogin(){
     DB.contracts = contractsRes.contracts || [];
     const reportsRes = await apiData('reports','list');
     DB.reports = reportsRes.reports || [];
-    if(role==='admin'){
+    if(role==='admin'||role==='gerencia'){
       const settingsRes = await apiData('settings','get').catch(()=>null);
       if(settingsRes && settingsRes.settings){ const s = settingsRes.settings; DB.appConfig = { name:s.name, logo:s.logo_url, logoText:s.logo_text, companyName:s.company_name, sheetsId:s.sheets_id, sheetsKey:s.sheets_key, defaultExport:s.default_export }; }
     }
@@ -618,7 +676,7 @@ async function doLogin(){
     btn.disabled=false; btn.innerHTML='Entrar';
     if(!ok){ SESSION_TOKEN=null; APP.currentUser=null; return; }
     const user = APP.currentUser;
-    if(user.role==='admin'||user.role==='coordenador'){
+    if(user.role==='admin'||user.role==='gerencia'||user.role==='coordenador'){
       document.getElementById('navAdminName').textContent = user.name;
       applyRolePermissions(user.role); showScreen('screen-admin'); adminNav('dashboard', document.querySelector('.sidebar-item'));
     } else {
@@ -632,12 +690,14 @@ async function doLogin(){
 function showLoginError(msg){ const e=document.getElementById('loginError'); e.textContent=msg; e.classList.remove('hidden'); }
 async function doLogout(){ if(SESSION_TOKEN){ apiData('session','logout').catch(()=>{}); } SESSION_TOKEN=null; APP.currentUser=null; APP.currentReport=null; DB = emptyDB(); showScreen('screen-login'); loadPublicBranding(); }
 function isCoordenador(){ return !!APP.currentUser && APP.currentUser.role==='coordenador'; }
-function isAdminUser(){ return !!APP.currentUser && APP.currentUser.role==='admin'; }
+function isGerencia(){ return !!APP.currentUser && APP.currentUser.role==='gerencia'; }
+function isAdminUser(){ return !!APP.currentUser && (APP.currentUser.role==='admin'||APP.currentUser.role==='gerencia'); }
 function canManage(){ return isAdminUser(); }
 function applyRolePermissions(role){
   const badge=document.getElementById('roleBadge');
   const restrictedIds=['sidebarItemUsers','sidebarItemTemplates','sidebarItemSettings','sidebarItemAppConfig','sidebarSectionConfig'];
-  if(role==='coordenador'){ badge.textContent='Coordenador'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.add('hidden')); } else { badge.textContent='Admin'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.remove('hidden')); }
+  if(role==='coordenador'){ badge.textContent='Coordenador'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.add('hidden')); } else { badge.textContent= role==='gerencia' ? 'Gerência' : 'Admin'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.remove('hidden')); }
+  ['sidebarSectionGerencia','sidebarItemFinance'].forEach(id=>document.getElementById(id)?.classList.toggle('hidden', role!=='gerencia'));
 }
 document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
 document.getElementById('loginUser').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('loginPass').focus(); });
@@ -730,9 +790,10 @@ function previewStoredReport(id){ const r=DB.reports.find(r=>r.id===id); if(!r) 
 const RESTRICTED_PAGES_FOR_COORDENADOR=['users','templates','settings','appconfig'];
 function adminNav(page,el){
   if(isCoordenador() && RESTRICTED_PAGES_FOR_COORDENADOR.includes(page)){ toast('Você não tem permissão para acessar esta área','error'); return; }
+  if(page==='finance' && !isGerencia()){ toast('Somente o perfil Gerência acessa a Gestão financeira','error'); return; }
   document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active')); if(el) el.classList.add('active');
   const main=document.getElementById('adminMain');
-  const renders={dashboard:renderDashboard,reports:renderReports,users:renderUsers,contracts:renderContracts,templates:renderTemplates,settings:renderSettings,appconfig:renderAppConfig};
+  const renders={dashboard:renderDashboard,reports:renderReports,users:renderUsers,contracts:renderContracts,templates:renderTemplates,settings:renderSettings,appconfig:renderAppConfig,finance:window.renderFinance};
   if(renders[page]) renders[page](main);
 }
 async function renderDashboard(main){
@@ -797,21 +858,23 @@ function deleteReport(id){
   if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
   showConfirm('Excluir relatório?','Esta ação não pode ser desfeita.',async ()=>{ try{ await apiData('reports','delete',{ id }); DB.reports=DB.reports.filter(r=>r.id!==id); renderReports(document.getElementById('adminMain')); toast('Relatório excluído','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
-const ROLE_LABELS={ supervisor:'Supervisor', coordenador:'Coordenador' };
+const ROLE_LABELS={ supervisor:'Supervisor', coordenador:'Coordenador', admin:'Admin', gerencia:'Gerência' };
+const ROLE_BADGE={ supervisor:'badge-warn', coordenador:'badge-blue', admin:'badge-green', gerencia:'badge-red' };
+const noContractRole=r=>r==='coordenador'||r==='admin'||r==='gerencia';
 async function renderUsers(main){
   if(isCoordenador()){ toast('Você não tem permissão para acessar esta área','error'); adminNav('dashboard',document.querySelector('.sidebar-item')); return; }
   main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
-  try{ const [usersRes, contractsRes] = await Promise.all([apiData('users','list'), apiData('contracts','list')]); DB.users = usersRes.users || []; DB.contracts = contractsRes.contracts || []; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar colaboradores: ${e.message}</div></div>`; return; }
-  const users=DB.users.filter(u=>u.role!=='admin');
-  main.innerHTML=`<div class="admin-page-title">Colaboradores</div><div class="admin-page-sub">Gerencie os supervisores, coordenadores e seus acessos</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Colaboradores (${users.length})</span><button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Novo Colaborador</button></div>${users.length===0?`<div class="empty-state"><div class="empty-state-icon">👤</div><div class="empty-state-text">Nenhum colaborador cadastrado</div><div class="empty-state-sub">Adicione supervisores ou coordenadores para acessar o sistema</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Login</th><th>Matrícula</th><th>Perfil</th><th>Contrato</th><th>Status</th><th>Ações</th></tr></thead><tbody>${users.map(u=>{ const c=DB.contracts.find(c=>c.id===u.contractId); return `<tr><td><b>${u.name}</b></td><td>${u.login}</td><td>${u.matricula||'—'}</td><td><span class="badge ${u.role==='coordenador'?'badge-blue':'badge-warn'}">${ROLE_LABELS[u.role]||u.role}</span></td><td>${u.role==='coordenador'?'<span class="text-muted">Todos</span>':(c?c.name:'<span class="text-muted">Nenhum</span>')}</td><td><span class="badge ${u.active!==false?'badge-green':'badge-red'}">${u.active!==false?'Ativo':'Inativo'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openUserModal('${u.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteUser('${u.id}')">🗑</button></div></td></tr>`; }).join('')}</tbody></table>`}</div>`;
+  try{ const [usersRes, contractsRes] = await Promise.all([apiData('users','list'), apiData('contracts','list')]); DB.users = usersRes.users || []; DB.canBootstrapGerencia = !!usersRes.canBootstrapGerencia; DB.contracts = contractsRes.contracts || []; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar colaboradores: ${e.message}</div></div>`; return; }
+  const users=isGerencia()?DB.users:DB.users.filter(u=>u.role!=='admin'&&u.role!=='gerencia');
+  main.innerHTML=`<div class="admin-page-title">Colaboradores</div><div class="admin-page-sub">Gerencie os supervisores, coordenadores e seus acessos</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Colaboradores (${users.length})</span><button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Novo Colaborador</button></div>${users.length===0?`<div class="empty-state"><div class="empty-state-icon">👤</div><div class="empty-state-text">Nenhum colaborador cadastrado</div><div class="empty-state-sub">Adicione supervisores ou coordenadores para acessar o sistema</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Login</th><th>Matrícula</th><th>Perfil</th><th>Contrato</th><th>Status</th><th>Ações</th></tr></thead><tbody>${users.map(u=>{ const c=DB.contracts.find(c=>c.id===u.contractId); return `<tr><td><b>${u.name}</b></td><td>${u.login}</td><td>${u.matricula||'—'}</td><td><span class="badge ${ROLE_BADGE[u.role]||'badge-warn'}">${ROLE_LABELS[u.role]||u.role}</span></td><td>${noContractRole(u.role)?'<span class="text-muted">Todos</span>':(c?c.name:'<span class="text-muted">Nenhum</span>')}</td><td><span class="badge ${u.active!==false?'badge-green':'badge-red'}">${u.active!==false?'Ativo':'Inativo'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openUserModal('${u.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteUser('${u.id}')">🗑</button></div></td></tr>`; }).join('')}</tbody></table>`}</div>`;
 }
 function openUserModal(id){
   if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
   const u=id?DB.users.find(u=>u.id===id):null; const role=u?u.role:'supervisor';
   const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${u&&u.contractId===c.id?'selected':''}>${c.name}</option>`).join('');
-  openModal(u?'Editar Colaborador':'Novo Colaborador',`<div class="form-row-2"><div class="form-group"><label>Nome Completo</label><input id="uName" value="${u?u.name:''}" placeholder="Nome do colaborador"></div><div class="form-group"><label>Matrícula</label><input id="uMat" value="${u?u.matricula||'':''}" placeholder="Ex: SUP-001"></div></div><div class="form-row-2"><div class="form-group"><label>Login</label><input id="uLogin" value="${u?u.login:''}" placeholder="login de acesso"></div><div class="form-group"><label>${u?'Nova Senha (deixe em branco para manter)':'Senha'}</label><input id="uPass" type="password" placeholder="••••••••"></div></div><div class="form-row-2"><div class="form-group"><label>Perfil</label><select id="uRole" onchange="toggleUserContractField()"><option value="supervisor" ${role==='supervisor'?'selected':''}>Supervisor</option><option value="coordenador" ${role==='coordenador'?'selected':''}>Coordenador</option></select></div><div class="form-group"><label>Status</label><select id="uActive"><option value="true" ${u&&u.active!==false?'selected':''}>Ativo</option><option value="false" ${u&&u.active===false?'selected':''}>Inativo</option></select></div></div><div class="form-group" id="uContractWrap" style="${role==='coordenador'?'display:none':''}"><label>Contrato Vinculado</label><select id="uContract"><option value="">Nenhum</option>${contractOptions}</select></div><div id="uCoordHint" class="text-sm text-muted" style="${role==='coordenador'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Coordenadores visualizam relatórios e contratos de todos os contratos automaticamente e podem exportar relatórios, mas não podem cadastrar, editar ou excluir nada, nem acessar esta aba de Colaboradores.</div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveUser('${id||''}')">Salvar</button>`);
+  openModal(u?'Editar Colaborador':'Novo Colaborador',`<div class="form-row-2"><div class="form-group"><label>Nome Completo</label><input id="uName" value="${u?u.name:''}" placeholder="Nome do colaborador"></div><div class="form-group"><label>Matrícula</label><input id="uMat" value="${u?u.matricula||'':''}" placeholder="Ex: SUP-001"></div></div><div class="form-row-2"><div class="form-group"><label>Login</label><input id="uLogin" value="${u?u.login:''}" placeholder="login de acesso"></div><div class="form-group"><label>${u?'Nova Senha (deixe em branco para manter)':'Senha'}</label><input id="uPass" type="password" placeholder="••••••••"></div></div><div class="form-row-2"><div class="form-group"><label>Perfil</label><select id="uRole" onchange="toggleUserContractField()"><option value="supervisor" ${role==='supervisor'?'selected':''}>Supervisor</option><option value="coordenador" ${role==='coordenador'?'selected':''}>Coordenador</option>${isGerencia()?`<option value="admin" ${role==='admin'?'selected':''}>Admin</option>`:''}${(isGerencia()||(!u&&DB.canBootstrapGerencia))?`<option value="gerencia" ${role==='gerencia'?'selected':''}>Gerência</option>`:''}</select></div><div class="form-group"><label>Status</label><select id="uActive"><option value="true" ${u&&u.active!==false?'selected':''}>Ativo</option><option value="false" ${u&&u.active===false?'selected':''}>Inativo</option></select></div></div><div class="form-group" id="uContractWrap" style="${noContractRole(role)?'display:none':''}"><label>Contrato Vinculado</label><select id="uContract"><option value="">Nenhum</option>${contractOptions}</select></div><div id="uCoordHint" class="text-sm text-muted" style="${role==='coordenador'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Coordenadores visualizam relatórios e contratos de todos os contratos automaticamente e podem exportar relatórios, mas não podem cadastrar, editar ou excluir nada, nem acessar esta aba de Colaboradores.</div><div id="uAdminHint" class="text-sm text-muted" style="${role==='admin'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Admin faz a administração operacional: relatórios, colaboradores, contratos, modelos e configurações. Não acessa a Gestão financeira.</div><div id="uGerHint" class="text-sm text-muted" style="${role==='gerencia'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Gerência tem controle de todo o app, inclusive a Gestão financeira e o cadastro de perfis Admin e Gerência.</div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveUser('${id||''}')">Salvar</button>`);
 }
-function toggleUserContractField(){ const role=document.getElementById('uRole').value; document.getElementById('uContractWrap').style.display = role==='coordenador'?'none':''; document.getElementById('uCoordHint').style.display = role==='coordenador'?'':'none'; }
+function toggleUserContractField(){ const role=document.getElementById('uRole').value; document.getElementById('uContractWrap').style.display = noContractRole(role)?'none':''; document.getElementById('uCoordHint').style.display = role==='coordenador'?'':'none'; document.getElementById('uAdminHint').style.display = role==='admin'?'':'none'; document.getElementById('uGerHint').style.display = role==='gerencia'?'':'none'; }
 async function saveUser(id){
   if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
   const name=document.getElementById('uName').value.trim(); const login=document.getElementById('uLogin').value.trim(); const pass=document.getElementById('uPass').value; const mat=document.getElementById('uMat').value.trim(); const role=document.getElementById('uRole').value; const contract=document.getElementById('uContract').value; const active=document.getElementById('uActive').value==='true';
@@ -819,7 +882,7 @@ async function saveUser(id){
   try{
     if(id){ await apiData('users','update',{ id, name, login, matricula:mat, role, contractId:contract||null, active, password:pass||null }); } else { await apiData('users','create',{ name, login, password:pass, matricula:mat, role, contractId:contract||null, active }); }
     closeModal(); renderUsers(document.getElementById('adminMain')); toast(id?'Colaborador atualizado':'Colaborador cadastrado','success');
-  }catch(e){ const msg = e.message==='login_taken' ? 'Login já em uso por outro colaborador' : 'Não foi possível salvar: '+e.message; toast(msg,'error'); }
+  }catch(e){ const msg = e.message==='login_taken' ? 'Login já em uso por outro colaborador' : e.message==='forbidden' ? 'Somente a Gerência pode cadastrar ou alterar perfis Admin e Gerência' : 'Não foi possível salvar: '+e.message; toast(msg,'error'); }
 }
 function deleteUser(id){
   if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
@@ -1143,5 +1206,357 @@ function fmtDate(d){ if(!d) return '—'; try{ return new Date(d+'T12:00').toLoc
 showScreen('screen-login');
 loadPublicBranding();
 </script>
+<script>
+// ═══ GESTÃO FINANCEIRA (perfil Gerência) ═══════════════════════════════
+// DRE gerencial por contrato e consolidada, ROI, entradas por BM com previsão de dias,
+// despesas por centro de custo e fluxo de caixa de 13 semanas. Dados: tabelas fin_* via função "data".
+(function(){
+const FTABS=[["geral","Visão geral"],["contratos","Contratos"],["entradas","Entradas (BMs)"],["despesas","Despesas"],["caixa","Fluxo de caixa"],["param","Parâmetros"]];
+const CATS=["Mão de obra (salários)","Encargos e benefícios","Alimentação / alojamento","Transporte de pessoal","Materiais e consumíveis","EPI e segurança","Equipamentos / locação","Combustível e manutenção","Subcontratados","Seguros e garantias","Tributos não incidentes s/ receita","Administrativo","Outros"];
+const ST_ENT=["BM emitido","BM aprovado","NF emitida","Recebido"];
+const DEF_CFG={aliquota:19.53,retencao:10,fonte:11,saldoInicial:0,dataSaldo:""};
+const S={contratos:new Map(),entradas:new Map(),despesas:new Map(),cfg:{...DEF_CFG},tab:"geral",comp:null,edit:{c:null,e:null,d:null},loaded:false,busy:false};
+let ROOT=null;
 
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const BRL=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+const money=v=>BRL.format(v||0);
+const pct=v=>(isFinite(v)?(v*100).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})+"%":"—");
+const plain=v=>(v===null||v===undefined||v==="")?"":Number(v).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+function num(v){ if(v===null||v===undefined) return NaN; let s=String(v).trim().replace(/R\$\s?/,""); if(!s) return NaN; if(s.includes(",")) s=s.replace(/\./g,"").replace(",","."); return parseFloat(s); }
+const n0=v=>{const x=num(v);return isFinite(x)?x:0;};
+const pad2=n=>String(n).padStart(2,"0");
+const todayISO=()=>{const d=new Date();return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate());};
+const ymNow=()=>todayISO().slice(0,7);
+const MES=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const ymLabel=ym=>ym==="*"?"Acumulado (todas)":(ym?MES[+ym.slice(5,7)-1]+"/"+ym.slice(0,4):"—");
+const dBR=iso=>iso?iso.slice(8,10)+"/"+iso.slice(5,7)+"/"+iso.slice(0,4):"—";
+const addDays=(iso,n)=>{const d=new Date(iso+"T12:00:00");d.setDate(d.getDate()+n);return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate());};
+const msg=(t,type)=>{ try{ toast(t,type||'success'); }catch(_){} };
+const ERRS={contrato_com_lancamentos:"Este contrato tem entradas ou despesas lançadas. Exclua ou mova os lançamentos antes.",dados_invalidos:"Dados inválidos. Confira a competência (mês/ano) e os valores.",contrato_inexistente:"O contrato escolhido não existe mais. Recarregue a página.",nome_obrigatorio:"Informe o nome do contrato.",forbidden:"Somente o perfil Gerência acessa a Gestão financeira.",unauthorized:"Sua sessão expirou. Entre novamente."};
+const errMsg=e=>ERRS[e&&e.message]||("Não foi possível salvar: "+(e&&e.message||"erro"));
+
+/* ---------- cálculos ---------- */
+const list=m=>[...m.values()];
+const ctr=id=>S.contratos.get(id);
+const inComp=x=>S.comp==="*"||x.competencia===S.comp;
+function cfgNum(k){const v=num(S.cfg[k]);return isFinite(v)?v:DEF_CFG[k];}
+function retPct(c){const v=num(c?.retencaoPct);return (isFinite(v)?v:cfgNum("retencao"))/100;}
+function fontePct(c){const v=num(c?.fontePct);return (isFinite(v)?v:cfgNum("fonte"))/100;}
+function prazo(c){const v=num(c?.prazoPagamento);return isFinite(v)?v:30;}
+function entradaPrev(e){
+  const c=ctr(e.contratoId);const dias=num(e.diasPrevisao);const est=!isFinite(dias);
+  const base=e.dataBase||(e.competencia?e.competencia+"-16":todayISO());
+  const d=est?prazo(c):dias;const bruto=n0(e.valor),ret=bruto*retPct(c),fonte=bruto*fontePct(c);
+  return {data:addDays(base,d),dias:d,estimado:est,bruto,ret,fonte,liquido:bruto-ret-fonte};
+}
+function dreFor(filterC){
+  const ents=list(S.entradas).filter(inComp),desp=list(S.despesas).filter(inComp);
+  const aliq=cfgNum("aliquota")/100;
+  const recTot=ents.reduce((s,e)=>s+n0(e.valor),0);
+  const admTot=desp.filter(d=>d.contratoId==="adm").reduce((s,d)=>s+n0(d.valor),0);
+  const E=filterC?ents.filter(e=>e.contratoId===filterC):ents;
+  const D=filterC?desp.filter(d=>d.contratoId===filterC):desp.filter(d=>d.contratoId!=="adm");
+  const receita=E.reduce((s,e)=>s+n0(e.valor),0),tributos=receita*aliq;
+  const cats={};D.forEach(d=>{const k=d.categoria||"Outros";cats[k]=(cats[k]||0)+n0(d.valor);});
+  const custos=D.reduce((s,d)=>s+n0(d.valor),0);
+  const liquida=receita-tributos,bruto=liquida-custos;
+  const adm=filterC?(recTot>0?admTot*receita/recTot:0):admTot;
+  const resultado=bruto-adm;
+  const capital=filterC?n0(ctr(filterC)?.capital):list(S.contratos).reduce((s,c)=>s+n0(c.capital),0);
+  const investido=custos+adm+capital;
+  return {receita,tributos,liquida,cats,custos,bruto,adm,resultado,mBruta:receita?bruto/receita:NaN,mOp:receita?resultado/receita:NaN,roi:investido>0?resultado/investido:NaN,investido};
+}
+const grupoKey=c=>(c.grupo||"").trim()||("__"+c.id);
+function saldoInfo(c){
+  const g=grupoKey(c);const mem=list(S.contratos).filter(x=>grupoKey(x)===g);
+  const valor=mem.reduce((s,x)=>s+n0(x.valor)+n0(x.aditivos),0);const ids=new Set(mem.map(x=>x.id));
+  const medido=mem.reduce((s,x)=>s+n0(x.medidoAnterior),0)+list(S.entradas).filter(e=>ids.has(e.contratoId)).reduce((s,e)=>s+n0(e.valor),0);
+  const proprio=n0(c.medidoAnterior)+list(S.entradas).filter(e=>e.contratoId===c.id).reduce((s,e)=>s+n0(e.valor),0);
+  return {valor,medido,saldo:valor-medido,consumo:valor>0?medido/valor:NaN,compartilhado:mem.length>1,proprio};
+}
+function weeks(){const t=new Date(todayISO()+"T12:00:00");const dow=(t.getDay()+6)%7;t.setDate(t.getDate()-dow);const W=[];for(let i=0;i<13;i++){const s=new Date(t);s.setDate(t.getDate()+7*i);W.push(s.getFullYear()+"-"+pad2(s.getMonth()+1)+"-"+pad2(s.getDate()));}return W;}
+function fluxo(){
+  const W=weeks();const rows=W.map(w=>({ini:w,fim:addDays(w,6),ent:0,sai:0,itensE:[]}));
+  const last=addDays(W[12],6);let foraE=0,foraS=0,atrasE=0,atrasS=0;
+  list(S.entradas).filter(e=>e.status!=="Recebido").forEach(e=>{const p=entradaPrev(e);let i=rows.findIndex(r=>p.data>=r.ini&&p.data<=r.fim);
+    if(p.data<W[0]){i=0;atrasE+=p.liquido;} if(i<0){if(p.data>last)foraE+=p.liquido;return;} rows[i].ent+=p.liquido;rows[i].itensE.push(e);});
+  list(S.despesas).filter(d=>d.status!=="Pago").forEach(d=>{const dt=d.vencimento||(d.competencia?d.competencia+"-28":todayISO());let i=rows.findIndex(r=>dt>=r.ini&&dt<=r.fim);
+    if(dt<W[0]){i=0;atrasS+=n0(d.valor);} if(i<0){if(dt>last)foraS+=n0(d.valor);return;} rows[i].sai+=n0(d.valor);});
+  let saldo=n0(S.cfg.saldoInicial);rows.forEach(r=>{saldo+=r.ent-r.sai;r.saldo=saldo;});
+  const retido=list(S.entradas).reduce((s,e)=>s+entradaPrev(e).ret,0);
+  return {rows,foraE,foraS,atrasE,atrasS,retido};
+}
+function alerts(){
+  const A=[],crit="var(--fin-neg)",warn="var(--fin-warn)",info="var(--fin-info)";const seen=new Set();
+  list(S.contratos).filter(c=>c.status!=="Encerrado").forEach(c=>{const k=grupoKey(c);if(seen.has(k))return;seen.add(k);const s=saldoInfo(c);if(!(s.valor>0))return;
+    const nome=s.compartilhado?"Grupo "+c.grupo:c.nome;
+    if(s.saldo<0)A.push([crit,`${nome}: medido acima do valor contratado`,`Excedente de ${money(-s.saldo)} sobre ${money(s.valor)}. Sem aditivo de valor, a NF corre risco de glosa ou bloqueio no sistema da ERO.`]);
+    else if(s.consumo>=0.9)A.push([warn,`${nome}: ${pct(s.consumo)} do valor consumido`,`Saldo de ${money(s.saldo)}. Abra o pedido de aditivo antes da próxima medição.`]);});
+  const fx=fluxo();const neg=fx.rows.find(r=>r.saldo<0);
+  if(neg)A.push([crit,`Caixa projetado negativo na semana de ${dBR(neg.ini)}`,`Saldo previsto de ${money(neg.saldo)}. Antecipe recebíveis, renegocie vencimentos ou acione capital de giro.`]);
+  if(fx.atrasS>0)A.push([crit,`Despesas vencidas e não pagas: ${money(fx.atrasS)}`,`Estão lançadas na semana corrente do fluxo. Atualize a situação para "Pago" quando quitar.`]);
+  if(fx.atrasE>0)A.push([warn,`Recebimentos com data prevista vencida: ${money(fx.atrasE)} líquidos`,`Cobre a ERO (contas a pagar) ou ajuste os dias de previsão.`]);
+  const semDias=list(S.entradas).filter(e=>e.status!=="Recebido"&&!isFinite(num(e.diasPrevisao)));
+  if(semDias.length)A.push([info,`${semDias.length} entrada(s) sem previsão de dias`,`O fluxo usa o prazo padrão do contrato. Informe os dias na aba Entradas para fechar a previsão.`]);
+  const ents=list(S.entradas).filter(inComp);const rec=ents.reduce((s,e)=>s+n0(e.valor),0);
+  if(rec>0){const by={};ents.forEach(e=>by[e.contratoId]=(by[e.contratoId]||0)+n0(e.valor));const [id,v]=Object.entries(by).sort((a,b)=>b[1]-a[1])[0];
+    if(v/rec>0.4)A.push([warn,`Concentração: ${ctr(id)?.nome||"contrato"} responde por ${pct(v/rec)} da receita`,`Atraso ou glosa nesse BM afeta o mês inteiro.`]);}
+  const semCusto=[...new Set(ents.map(e=>e.contratoId))].filter(id=>!list(S.despesas).some(d=>d.contratoId===id&&inComp(d)));
+  if(semCusto.length)A.push([info,`${semCusto.length} contrato(s) com receita e sem custo lançado em ${ymLabel(S.comp)}`,`A margem desses contratos está superestimada até as despesas entrarem: ${semCusto.map(id=>ctr(id)?.nome||"?").join(", ")}.`]);
+  return A;
+}
+
+/* ---------- render ---------- */
+function compOptions(){const set=new Set([ymNow()]);list(S.entradas).forEach(e=>e.competencia&&set.add(e.competencia));list(S.despesas).forEach(d=>d.competencia&&set.add(d.competencia));return [...set].sort().reverse();}
+function head(){
+  const opts=compOptions();
+  if(!S.comp){const w=list(S.entradas).map(e=>e.competencia).filter(Boolean).sort();S.comp=w.length?w[w.length-1]:ymNow();}
+  if(S.comp!=="*"&&!opts.includes(S.comp))opts.unshift(S.comp);
+  return `<div class="fin-head"><div class="fin-title"><div class="admin-page-title">Gestão financeira</div><div class="admin-page-sub" style="margin-bottom:0">DRE gerencial, entradas por BM, despesas e caixa dos contratos</div></div>
+  <label class="fin-comp" for="fin-comp">Competência <select id="fin-comp">${opts.map(o=>`<option value="${o}" ${o===S.comp?"selected":""}>${ymLabel(o)}</option>`).join("")}<option value="*" ${S.comp==="*"?"selected":""}>Acumulado (todas)</option></select></label></div>
+  <nav class="fin-tabs" role="tablist">${FTABS.map(([k,l])=>`<button role="tab" data-ftab="${k}" aria-selected="${S.tab===k}">${l}</button>`).join("")}</nav>`;
+}
+const kpi=(l,v,s,cls="")=>`<div class="fin-kpi"><div class="l">${l}</div><div class="v ${cls}">${v}</div>${s?`<div class="s">${s}</div>`:""}</div>`;
+function emptyC(){return `<div class="fin-empty"><b>Nenhum contrato financeiro cadastrado</b>Cadastre o primeiro contrato na aba Contratos. Depois lance os BMs em Entradas e os custos em Despesas: a DRE, o ROI e o fluxo de caixa se montam sozinhos.</div>`;}
+function dreTable(d,title){
+  const catRows=Object.entries(d.cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr class="ind"><td>${esc(k)}</td><td class="num">${money(-v)}</td><td class="num muted">${pct(d.receita?v/d.receita:NaN)}</td></tr>`).join("");
+  const r=(l,v,cls="")=>`<tr class="${cls}"><td>${l}</td><td class="num ${v<0?"neg":""}">${money(v)}</td><td class="num muted">${pct(d.receita?v/d.receita:NaN)}</td></tr>`;
+  return `<div class="fin-sec"><div class="fin-sec-head"><h2>${title}</h2><p>${ymLabel(S.comp)}</p></div><div class="fin-tbl"><table>
+  <thead><tr><th>Linha</th><th class="num">R$</th><th class="num">% receita</th></tr></thead><tbody>
+  ${r("Receita bruta medida",d.receita,"l1")}${r(`(−) Tributos s/ receita (${plain(cfgNum("aliquota"))}%)`,-d.tributos)}${r("= Receita líquida",d.liquida,"l1")}
+  ${r("(−) Custos diretos",-d.custos)}${catRows}${r("= Lucro bruto",d.bruto,"l1")}${r("(−) Despesas administrativas (rateio)",-d.adm)}
+  ${r("= Resultado operacional (EBITDA gerencial)",d.resultado,"tot")}
+  <tr><td>ROI do período</td><td class="num ${d.roi<0?"neg":"pos"}">${pct(d.roi)}</td><td class="num muted">sobre ${money(d.investido)}</td></tr></tbody></table></div></div>`;
+}
+function indicadores(d,fx,dso){
+  const ents=list(S.entradas).filter(inComp);const ativos=list(S.contratos).filter(c=>c.status!=="Encerrado");
+  const seen=new Set();let cv=0,cs=0;ativos.forEach(c=>{const k=grupoKey(c);if(seen.has(k))return;seen.add(k);const i=saldoInfo(c);if(i.valor>0){cv+=i.valor;cs+=Math.max(0,i.saldo);}});
+  const admMes=list(S.despesas).filter(x=>x.contratoId==="adm"&&inComp(x)).reduce((s,x)=>s+n0(x.valor),0);
+  const mc=d.receita?(d.liquida-d.custos)/d.receita:NaN;const pe=mc>0?admMes/mc:NaN;
+  const ncg=list(S.entradas).filter(e=>e.status!=="Recebido").reduce((s,e)=>s+entradaPrev(e).bruto,0)-list(S.despesas).filter(x=>x.status!=="Pago").reduce((s,x)=>s+n0(x.valor),0);
+  const row=(l,v,s="")=>`<tr><td>${l}</td><td class="num">${v}</td><td class="muted">${s}</td></tr>`;
+  return `<div class="fin-sec"><div class="fin-sec-head"><h2>Indicadores</h2><p>Cálculo na coluna da direita</p></div><div class="fin-tbl"><table>
+  <thead><tr><th>Indicador</th><th class="num">Valor</th><th>Cálculo</th></tr></thead><tbody>
+  ${row("Margem bruta",pct(d.mBruta),"Lucro bruto ÷ receita bruta")}${row("Margem operacional",pct(d.mOp),"Resultado ÷ receita bruta")}
+  ${row("ROI do período",pct(d.roi),"Resultado ÷ (custos + ADM + capital empregado)")}${row("Margem de contribuição",pct(mc),"(Receita líquida − custos diretos) ÷ receita")}
+  ${row("Ponto de equilíbrio",isFinite(pe)?money(pe):"—","Despesas ADM ÷ margem de contribuição")}${row("Prazo médio de recebimento",isFinite(dso)?Math.round(dso)+" dias":"—","Média dos dias previstos, ponderada pelo valor")}
+  ${row("Necessidade de capital de giro",money(ncg),"A receber bruto − despesas a pagar")}${row("Retenção contratual presa",money(fx.retido),"Retenção de cada BM, devolvida após aceite final")}
+  ${row("Carteira contratada (ativos)",money(cv),"Valor + aditivos dos contratos ativos")}${row("Saldo a executar",money(cs),"Carteira − medido acumulado")}
+  ${row("Contratos com medição no período",String(new Set(ents.map(e=>e.contratoId)).size),ymLabel(S.comp))}</tbody></table></div></div>`;
+}
+function tGeral(){
+  if(!S.contratos.size)return emptyC();
+  const d=dreFor(null),fx=fluxo();const aR=list(S.entradas).filter(e=>e.status!=="Recebido").map(entradaPrev);
+  const totRec=aR.reduce((s,p)=>s+p.liquido,0);const sb=aR.reduce((s,p)=>s+p.bruto,0);const dso=aR.length?aR.reduce((s,p)=>s+p.dias*p.bruto,0)/Math.max(1,sb):NaN;
+  const minW=fx.rows.reduce((m,r)=>r.saldo<m.saldo?r:m,fx.rows[0]);
+  const rows=list(S.contratos).map(c=>({c,d:dreFor(c.id)})).filter(x=>x.d.receita||x.d.custos||S.comp==="*").sort((a,b)=>b.d.receita-a.d.receita);
+  const maxR=Math.max(1,...rows.map(x=>x.d.receita));const A=alerts();
+  return `<section class="fin-kpis">${kpi("Receita bruta medida",money(d.receita),ymLabel(S.comp)+" · "+list(S.entradas).filter(inComp).length+" BM(s)")}
+  ${kpi("Resultado operacional",money(d.resultado),"Margem "+pct(d.mOp)+" · ROI "+pct(d.roi),d.resultado<0?"neg":"")}
+  ${kpi("A receber (líquido)",money(totRec),`Prazo médio ${isFinite(dso)?Math.round(dso)+" dias":"—"} · retenções ${money(fx.retido)}`)}
+  ${kpi("Menor saldo de caixa · 13 semanas",money(minW.saldo),"Semana de "+dBR(minW.ini),minW.saldo<0?"neg":"")}</section>
+  ${A.length?`<section class="fin-sec"><div class="fin-sec-head"><h2>Pontos de atenção</h2><p>${A.length} item(ns)</p></div><div class="fin-alerts">${A.map(([c,t,s])=>`<div class="fin-alert" style="--c:${c}"><div><b>${esc(t)}</b><span>${esc(s)}</span></div></div>`).join("")}</div></section>`:""}
+  <section class="fin-sec"><div class="fin-sec-head"><h2>Resultado por contrato</h2><p>Rateio administrativo proporcional à receita · clique na linha para editar o contrato</p></div>
+  ${rows.length?`<div class="fin-tbl"><table><thead><tr><th>Contrato</th><th>Participação</th><th class="num">Receita</th><th class="num">Tributos</th><th class="num">Custos diretos</th><th class="num">Lucro bruto</th><th class="num">Rateio ADM</th><th class="num">Resultado</th><th class="num">Margem</th><th class="num">ROI</th><th class="num">Saldo contratual</th></tr></thead><tbody>
+  ${rows.map(({c,d:x})=>{const s=saldoInfo(c);return `<tr class="click" data-fopen="${esc(c.id)}"><td><b>${esc(c.nome)}</b><div class="muted">${esc(c.numero||"s/ nº")} · ${esc(c.empresa||"")}</div></td>
+  <td><div class="fin-bar"><i style="width:${(x.receita/maxR*100).toFixed(1)}%"></i></div><span class="muted">${pct(d.receita?x.receita/d.receita:NaN)}</span></td>
+  <td class="num">${money(x.receita)}</td><td class="num">${money(-x.tributos)}</td><td class="num">${x.custos?money(-x.custos):'<span class="muted">sem lançamento</span>'}</td>
+  <td class="num">${money(x.bruto)}</td><td class="num">${money(-x.adm)}</td><td class="num ${x.resultado<0?"neg":""}"><b>${money(x.resultado)}</b></td>
+  <td class="num">${pct(x.mOp)}</td><td class="num">${pct(x.roi)}</td><td class="num ${s.saldo<0?"neg":""}">${s.valor>0?money(s.saldo):'<span class="muted">mensal</span>'}</td></tr>`;}).join("")}
+  <tr class="tot"><td>Consolidado</td><td></td><td class="num">${money(d.receita)}</td><td class="num">${money(-d.tributos)}</td><td class="num">${money(-d.custos)}</td><td class="num">${money(d.bruto)}</td><td class="num">${money(-d.adm)}</td><td class="num">${money(d.resultado)}</td><td class="num">${pct(d.mOp)}</td><td class="num">${pct(d.roi)}</td><td></td></tr>
+  </tbody></table></div>`:`<div class="fin-empty"><b>Nenhuma medição em ${ymLabel(S.comp)}</b>Lance um BM na aba Entradas ou escolha outra competência.</div>`}</section>
+  <div class="fin-grid2">${dreTable(d,"DRE gerencial consolidada")}${indicadores(d,fx,dso)}</div>`;
+}
+const fld=(id,l,v,extra="")=>`<label for="${id}">${l}<input id="${id}" value="${esc(v??"")}" ${extra}></label>`;
+function optContratos(sel,withAdm){const cs=list(S.contratos).sort((a,b)=>a.nome.localeCompare(b.nome));
+  return (withAdm?`<option value="adm" ${sel==="adm"?"selected":""}>Administrativo (rateado)</option>`:"")+cs.map(c=>`<option value="${esc(c.id)}" ${sel===c.id?"selected":""}>${esc(c.nome)}${c.numero?" · "+esc(c.numero):""}</option>`).join("");}
+function tContratos(){
+  const e=S.edit.c?ctr(S.edit.c)||{}:{};
+  const cs=list(S.contratos).sort((a,b)=>(a.status==="Encerrado")-(b.status==="Encerrado")||a.nome.localeCompare(b.nome));
+  const frOpts=(typeof DB!=="undefined"&&DB.contracts?DB.contracts:[]).map(c=>`<option value="${esc(c.id)}" ${e.fieldreportContractId===c.id?"selected":""}>${esc(c.name)}</option>`).join("");
+  const form=`<form class="fin-form" id="fin-form-c"><h2>${S.edit.c?"Editar contrato":"Novo contrato"}</h2><div class="fin-fields">
+  ${fld("fc-nome","Nome do contrato",e.nome,'required placeholder="Ex.: Bocas de lobo MSB"')}${fld("fc-numero","Nº do contrato",e.numero,'placeholder="0214/26"')}
+  <label for="fc-empresa">Empresa<select id="fc-empresa">${["Support Mining","IDEAL Mining","HOS Construções","Outra"].map(x=>`<option ${e.empresa===x?"selected":""}>${x}</option>`).join("")}</select></label>
+  ${fld("fc-gerencia","Gerência / cliente",e.gerencia,'placeholder="GEPEX · ERO"')}
+  <label for="fc-fr">Contrato no FieldReport<select id="fc-fr"><option value="">Não vinculado</option>${frOpts}</select></label>
+  ${fld("fc-valor","Valor contratado (R$)",plain(e.valor),'inputmode="decimal" placeholder="0,00"')}${fld("fc-aditivos","Aditivos de valor (R$)",plain(e.aditivos),'inputmode="decimal" placeholder="0,00"')}
+  ${fld("fc-anterior","Medido antes do painel (R$)",plain(e.medidoAnterior),'inputmode="decimal" placeholder="BMs anteriores"')}${fld("fc-grupo","Saldo compartilhado (grupo)",e.grupo,'placeholder="Ex.: MO Novo Shaft"')}
+  ${fld("fc-prazo","Prazo padrão de pagamento (dias)",e.prazoPagamento??30,'inputmode="numeric"')}${fld("fc-ret","Retenção contratual (%)",e.retencaoPct??cfgNum("retencao"),'inputmode="decimal"')}
+  ${fld("fc-fonte","Retenções na fonte (%)",e.fontePct??cfgNum("fonte"),'inputmode="decimal" title="INSS 11% (+2 a 4 p.p. aposentadoria especial); ISS quando retido"')}
+  ${fld("fc-capital","Capital empregado (R$)",plain(e.capital),'inputmode="decimal" placeholder="Equipamentos, mobilização própria"')}
+  ${fld("fc-inicio","Início",e.inicio,'type="date"')}${fld("fc-fim","Término",e.fim,'type="date"')}
+  <label for="fc-status">Situação<select id="fc-status">${["Em mobilização","Ativo","Encerrado"].map(x=>`<option ${(e.status||"Ativo")===x?"selected":""}>${x}</option>`).join("")}</select></label>
+  <label class="wide" for="fc-obs">Observações<textarea id="fc-obs" rows="2">${esc(e.obs||"")}</textarea></label></div>
+  <div class="fin-actions"><button class="btn btn-primary btn-sm" type="submit">${S.edit.c?"Salvar alterações":"Adicionar contrato"}</button>${S.edit.c?'<button class="btn btn-secondary btn-sm" type="button" data-fcancel="c">Cancelar</button>':""}
+  <span class="fin-note">Contratos com o mesmo grupo dividem o saldo (ex.: GEINP + GEPEX). Deixe o valor só em um deles.</span></div></form>`;
+  const tbl=cs.length?`<div class="fin-tbl"><table><thead><tr><th>Contrato</th><th>Empresa</th><th class="num">Valor + aditivos</th><th class="num">Medido acumulado</th><th>Consumo</th><th class="num">Saldo</th><th class="num">Prazo</th><th>Situação</th><th></th></tr></thead><tbody>
+  ${cs.map(c=>{const s=saldoInfo(c);return `<tr><td><b>${esc(c.nome)}</b><div class="muted">${esc(c.numero||"s/ nº")}${c.gerencia?" · "+esc(c.gerencia):""}${c.grupo?" · grupo "+esc(c.grupo):""}</div></td><td>${esc(c.empresa||"")}</td>
+  <td class="num">${n0(c.valor)+n0(c.aditivos)?money(n0(c.valor)+n0(c.aditivos)):'<span class="muted">—</span>'}</td><td class="num">${money(s.proprio)}</td>
+  <td>${s.valor>0?`<div class="fin-bar"><i style="width:${Math.min(100,s.consumo*100).toFixed(1)}%;${s.consumo>1?"background:var(--fin-neg)":s.consumo>=.9?"background:var(--fin-warn)":""}"></i></div><span class="muted">${pct(s.consumo)}${s.compartilhado?" do grupo":""}</span>`:'<span class="muted">mensal</span>'}</td>
+  <td class="num ${s.saldo<0?"neg":""}">${s.valor>0?money(s.saldo):"—"}</td><td class="num">${prazo(c)} d</td>
+  <td><span class="fin-pill" style="color:${c.status==="Encerrado"?"var(--text2)":c.status==="Em mobilização"?"var(--blue)":"var(--fin-pos)"}">${esc(c.status||"Ativo")}</span></td>
+  <td><button class="lnk" data-fedit="c" data-id="${esc(c.id)}">Editar</button><button class="lnk del" data-fdel="contratos" data-id="${esc(c.id)}">Excluir</button></td></tr>`;}).join("")}</tbody></table></div>`:emptyC();
+  return `<section class="fin-sec"><div class="fin-sec-head"><h2>Carteira de contratos</h2><p>${cs.length} contrato(s)</p></div>${tbl}</section>${form}`;
+}
+function tEntradas(){
+  if(!S.contratos.size)return emptyC();
+  const e=S.edit.e?S.entradas.get(S.edit.e)||{}:{};
+  const es=list(S.entradas).filter(inComp).sort((a,b)=>(a.dataBase||"").localeCompare(b.dataBase||"")||n0(b.valor)-n0(a.valor));
+  const tot=es.reduce((s,x)=>s+n0(x.valor),0),totL=es.reduce((s,x)=>s+entradaPrev(x).liquido,0);
+  const form=`<form class="fin-form" id="fin-form-e"><h2>${S.edit.e?"Editar entrada":"Nova entrada (BM / NF)"}</h2><div class="fin-fields">
+  <label for="fe-contrato">Contrato<select id="fe-contrato" required>${optContratos(e.contratoId)}</select></label>
+  ${fld("fe-desc","Descrição",e.descricao,'placeholder="BM 02 · 16/10 a 15/11"')}${fld("fe-comp","Competência",e.competencia||(S.comp!=="*"?S.comp:ymNow()),'type="month" required')}
+  ${fld("fe-valor","Valor bruto do BM (R$)",plain(e.valor),'inputmode="decimal" required placeholder="0,00"')}${fld("fe-base","Data-base (envio/aprovação do BM)",e.dataBase||todayISO(),'type="date"')}
+  ${fld("fe-dias","Previsão de entrada (dias)",e.diasPrevisao??"",'inputmode="numeric" placeholder="vazio = prazo do contrato"')}
+  <label for="fe-status">Situação<select id="fe-status">${ST_ENT.map(x=>`<option ${(e.status||"BM emitido")===x?"selected":""}>${x}</option>`).join("")}</select></label>
+  ${fld("fe-nf","Nº da NF",e.nf,'placeholder="opcional"')}</div>
+  <div class="fin-actions"><button class="btn btn-primary btn-sm" type="submit">${S.edit.e?"Salvar alterações":"Lançar entrada"}</button>${S.edit.e?'<button class="btn btn-secondary btn-sm" type="button" data-fcancel="e">Cancelar</button>':""}</div></form>`;
+  const tbl=es.length?`<div class="fin-tbl"><table><thead><tr><th>Contrato / BM</th><th class="num">Valor bruto</th><th class="num">Data-base</th><th class="num">Dias p/ entrada</th><th class="num">Entrada prevista</th><th class="num">Retenção</th><th class="num">Ret. fonte</th><th class="num">Líquido no caixa</th><th>Situação</th><th></th></tr></thead><tbody>
+  ${es.map(x=>{const c=ctr(x.contratoId),p=entradaPrev(x);return `<tr><td><b>${esc(c?.nome||"Contrato removido")}</b><div class="muted">${esc(x.descricao||"")}${x.nf?" · NF "+esc(x.nf):""}</div></td>
+  <td class="num">${money(p.bruto)}</td><td class="num">${dBR(x.dataBase)}</td>
+  <td class="num"><input class="inl" id="fdias-${esc(x.id)}" data-fdias="${esc(x.id)}" inputmode="numeric" value="${esc(x.diasPrevisao??"")}" placeholder="${prazo(c)}" aria-label="Dias para entrada"></td>
+  <td class="num">${dBR(p.data)}${p.estimado?'<div class="muted">prazo padrão</div>':""}</td><td class="num">${money(-p.ret)}</td><td class="num">${money(-p.fonte)}</td><td class="num"><b>${money(p.liquido)}</b></td>
+  <td><select class="inl" id="fst-${esc(x.id)}" data-fst="${esc(x.id)}" aria-label="Situação">${ST_ENT.map(s=>`<option ${(x.status||"BM emitido")===s?"selected":""}>${s}</option>`).join("")}</select></td>
+  <td><button class="lnk" data-fedit="e" data-id="${esc(x.id)}">Editar</button><button class="lnk del" data-fdel="entradas" data-id="${esc(x.id)}">Excluir</button></td></tr>`;}).join("")}
+  <tr class="tot"><td>Total ${ymLabel(S.comp)}</td><td class="num">${money(tot)}</td><td colspan="5"></td><td class="num">${money(totL)}</td><td colspan="2"></td></tr></tbody></table></div>`
+  :`<div class="fin-empty"><b>Nenhuma entrada em ${ymLabel(S.comp)}</b>Lance o BM no formulário abaixo. O valor entra na receita da competência e no fluxo de caixa na data prevista.</div>`;
+  return `<section class="fin-sec"><div class="fin-sec-head"><h2>Entradas por BM</h2><p>Digite os dias até a entrada da verba; a data prevista e o fluxo de caixa se atualizam</p></div>${tbl}
+  <p class="fin-note">Líquido no caixa = valor bruto − retenção contratual − retenções na fonte (INSS/ISS) do contrato. A retenção contratual volta após o aceite final e aparece separada nos indicadores.</p></section>${form}`;
+}
+function tDespesas(){
+  const e=S.edit.d?S.despesas.get(S.edit.d)||{}:{};
+  const ds=list(S.despesas).filter(inComp).sort((a,b)=>(a.vencimento||"").localeCompare(b.vencimento||""));
+  const tot=ds.reduce((s,x)=>s+n0(x.valor),0),pago=ds.filter(x=>x.status==="Pago").reduce((s,x)=>s+n0(x.valor),0);
+  const byC={};ds.forEach(x=>{const k=x.contratoId==="adm"?"Administrativo (rateado)":(ctr(x.contratoId)?.nome||"?");byC[k]=(byC[k]||0)+n0(x.valor);});
+  const hoje=todayISO();
+  const form=`<form class="fin-form" id="fin-form-d"><h2>${S.edit.d?"Editar despesa":"Nova despesa"}</h2><div class="fin-fields">
+  <label for="fd-contrato">Centro de custo<select id="fd-contrato" required>${optContratos(e.contratoId||"adm",true)}</select></label>
+  <label for="fd-cat">Categoria<select id="fd-cat">${CATS.map(x=>`<option ${e.categoria===x?"selected":""}>${x}</option>`).join("")}</select></label>
+  ${fld("fd-desc","Descrição",e.descricao,'placeholder="Folha outubro · equipe Ore Pass"')}${fld("fd-forn","Fornecedor / favorecido",e.fornecedor,'placeholder="opcional"')}
+  ${fld("fd-comp","Competência",e.competencia||(S.comp!=="*"?S.comp:ymNow()),'type="month" required')}${fld("fd-valor","Valor (R$)",plain(e.valor),'inputmode="decimal" required placeholder="0,00"')}
+  ${fld("fd-venc","Vencimento",e.vencimento||hoje,'type="date"')}
+  <label for="fd-status">Situação<select id="fd-status">${["A pagar","Pago"].map(x=>`<option ${(e.status||"A pagar")===x?"selected":""}>${x}</option>`).join("")}</select></label></div>
+  <div class="fin-actions"><button class="btn btn-primary btn-sm" type="submit">${S.edit.d?"Salvar alterações":"Lançar despesa"}</button>${S.edit.d?'<button class="btn btn-secondary btn-sm" type="button" data-fcancel="d">Cancelar</button>':""}
+  <span class="fin-note">Custos de um contrato vão no próprio contrato. Escritório, diretoria, contabilidade e afins vão em Administrativo e são rateados pela receita.</span></div></form>`;
+  const tbl=ds.length?`<div class="fin-tbl"><table><thead><tr><th>Despesa</th><th>Centro de custo</th><th>Categoria</th><th class="num">Vencimento</th><th class="num">Valor</th><th>Situação</th><th></th></tr></thead><tbody>
+  ${ds.map(x=>{const venc=x.status!=="Pago"&&x.vencimento&&x.vencimento<hoje;return `<tr><td><b>${esc(x.descricao||"—")}</b>${x.fornecedor?`<div class="muted">${esc(x.fornecedor)}</div>`:""}</td>
+  <td>${x.contratoId==="adm"?"Administrativo":esc(ctr(x.contratoId)?.nome||"?")}</td><td>${esc(x.categoria||"")}</td>
+  <td class="num ${venc?"neg":""}">${dBR(x.vencimento)}${venc?"<div>vencida</div>":""}</td><td class="num">${money(x.valor)}</td>
+  <td><select class="inl" id="fdst-${esc(x.id)}" data-fdst="${esc(x.id)}" aria-label="Situação">${["A pagar","Pago"].map(s=>`<option ${(x.status||"A pagar")===s?"selected":""}>${s}</option>`).join("")}</select></td>
+  <td><button class="lnk" data-fedit="d" data-id="${esc(x.id)}">Editar</button><button class="lnk del" data-fdel="despesas" data-id="${esc(x.id)}">Excluir</button></td></tr>`;}).join("")}
+  <tr class="tot"><td colspan="4">Total ${ymLabel(S.comp)} · pago ${money(pago)}</td><td class="num">${money(tot)}</td><td colspan="2"></td></tr></tbody></table></div>`
+  :`<div class="fin-empty"><b>Nenhuma despesa em ${ymLabel(S.comp)}</b>Lance folha, encargos, alimentação, transporte, materiais e locações por contrato. Sem custos, a DRE mostra só receita menos tributos.</div>`;
+  const resumo=ds.length?`<div class="fin-tbl"><table><thead><tr><th>Centro de custo</th><th class="num">Total</th><th class="num">%</th></tr></thead><tbody>${Object.entries(byC).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td>${esc(k)}</td><td class="num">${money(v)}</td><td class="num">${pct(v/tot)}</td></tr>`).join("")}</tbody></table></div>`:"";
+  return `<section class="fin-sec"><div class="fin-sec-head"><h2>Despesas</h2><p>${ymLabel(S.comp)}</p></div>${tbl}${resumo}</section>${form}`;
+}
+function niceStep(x){const p=Math.pow(10,Math.floor(Math.log10(Math.max(x,1))));const m=x/p;return (m<=1?1:m<=2?2:m<=5?5:10)*p;}
+function tCaixa(){
+  const fx=fluxo(),R=fx.rows;const W=720,H=270,L=70,Rr=12,T=14,B=34,iw=W-L-Rr,ih=H-T-B;
+  const vals=R.flatMap(r=>[r.ent,-r.sai,r.saldo,0]);let mx=Math.max(...vals),mn=Math.min(...vals);if(mx===mn){mx+=1;mn-=1;}const pd=(mx-mn)*.08;mx+=pd;mn-=pd;
+  const y=v=>T+(mx-v)/(mx-mn)*ih,bw=iw/R.length;const step=niceStep((mx-mn)/5);const ticks=[];for(let v=Math.ceil(mn/step)*step;v<=mx;v+=step)ticks.push(v);
+  const k=v=>Math.abs(v)>=1e6?(v/1e6).toLocaleString("pt-BR",{maximumFractionDigits:1})+" mi":Math.abs(v)>=1e3?(v/1e3).toLocaleString("pt-BR",{maximumFractionDigits:0})+" mil":v.toFixed(0);
+  const svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Fluxo de caixa semanal projetado">
+  ${ticks.map(t=>`<line x1="${L}" x2="${W-Rr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--border2)" stroke-width="${Math.abs(t)<1e-9?1.6:1}" fill="none"/><text x="${L-6}" y="${y(t)+4}" text-anchor="end" font-size="10" fill="var(--text2)">${k(t)}</text>`).join("")}
+  ${R.map((r,i)=>{const x=L+i*bw;return `<rect x="${x+bw*.14}" y="${y(r.ent)}" width="${bw*.34}" height="${Math.max(0,y(0)-y(r.ent))}" fill="var(--fin-pos)" opacity=".85"><title>Entradas ${money(r.ent)}</title></rect>
+  <rect x="${x+bw*.52}" y="${y(0)}" width="${bw*.34}" height="${Math.max(0,y(-r.sai)-y(0))}" fill="var(--fin-neg)" opacity=".8"><title>Saídas ${money(r.sai)}</title></rect>
+  <text x="${x+bw/2}" y="${H-B+16}" text-anchor="middle" font-size="10" fill="var(--text2)">${r.ini.slice(8,10)}/${r.ini.slice(5,7)}</text>`;}).join("")}
+  <polyline fill="none" stroke="var(--blue)" stroke-width="2.2" points="${R.map((r,i)=>`${L+i*bw+bw/2},${y(r.saldo)}`).join(" ")}"/>
+  ${R.map((r,i)=>`<circle cx="${L+i*bw+bw/2}" cy="${y(r.saldo)}" r="${i===R.length-1?4:2.6}" fill="var(--blue)"><title>Saldo ${money(r.saldo)}</title></circle>`).join("")}
+  <text x="${W-Rr}" y="${y(R[R.length-1].saldo)-8}" text-anchor="end" font-size="11" font-weight="700" fill="var(--blue)">${money(R[R.length-1].saldo)}</text></svg>`;
+  return `<section class="fin-sec"><div class="fin-sec-head"><h2>Fluxo de caixa · próximas 13 semanas</h2><p>Saldo inicial ${money(n0(S.cfg.saldoInicial))}${S.cfg.dataSaldo?" em "+dBR(S.cfg.dataSaldo):""} · ajuste em Parâmetros</p></div>
+  <div class="fin-chart">${svg}<div class="fin-legend"><span><i style="background:var(--fin-pos)"></i>Entradas líquidas previstas</span><span><i style="background:var(--fin-neg)"></i>Despesas a pagar</span><span><i style="background:var(--blue)"></i>Saldo acumulado</span></div></div>
+  <div class="fin-tbl"><table><thead><tr><th>Semana</th><th class="num">Entradas</th><th class="num">Saídas</th><th class="num">Líquido</th><th class="num">Saldo</th><th>Origem das entradas</th></tr></thead><tbody>
+  ${R.map(r=>`<tr><td style="white-space:nowrap">${dBR(r.ini)} a ${dBR(r.fim).slice(0,5)}</td><td class="num pos">${r.ent?money(r.ent):"—"}</td><td class="num neg">${r.sai?money(-r.sai):"—"}</td><td class="num">${money(r.ent-r.sai)}</td><td class="num ${r.saldo<0?"neg":""}"><b>${money(r.saldo)}</b></td><td class="muted">${r.itensE.map(e=>esc(ctr(e.contratoId)?.nome||"?")).join(", ")}</td></tr>`).join("")}
+  </tbody></table></div>
+  <p class="fin-note">Entradas na data-base + dias informados (ou o prazo padrão do contrato), líquidas de retenção contratual e retenções na fonte. Itens com data já vencida caem na semana atual. Além das 13 semanas: ${money(fx.foraE)} a receber e ${money(fx.foraS)} a pagar. Retenções contratuais acumuladas: ${money(fx.retido)}.</p></section>`;
+}
+function tParam(){const c=S.cfg;
+  return `<form class="fin-form" id="fin-form-p"><h2>Parâmetros da gestão financeira</h2><div class="fin-fields">
+  <label for="fp-aliq">Tributos sobre receita (%)<input id="fp-aliq" inputmode="decimal" value="${esc(c.aliquota??DEF_CFG.aliquota)}"></label>
+  <label for="fp-ret">Retenção contratual padrão (%)<input id="fp-ret" inputmode="decimal" value="${esc(c.retencao??DEF_CFG.retencao)}"></label>
+  <label for="fp-fonte">Retenções na fonte padrão (%)<input id="fp-fonte" inputmode="decimal" value="${esc(c.fonte??DEF_CFG.fonte)}"></label>
+  <label for="fp-saldo">Saldo inicial de caixa (R$)<input id="fp-saldo" inputmode="decimal" value="${esc(plain(c.saldoInicial))}" placeholder="0,00"></label>
+  <label for="fp-data">Data do saldo<input id="fp-data" type="date" value="${esc(c.dataSaldo||"")}"></label></div>
+  <div class="fin-actions"><button class="btn btn-primary btn-sm" type="submit">Salvar parâmetros</button></div>
+  <p class="fin-note">Tributos padrão do Lucro Presumido para serviços: COFINS 3% + PIS 0,65% + ISS 5% + IRPJ ≈8% + CSLL 2,88% = 19,53%. Confirme a alíquota efetiva com a contabilidade. Retenção na fonte de 11% é o INSS da cessão de mão de obra (IN RFB 2.110/2022); some 2 a 4 p.p. onde houver aposentadoria especial e o ISS quando retido pela ERO. Cada contrato pode ter percentuais próprios.</p></form>`;}
+function draw(){
+  if(!ROOT||!document.body.contains(ROOT))return;
+  if(!S.loaded){ROOT.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';return;}
+  const fns={geral:tGeral,contratos:tContratos,entradas:tEntradas,despesas:tDespesas,caixa:tCaixa,param:tParam};
+  ROOT.innerHTML=head()+fns[S.tab]();
+}
+
+/* ---------- dados ---------- */
+async function load(){
+  const r=await apiData('finance','list');
+  S.contratos=new Map((r.contratos||[]).map(x=>[x.id,x]));S.entradas=new Map((r.entradas||[]).map(x=>[x.id,x]));S.despesas=new Map((r.despesas||[]).map(x=>[x.id,x]));
+  S.cfg={...DEF_CFG,...(r.config||{})};S.loaded=true;
+}
+const MAPK={contratos:"contratos",entradas:"entradas",despesas:"despesas"};
+async function save(kind,id,item,okMsg){
+  if(S.busy)return null;S.busy=true;
+  try{const r=await apiData('finance','save',{kind,id:id||null,item});S[MAPK[kind]].set(r.item.id,r.item);msg(okMsg,'success');return r.item;}
+  catch(e){msg(errMsg(e),'error');return null;} finally{S.busy=false;}
+}
+const val=id=>document.getElementById(id)?.value?.trim()??"";
+const numOrNull=id=>{const v=num(val(id));return isFinite(v)?v:null;};
+
+async function onSubmit(ev){
+  const f=ev.target;if(!f.closest||!f.closest('#finRoot'))return;ev.preventDefault();
+  if(f.id==="fin-form-c"){
+    if(!val("fc-nome"))return msg("Informe o nome do contrato.","error");
+    const item={nome:val("fc-nome"),numero:val("fc-numero"),empresa:val("fc-empresa"),gerencia:val("fc-gerencia"),fieldreportContractId:val("fc-fr")||null,valor:numOrNull("fc-valor")??0,aditivos:numOrNull("fc-aditivos")??0,
+      medidoAnterior:numOrNull("fc-anterior")??0,grupo:val("fc-grupo"),prazoPagamento:numOrNull("fc-prazo")??30,retencaoPct:numOrNull("fc-ret"),fontePct:numOrNull("fc-fonte"),capital:numOrNull("fc-capital")??0,
+      inicio:val("fc-inicio"),fim:val("fc-fim"),status:val("fc-status"),obs:val("fc-obs")};
+    if(await save("contratos",S.edit.c,item,S.edit.c?"Contrato atualizado":"Contrato adicionado")){S.edit.c=null;draw();}
+  }
+  if(f.id==="fin-form-e"){
+    const v=numOrNull("fe-valor");if(v===null)return msg("Informe o valor do BM, por exemplo 113.947,39.","error");
+    const item={contratoId:val("fe-contrato"),descricao:val("fe-desc"),competencia:val("fe-comp"),valor:v,dataBase:val("fe-base"),diasPrevisao:numOrNull("fe-dias"),status:val("fe-status"),nf:val("fe-nf")};
+    if(await save("entradas",S.edit.e,item,S.edit.e?"Entrada atualizada":"Entrada lançada")){S.edit.e=null;draw();}
+  }
+  if(f.id==="fin-form-d"){
+    const v=numOrNull("fd-valor");if(v===null)return msg("Informe o valor da despesa.","error");
+    const item={contratoId:val("fd-contrato"),categoria:val("fd-cat"),descricao:val("fd-desc"),fornecedor:val("fd-forn"),competencia:val("fd-comp"),valor:v,vencimento:val("fd-venc"),status:val("fd-status")};
+    if(await save("despesas",S.edit.d,item,S.edit.d?"Despesa atualizada":"Despesa lançada")){S.edit.d=null;draw();}
+  }
+  if(f.id==="fin-form-p"){
+    try{const r=await apiData('finance','config',{aliquota:numOrNull("fp-aliq")??DEF_CFG.aliquota,retencao:numOrNull("fp-ret")??DEF_CFG.retencao,fonte:numOrNull("fp-fonte")??DEF_CFG.fonte,saldoInicial:numOrNull("fp-saldo")??0,dataSaldo:val("fp-data")});
+      S.cfg={...DEF_CFG,...r.config};msg("Parâmetros salvos","success");draw();}catch(e){msg(errMsg(e),'error');}
+  }
+}
+function onClick(ev){
+  const t=ev.target.closest("#finRoot button, #finRoot tr[data-fopen]");if(!t)return;
+  if(t.dataset.ftab){S.tab=t.dataset.ftab;draw();return;}
+  if(t.dataset.fopen){S.tab="contratos";S.edit.c=t.dataset.fopen;draw();document.getElementById("fin-form-c")?.scrollIntoView({block:"start"});return;}
+  if(t.dataset.fedit){const k=t.dataset.fedit;S.edit[k]=t.dataset.id;draw();document.getElementById("fin-form-"+k)?.scrollIntoView({block:"start"});return;}
+  if(t.dataset.fcancel){S.edit[t.dataset.fcancel]=null;draw();return;}
+  if(t.dataset.fdel){
+    const kind=t.dataset.fdel,id=t.dataset.id;
+    const nome=kind==="contratos"?(ctr(id)?.nome||"contrato"):kind==="entradas"?"esta entrada":"esta despesa";
+    showConfirm("Excluir "+(kind==="contratos"?"o contrato "+esc(nome):nome)+"?","Esta ação não pode ser desfeita.",async()=>{
+      try{await apiData('finance','delete',{kind,id});S[MAPK[kind]].delete(id);msg("Excluído","warn");draw();}catch(e){msg(errMsg(e),'error');}
+    });
+  }
+}
+const diasTimer={};
+function onChange(ev){
+  const el=ev.target;if(!el.closest||!el.closest('#finRoot'))return;
+  if(el.id==="fin-comp"){S.comp=el.value;draw();return;}
+  if(el.dataset.fdias){const id=el.dataset.fdias;const v=num(el.value);clearTimeout(diasTimer[id]);
+    diasTimer[id]=setTimeout(async()=>{if(await save("entradas",id,{diasPrevisao:isFinite(v)?Math.round(v):null},"Previsão atualizada"))draw();},250);}
+  if(el.dataset.fst){const id=el.dataset.fst;save("entradas",id,{status:el.value},"Situação atualizada").then(r=>r&&draw());}
+  if(el.dataset.fdst){const id=el.dataset.fdst;save("despesas",id,{status:el.value},"Situação atualizada").then(r=>r&&draw());}
+}
+document.addEventListener("submit",onSubmit);document.addEventListener("click",onClick);document.addEventListener("change",onChange);
+
+window.renderFinance=async function(main){
+  main.innerHTML='<div class="fin" id="finRoot"></div>';ROOT=document.getElementById('finRoot');
+  S.edit={c:null,e:null,d:null};draw();
+  try{await load();draw();}
+  catch(e){ROOT.innerHTML=`<div class="fin-empty"><b>Não foi possível carregar a gestão financeira</b>${esc(ERRS[e.message]||e.message)}</div>`;}
+};
+})();
+</script>
 </body></html>
