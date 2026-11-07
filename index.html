@@ -295,6 +295,103 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
 .fin-chart svg{display:block;min-width:640px;width:100%;height:auto}
 .fin-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--text2);padding:6px 4px 0}
 .fin-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+/* ═══ v6: obra, fiscal, supervisor, TST e diretoria ═══ */
+body.ro .v6-edit,body.ro [data-w]{display:none!important}
+body.ro #finRoot .fin-form,body.ro #finRoot [data-fedit],body.ro #finRoot [data-fdel]{display:none!important}
+body.ro #finRoot select[data-fst],body.ro #finRoot select[data-fdst],body.ro #finRoot input[data-fdias]{pointer-events:none;opacity:.6}
+.v6-ro-note{background:#FFF4E5;color:#8A4500;border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:16px}
+.v6-section{margin-top:32px}
+.v6-h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.v6-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.v6-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:18px}
+.v6-card{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:14px 16px;text-align:left;cursor:pointer;font-family:var(--font);color:var(--text);transition:var(--transition);box-shadow:var(--shadow)}
+.v6-card:hover{border-color:var(--blue)}
+.v6-card.sel{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue-light),var(--shadow)}
+.v6-card-name{font-weight:700;font-size:14px;margin-bottom:8px;display:flex;gap:6px;align-items:center;justify-content:space-between}
+.v6-card-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-top:4px}
+.v6-card-row b{color:var(--text)}
+.v6-bar{height:6px;background:var(--border2);border-radius:4px;overflow:hidden;margin-top:6px;position:relative}
+.v6-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.v6-panel{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);margin-bottom:18px}
+.v6-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.v6-panel-title{font-size:17px;font-weight:700}
+.v6-panel-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.v6-kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+.v6-kpi{background:var(--bg);border-radius:10px;padding:12px 14px}
+.v6-kpi .l{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.04em}
+.v6-kpi .v{font-size:22px;font-weight:700;margin-top:4px;letter-spacing:-.01em}
+.v6-kpi .s{font-size:11px;color:var(--text2);margin-top:2px}
+.v6-sub-title{font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin:20px 0 10px}
+.v6-sec-title{font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:18px 0 10px}
+.v6-chart{position:relative;width:100%}
+.v6-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.v6-chart text{font-family:var(--font)}
+.v6-tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border2);border-radius:8px;box-shadow:var(--shadow-lg);padding:8px 10px;font-size:12px;min-width:150px;z-index:5;display:none;color:var(--text)}
+.v6-tip b{display:block;margin-bottom:4px}
+.v6-tip div{display:flex;align-items:center;gap:6px;justify-content:space-between}
+.v6-tip i,.v6-legend i{display:inline-block;width:16px;height:0;border-top:2px solid;vertical-align:middle}
+.v6-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text2);margin:6px 0 4px}
+.v6-legend span{display:inline-flex;align-items:center;gap:6px}
+.v6-grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media(max-width:1000px){.v6-grid2{grid-template-columns:minmax(0,1fr)}}
+.v6-table{width:100%;border-collapse:collapse;font-size:13px}
+.v6-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text2);padding:8px 10px;border-bottom:1px solid var(--border2)}
+.v6-table td{padding:8px 10px;border-bottom:1px solid var(--border2);vertical-align:middle}
+.v6-table td.num,.v6-table th.num{text-align:right;font-variant-numeric:tabular-nums}
+.v6-table input,.v6-table select{padding:6px 8px;font-size:13px;border:1px solid var(--border);border-radius:7px;width:100%;font-family:var(--font)}
+details.v6-data summary{cursor:pointer;font-size:12px;color:var(--blue);margin-top:6px}
+.v6-ic-list{display:flex;flex-direction:column;gap:8px}
+.v6-ic{display:grid;grid-template-columns:96px 1fr auto;gap:12px;align-items:center;background:var(--bg);border:1px solid transparent;border-radius:10px;padding:12px 14px;text-align:left;cursor:pointer;font-family:var(--font);color:var(--text);width:100%;transition:var(--transition)}
+.v6-ic:hover,.v6-ic:focus{border-color:var(--blue);outline:none}
+.v6-ic-date{font-weight:700;font-size:13px}
+.v6-ic-desc{font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v6-ic-meta{font-size:12px;color:var(--text2);text-align:right;white-space:nowrap}
+@media(max-width:640px){.v6-ic{grid-template-columns:1fr}.v6-ic-meta{text-align:left}}
+.v6-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:8px 0}
+.v6-gallery a{display:block;aspect-ratio:4/3;border-radius:8px;overflow:hidden;background:var(--bg)}
+.v6-gallery img{width:100%;height:100%;object-fit:cover}
+.v6-photo-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.v6-thumb{position:relative;width:86px;height:86px;border-radius:10px;overflow:hidden;background:var(--bg);border:1px solid var(--border2)}
+.v6-thumb img{width:100%;height:100%;object-fit:cover}
+.v6-thumb button{position:absolute;top:4px;right:4px;border:none;background:rgba(0,0,0,.6);color:#fff;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:11px}
+.v6-thumb-add{display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px dashed var(--border);cursor:pointer;font-size:22px;color:var(--text2);font-family:var(--font)}
+.v6-thumb-add span{font-size:11px;margin-top:2px}
+.v6-comment{background:var(--blue-light);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.v6-comment-head{display:flex;gap:8px;align-items:center;font-size:13px;margin-bottom:6px;flex-wrap:wrap}
+.v6-comment-head span{color:var(--text2);font-size:12px}
+.v6-comment-head button{margin-left:auto}
+.v6-comment-text{font-size:13px;line-height:1.6}
+.v6-comment-form{border:1px solid var(--border2);border-radius:10px;padding:12px;margin-top:6px}
+.v6-comment-form textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px;font-family:var(--font);font-size:13px;resize:vertical}
+.v6-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.v6-checklist{max-height:220px;overflow:auto;background:var(--bg);border-radius:10px;padding:6px 12px}
+.v6-checklist label{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:500;text-transform:none;letter-spacing:0;margin:0;padding:5px 0;cursor:pointer}
+.v6-checklist input{width:auto}
+.v6-home{max-width:560px;margin:0 auto;padding:36px 20px 60px;width:100%}
+.v6-home-hello{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.v6-home-sub{color:var(--text2);font-size:14px;margin:4px 0 26px}
+.v6-home-card{display:flex;align-items:center;gap:16px;width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:22px 20px;margin-bottom:14px;cursor:pointer;text-align:left;font-family:var(--font);color:var(--text);box-shadow:var(--shadow);transition:var(--transition)}
+.v6-home-card:hover{border-color:var(--blue);transform:translateY(-1px)}
+.v6-home-card .ic{font-size:30px;width:52px;height:52px;border-radius:14px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.v6-home-card b{display:block;font-size:17px}
+.v6-home-card small{display:block;color:var(--text2);font-size:13px;margin-top:3px}
+.v6-list{display:flex;flex-direction:column;gap:10px}
+.v6-item{display:block;background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:14px 16px;cursor:pointer;text-align:left;font-family:var(--font);color:var(--text);width:100%;transition:var(--transition)}
+.v6-item:hover{border-color:var(--blue)}
+.v6-item-top{display:flex;justify-content:space-between;gap:8px;align-items:center;font-weight:700;font-size:14px}
+.v6-item-sub{font-size:12px;color:var(--text2);margin-top:4px;display:flex;gap:12px;flex-wrap:wrap}
+.v6-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.v6-filters input,.v6-filters select{padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-family:var(--font);font-size:13px;background:var(--surface)}
+.v6-insp-item{display:grid;grid-template-columns:1fr 110px 1fr 34px;gap:8px;margin-bottom:8px}
+.v6-insp-item input,.v6-insp-item select{padding:9px 10px;border:1px solid var(--border);border-radius:8px;font-family:var(--font);font-size:13px;width:100%}
+@media(max-width:640px){.v6-insp-item{grid-template-columns:1fr 90px 34px}.v6-insp-item .obs{grid-column:1/3}}
+.v6-sit-C{color:#1B873A;font-weight:700}.v6-sit-NC{color:#C0001A;font-weight:700}.v6-sit-NA{color:var(--text2);font-weight:700}
+.modal.v6-wide{max-width:980px}
+.modal{max-height:calc(100vh - 40px);display:flex;flex-direction:column}
+.modal-body{overflow-y:auto;flex:1 1 auto;min-height:0}
+.modal-header,.modal-footer{flex-shrink:0}
+.modal-footer{flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -327,6 +424,7 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     </div>
     <div class="topnav-right">
       <span class="topnav-user" id="navUserName"></span>
+      <button class="topnav-btn" onclick="supHome()">Início</button>
       <button class="topnav-btn" onclick="doLogout()">Sair</button>
     </div>
   </div>
@@ -500,7 +598,8 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     <div class="success-title">Relatório Enviado!</div>
     <div class="success-text" id="successText">Seu relatório foi registrado com sucesso e está disponível para geração de PDF e Excel pelo administrador.</div>
     <button class="btn btn-primary btn-full btn-lg" onclick="newReport()">+ Novo Relatório</button>
-    <button class="btn btn-secondary btn-full mt-2" onclick="viewMyReports()">Ver meus relatórios</button>
+    <button class="btn btn-secondary btn-full mt-2" onclick="supOpenReports()">Ver relatórios do contrato</button>
+    <button class="btn btn-secondary btn-full mt-2" onclick="supHome()">Voltar ao início</button>
   </div>
 </div>
 <div class="screen hidden" id="screen-admin">
@@ -520,11 +619,12 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
       <div class="admin-sidebar-section">Principal</div>
       <div class="sidebar-item active" onclick="adminNav('dashboard',this)"><span class="sidebar-item-icon">📊</span>Dashboard</div>
       <div class="sidebar-item" onclick="adminNav('reports',this)"><span class="sidebar-item-icon">📋</span>Relatórios</div>
+      <div class="sidebar-item" id="sidebarItemInspections" onclick="adminNav('inspections',this)"><span class="sidebar-item-icon">🦺</span>Inspeções de campo</div>
       <div class="admin-sidebar-section hidden" id="sidebarSectionGerencia">Gerência</div>
       <div class="sidebar-item hidden" id="sidebarItemFinance" onclick="adminNav('finance',this)"><span class="sidebar-item-icon">💰</span>Gestão financeira</div>
       <div class="admin-sidebar-section" id="sidebarSectionCadastros">Cadastros</div>
       <div class="sidebar-item" id="sidebarItemUsers" onclick="adminNav('users',this)"><span class="sidebar-item-icon">👤</span>Colaboradores</div>
-      <div class="sidebar-item" onclick="adminNav('contracts',this)"><span class="sidebar-item-icon">📁</span>Contratos</div>
+      <div class="sidebar-item" id="sidebarItemContracts" onclick="adminNav('contracts',this)"><span class="sidebar-item-icon">📁</span>Contratos</div>
       <div class="sidebar-item" id="sidebarItemTemplates" onclick="adminNav('templates',this)"><span class="sidebar-item-icon">📄</span>Modelos de Relatório</div>
       <div class="admin-sidebar-section" id="sidebarSectionConfig">Configurações</div>
       <div class="sidebar-item" id="sidebarItemSettings" onclick="adminNav('settings',this)"><span class="sidebar-item-icon">⚙️</span>Configurações</div>
@@ -548,6 +648,64 @@ html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--t
     <div class="admin-page-title">Meus Relatórios</div>
     <div class="admin-page-sub">Relatórios enviados por você</div>
     <div class="data-table-wrap" id="myReportsTable"></div>
+  </div>
+</div>
+<div class="screen hidden" id="screen-suphome">
+  <div class="topnav">
+    <div class="topnav-logo"><div class="topnav-logo-icon"><span style="color:#fff;font-weight:800;font-size:13px">FR</span></div><span class="topnav-logo-text">FieldReport Pro</span></div>
+    <div class="topnav-right"><span class="topnav-user" id="navSupName"></span><button class="topnav-btn" onclick="doLogout()">Sair</button></div>
+  </div>
+  <div class="v6-home">
+    <div class="v6-home-hello">Olá, <span id="supHelloName"></span></div>
+    <div class="v6-home-sub" id="supHomeContract"></div>
+    <button class="v6-home-card" onclick="supNewReport()"><span class="ic">📝</span><span><b>Lançar relatório</b><small>Registrar o relatório do seu turno</small></span></button>
+    <button class="v6-home-card" onclick="supOpenReports()"><span class="ic">📂</span><span><b>Visualizar relatórios do contrato</b><small>Relatórios individuais e compilados do dia do seu contrato</small></span></button>
+  </div>
+</div>
+<div class="screen hidden" id="screen-supreports">
+  <div class="topnav">
+    <div class="topnav-logo"><button class="topnav-btn" onclick="supHome()">← Início</button><span class="topnav-logo-text" style="margin-left:6px">Relatórios do contrato</span></div>
+    <div class="topnav-right"><button class="topnav-btn" onclick="doLogout()">Sair</button></div>
+  </div>
+  <div style="max-width:760px;margin:0 auto;padding:28px 20px 60px;width:100%">
+    <div class="admin-page-title" id="svTitle">Contrato</div>
+    <div class="admin-page-sub">Tudo o que foi lançado no seu contrato, por você e pelos outros supervisores</div>
+    <div class="v6-tabs"><button id="svTabDaily" class="btn btn-sm btn-primary" onclick="svSetTab('daily')">Compilados do dia</button><button id="svTabInd" class="btn btn-sm btn-secondary" onclick="svSetTab('ind')">Relatórios individuais</button></div>
+    <div class="v6-filters"><input type="date" id="svFrom" onchange="svRender()" title="De"><span class="text-sm text-muted">até</span><input type="date" id="svTo" onchange="svRender()" title="Até"><button class="btn btn-secondary btn-sm" onclick="document.getElementById('svFrom').value='';document.getElementById('svTo').value='';svRender()">Limpar</button></div>
+    <div class="v6-list" id="svList"></div>
+  </div>
+</div>
+<div class="screen hidden" id="screen-tsthome">
+  <div class="topnav">
+    <div class="topnav-logo"><div class="topnav-logo-icon"><span style="color:#fff;font-weight:800;font-size:13px">FR</span></div><span class="topnav-logo-text">Inspeções de campo</span><span class="badge badge-green" style="margin-left:4px">TST</span></div>
+    <div class="topnav-right"><span class="topnav-user" id="navTstName"></span><button class="topnav-btn" onclick="doLogout()">Sair</button></div>
+  </div>
+  <div class="v6-home" style="max-width:760px">
+    <div class="v6-home-hello">Olá, <span id="tstHelloName"></span></div>
+    <div class="v6-home-sub">As inspeções de campo ficam registradas à parte e não se misturam aos relatórios de turno dos supervisores.</div>
+    <button class="v6-home-card" onclick="tstNewInspection()"><span class="ic">🦺</span><span><b>Nova inspeção de campo</b><small>Registrar uma inspeção de segurança</small></span></button>
+    <button class="btn btn-secondary btn-sm hidden" id="tstTplBtn" onclick="downloadTemplateFile(V6.tstTpl&&V6.tstTpl.id)" style="margin-bottom:18px">⬇ Baixar modelo da inspeção</button>
+    <div class="v6-sub-title">Minhas inspeções</div>
+    <div class="v6-list" id="tstList"></div>
+  </div>
+</div>
+<div class="screen hidden" id="screen-inspform">
+  <div class="topnav">
+    <div class="topnav-logo"><button class="topnav-btn" onclick="cancelInspection()">← Voltar</button><span class="topnav-logo-text" style="margin-left:6px">Nova inspeção de campo</span></div>
+    <div class="topnav-right"><button class="topnav-btn" onclick="doLogout()">Sair</button></div>
+  </div>
+  <div class="form-screen-content" style="width:100%">
+    <div class="form-card" style="padding:24px">
+      <div class="form-row-2"><div class="form-group"><label>Contrato</label><select id="ifContract"></select></div><div class="form-group"><label>Tipo de inspeção</label><select id="ifTipo"></select></div></div>
+      <div class="form-row-2"><div class="form-group"><label>Data</label><input type="date" id="ifData"></div><div class="form-group"><label>Hora</label><input type="time" id="ifHora"></div></div>
+      <div class="form-group"><label>Local / área inspecionada</label><input id="ifLocal" placeholder="Ex.: Galeria N-490, frente 2"></div>
+      <div class="form-group"><label>Itens verificados</label><div id="ifItens"></div><button type="button" class="btn btn-secondary btn-sm" onclick="addInspItem()">+ Adicionar item</button></div>
+      <div class="form-group"><label>Não conformidades encontradas</label><textarea id="ifNC" rows="3" placeholder="Descreva as não conformidades"></textarea></div>
+      <div class="form-group"><label>Ações corretivas / recomendações</label><textarea id="ifAcoes" rows="3" placeholder="O que foi orientado ou precisa ser corrigido, responsável e prazo"></textarea></div>
+      <div class="form-group"><label>Observações gerais</label><textarea id="ifObs" rows="2"></textarea></div>
+      <div class="form-group"><label>Fotos</label><div class="v6-photo-grid" id="v6pg-insp"></div></div>
+    </div>
+    <div class="form-actions"><button class="btn btn-secondary" onclick="cancelInspection()">Cancelar</button><button class="btn btn-primary btn-lg" id="ifSubmit" onclick="submitInspection()">✓ Enviar inspeção</button></div>
   </div>
 </div>
 <div class="modal-overlay hidden" id="modalOverlay">
@@ -641,9 +799,8 @@ async function bootstrapAfterLogin(){
   try{
     const contractsRes = await apiData('contracts','list');
     DB.contracts = contractsRes.contracts || [];
-    const reportsRes = await apiData('reports','list');
-    DB.reports = reportsRes.reports || [];
-    if(role==='admin'||role==='gerencia'){
+    if(role==='tst'){ DB.reports = []; } else { const reportsRes = await apiData('reports','list'); DB.reports = reportsRes.reports || []; }
+    if(role==='admin'||role==='gerencia'||role==='diretoria'){
       const settingsRes = await apiData('settings','get').catch(()=>null);
       if(settingsRes && settingsRes.settings){ const s = settingsRes.settings; DB.appConfig = { name:s.name, logo:s.logo_url, logoText:s.logo_text, companyName:s.company_name, sheetsId:s.sheets_id, sheetsKey:s.sheets_key, defaultExport:s.default_export }; }
     }
@@ -659,7 +816,7 @@ function applyAppConfig(){
   ['navAppName','navAppName2','navAppNameAdmin'].forEach(id=>{ const el = document.getElementById(id); if(el) el.textContent = cfg.name||'FieldReport Pro'; });
   if(cfg.logo){ ['navLogo','navLogo2','navLogoAdmin'].forEach(id=>{ const el = document.getElementById(id); if(el){ el.innerHTML = ''; const img = document.createElement('img'); img.src = cfg.logo; img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:9px'; el.appendChild(img); } }); }
 }
-const SCREENS = ['screen-login','screen-form','screen-preview','screen-success','screen-admin','screen-myreports'];
+const SCREENS = ['screen-login','screen-form','screen-preview','screen-success','screen-admin','screen-myreports','screen-suphome','screen-supreports','screen-tsthome','screen-inspform'];
 function showScreen(id){ SCREENS.forEach(s=>{ document.getElementById(s).classList.add('hidden'); }); document.getElementById(id).classList.remove('hidden'); window.scrollTo(0,0); }
 async function doLogin(){
   const login = document.getElementById('loginUser').value.trim();
@@ -676,28 +833,43 @@ async function doLogin(){
     btn.disabled=false; btn.innerHTML='Entrar';
     if(!ok){ SESSION_TOKEN=null; APP.currentUser=null; return; }
     const user = APP.currentUser;
-    if(user.role==='admin'||user.role==='gerencia'||user.role==='coordenador'){
+    document.body.classList.toggle('ro', user.role==='diretoria');
+    if(['admin','gerencia','coordenador','diretoria','fiscal'].includes(user.role)){
       document.getElementById('navAdminName').textContent = user.name;
       applyRolePermissions(user.role); showScreen('screen-admin'); adminNav('dashboard', document.querySelector('.sidebar-item'));
+    } else if(user.role==='tst'){
+      tstHome();
     } else {
       document.getElementById('navUserName').textContent = user.name;
       const contract = DB.contracts.find(c=>c.id===user.contractId);
       document.getElementById('formContractLabel').textContent = 'Contrato: '+(contract?contract.name:'—');
-      initForm(); showScreen('screen-form');
+      supHome();
     }
   }catch(e){ const msg = e.message==='invalid_credentials' ? 'Login ou senha incorretos.' : 'Não foi possível entrar: '+e.message; showLoginError(msg); btn.disabled=false; btn.innerHTML='Entrar'; }
 }
 function showLoginError(msg){ const e=document.getElementById('loginError'); e.textContent=msg; e.classList.remove('hidden'); }
-async function doLogout(){ if(SESSION_TOKEN){ apiData('session','logout').catch(()=>{}); } SESSION_TOKEN=null; APP.currentUser=null; APP.currentReport=null; DB = emptyDB(); showScreen('screen-login'); loadPublicBranding(); }
+async function doLogout(){ if(SESSION_TOKEN){ apiData('session','logout').catch(()=>{}); } SESSION_TOKEN=null; APP.currentUser=null; APP.currentReport=null; DB = emptyDB(); document.body.classList.remove('ro'); closeModal(); showScreen('screen-login'); loadPublicBranding(); }
 function isCoordenador(){ return !!APP.currentUser && APP.currentUser.role==='coordenador'; }
 function isGerencia(){ return !!APP.currentUser && APP.currentUser.role==='gerencia'; }
 function isAdminUser(){ return !!APP.currentUser && (APP.currentUser.role==='admin'||APP.currentUser.role==='gerencia'); }
 function canManage(){ return isAdminUser(); }
+function isDiretoria(){ return !!APP.currentUser && APP.currentUser.role==='diretoria'; }
+function isFiscal(){ return !!APP.currentUser && APP.currentUser.role==='fiscal'; }
+function isTst(){ return !!APP.currentUser && APP.currentUser.role==='tst'; }
+function isSupervisorUser(){ return !!APP.currentUser && APP.currentUser.role==='supervisor'; }
+// Perfis que só visualizam (não cadastram, editam nem excluem nada).
+function isReadOnlyUser(){ return isCoordenador()||isDiretoria()||isFiscal(); }
+function canSeeBM(){ return isGerencia()||isDiretoria()||isFiscal(); }
 function applyRolePermissions(role){
   const badge=document.getElementById('roleBadge');
   const restrictedIds=['sidebarItemUsers','sidebarItemTemplates','sidebarItemSettings','sidebarItemAppConfig','sidebarSectionConfig'];
-  if(role==='coordenador'){ badge.textContent='Coordenador'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.add('hidden')); } else { badge.textContent= role==='gerencia' ? 'Gerência' : 'Admin'; restrictedIds.forEach(id=>document.getElementById(id)?.classList.remove('hidden')); }
-  ['sidebarSectionGerencia','sidebarItemFinance'].forEach(id=>document.getElementById(id)?.classList.toggle('hidden', role!=='gerencia'));
+  badge.textContent={ coordenador:'Coordenador', gerencia:'Gerência', diretoria:'Diretoria', fiscal:'Fiscal' }[role]||'Admin';
+  const hideRestricted = role==='coordenador'||role==='fiscal';
+  restrictedIds.forEach(id=>document.getElementById(id)?.classList.toggle('hidden', hideRestricted));
+  ['sidebarSectionGerencia','sidebarItemFinance'].forEach(id=>document.getElementById(id)?.classList.toggle('hidden', !(role==='gerencia'||role==='diretoria')));
+  // Fiscal: somente Dashboard e Relatórios. Inspeções de campo: Gerência, Admin, Coordenador e Diretoria.
+  ['sidebarSectionCadastros','sidebarItemContracts'].forEach(id=>document.getElementById(id)?.classList.toggle('hidden', role==='fiscal'));
+  document.getElementById('sidebarItemInspections')?.classList.toggle('hidden', role==='fiscal');
 }
 document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
 document.getElementById('loginUser').addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('loginPass').focus(); });
@@ -790,17 +962,20 @@ function previewStoredReport(id){ const r=DB.reports.find(r=>r.id===id); if(!r) 
 const RESTRICTED_PAGES_FOR_COORDENADOR=['users','templates','settings','appconfig'];
 function adminNav(page,el){
   if(isCoordenador() && RESTRICTED_PAGES_FOR_COORDENADOR.includes(page)){ toast('Você não tem permissão para acessar esta área','error'); return; }
-  if(page==='finance' && !isGerencia()){ toast('Somente o perfil Gerência acessa a Gestão financeira','error'); return; }
+  if(page==='finance' && !isGerencia() && !isDiretoria()){ toast('Somente os perfis Gerência e Diretoria acessam a Gestão financeira','error'); return; }
+  if(isFiscal() && !['dashboard','reports'].includes(page)){ toast('Você não tem permissão para acessar esta área','error'); return; }
   document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active')); if(el) el.classList.add('active');
   const main=document.getElementById('adminMain');
-  const renders={dashboard:renderDashboard,reports:renderReports,users:renderUsers,contracts:renderContracts,templates:renderTemplates,settings:renderSettings,appconfig:renderAppConfig,finance:window.renderFinance};
+  const renders={dashboard:renderDashboard,reports:renderReports,users:renderUsers,contracts:renderContracts,templates:renderTemplates,settings:renderSettings,appconfig:renderAppConfig,finance:window.renderFinance,inspections:renderInspections};
   if(renders[page]) renders[page](main);
 }
 async function renderDashboard(main){
   main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+  if(isFiscal()) return renderFiscalDashboard(main);
   let stats; try{ stats = await apiData('dashboard','stats'); } catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Não foi possível carregar o dashboard: ${e.message}</div></div>`; return; }
   const reps=stats.recent||[];
-  main.innerHTML=`<div class="admin-page-title">Dashboard</div><div class="admin-page-sub">Visão geral do sistema</div><div class="stats-grid"><div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${stats.totalReports}</div><div class="stat-label">Total de Relatórios</div></div><div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">${stats.todayReports}</div><div class="stat-label">Relatórios Hoje</div></div><div class="stat-card"><div class="stat-icon">👤</div><div class="stat-value">${stats.userCount}</div><div class="stat-label">Supervisores</div></div><div class="stat-card"><div class="stat-icon">📁</div><div class="stat-value">${stats.contractCount}</div><div class="stat-label">Contratos Ativos</div></div></div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Últimos Relatórios</span><button class="btn btn-primary btn-sm" onclick="adminNav('reports',null)">Ver todos</button></div>${reps.length===0?`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div><div class="empty-state-sub">Os supervisores ainda não enviaram relatórios</div></div>`:`<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Ações</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button></div></td></tr>`).join('')}</tbody></table>`}</div>`;
+  main.innerHTML=`<div class="admin-page-title">Dashboard</div><div class="admin-page-sub">Visão geral do sistema</div><div class="stats-grid"><div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">${stats.totalReports}</div><div class="stat-label">Total de Relatórios</div></div><div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">${stats.todayReports}</div><div class="stat-label">Relatórios Hoje</div></div><div class="stat-card"><div class="stat-icon">👤</div><div class="stat-value">${stats.userCount}</div><div class="stat-label">Supervisores</div></div><div class="stat-card"><div class="stat-icon">📁</div><div class="stat-value">${stats.contractCount}</div><div class="stat-label">Contratos Ativos</div></div></div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Últimos Relatórios</span><button class="btn btn-primary btn-sm" onclick="adminNav('reports',null)">Ver todos</button></div>${reps.length===0?`<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório ainda</div><div class="empty-state-sub">Os supervisores ainda não enviaram relatórios</div></div>`:`<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Ações</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button></div></td></tr>`).join('')}</tbody></table>`}</div><div class="v6-section" id="v6ObraSection"></div>`;
+  renderObraSection(document.getElementById('v6ObraSection'));
 }
 function isDayClosed(dateStr){ const closeAt=new Date(dateStr+'T06:00:00'); closeAt.setDate(closeAt.getDate()+1); return new Date()>=closeAt; }
 function closesAtLabel(dateStr){ const closeAt=new Date(dateStr+'T06:00:00'); closeAt.setDate(closeAt.getDate()+1); return closeAt.toLocaleDateString('pt-BR')+' às 06:00'; }
@@ -809,20 +984,22 @@ async function renderReports(main){
   main.innerHTML=`<div class="admin-page-title">Relatórios</div><div class="admin-page-sub">Relatórios enviados pelos supervisores</div><div style="display:flex;gap:8px;margin-bottom:20px"><button class="btn ${_reportsTab==='individual'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('individual')">Relatórios Individuais</button><button class="btn ${_reportsTab==='daily'?'btn-primary':'btn-secondary'} btn-sm" onclick="switchReportsTab('daily')">Compilados por Dia</button></div><div id="reportsTabContent">Carregando…</div>`;
   try{
     const reportsRes = await apiData('reports','list'); DB.reports = reportsRes.reports || [];
-    if(isAdminUser()){ const usersRes = await apiData('users','list').catch(()=>null); if(usersRes) DB.users = usersRes.users || []; }
+    if(isAdminUser()||isDiretoria()){ const usersRes = await apiData('users','list').catch(()=>null); if(usersRes) DB.users = usersRes.users || []; }
+    await loadComments();
   }catch(e){ toast('Erro ao carregar relatórios: '+e.message,'error'); }
   renderReportsTabContent();
 }
 function switchReportsTab(tab){ _reportsTab=tab; renderReports(document.getElementById('adminMain')); }
 function renderReportsTabContent(){ const el=document.getElementById('reportsTabContent'); el.innerHTML = _reportsTab==='individual' ? individualReportsView() : dailyReportsView(); }
 function individualReportsView(){
-  const supervisors=DB.users.filter(u=>u.role==='supervisor'); const contracts=DB.contracts;
-  return `<div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center"><select class="form-input" id="filtSupervisor" style="max-width:200px" onchange="applyIndividualFilters()"><option value="">Todos os supervisores</option>${supervisors.map(u=>`<option value="${u.id}">${u.name}</option>`).join('')}</select><select class="form-input" id="filtContract" style="max-width:220px" onchange="applyIndividualFilters()"><option value="">Todos os contratos</option>${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><input class="form-input" type="date" id="filtDateFrom" style="max-width:160px" onchange="applyIndividualFilters()"><span style="color:var(--text3);font-size:12px">até</span><input class="form-input" type="date" id="filtDateTo" style="max-width:160px" onchange="applyIndividualFilters()"><button class="btn btn-secondary btn-sm" onclick="clearIndividualFilters()">Limpar filtros</button><button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openExportBulk()">⬇ Exportar Diário</button></div><div class="data-table-wrap" id="reportsTableWrap">${buildReportsTable([...DB.reports].reverse())}</div>`;
+  const supMap=new Map(); DB.users.filter(u=>u.role==='supervisor').forEach(u=>supMap.set(u.id,u.name)); DB.reports.forEach(r=>{ if(r.supervisorId&&!supMap.has(r.supervisorId)) supMap.set(r.supervisorId,r.supervisorName||'—'); });
+  const supervisors=[...supMap].map(([id,name])=>({id,name})).sort((a,b)=>String(a.name).localeCompare(String(b.name))); const contracts=DB.contracts;
+  return `<div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center"><select class="form-input" id="filtSupervisor" style="max-width:200px" onchange="applyIndividualFilters()"><option value="">Todos os supervisores</option>${supervisors.map(u=>`<option value="${u.id}">${u.name}</option>`).join('')}</select><select class="form-input" id="filtContract" style="max-width:220px" onchange="applyIndividualFilters()"><option value="">Todos os contratos</option>${contracts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><input class="form-input" type="date" id="filtDateFrom" style="max-width:160px" onchange="applyIndividualFilters()"><span style="color:var(--text3);font-size:12px">até</span><input class="form-input" type="date" id="filtDateTo" style="max-width:160px" onchange="applyIndividualFilters()"><button class="btn btn-secondary btn-sm" onclick="clearIndividualFilters()">Limpar filtros</button>${isFiscal()?'':'<button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openExportBulk()">⬇ Exportar Diário</button>'}</div><div class="data-table-wrap" id="reportsTableWrap">${buildReportsTable([...DB.reports].reverse())}</div>`;
 }
 function buildReportsTable(reps){
   if(!reps.length) return `<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório encontrado</div></div>`;
-  const readOnly=isCoordenador();
-  return `<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Local</th><th>Ações</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td>${r.location}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button>${readOnly?'':`<button class="tbl-btn tbl-btn-del" onclick="deleteReport('${r.id}')">🗑</button>`}</div></td></tr>`).join('')}</tbody></table>`;
+  const readOnly=isReadOnlyUser(); const noExport=isFiscal();
+  return `<table class="data-table"><thead><tr><th>Data</th><th>Supervisor</th><th>Contrato</th><th>Turno</th><th>Local</th><th>Ações</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${r.supervisorName}</td><td>${r.contractName}</td><td>${r.shift}</td><td>${r.location}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="adminViewReport('${r.id}')">👁 Ver</button>${noExport?'':`<button class="tbl-btn tbl-btn-edit" onclick="openExportModal('${r.id}')">⬇ Exportar</button>`}${readOnly?'':`<button class="tbl-btn tbl-btn-del" onclick="deleteReport('${r.id}')">🗑</button>`}</div></td></tr>`).join('')}</tbody></table>`;
 }
 function applyIndividualFilters(){
   const sup=document.getElementById('filtSupervisor').value; const con=document.getElementById('filtContract').value; const from=document.getElementById('filtDateFrom').value; const to=document.getElementById('filtDateTo').value;
@@ -842,84 +1019,113 @@ function dailyReportsView(){
 }
 function buildDailyTable(groups){
   if(!groups.length) return `<div class="empty-state"><div class="empty-state-icon">📅</div><div class="empty-state-text">Nenhum relatório compilado encontrado</div></div>`;
-  return `<table class="data-table"><thead><tr><th>Data</th><th>Contrato</th><th>Relatórios no dia</th><th>Status</th><th>Ações</th></tr></thead><tbody>${groups.map(g=>{ const closed=isDayClosed(g.date); return `<tr><td>${fmtDate(g.date)}</td><td>${g.contractName}</td><td>${g.reports.length}</td><td><span class="badge ${closed?'badge-green':'badge-warn'}" title="${closed?'':'Fecha em '+closesAtLabel(g.date)}">${closed?'Fechado':'Aberto até 06:00'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="viewDailyGroup('${g.contractId}','${g.date}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" ${closed?`onclick="openExportDaily('${g.contractId}','${g.date}')"`:'disabled style="opacity:.4;cursor:not-allowed" title="Disponível a partir das 06:00 do dia seguinte"'}>⬇ Exportar</button></div></td></tr>`; }).join('')}</tbody></table>`;
+  return `<table class="data-table"><thead><tr><th>Data</th><th>Contrato</th><th>Relatórios no dia</th><th>Comentários</th><th>Status</th><th>Ações</th></tr></thead><tbody>${groups.map(g=>{ const closed=isDayClosed(g.date); const nc=dayComments(g.contractId,g.date).length; return `<tr><td>${fmtDate(g.date)}</td><td>${g.contractName}</td><td>${g.reports.length}</td><td>${nc?`<span class="badge badge-blue">💬 ${nc}</span>`:'<span class="text-muted">—</span>'}</td><td><span class="badge ${closed?'badge-green':'badge-warn'}" title="${closed?'':'Fecha em '+closesAtLabel(g.date)}">${closed?'Fechado':'Aberto até 06:00'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="viewDailyGroup('${g.contractId}','${g.date}')">👁 Ver${isFiscal()?' / 💬 Comentar':''}</button>${isFiscal()?'':`<button class="tbl-btn tbl-btn-edit" ${closed?`onclick="openExportDaily('${g.contractId}','${g.date}')"`:'disabled style="opacity:.4;cursor:not-allowed" title="Disponível a partir das 06:00 do dia seguinte"'}>⬇ Exportar</button>`}</div></td></tr>`; }).join('')}</tbody></table>`;
 }
 function applyDailyFilters(){ const con=document.getElementById('filtDailyContract').value; const from=document.getElementById('filtDailyFrom').value; const to=document.getElementById('filtDailyTo').value; document.getElementById('dailyTableWrap').innerHTML=buildDailyTable(getDailyGroups(con||null,from||null,to||null)); }
 function clearDailyFilters(){ document.getElementById('filtDailyContract').value=''; document.getElementById('filtDailyFrom').value=''; document.getElementById('filtDailyTo').value=''; applyDailyFilters(); }
 function viewDailyGroup(contractId,date){
   const reps=DB.reports.filter(r=>r.contractId===contractId&&r.date===date); if(!reps.length) return;
-  openModal(`Relatórios do dia — ${fmtDate(date)}`,`<div style="font-size:13px;color:var(--text2);margin-bottom:14px">${reps[0].contractName} · ${reps.length} relatório(s) individual(is) compilados nesta data</div>${reps.map(r=>`<div class="preview-header-card mb-4" style="cursor:pointer" onclick="closeModal();adminViewReport('${r.id}')"><div class="preview-title">${r.shift}</div><div class="preview-meta" style="margin-top:8px"><span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span><span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span></div></div>`).join('')}`,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${isDayClosed(date)?`<button class="btn btn-primary" onclick="closeModal();openExportDaily('${contractId}','${date}')">⬇ Exportar compilado</button>`:''}`);
+  openModal(`Relatórios do dia — ${fmtDate(date)}`,`<div style="font-size:13px;color:var(--text2);margin-bottom:14px">${reps[0].contractName} · ${reps.length} relatório(s) individual(is) compilados nesta data</div>${reps.map(r=>`<div class="preview-header-card mb-4" style="cursor:pointer" onclick="closeModal();adminViewReport('${r.id}')"><div class="preview-title">${r.shift}</div><div class="preview-meta" style="margin-top:8px"><span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span><span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span></div></div>`).join('')}${commentsBlockHTML(contractId,date)}`,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${isDayClosed(date)&&!isFiscal()?`<button class="btn btn-primary" onclick="closeModal();openExportDaily('${contractId}','${date}')">⬇ Exportar compilado</button>`:''}`);
+  if(isFiscal()) v6RenderPhotoGrid('comment');
 }
 function adminViewReport(id){
   const r=DB.reports.find(r=>r.id===id); if(!r) return; APP.currentReport=r; renderPreview();
-  openModal('Relatório – '+r.contractName,`<div class="preview-header-card" style="margin-bottom:16px"><div class="preview-title">${r.contractName} — ${fmtDate(r.date)}</div><div class="preview-meta" style="margin-top:10px"><span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span><span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span><span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span></div></div><div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px">Atividades</div>${r.activities.map((a,i)=>`<div class="preview-activity-item mb-4"><div class="preview-activity-num">Atividade ${i+1}</div><div class="preview-activity-text">${a}</div></div>`).join('')}<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Ocorrências</div><div style="display:grid;gap:8px"><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Inspeções</div><div style="font-size:13px">${r.inspections}</div></div><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Interrupções</div><div style="font-size:13px">${r.interruptions}</div></div><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Segurança</div><div style="font-size:13px">${r.safety}</div></div></div><div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Envolvidos</div><div style="font-size:13px;line-height:1.7">${r.involved}</div>${r.photos.some(p=>p)?`<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Fotos</div><div class="preview-photos-grid" style="padding:0">${r.photos.map((p,i)=>p?`<div class="preview-photo"><img src="${p}"></div>`:`<div class="preview-photo preview-photo-empty">📷</div>`).join('')}</div>`:''}`,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button><button class="btn btn-primary" onclick="closeModal();openExportModal('${r.id}')">⬇ Exportar</button>`);
+  openModal('Relatório – '+r.contractName,`<div class="preview-header-card" style="margin-bottom:16px"><div class="preview-title">${r.contractName} — ${fmtDate(r.date)}</div><div class="preview-meta" style="margin-top:10px"><span class="preview-meta-item"><span class="preview-meta-icon">👤</span>${r.supervisorName}</span><span class="preview-meta-item"><span class="preview-meta-icon">🕐</span>${r.shift}</span><span class="preview-meta-item"><span class="preview-meta-icon">📍</span>${r.location}</span></div></div><div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px">Atividades</div>${r.activities.map((a,i)=>`<div class="preview-activity-item mb-4"><div class="preview-activity-num">Atividade ${i+1}</div><div class="preview-activity-text">${a}</div></div>`).join('')}<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Ocorrências</div><div style="display:grid;gap:8px"><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Inspeções</div><div style="font-size:13px">${r.inspections}</div></div><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Interrupções</div><div style="font-size:13px">${r.interruptions}</div></div><div style="background:var(--bg);border-radius:8px;padding:12px"><div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Segurança</div><div style="font-size:13px">${r.safety}</div></div></div><div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Envolvidos</div><div style="font-size:13px;line-height:1.7">${r.involved}</div>${r.photos.some(p=>p)?`<div style="font-size:13px;color:var(--text2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 8px">Fotos</div><div class="preview-photos-grid" style="padding:0">${r.photos.map((p,i)=>p?`<div class="preview-photo"><img src="${p}"></div>`:`<div class="preview-photo preview-photo-empty">📷</div>`).join('')}</div>`:''}${commentsReadOnlyHTML(r.contractId,r.date)}`,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${(isFiscal()||isSupervisorUser())?'':`<button class="btn btn-primary" onclick="closeModal();openExportModal('${r.id}')">⬇ Exportar</button>`}`);
 }
 function deleteReport(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   showConfirm('Excluir relatório?','Esta ação não pode ser desfeita.',async ()=>{ try{ await apiData('reports','delete',{ id }); DB.reports=DB.reports.filter(r=>r.id!==id); renderReports(document.getElementById('adminMain')); toast('Relatório excluído','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
-const ROLE_LABELS={ supervisor:'Supervisor', coordenador:'Coordenador', admin:'Admin', gerencia:'Gerência' };
-const ROLE_BADGE={ supervisor:'badge-warn', coordenador:'badge-blue', admin:'badge-green', gerencia:'badge-red' };
-const noContractRole=r=>r==='coordenador'||r==='admin'||r==='gerencia';
+const ROLE_LABELS={ supervisor:'Supervisor', coordenador:'Coordenador', admin:'Admin', gerencia:'Gerência', fiscal:'Fiscal', tst:'TST', diretoria:'Diretoria' };
+const ROLE_BADGE={ supervisor:'badge-warn', coordenador:'badge-blue', admin:'badge-green', gerencia:'badge-red', fiscal:'badge-blue', tst:'badge-green', diretoria:'badge-red' };
+const ROLE_HINTS={
+  supervisor:'Supervisores lançam os relatórios de turno e visualizam os relatórios (individuais e compilados) do contrato em que estão alocados.',
+  coordenador:'Coordenadores visualizam relatórios, contratos, avanço das obras e inspeções de todos os contratos e podem exportar relatórios, mas não podem cadastrar, editar ou excluir nada, nem acessar esta aba de Colaboradores.',
+  admin:'Admin faz a administração operacional: relatórios, colaboradores, contratos, modelos, cronogramas, intercorrências e configurações. Não acessa a Gestão financeira.',
+  gerencia:'Gerência tem controle de todo o app, inclusive a Gestão financeira e o cadastro de perfis Admin, Gerência e Diretoria.',
+  fiscal:'Fiscal da contratante: visualiza os relatórios, o avanço físico e as intercorrências (contratos de obra) e o avanço do BM frente ao saldo dos contratos selecionados abaixo. Pode comentar, com imagem, os relatórios compilados do dia.',
+  tst:'Técnico de Segurança do Trabalho: lança inspeções de campo, que ficam separadas dos relatórios de turno e nunca entram nos compilados dos supervisores.',
+  diretoria:'Diretoria visualiza todos os dados, relatórios, indicadores, comentários e abas do app, sem poder criar, alterar ou excluir nada.'
+};
+const noContractRole=r=>r!=='supervisor'&&r!=='tst'&&r!=='fiscal';
+function userContractsLabel(u){
+  if(u.role==='fiscal'){ const names=(u.contractIds||[]).map(id=>(DB.contracts.find(c=>c.id===id)||{}).name).filter(Boolean); return names.length?names.map(n=>escH(n)).join(', '):'<span class="text-muted">Nenhum</span>'; }
+  if(noContractRole(u.role)) return '<span class="text-muted">Todos</span>';
+  const c=DB.contracts.find(c=>c.id===u.contractId); return c?escH(c.name):'<span class="text-muted">Nenhum</span>';
+}
 async function renderUsers(main){
-  if(isCoordenador()){ toast('Você não tem permissão para acessar esta área','error'); adminNav('dashboard',document.querySelector('.sidebar-item')); return; }
+  if(isCoordenador()||isFiscal()){ toast('Você não tem permissão para acessar esta área','error'); adminNav('dashboard',document.querySelector('.sidebar-item')); return; }
   main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
   try{ const [usersRes, contractsRes] = await Promise.all([apiData('users','list'), apiData('contracts','list')]); DB.users = usersRes.users || []; DB.canBootstrapGerencia = !!usersRes.canBootstrapGerencia; DB.contracts = contractsRes.contracts || []; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar colaboradores: ${e.message}</div></div>`; return; }
-  const users=isGerencia()?DB.users:DB.users.filter(u=>u.role!=='admin'&&u.role!=='gerencia');
-  main.innerHTML=`<div class="admin-page-title">Colaboradores</div><div class="admin-page-sub">Gerencie os supervisores, coordenadores e seus acessos</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Colaboradores (${users.length})</span><button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Novo Colaborador</button></div>${users.length===0?`<div class="empty-state"><div class="empty-state-icon">👤</div><div class="empty-state-text">Nenhum colaborador cadastrado</div><div class="empty-state-sub">Adicione supervisores ou coordenadores para acessar o sistema</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Login</th><th>Matrícula</th><th>Perfil</th><th>Contrato</th><th>Status</th><th>Ações</th></tr></thead><tbody>${users.map(u=>{ const c=DB.contracts.find(c=>c.id===u.contractId); return `<tr><td><b>${u.name}</b></td><td>${u.login}</td><td>${u.matricula||'—'}</td><td><span class="badge ${ROLE_BADGE[u.role]||'badge-warn'}">${ROLE_LABELS[u.role]||u.role}</span></td><td>${noContractRole(u.role)?'<span class="text-muted">Todos</span>':(c?c.name:'<span class="text-muted">Nenhum</span>')}</td><td><span class="badge ${u.active!==false?'badge-green':'badge-red'}">${u.active!==false?'Ativo':'Inativo'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openUserModal('${u.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteUser('${u.id}')">🗑</button></div></td></tr>`; }).join('')}</tbody></table>`}</div>`;
+  const users=(isGerencia()||isDiretoria())?DB.users:DB.users.filter(u=>!['admin','gerencia','diretoria'].includes(u.role));
+  main.innerHTML=`<div class="admin-page-title">Colaboradores</div><div class="admin-page-sub">Gerencie os supervisores, coordenadores, fiscais, TSTs e seus acessos</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Colaboradores (${users.length})</span><button class="btn btn-primary btn-sm" onclick="openUserModal()">+ Novo Colaborador</button></div>${users.length===0?`<div class="empty-state"><div class="empty-state-icon">👤</div><div class="empty-state-text">Nenhum colaborador cadastrado</div><div class="empty-state-sub">Adicione supervisores ou coordenadores para acessar o sistema</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Login</th><th>Matrícula</th><th>Perfil</th><th>Contrato</th><th>Status</th><th>Ações</th></tr></thead><tbody>${users.map(u=>`<tr><td><b>${escH(u.name)}</b></td><td>${escH(u.login)}</td><td>${escH(u.matricula||'—')}</td><td><span class="badge ${ROLE_BADGE[u.role]||'badge-warn'}">${ROLE_LABELS[u.role]||escH(u.role)}</span></td><td>${userContractsLabel(u)}</td><td><span class="badge ${u.active!==false?'badge-green':'badge-red'}">${u.active!==false?'Ativo':'Inativo'}</span></td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openUserModal('${u.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteUser('${u.id}')">🗑</button></div></td></tr>`).join('')}</tbody></table>`}</div>`;
 }
 function openUserModal(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   const u=id?DB.users.find(u=>u.id===id):null; const role=u?u.role:'supervisor';
-  const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${u&&u.contractId===c.id?'selected':''}>${c.name}</option>`).join('');
-  openModal(u?'Editar Colaborador':'Novo Colaborador',`<div class="form-row-2"><div class="form-group"><label>Nome Completo</label><input id="uName" value="${u?u.name:''}" placeholder="Nome do colaborador"></div><div class="form-group"><label>Matrícula</label><input id="uMat" value="${u?u.matricula||'':''}" placeholder="Ex: SUP-001"></div></div><div class="form-row-2"><div class="form-group"><label>Login</label><input id="uLogin" value="${u?u.login:''}" placeholder="login de acesso"></div><div class="form-group"><label>${u?'Nova Senha (deixe em branco para manter)':'Senha'}</label><input id="uPass" type="password" placeholder="••••••••"></div></div><div class="form-row-2"><div class="form-group"><label>Perfil</label><select id="uRole" onchange="toggleUserContractField()"><option value="supervisor" ${role==='supervisor'?'selected':''}>Supervisor</option><option value="coordenador" ${role==='coordenador'?'selected':''}>Coordenador</option>${isGerencia()?`<option value="admin" ${role==='admin'?'selected':''}>Admin</option>`:''}${(isGerencia()||(!u&&DB.canBootstrapGerencia))?`<option value="gerencia" ${role==='gerencia'?'selected':''}>Gerência</option>`:''}</select></div><div class="form-group"><label>Status</label><select id="uActive"><option value="true" ${u&&u.active!==false?'selected':''}>Ativo</option><option value="false" ${u&&u.active===false?'selected':''}>Inativo</option></select></div></div><div class="form-group" id="uContractWrap" style="${noContractRole(role)?'display:none':''}"><label>Contrato Vinculado</label><select id="uContract"><option value="">Nenhum</option>${contractOptions}</select></div><div id="uCoordHint" class="text-sm text-muted" style="${role==='coordenador'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Coordenadores visualizam relatórios e contratos de todos os contratos automaticamente e podem exportar relatórios, mas não podem cadastrar, editar ou excluir nada, nem acessar esta aba de Colaboradores.</div><div id="uAdminHint" class="text-sm text-muted" style="${role==='admin'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Admin faz a administração operacional: relatórios, colaboradores, contratos, modelos e configurações. Não acessa a Gestão financeira.</div><div id="uGerHint" class="text-sm text-muted" style="${role==='gerencia'?'':'display:none'};margin-top:-8px;margin-bottom:18px">Gerência tem controle de todo o app, inclusive a Gestão financeira e o cadastro de perfis Admin e Gerência.</div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveUser('${id||''}')">Salvar</button>`);
+  const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${u&&u.contractId===c.id?'selected':''}>${escH(c.name)}${c.active===false?' (inativo)':''}</option>`).join('');
+  const fiscalChecks=DB.contracts.map(c=>`<label style="display:flex;align-items:center;gap:8px;font-weight:500;text-transform:none;letter-spacing:0;margin:0;padding:6px 0;cursor:pointer"><input type="checkbox" class="uFiscalContract" value="${c.id}" style="width:auto" ${u&&(u.contractIds||[]).includes(c.id)?'checked':''}> ${escH(c.name)} ${categoryBadge(c.category)}${c.active===false?' <span class="text-muted">(inativo)</span>':''}</label>`).join('');
+  const opt=(v,l)=>`<option value="${v}" ${role===v?'selected':''}>${l}</option>`;
+  const roleOptions=opt('supervisor','Supervisor')+opt('coordenador','Coordenador')+opt('fiscal','Fiscal (contratante)')+opt('tst','TST (Técnico de Segurança)')+(isGerencia()?opt('admin','Admin'):'')+((isGerencia()||(!u&&DB.canBootstrapGerencia))?opt('gerencia','Gerência'):'')+(isGerencia()?opt('diretoria','Diretoria'):'');
+  openModal(u?'Editar Colaborador':'Novo Colaborador',`<div class="form-row-2"><div class="form-group"><label>Nome Completo</label><input id="uName" value="${u?escH(u.name):''}" placeholder="Nome do colaborador"></div><div class="form-group"><label>Matrícula</label><input id="uMat" value="${u?escH(u.matricula||''):''}" placeholder="Ex: SUP-001"></div></div><div class="form-row-2"><div class="form-group"><label>Login</label><input id="uLogin" value="${u?escH(u.login):''}" placeholder="login de acesso"></div><div class="form-group"><label>${u?'Nova Senha (deixe em branco para manter)':'Senha'}</label><input id="uPass" type="password" placeholder="••••••••"></div></div><div class="form-row-2"><div class="form-group"><label>Perfil</label><select id="uRole" onchange="toggleUserContractField()">${roleOptions}</select></div><div class="form-group"><label>Status</label><select id="uActive"><option value="true" ${u&&u.active!==false?'selected':''}>Ativo</option><option value="false" ${u&&u.active===false?'selected':''}>Inativo</option></select></div></div><div class="form-group" id="uContractWrap"><label>Contrato Vinculado</label><select id="uContract"><option value="">Nenhum</option>${contractOptions}</select></div><div class="form-group" id="uFiscalWrap"><label>Contratos que este fiscal acompanha</label><div style="background:var(--bg);border-radius:10px;padding:8px 14px;max-height:220px;overflow:auto">${fiscalChecks||'<span class="text-muted">Nenhum contrato cadastrado</span>'}</div></div><div id="uRoleHint" class="text-sm text-muted" style="margin-top:-8px;margin-bottom:18px"></div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveUser('${id||''}')">Salvar</button>`);
+  toggleUserContractField();
 }
-function toggleUserContractField(){ const role=document.getElementById('uRole').value; document.getElementById('uContractWrap').style.display = noContractRole(role)?'none':''; document.getElementById('uCoordHint').style.display = role==='coordenador'?'':'none'; document.getElementById('uAdminHint').style.display = role==='admin'?'':'none'; document.getElementById('uGerHint').style.display = role==='gerencia'?'':'none'; }
+function toggleUserContractField(){
+  const role=document.getElementById('uRole').value;
+  document.getElementById('uContractWrap').style.display = (role==='supervisor'||role==='tst')?'':'none';
+  document.getElementById('uFiscalWrap').style.display = role==='fiscal'?'':'none';
+  document.getElementById('uRoleHint').textContent = ROLE_HINTS[role]||'';
+}
 async function saveUser(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   const name=document.getElementById('uName').value.trim(); const login=document.getElementById('uLogin').value.trim(); const pass=document.getElementById('uPass').value; const mat=document.getElementById('uMat').value.trim(); const role=document.getElementById('uRole').value; const contract=document.getElementById('uContract').value; const active=document.getElementById('uActive').value==='true';
+  const contractIds=[...document.querySelectorAll('.uFiscalContract:checked')].map(i=>i.value);
   if(!name||!login){ toast('Nome e login são obrigatórios','error'); return; } if(!id && !pass){ toast('Defina uma senha','error'); return; }
+  if(role==='fiscal' && !contractIds.length){ toast('Selecione ao menos um contrato para o fiscal','error'); return; }
   try{
-    if(id){ await apiData('users','update',{ id, name, login, matricula:mat, role, contractId:contract||null, active, password:pass||null }); } else { await apiData('users','create',{ name, login, password:pass, matricula:mat, role, contractId:contract||null, active }); }
+    if(id){ await apiData('users','update',{ id, name, login, matricula:mat, role, contractId:contract||null, contractIds, active, password:pass||null }); } else { await apiData('users','create',{ name, login, password:pass, matricula:mat, role, contractId:contract||null, contractIds, active }); }
     closeModal(); renderUsers(document.getElementById('adminMain')); toast(id?'Colaborador atualizado':'Colaborador cadastrado','success');
-  }catch(e){ const msg = e.message==='login_taken' ? 'Login já em uso por outro colaborador' : e.message==='forbidden' ? 'Somente a Gerência pode cadastrar ou alterar perfis Admin e Gerência' : 'Não foi possível salvar: '+e.message; toast(msg,'error'); }
+  }catch(e){ const msg = e.message==='login_taken' ? 'Login já em uso por outro colaborador' : e.message==='forbidden' ? 'Somente a Gerência pode cadastrar ou alterar perfis Admin, Gerência e Diretoria' : 'Não foi possível salvar: '+e.message; toast(msg,'error'); }
 }
 function deleteUser(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   showConfirm('Excluir colaborador?','O histórico de relatórios será mantido.',async ()=>{ try{ await apiData('users','delete',{ id }); DB.users=DB.users.filter(u=>u.id!==id); renderUsers(document.getElementById('adminMain')); toast('Colaborador removido','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
 async function renderContracts(main){
   main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
   try{ const contractsRes = await apiData('contracts','list'); DB.contracts = contractsRes.contracts || []; if(isAdminUser()){ const usersRes = await apiData('users','list').catch(()=>null); if(usersRes) DB.users = usersRes.users || []; } }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar contratos: ${e.message}</div></div>`; return; }
-  const contracts=DB.contracts; const readOnly=isCoordenador();
-  main.innerHTML=`<div class="admin-page-title">Contratos</div><div class="admin-page-sub">${readOnly?'Visualize os contratos e obras':'Gerencie os contratos e obras'}</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Contratos (${contracts.length})</span>${readOnly?'':'<button class="btn btn-primary btn-sm" onclick="openContractModal()">+ Novo Contrato</button>'}</div>${contracts.length===0?`<div class="empty-state"><div class="empty-state-icon">📁</div><div class="empty-state-text">Nenhum contrato cadastrado</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Descrição</th><th>Supervisores</th><th>Relatórios</th><th>Status</th>${readOnly?'':'<th>Ações</th>'}</tr></thead><tbody>${contracts.map(c=>{ const sups=DB.users.filter(u=>u.contractId===c.id).length; const reps=DB.reports.filter(r=>r.contractId===c.id).length; return `<tr><td><b>${c.name}</b></td><td>${c.description||'—'}</td><td>${sups}</td><td>${reps}</td><td><span class="badge ${c.active!==false?'badge-green':'badge-red'}">${c.active!==false?'Ativo':'Inativo'}</span></td>${readOnly?'':`<td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openContractModal('${c.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteContract('${c.id}')">🗑</button></div></td>`}</tr>`; }).join('')}</tbody></table>`}</div>`;
+  const contracts=DB.contracts; const readOnly=isReadOnlyUser();
+  main.innerHTML=`<div class="admin-page-title">Contratos</div><div class="admin-page-sub">${readOnly?'Visualize os contratos e obras':'Gerencie os contratos e obras'}</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Contratos (${contracts.length})</span>${readOnly?'':'<button class="btn btn-primary btn-sm" onclick="openContractModal()">+ Novo Contrato</button>'}</div>${contracts.length===0?`<div class="empty-state"><div class="empty-state-icon">📁</div><div class="empty-state-text">Nenhum contrato cadastrado</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Categoria</th><th>Descrição</th><th>Supervisores</th><th>Relatórios</th><th>Status</th>${readOnly?'':'<th>Ações</th>'}</tr></thead><tbody>${contracts.map(c=>{ const sups=DB.users.filter(u=>u.contractId===c.id).length; const reps=DB.reports.filter(r=>r.contractId===c.id).length; return `<tr><td><b>${c.name}</b></td><td>${categoryBadge(c.category)}</td><td>${c.description||'—'}</td><td>${sups}</td><td>${reps}</td><td><span class="badge ${c.active!==false?'badge-green':'badge-red'}">${c.active!==false?'Ativo':'Inativo'}</span></td>${readOnly?'':`<td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openContractModal('${c.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteContract('${c.id}')">🗑</button></div></td>`}</tr>`; }).join('')}</tbody></table>`}</div>`;
 }
+function categoryBadge(cat){ return cat==='obra'?'<span class="badge badge-blue">Obra</span>':cat==='hh'?'<span class="badge badge-warn">HH</span>':'<span class="badge badge-red" title="Edite o contrato para definir">Não definida</span>'; }
 function openContractModal(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   const c=id?DB.contracts.find(c=>c.id===id):null;
-  openModal(c?'Editar Contrato':'Novo Contrato',`<div class="form-group"><label>Nome do Contrato</label><input id="cName" value="${c?c.name:''}" placeholder="Ex: Tubulações – Fase 2"></div><div class="form-group"><label>Descrição</label><textarea id="cDesc" rows="3" placeholder="Descrição do contrato…">${c?c.description||'':''}</textarea></div><div class="form-group"><label>Status</label><select id="cActive"><option value="true" ${c&&c.active!==false?'selected':''}>Ativo</option><option value="false" ${c&&c.active===false?'selected':''}>Inativo</option></select></div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveContract('${id||''}')">Salvar</button>`);
+  openModal(c?'Editar Contrato':'Novo Contrato',`<div class="form-group"><label>Nome do Contrato</label><input id="cName" value="${c?c.name:''}" placeholder="Ex: Tubulações – Fase 2"></div><div class="form-group"><label>Descrição</label><textarea id="cDesc" rows="3" placeholder="Descrição do contrato…">${c?c.description||'':''}</textarea></div><div class="form-row-2"><div class="form-group"><label>Categoria</label><select id="cCategory"><option value="">Selecione…</option><option value="hh" ${c&&c.category==='hh'?'selected':''}>HH (homem-hora)</option><option value="obra" ${c&&c.category==='obra'?'selected':''}>Obra (avanço físico)</option></select></div><div class="form-group"><label>Status</label><select id="cActive"><option value="true" ${c&&c.active!==false?'selected':''}>Ativo</option><option value="false" ${c&&c.active===false?'selected':''}>Inativo</option></select></div></div><div class="text-sm text-muted" style="margin-top:-8px;margin-bottom:12px">Contratos de <b>Obra</b> ganham indicadores de avanço físico (curva S, marcos, forecast) e intercorrências no Dashboard. Contratos <b>HH</b> são cobrados por homem-hora e não têm cronograma físico.</div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveContract('${id||''}')">Salvar</button>`);
 }
 async function saveContract(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
-  const name=document.getElementById('cName').value.trim(); const desc=document.getElementById('cDesc').value.trim(); const active=document.getElementById('cActive').value==='true';
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
+  const name=document.getElementById('cName').value.trim(); const desc=document.getElementById('cDesc').value.trim(); const active=document.getElementById('cActive').value==='true'; const category=document.getElementById('cCategory').value||null;
   if(!name){ toast('Nome do contrato é obrigatório','error'); return; }
-  try{ if(id) await apiData('contracts','update',{ id, name, description:desc, active }); else await apiData('contracts','create',{ name, description:desc, active }); closeModal(); renderContracts(document.getElementById('adminMain')); toast(id?'Contrato atualizado':'Contrato cadastrado','success'); }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
+  if(active && !category){ toast('Informe a categoria do contrato (HH ou Obra)','error'); return; }
+  try{ if(id) await apiData('contracts','update',{ id, name, description:desc, active, category }); else await apiData('contracts','create',{ name, description:desc, active, category }); closeModal(); renderContracts(document.getElementById('adminMain')); toast(id?'Contrato atualizado':'Contrato cadastrado','success'); }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
 }
 function deleteContract(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   showConfirm('Excluir contrato?','Os relatórios vinculados serão mantidos.',async ()=>{ try{ await apiData('contracts','delete',{ id }); DB.contracts=DB.contracts.filter(c=>c.id!==id); renderContracts(document.getElementById('adminMain')); toast('Contrato removido','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
 async function renderTemplates(main){
   main.innerHTML='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
   try{ const [tplRes, contractsRes] = await Promise.all([apiData('templates','list'), apiData('contracts','list')]); DB.templates = tplRes.templates || []; DB.contracts = contractsRes.contracts || []; }catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar modelos: ${e.message}</div></div>`; return; }
-  const tpls=DB.templates;
-  main.innerHTML=`<div class="admin-page-title">Modelos de Relatório</div><div class="admin-page-sub">Carregue modelos Excel que serão usados na geração dos relatórios</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Modelos (${tpls.length})</span><button class="btn btn-primary btn-sm" onclick="openTemplateModal()">+ Novo Modelo</button></div>${tpls.length===0?`<div class="empty-state"><div class="empty-state-icon">📄</div><div class="empty-state-text">Nenhum modelo cadastrado</div><div class="empty-state-sub">Carregue modelos Excel para cada contrato</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Contrato</th><th>Arquivo</th><th>Ações</th></tr></thead><tbody>${tpls.map(t=>{ const c=DB.contracts.find(c=>c.id===t.contractId); return `<tr><td><b>${t.name}</b></td><td>${c?c.name:'<span class="text-muted">—</span>'}</td><td>${t.fileName||'<span class="text-muted">Sem arquivo</span>'}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openTemplateModal('${t.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteTemplate('${t.id}')">🗑</button></div></td></tr>`; }).join('')}</tbody></table>`}</div>`;
+  const tpls=DB.templates.filter(t=>t.kind!=='tst'); const tstTpl=DB.templates.find(t=>t.kind==='tst');
+  main.innerHTML=`<div class="admin-page-title">Modelos de Relatório</div><div class="admin-page-sub">Carregue modelos Excel que serão usados na geração dos relatórios</div><div class="data-table-wrap"><div class="data-table-header"><span class="data-table-title">Modelos (${tpls.length})</span><button class="btn btn-primary btn-sm" onclick="openTemplateModal()">+ Novo Modelo</button></div>${tpls.length===0?`<div class="empty-state"><div class="empty-state-icon">📄</div><div class="empty-state-text">Nenhum modelo cadastrado</div><div class="empty-state-sub">Carregue modelos Excel para cada contrato</div></div>`:`<table class="data-table"><thead><tr><th>Nome</th><th>Contrato</th><th>Arquivo</th><th>Ações</th></tr></thead><tbody>${tpls.map(t=>{ const c=DB.contracts.find(c=>c.id===t.contractId); return `<tr><td><b>${t.name}</b></td><td>${c?c.name:'<span class="text-muted">—</span>'}</td><td>${t.fileName||'<span class="text-muted">Sem arquivo</span>'}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-edit" onclick="openTemplateModal('${t.id}')">✏ Editar</button><button class="tbl-btn tbl-btn-del" onclick="deleteTemplate('${t.id}')">🗑</button></div></td></tr>`; }).join('')}</tbody></table>`}</div><div class="data-table-wrap" style="margin-top:24px"><div class="data-table-header"><span class="data-table-title">🦺 Modelo da Inspeção de Campo (TST)</span>${tstTpl?'':'<button class="btn btn-primary btn-sm" onclick="openTemplateModal(null,\'tst\')">+ Enviar modelo</button>'}</div><div style="padding:18px 22px;font-size:13px;color:var(--text2)">Modelo único, usado por todos os TSTs. As inspeções exportadas em Excel preenchem este modelo (campos identificados pelos rótulos, como <b>DATA:</b>, <b>LOCAL:</b>, <b>CONTRATO:</b>, <b>TÉCNICO:</b>) e trazem uma aba com todos os dados e fotos da inspeção.</div>${tstTpl?`<table class="data-table"><thead><tr><th>Nome</th><th>Arquivo</th><th>Observações</th><th>Ações</th></tr></thead><tbody><tr><td><b>${escH(tstTpl.name)}</b></td><td>${tstTpl.fileName?escH(tstTpl.fileName):'<span class="text-muted">Sem arquivo</span>'}</td><td>${escH(tstTpl.notes||'—')}</td><td><div class="table-actions">${tstTpl.storagePath?`<button class="tbl-btn tbl-btn-view" onclick="downloadTemplateFile('${tstTpl.id}')">⬇ Baixar</button>`:''}<button class="tbl-btn tbl-btn-edit" onclick="openTemplateModal('${tstTpl.id}','tst')">✏ Substituir</button><button class="tbl-btn tbl-btn-del" onclick="deleteTemplate('${tstTpl.id}')">🗑</button></div></td></tr></tbody></table>`:'<div class="empty-state" style="padding:24px"><div class="empty-state-text">Nenhum modelo de inspeção enviado</div></div>'}</div>`;
 }
-function openTemplateModal(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
-  const t=id?DB.templates.find(t=>t.id===id):null;
+let _tplKind='rdo';
+function openTemplateModal(id,kind){
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
+  const t=id?DB.templates.find(t=>t.id===id):null; _tplKind = kind==='tst'||(t&&t.kind==='tst') ? 'tst' : 'rdo'; _tplFileData=null;
   const contractOptions=DB.contracts.map(c=>`<option value="${c.id}" ${t&&t.contractId===c.id?'selected':''}>${c.name}</option>`).join('');
-  openModal(t?'Editar Modelo':'Novo Modelo',`<div class="form-group"><label>Nome do Modelo</label><input id="tName" value="${t?t.name:''}" placeholder="Ex: RDO Padrão – Tubulações"></div><div class="form-group"><label>Contrato</label><select id="tContract"><option value="">Selecione…</option>${contractOptions}</select></div><div class="form-group"><label>Arquivo Excel (.xlsx) — Modelo</label><div style="background:var(--bg);border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer" onclick="document.getElementById('tplFile').click()"><div style="font-size:28px;margin-bottom:6px">📊</div><div style="font-size:13px;font-weight:600" id="tplFileName">${t&&t.fileName?t.fileName:'Clique para selecionar o arquivo Excel'}</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Formatos: .xlsx, .xls</div></div><input type="file" id="tplFile" accept=".xlsx,.xls" style="display:none" onchange="handleTemplateFile(event)"></div><div class="form-group"><label>Observações</label><textarea id="tNotes" rows="2" placeholder="Notas sobre este modelo…">${t?t.notes||'':''}</textarea></div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveTemplate('${id||''}')">Salvar</button>`);
+  openModal(_tplKind==='tst'?'Modelo da Inspeção de Campo (TST)':(t?'Editar Modelo':'Novo Modelo'),`<div class="form-group"><label>Nome do Modelo</label><input id="tName" value="${t?t.name:(_tplKind==='tst'?'Inspeção de Campo – TST':'')}" placeholder="Ex: RDO Padrão – Tubulações"></div><div class="form-group" style="${_tplKind==='tst'?'display:none':''}"><label>Contrato</label><select id="tContract"><option value="">Selecione…</option>${contractOptions}</select></div><div class="form-group"><label>Arquivo Excel (.xlsx) — Modelo</label><div style="background:var(--bg);border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer" onclick="document.getElementById('tplFile').click()"><div style="font-size:28px;margin-bottom:6px">📊</div><div style="font-size:13px;font-weight:600" id="tplFileName">${t&&t.fileName?t.fileName:'Clique para selecionar o arquivo Excel'}</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Formatos: .xlsx, .xls</div></div><input type="file" id="tplFile" accept=".xlsx,.xls" style="display:none" onchange="handleTemplateFile(event)"></div><div class="form-group"><label>Observações</label><textarea id="tNotes" rows="2" placeholder="Notas sobre este modelo…">${t?t.notes||'':''}</textarea></div>`,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveTemplate('${id||''}')">Salvar</button>`);
 }
 let _tplFileData=null;
 function handleTemplateFile(e){ const file=e.target.files[0]; if(!file) return; _tplFileData={ name:file.name, file:file }; document.getElementById('tplFileName').textContent=file.name; }
@@ -936,22 +1142,23 @@ async function fetchTemplateArrayBuffer(storagePath){
   return await res.arrayBuffer();
 }
 async function saveTemplate(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   const name=document.getElementById('tName').value.trim(); const contract=document.getElementById('tContract').value; const notes=document.getElementById('tNotes').value.trim();
   if(!name){ toast('Nome do modelo é obrigatório','error'); return; }
   const fileName = _tplFileData ? _tplFileData.name : (id ? (DB.templates.find(t=>t.id===id)||{}).fileName : null);
   const btn=document.querySelector('#modalFooter .btn-primary'); if(btn){ btn.disabled=true; }
   try{
     let storagePath;
-    if(_tplFileData && _tplFileData.file){ storagePath = await uploadTemplateFile(_tplFileData.file, contract||null); }
-    if(id) await apiData('templates','update',{ id, name, contractId:contract||null, notes, fileName, storagePath });
-    else await apiData('templates','create',{ name, contractId:contract||null, notes, fileName, storagePath });
+    if(_tplKind==='tst' && !id && !(_tplFileData && _tplFileData.file)){ toast('Selecione o arquivo Excel do modelo','error'); return; }
+    if(_tplFileData && _tplFileData.file){ storagePath = await uploadTemplateFile(_tplFileData.file, _tplKind==='tst'?'tst':(contract||null)); }
+    if(id) await apiData('templates','update',{ id, name, contractId:_tplKind==='tst'?null:(contract||null), notes, fileName, storagePath });
+    else await apiData('templates','create',{ name, contractId:_tplKind==='tst'?null:(contract||null), notes, fileName, storagePath, kind:_tplKind });
     _tplFileData=null; closeModal(); renderTemplates(document.getElementById('adminMain')); toast(id?'Modelo atualizado':'Modelo cadastrado','success');
   }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); }
   finally{ if(btn){ btn.disabled=false; } }
 }
 function deleteTemplate(id){
-  if(isCoordenador()){ toast('Você não tem permissão para esta ação','error'); return; }
+  if(isReadOnlyUser()){ toast('Você não tem permissão para esta ação','error'); return; }
   showConfirm('Excluir modelo?','Esta ação não pode ser desfeita.',async ()=>{ try{ await apiData('templates','delete',{ id }); DB.templates=DB.templates.filter(t=>t.id!==id); renderTemplates(document.getElementById('adminMain')); toast('Modelo removido','warn'); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } });
 }
 async function renderSettings(main){
@@ -1169,7 +1376,7 @@ async function exportXLSX(reports){
   const usedNames=new Set();
   for(const key of Object.keys(byKey)){
     const group=byKey[key];
-    const tpl=DB.templates.find(t=>t.contractId===group.contractId && t.storagePath);
+    const tpl=DB.templates.find(t=>t.kind!=='tst' && t.contractId===group.contractId && t.storagePath);
     let filledFromTemplate=false;
     if(tpl){
       try{
@@ -1192,7 +1399,7 @@ async function exportToSheets(reports){
   const rows=reports.map(r=>[ fmtDate(r.date), r.shift, r.supervisorName, r.contractName, r.location, r.activities.join(' | '), r.inspections, r.interruptions, r.safety, r.involved, new Date(r.createdAt).toLocaleString('pt-BR') ]);
   try{ const res=await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append?valueInputOption=USER_ENTERED&key=${apiKey}`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ values:rows }) }); if(!res.ok) throw new Error('Resposta inválida do Google Sheets'); toast('Dados enviados ao Google Sheets!','success'); } catch(e){ toast('Erro ao enviar para Google Sheets: '+e.message,'error'); }
 }
-function openModal(title,body,footer){ document.getElementById('modalTitle').textContent=title; document.getElementById('modalBody').innerHTML=body; document.getElementById('modalFooter').innerHTML=footer||''; document.getElementById('modalOverlay').classList.remove('hidden'); }
+function openModal(title,body,footer){ document.getElementById('modalBox').classList.remove('v6-wide'); document.getElementById('modalTitle').textContent=title; document.getElementById('modalBody').innerHTML=body; document.getElementById('modalFooter').innerHTML=footer||''; document.getElementById('modalOverlay').classList.remove('hidden'); }
 function closeModal(){ document.getElementById('modalOverlay').classList.add('hidden'); }
 document.getElementById('modalOverlay').addEventListener('click',e=>{ if(e.target===document.getElementById('modalOverlay')) closeModal(); });
 let _confirmCallback=null;
@@ -1205,6 +1412,550 @@ function toast(msg,type='info'){
 function fmtDate(d){ if(!d) return '—'; try{ return new Date(d+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}); } catch(e){ return d; } }
 showScreen('screen-login');
 loadPublicBranding();
+</script>
+<script>
+// ═══ v6 (07/11/2026): contratos HH/Obra, avanço físico, intercorrências, perfis Fiscal, TST e Diretoria ═══
+// Tudo que é gravado passa pela função "data", que confere o perfil de quem chama; as restrições
+// abaixo são só de interface.
+const escH=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const V6_MAX_FOTOS=10;
+const V6={ photos:{}, obra:{ overview:[], sel:null, panel:null, week:null }, crono:null, cronoTab:'curva', sv:{ tab:'daily', from:'', to:'' }, insp:[], inspItems:[], tstTpl:null, charts:{} };
+const v6Spinner='<div class="empty-state"><div class="spinner spinner-blue" style="margin:0 auto"></div></div>';
+const pad2v=n=>String(n).padStart(2,'0');
+const isoToday=()=>{ const d=new Date(); return d.getFullYear()+'-'+pad2v(d.getMonth()+1)+'-'+pad2v(d.getDate()); };
+const dayNum=iso=>Math.round(Date.parse(iso+'T00:00:00Z')/864e5);
+const numToIso=n=>new Date(n*864e5).toISOString().slice(0,10);
+const addDaysIso=(iso,n)=>numToIso(dayNum(iso)+n);
+const diffDays=(a,b)=>dayNum(b)-dayNum(a);
+const fmtD=iso=>iso?iso.slice(8,10)+'/'+iso.slice(5,7)+'/'+iso.slice(0,4):'—';
+const fmtDM=iso=>iso?iso.slice(8,10)+'/'+iso.slice(5,7):'';
+const fmtP=(v,d=1)=>(v===null||v===undefined||!isFinite(v))?'—':Number(v).toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:d})+'%';
+const fmtN=(v,d=2)=>(v===null||v===undefined||!isFinite(v))?'—':Number(v).toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:d});
+const BRLv=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+const mondayOf=iso=>{ const d=new Date(iso+'T12:00:00Z'); const dow=(d.getUTCDay()+6)%7; return addDaysIso(iso,-dow); };
+const WD=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const wdOf=iso=>WD[new Date(iso+'T12:00:00Z').getUTCDay()];
+function canEditObra(){ return isAdminUser() && !isDiretoria(); }
+function v6OpenWide(title,body,footer){ openModal(title,body,footer); document.getElementById('modalBox').classList.add('v6-wide'); }
+
+// ---------- Diretoria: somente leitura nas telas antigas ----------
+// Esconde os botões que gravam (novo, editar, excluir, salvar) e trava os campos de configuração.
+const V6_WRITE_RE=/\b(open(User|Contract|Template)Modal|delete(Report|User|Contract|Template)|save(User|Contract|Template|GSConfig|ExportConfig|AppConfig)|removeLogo|cfgLogoFile|openIntercorrenciaEditor|openCronogramaEditor|deleteInspection|deleteIntercorrencia)\b/;
+const V6_LOCK_IDS=['gsId','gsKey','defExport','cfgName','cfgCompany','cfgLogoText','cfgLogoFile'];
+function v6ApplyReadOnly(root){
+  if(!document.body.classList.contains('ro')||!root) return;
+  root.querySelectorAll('[onclick]').forEach(el=>{ if(V6_WRITE_RE.test(el.getAttribute('onclick')||'')) el.setAttribute('data-w','1'); });
+  V6_LOCK_IDS.forEach(id=>{ const el=document.getElementById(id); if(el&&root.contains(el)) el.disabled=true; });
+}
+['adminMain','modalBody','modalFooter'].forEach(id=>{ const el=document.getElementById(id); if(el) new MutationObserver(()=>v6ApplyReadOnly(el)).observe(el,{ childList:true, subtree:true }); });
+
+// ---------- Imagens (seletor reutilizável) ----------
+let _v6PhotoKey=null;
+function v6PhotoInput(){ let el=document.getElementById('v6PhotoInput'); if(!el){ el=document.createElement('input'); el.type='file'; el.accept='image/*'; el.multiple=true; el.id='v6PhotoInput'; el.style.display='none'; document.body.appendChild(el); el.addEventListener('change',v6HandlePhotos); } return el; }
+function v6PickPhotos(key){ _v6PhotoKey=key; v6PhotoInput().click(); }
+async function v6HandlePhotos(e){
+  const key=_v6PhotoKey; const files=[...e.target.files]; e.target.value='';
+  const arr=V6.photos[key]||(V6.photos[key]=[]);
+  for(const f of files){
+    if(arr.length>=V6_MAX_FOTOS){ toast(`Máximo de ${V6_MAX_FOTOS} imagens`,'warn'); break; }
+    const dataUrl=await new Promise((res,rej)=>{ const r=new FileReader(); r.onload=ev=>res(ev.target.result); r.onerror=rej; r.readAsDataURL(f); });
+    let c; try{ c=await compressImage(dataUrl,1280,0.72); }catch(_){ c=dataUrl; }
+    arr.push(c);
+  }
+  v6RenderPhotoGrid(key);
+}
+function v6RenderPhotoGrid(key){
+  const el=document.getElementById('v6pg-'+key); if(!el) return; const arr=V6.photos[key]||[];
+  el.innerHTML=arr.map((p,i)=>`<div class="v6-thumb"><img src="${escH(p)}" alt="Imagem ${i+1}"><button type="button" title="Remover" onclick="v6RemovePhoto('${key}',${i})">✕</button></div>`).join('')+(arr.length<V6_MAX_FOTOS?`<button type="button" class="v6-thumb v6-thumb-add" onclick="v6PickPhotos('${key}')">📷<span>Adicionar</span></button>`:'');
+}
+function v6RemovePhoto(key,i){ (V6.photos[key]||[]).splice(i,1); v6RenderPhotoGrid(key); }
+function v6Gallery(list){ return list&&list.length?`<div class="v6-gallery">${list.map((p,i)=>`<a href="${escH(p)}" target="_blank" rel="noopener" title="Abrir imagem em tamanho real"><img src="${escH(p)}" loading="lazy" alt="Evidência ${i+1}"></a>`).join('')}</div>`:''; }
+
+// ---------- Comentários do fiscal nos compilados do dia ----------
+async function loadComments(){ if(isTst()){ DB.comments=[]; return; } try{ const r=await apiData('comments','list'); DB.comments=r.comments||[]; }catch(e){ DB.comments=DB.comments||[]; } }
+function dayComments(cid,date){ return (DB.comments||[]).filter(c=>c.contractId===cid&&c.date===date); }
+function commentItemHTML(c){
+  const mine=isFiscal()&&APP.currentUser&&c.userId===APP.currentUser.id;
+  return `<div class="v6-comment"><div class="v6-comment-head"><b>${escH(c.userName||'Fiscal')}</b><span>Fiscalização · ${new Date(c.createdAt).toLocaleString('pt-BR')}</span>${mine?`<button class="tbl-btn tbl-btn-del" onclick="deleteComment('${c.id}','${c.contractId}','${c.date}')">🗑 Excluir</button>`:''}</div><div class="v6-comment-text">${escH(c.texto).replace(/\n/g,'<br>')}</div>${v6Gallery(c.fotos)}</div>`;
+}
+function commentsReadOnlyHTML(cid,date){ const list=dayComments(cid,date); if(!list.length) return ''; return `<div class="v6-sec-title">💬 Comentários da fiscalização neste dia</div>${list.map(commentItemHTML).join('')}`; }
+function commentsBlockHTML(cid,date){
+  const list=dayComments(cid,date);
+  let h=`<div class="v6-sec-title">💬 Comentários da fiscalização (${list.length})</div>`;
+  h+=list.length?list.map(commentItemHTML).join(''):'<div class="text-sm text-muted" style="margin-bottom:12px">Nenhum comentário neste dia.</div>';
+  if(isFiscal()){ V6.photos.comment=[]; h+=`<div class="v6-comment-form"><textarea id="v6CommentText" rows="3" placeholder="Escreva seu comentário sobre os relatórios deste dia…"></textarea><div class="v6-photo-grid" id="v6pg-comment"></div><div style="text-align:right;margin-top:10px"><button class="btn btn-primary btn-sm" id="v6CommentBtn" onclick="submitComment('${cid}','${date}')">Publicar comentário</button></div></div>`; }
+  return h;
+}
+async function submitComment(cid,date){
+  const texto=document.getElementById('v6CommentText').value.trim(); const fotos=V6.photos.comment||[];
+  if(!texto&&!fotos.length){ toast('Escreva o comentário ou anexe uma imagem','error'); return; }
+  const btn=document.getElementById('v6CommentBtn'); btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
+  try{ const r=await apiData('comments','create',{ contractId:cid, date, texto, fotos }); DB.comments=DB.comments||[]; DB.comments.push(r.comment); toast('Comentário publicado','success'); viewDailyGroup(cid,date); v6RefreshReportLists(); }
+  catch(e){ toast('Não foi possível publicar: '+e.message,'error'); btn.disabled=false; btn.innerHTML='Publicar comentário'; }
+}
+function deleteComment(id,cid,date){
+  showConfirm('Excluir comentário?','O comentário e as imagens deixam de aparecer para todos.',async()=>{
+    try{ await apiData('comments','delete',{ id }); DB.comments=(DB.comments||[]).filter(c=>c.id!==id); toast('Comentário excluído','warn'); viewDailyGroup(cid,date); v6RefreshReportLists(); }
+    catch(e){ toast('Não foi possível excluir: '+e.message,'error'); }
+  });
+}
+function v6RefreshReportLists(){ if(document.getElementById('dailyTableWrap')) applyDailyFilters(); if(document.getElementById('svList')&&!document.getElementById('screen-supreports').classList.contains('hidden')) svRender(); }
+
+// ---------- Gráfico de linhas (SVG) com dica ao passar o mouse ----------
+// series: [{ name, color, dash, points:[{x:'AAAA-MM-DD', y:Number}] }]
+const V6C={ previsto:'#0CA678', realizado:'#0071E3', forecast:'#E8590C', programado:'#7048E8' };
+function v6LineChart(id,series,opts={}){
+  const W=opts.w||760,H=opts.h||280,m={l:46,r:56,t:16,b:34};
+  const xsSet=new Set(); series.forEach(s=>s.points.forEach(p=>xsSet.add(p.x)));
+  const xs=[...xsSet].sort(); if(!xs.length) return '<div class="text-sm text-muted">Sem dados para o gráfico.</div>';
+  let x0=dayNum(xs[0]), x1=dayNum(xs[xs.length-1]); if(opts.today){ const t=dayNum(opts.today); if(opts.includeToday){ x0=Math.min(x0,t); x1=Math.max(x1,t); } } if(x1===x0) x1=x0+1;
+  const yMax=opts.yMax||100;
+  const sx=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r), sy=v=>H-m.b-(v/yMax)*(H-m.t-m.b);
+  let g='';
+  [0,25,50,75,100].map(v=>v*yMax/100).forEach(v=>{ g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${sy(v)}" y2="${sy(v)}" stroke="#E5E5EA" stroke-width="1"/><text x="${m.l-8}" y="${sy(v)+4}" text-anchor="end" font-size="11" fill="#6E6E73">${fmtN(v,1)}%</text>`; });
+  const nT=Math.min(6,xs.length); const tickIdx=nT<=1?[0]:[...new Set(Array.from({length:nT},(_,i)=>Math.round(i*(xs.length-1)/(nT-1))))];
+  tickIdx.forEach(i=>{ const x=sx(dayNum(xs[i])); g+=`<text x="${x}" y="${H-m.b+18}" text-anchor="middle" font-size="11" fill="#6E6E73">${opts.xLabel?opts.xLabel(xs[i]):fmtDM(xs[i])}</text>`; });
+  g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${sy(0)}" y2="${sy(0)}" stroke="#AEAEB2" stroke-width="1"/>`;
+  if(opts.today){ const t=dayNum(opts.today); if(t>=x0&&t<=x1){ const x=sx(t); g+=`<line x1="${x}" x2="${x}" y1="${m.t}" y2="${sy(0)}" stroke="#AEAEB2" stroke-dasharray="3 3"/><text x="${x+4}" y="${m.t+10}" font-size="11" fill="#6E6E73">Hoje</text>`; } }
+  series.forEach(s=>{
+    const pts=s.points.filter(p=>p.y!==null&&p.y!==undefined&&isFinite(p.y)); if(!pts.length) return;
+    const d=pts.map((p,i)=>(i?'L':'M')+sx(dayNum(p.x)).toFixed(1)+' '+sy(p.y).toFixed(1)).join(' ');
+    g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" ${s.dash?'stroke-dasharray="6 5"':''}/>`;
+    if(pts.length<=45&&!s.dash) pts.forEach(p=>{ g+=`<circle cx="${sx(dayNum(p.x)).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="4" fill="${s.color}" stroke="#fff" stroke-width="2"/>`; });
+    const last=pts[pts.length-1]; g+=`<text x="${(sx(dayNum(last.x))+7).toFixed(1)}" y="${(sy(last.y)+4).toFixed(1)}" font-size="11" font-weight="600" fill="#1D1D1F">${fmtN(last.y,1)}%</text>`;
+  });
+  g+=`<line class="v6-cross" x1="0" x2="0" y1="${m.t}" y2="${sy(0)}" stroke="#6E6E73" stroke-width="1" style="display:none"/>`;
+  g+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="transparent" onmousemove="v6ChartHover(event,'${id}')" onmouseleave="v6ChartLeave('${id}')" ontouchstart="v6ChartHover(event,'${id}')"/>`;
+  V6.charts[id]={ series, xs, sx, x0, x1, W, m, xLabel:opts.xLabel };
+  const legend=`<div class="v6-legend">${series.map(s=>`<span><i style="border-top-color:${s.color};${s.dash?'border-top-style:dashed':''}"></i>${escH(s.name)}</span>`).join('')}</div>`;
+  return `${legend}<div class="v6-chart" id="v6chart-${id}"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${escH(opts.label||'Gráfico')}">${g}</svg><div class="v6-tip"></div></div>`;
+}
+function v6ChartHover(ev,id){
+  const c=V6.charts[id]; const wrap=document.getElementById('v6chart-'+id); if(!c||!wrap) return;
+  const svg=wrap.querySelector('svg'); const pt=svg.createSVGPoint(); const src=ev.touches?ev.touches[0]:ev; pt.x=src.clientX; pt.y=src.clientY;
+  const loc=pt.matrixTransform(svg.getScreenCTM().inverse());
+  let best=c.xs[0], bd=Infinity; c.xs.forEach(x=>{ const d=Math.abs(c.sx(dayNum(x))-loc.x); if(d<bd){ bd=d; best=x; } });
+  const X=c.sx(dayNum(best)); const cross=svg.querySelector('.v6-cross'); cross.setAttribute('x1',X); cross.setAttribute('x2',X); cross.style.display='';
+  const rows=c.series.map(s=>{ const p=s.points.find(p=>p.x===best); return p&&p.y!==null&&p.y!==undefined?`<div><span><i style="border-top-color:${s.color};${s.dash?'border-top-style:dashed':''}"></i> ${escH(s.name)}</span><b style="display:inline;margin:0">${fmtP(p.y,2)}</b></div>`:''; }).join('');
+  const tip=wrap.querySelector('.v6-tip'); tip.innerHTML=`<b>${c.xLabel?c.xLabel(best):fmtD(best)}</b>${rows||'<div>Sem valores</div>'}`; tip.style.display='block';
+  const rect=wrap.getBoundingClientRect(); const px=X/c.W*rect.width; tip.style.left=Math.min(Math.max(0,px+12),rect.width-170)+'px'; tip.style.top='8px';
+}
+function v6ChartLeave(id){ const wrap=document.getElementById('v6chart-'+id); if(!wrap) return; wrap.querySelector('.v6-tip').style.display='none'; const cr=wrap.querySelector('.v6-cross'); if(cr) cr.style.display='none'; }
+
+// ---------- Indicadores do cronograma ----------
+// Previsto numa data: interpolação linear da linha de base. Forecast: projeção do ritmo médio de avanço
+// das últimas medições (até 4 intervalos) até 100%.
+function interpPrev(pts,iso){
+  const P=pts.filter(p=>p.previsto!==null&&p.previsto!==undefined); if(!P.length) return null;
+  const t=dayNum(iso); if(t<dayNum(P[0].data)) return 0; if(t>=dayNum(P[P.length-1].data)) return P[P.length-1].previsto;
+  for(let i=1;i<P.length;i++){ const a=P[i-1], b=P[i]; const ta=dayNum(a.data), tb=dayNum(b.data); if(t<=tb){ return tb===ta?b.previsto:a.previsto+(b.previsto-a.previsto)*(t-ta)/(tb-ta); } }
+  return P[P.length-1].previsto;
+}
+function cronoKPIs(cr){
+  const pts=((cr&&cr.curvaS)||[]).filter(p=>p.data).slice().sort((a,b)=>a.data.localeCompare(b.data));
+  if(!pts.length) return null;
+  const today=isoToday();
+  const reals=pts.filter(p=>p.realizado!==null&&p.realizado!==undefined);
+  const last=reals.length?reals[reals.length-1]:null;
+  const refDate=last?last.data:today;
+  const prevAt=interpPrev(pts,refDate);
+  const real=last?last.realizado:0;
+  const spi=prevAt>0?real/prevAt:null;
+  const desvio=prevAt===null?null:real-prevAt;
+  const baseEndPt=pts.find(p=>p.previsto!==null&&p.previsto>=100)||pts.filter(p=>p.previsto!==null).pop();
+  const endBase=baseEndPt?baseEndPt.data:null;
+  let forecast=null, pace=null;
+  if(last&&last.realizado>=100) forecast=last.data;
+  else if(reals.length>=2){ const k=reals.slice(-5); const a=k[0], b=k[k.length-1]; const dd=diffDays(a.data,b.data); if(dd>0){ pace=(b.realizado-a.realizado)/dd; if(pace>0) forecast=addDaysIso(b.data,Math.ceil((100-b.realizado)/pace)); } }
+  const atraso=forecast&&endBase?diffDays(endBase,forecast):null;
+  return { pts, last, refDate, prevAt, real, spi, desvio, endBase, forecast, pace, atraso, prevHoje:interpPrev(pts,today) };
+}
+function marcoStatus(m){
+  const p=Number(m.percentual||0);
+  if(p>=100) return '<span class="badge badge-green">✓ Concluído</span>';
+  if(m.dataPrevista&&m.dataPrevista<isoToday()) return '<span class="badge badge-red">⚠ Atrasado</span>';
+  if(p>0) return '<span class="badge badge-blue">▶ Em andamento</span>';
+  return '<span class="badge badge-warn">○ Não iniciado</span>';
+}
+
+// ---------- Dashboard: avanço físico das obras ----------
+async function renderObraSection(el){
+  if(!el) return; el.innerHTML=v6Spinner;
+  let ov; try{ ov=await apiData('obra','overview'); }catch(e){ el.innerHTML=`<div class="empty-state"><div class="empty-state-text">Não foi possível carregar o avanço das obras: ${escH(e.message)}</div></div>`; return; }
+  V6.obra.overview=ov.contratos||[];
+  const list=V6.obra.overview;
+  const head=`<div class="v6-section-head"><div><div class="v6-h2">Avanço físico das obras</div><div class="admin-page-sub" style="margin:0">Contratos categorizados como Obra · clique em um contrato para ver curva S, programação da semana, marcos e intercorrências</div></div></div>`;
+  if(!list.length){ el.innerHTML=head+`<div class="v6-panel"><div class="empty-state" style="padding:24px"><div class="empty-state-icon">🏗️</div><div class="empty-state-text">Nenhum contrato categorizado como Obra</div><div class="empty-state-sub">${isAdminUser()?'Defina a categoria (HH ou Obra) em Cadastros › Contratos.':'A categoria dos contratos é definida pela Gerência ou pelo Admin.'}</div></div></div>`; return; }
+  if(!V6.obra.sel||!list.find(c=>c.contractId===V6.obra.sel)) V6.obra.sel=list[0].contractId;
+  el.innerHTML=head+`<div class="v6-cards" id="v6ObraCards">${list.map(obraCardHTML).join('')}</div><div id="v6ObraPanel"></div>`;
+  await loadObraPanel(V6.obra.sel);
+}
+function obraCardHTML(c){
+  const k=cronoKPIs(c.cronograma); const sel=c.contractId===V6.obra.sel;
+  const bars=k?`<div class="v6-card-row"><span>Previsto</span><b>${fmtP(k.prevAt)}</b></div><div class="v6-bar"><i style="width:${Math.min(100,k.prevAt||0)}%;background:${V6C.previsto}"></i></div><div class="v6-card-row"><span>Realizado</span><b>${fmtP(k.real)}</b></div><div class="v6-bar"><i style="width:${Math.min(100,k.real||0)}%;background:${V6C.realizado}"></i></div><div class="v6-card-row"><span>Desvio</span><b>${k.desvio===null?'—':(k.desvio>=0?'+':'')+fmtN(k.desvio,1)+' p.p.'}</b></div><div class="v6-card-row"><span>Forecast</span><b>${k.forecast?fmtD(k.forecast):'—'}</b></div>`:'<div class="v6-card-row"><span>Cronograma ainda não carregado</span></div>';
+  return `<button class="v6-card ${sel?'sel':''}" data-cid="${c.contractId}" onclick="loadObraPanel('${c.contractId}')"><div class="v6-card-name"><span>${escH(c.name)}</span>${c.active===false?'<span class="badge badge-red">Inativo</span>':''}</div>${bars}<div class="v6-card-row"><span>Intercorrências</span><b>${c.intercorrencias}${c.impactoDias?` · ${fmtN(c.impactoDias,1)} d`:''}</b></div></button>`;
+}
+async function loadObraPanel(cid){
+  V6.obra.sel=cid; V6.obra.week=null;
+  document.querySelectorAll('#v6ObraCards .v6-card').forEach(b=>b.classList.toggle('sel',b.dataset.cid===cid));
+  const el=document.getElementById('v6ObraPanel'); if(!el) return; el.innerHTML=v6Spinner;
+  try{ V6.obra.panel=await apiData('obra','panel',{ contractId:cid }); V6.obra.panel.contractId=cid; }
+  catch(e){ el.innerHTML=`<div class="empty-state"><div class="empty-state-text">Não foi possível carregar o contrato: ${escH(e.message)}</div></div>`; return; }
+  renderObraPanel();
+}
+function v6ContractName(cid){ const o=V6.obra.overview.find(c=>c.contractId===cid); if(o) return o.name; const c=DB.contracts.find(c=>c.id===cid); return c?c.name:'—'; }
+function v6ContractCategory(cid){ const c=DB.contracts.find(c=>c.id===cid); if(c) return c.category; return V6.obra.overview.find(o=>o.contractId===cid)?'obra':null; }
+function renderObraPanel(){
+  const el=document.getElementById('v6ObraPanel'); const p=V6.obra.panel; if(!el||!p) return;
+  const cid=p.contractId; const isObra=v6ContractCategory(cid)==='obra';
+  let h='';
+  if(isObra){
+    const cr=p.cronograma; const k=cronoKPIs(cr);
+    const editBtns=canEditObra()?`<div style="display:flex;gap:8px;flex-wrap:wrap" class="v6-edit"><button class="btn btn-secondary btn-sm" onclick="openCronogramaEditor()">📈 Atualizar cronograma</button><button class="btn btn-primary btn-sm" onclick="openIntercorrenciaEditor()">+ Intercorrência</button></div>`:'';
+    h+=`<div class="v6-panel"><div class="v6-panel-head"><div><div class="v6-panel-title">${escH(v6ContractName(cid))}</div><div class="v6-panel-sub">${cr&&cr.updatedAt?`Cronograma atualizado em ${new Date(cr.updatedAt).toLocaleString('pt-BR')}${cr.updatedByName?' por '+escH(cr.updatedByName):''}`:'Cronograma ainda não carregado'}</div></div>${editBtns}</div>`;
+    if(!k){ h+=`<div class="empty-state" style="padding:20px"><div class="empty-state-icon">📈</div><div class="empty-state-text">Sem dados de avanço físico</div><div class="empty-state-sub">${canEditObra()?'Use “Atualizar cronograma” para lançar ou importar a curva S, a programação semanal e os marcos.':'A Gerência ou o Admin ainda não lançaram o cronograma deste contrato.'}</div></div>`; }
+    else{
+      const atrasoTxt=k.atraso===null?'':(k.atraso>0?`${k.atraso} dia(s) após a linha de base`:k.atraso<0?`${-k.atraso} dia(s) antes da linha de base`:'na data da linha de base');
+      const impacto=(p.intercorrencias||[]).reduce((s,i)=>s+Number(i.impactoDias||0),0);
+      h+=`<div class="v6-kpis">
+        <div class="v6-kpi"><div class="l">Previsto</div><div class="v">${fmtP(k.prevAt)}</div><div class="s">em ${fmtD(k.refDate)} (última medição)</div></div>
+        <div class="v6-kpi"><div class="l">Realizado</div><div class="v" style="color:${V6C.realizado}">${fmtP(k.real)}</div><div class="s">acumulado</div></div>
+        <div class="v6-kpi"><div class="l">Desvio</div><div class="v">${k.desvio===null?'—':(k.desvio>=0?'+':'')+fmtN(k.desvio,1)}<span style="font-size:13px"> p.p.</span></div><div class="s">${k.desvio===null?'':k.desvio<0?'▼ abaixo do previsto':'▲ igual ou acima do previsto'}</div></div>
+        <div class="v6-kpi"><div class="l">IDP (SPI)</div><div class="v">${k.spi===null?'—':fmtN(k.spi,2)}</div><div class="s">realizado ÷ previsto</div></div>
+        <div class="v6-kpi"><div class="l">Término previsto</div><div class="v" style="font-size:18px">${fmtD(k.endBase)}</div><div class="s">linha de base</div></div>
+        <div class="v6-kpi"><div class="l">Forecast de término</div><div class="v" style="font-size:18px;color:${k.forecast?V6C.forecast:'inherit'}">${k.forecast?fmtD(k.forecast):'—'}</div><div class="s">${k.forecast?atrasoTxt:'precisa de 2 medições com avanço'}</div></div>
+        <div class="v6-kpi"><div class="l">Impacto das intercorrências</div><div class="v">${fmtN(impacto,1)}<span style="font-size:13px"> dia(s)</span></div><div class="s">${(p.intercorrencias||[]).length} registro(s)</div></div></div>`;
+      // Curva S geral
+      const prevPts=k.pts.filter(x=>x.previsto!==null).map(x=>({x:x.data,y:x.previsto}));
+      const realPts=k.pts.filter(x=>x.realizado!==null).map(x=>({x:x.data,y:x.realizado}));
+      const series=[{name:'Previsto (linha de base)',color:V6C.previsto,points:prevPts},{name:'Realizado',color:V6C.realizado,points:realPts}];
+      if(k.forecast&&k.last&&k.last.realizado<100) series.push({name:'Forecast (ritmo recente)',color:V6C.forecast,dash:true,points:[{x:k.last.data,y:k.last.realizado},{x:k.forecast,y:100}]});
+      h+=`<div class="v6-sub-title">Curva S geral da obra</div>${v6LineChart('geral',series,{ today:isoToday(), label:'Curva S geral: previsto, realizado e forecast' })}`;
+      h+=`<div class="text-sm text-muted" style="margin-top:4px">Forecast: projeção do ritmo médio de avanço das últimas medições${k.pace?` (${fmtN(k.pace*7,2)} p.p./semana)`:''} até 100%.</div>`;
+      h+=`<details class="v6-data"><summary>Ver dados da curva S</summary><table class="v6-table" style="margin-top:8px"><thead><tr><th>Data</th><th class="num">Previsto acumulado</th><th class="num">Realizado acumulado</th><th class="num">Desvio</th></tr></thead><tbody>${k.pts.map(x=>`<tr><td>${fmtD(x.data)}</td><td class="num">${fmtP(x.previsto,2)}</td><td class="num">${fmtP(x.realizado,2)}</td><td class="num">${x.previsto!==null&&x.realizado!==null?fmtN(x.realizado-x.previsto,2)+' p.p.':'—'}</td></tr>`).join('')}</tbody></table></details>`;
+    }
+    if(cr) h+=weekSectionHTML(cr);
+    if(cr&&(cr.marcos||[]).length) h+=`<div class="v6-sub-title">Etapas marco</div><div style="overflow-x:auto"><table class="v6-table"><thead><tr><th>Etapa</th><th>Data prevista</th><th>Data real</th><th style="min-width:160px">Conclusão</th><th>Situação</th></tr></thead><tbody>${cr.marcos.map(m=>`<tr><td><b>${escH(m.nome)}</b></td><td>${fmtD(m.dataPrevista)}</td><td>${fmtD(m.dataReal)}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="v6-bar" style="flex:1;margin:0"><i style="width:${Math.min(100,m.percentual||0)}%;background:${V6C.realizado}"></i></div><span style="font-variant-numeric:tabular-nums;width:44px;text-align:right">${fmtP(m.percentual)}</span></div></td><td>${marcoStatus(m)}</td></tr>`).join('')}</tbody></table></div>`;
+    h+=`</div>`;
+  }
+  if(canSeeBM()) h+=bmPanelHTML(p.bm,cid,isObra);
+  if(isObra) h+=intercorrenciasPanelHTML(p);
+  el.innerHTML=h;
+}
+function weekSectionHTML(cr){
+  const rows=(cr.semanal||[]).filter(r=>r.data); if(!rows.length) return '';
+  const weeks=[...new Set(rows.map(r=>mondayOf(r.data)))].sort();
+  const cur=mondayOf(isoToday());
+  if(!V6.obra.week||!weeks.includes(V6.obra.week)) V6.obra.week=weeks.includes(cur)?cur:weeks[weeks.length-1];
+  const wk=V6.obra.week; const wr=rows.filter(r=>mondayOf(r.data)===wk).sort((a,b)=>a.data.localeCompare(b.data));
+  let ap=0,ag=0,ar=0; const acc=wr.map(r=>{ ap+=r.previsto||0; ag+=r.programado||0; if(r.realizado!==null&&r.realizado!==undefined) ar+=r.realizado; return { data:r.data, p:ap, g:ag, r:(r.realizado!==null&&r.realizado!==undefined)?ar:null }; });
+  const hasReal=wr.some(r=>r.realizado!==null&&r.realizado!==undefined);
+  const totP=ap, totG=ag, totR=hasReal?ar:null;
+  // aderência: compara o realizado com o programado só até o último dia que já tem realizado
+  const lastReal=[...wr].reverse().find(r=>r.realizado!==null&&r.realizado!==undefined);
+  const progAteReal=lastReal?wr.filter(r=>r.data<=lastReal.data).reduce((s,r)=>s+(r.programado||0),0):0;
+  const yMax=Math.max(1,totP,totG,totR||0)*1.15;
+  const label=w=>`${fmtD(w)} a ${fmtD(addDaysIso(w,6))}`;
+  const chart=v6LineChart('semana',[{name:'Previsto acumulado',color:V6C.previsto,points:acc.map(a=>({x:a.data,y:a.p}))},{name:'Programado acumulado',color:V6C.programado,points:acc.map(a=>({x:a.data,y:a.g}))},{name:'Realizado acumulado',color:V6C.realizado,points:acc.filter(a=>a.r!==null).map(a=>({x:a.data,y:a.r}))}],{ yMax, w:480, h:300, today:isoToday(), xLabel:d=>wdOf(d)+' '+fmtDM(d), label:'Curva S da semana' });
+  const ader=progAteReal>0&&totR!==null?totR/progAteReal:null; const progPrev=totP>0?totG/totP:null;
+  return `<div class="v6-sub-title" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">Curva S da semana e programação semanal <select onchange="V6.obra.week=this.value;renderObraPanel()" style="text-transform:none;letter-spacing:0;font-weight:500;padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-family:var(--font)">${weeks.map(w=>`<option value="${w}" ${w===wk?'selected':''}>Semana de ${label(w)}</option>`).join('')}</select></div>
+  <div class="v6-grid2"><div>${chart}</div><div><div class="v6-kpis" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div class="v6-kpi"><div class="l">Previsto na semana</div><div class="v">${fmtP(totP,2)}</div></div><div class="v6-kpi"><div class="l">Programado</div><div class="v" style="color:${V6C.programado}">${fmtP(totG,2)}</div><div class="s">${progPrev===null?'':fmtN(progPrev*100,0)+'% do previsto'}</div></div><div class="v6-kpi"><div class="l">Realizado</div><div class="v" style="color:${V6C.realizado}">${fmtP(totR,2)}</div></div><div class="v6-kpi"><div class="l">Aderência à programação</div><div class="v">${ader===null?'—':fmtN(ader*100,0)+'%'}</div><div class="s">${lastReal?'realizado ÷ programado até '+fmtDM(lastReal.data):'sem realizado na semana'}</div></div></div>
+  <table class="v6-table"><thead><tr><th>Dia</th><th class="num">Previsto</th><th class="num">Programado</th><th class="num">Realizado</th></tr></thead><tbody>${wr.map(r=>`<tr><td>${wdOf(r.data)} ${fmtDM(r.data)}</td><td class="num">${fmtP(r.previsto,2)}</td><td class="num">${fmtP(r.programado,2)}</td><td class="num">${fmtP(r.realizado,2)}</td></tr>`).join('')}</tbody></table></div></div>`;
+}
+function bmPanelHTML(bm,cid,isObra){
+  let h=`<div class="v6-panel"><div class="v6-panel-head"><div><div class="v6-panel-title">Avanço do BM frente ao saldo${isObra?'':' · '+escH(v6ContractName(cid))}</div><div class="v6-panel-sub">Medições (BMs) acumuladas em relação ao valor do contrato com aditivos</div></div></div>`;
+  if(!bm){ h+=`<div class="text-sm text-muted">${isGerencia()?'Este contrato ainda não está vinculado a um contrato da Gestão financeira. Faça o vínculo em Gestão financeira › Contratos (campo “Contrato no FieldReport”).':'Dados de medição ainda não disponíveis para este contrato.'}</div></div>`; return h; }
+  const pc=bm.percentual===null?null:bm.percentual*100;
+  const col=pc===null?V6C.realizado:pc>100?'#C0001A':V6C.realizado;
+  h+=`<div class="v6-kpis"><div class="v6-kpi"><div class="l">Valor do contrato</div><div class="v" style="font-size:18px">${BRLv.format(bm.valorContrato||0)}</div><div class="s">com aditivos${bm.compartilhado?' · saldo compartilhado':''}</div></div><div class="v6-kpi"><div class="l">Medido (BMs)</div><div class="v" style="font-size:18px">${BRLv.format(bm.medido||0)}</div></div><div class="v6-kpi"><div class="l">Saldo</div><div class="v" style="font-size:18px;${bm.saldo<0?'color:#C0001A':''}">${BRLv.format(bm.saldo||0)}</div></div><div class="v6-kpi"><div class="l">Consumido</div><div class="v">${fmtP(pc)}</div></div></div>
+  <div class="v6-bar" style="height:14px;margin:0 0 6px"><i style="width:${Math.min(100,pc||0)}%;background:${col}"></i></div><div class="text-sm text-muted" style="margin-bottom:12px">${fmtP(pc)} do valor medido · ${BRLv.format(bm.saldo||0)} de saldo${pc!==null&&pc>100?' · ⚠ medição acima do valor do contrato':''}</div>`;
+  if((bm.bms||[]).length||bm.medidoAnterior){
+    let acc=bm.medidoAnterior||0;
+    const rows=(bm.bms||[]).map(b=>{ acc+=b.valor||0; return `<tr><td>${escH(ymLabelV(b.competencia))}</td><td>${escH(b.descricao||'—')}</td><td class="num">${BRLv.format(b.valor||0)}</td><td class="num">${BRLv.format(acc)}</td><td class="num">${bm.valorContrato>0?fmtP(acc/bm.valorContrato*100):'—'}</td></tr>`; }).join('');
+    h+=`<div style="overflow-x:auto"><table class="v6-table"><thead><tr><th>Competência</th><th>BM</th><th class="num">Valor</th><th class="num">Acumulado</th><th class="num">% do contrato</th></tr></thead><tbody>${bm.medidoAnterior?`<tr><td colspan="2">Medições anteriores</td><td class="num">${BRLv.format(bm.medidoAnterior)}</td><td class="num">${BRLv.format(bm.medidoAnterior)}</td><td class="num">${bm.valorContrato>0?fmtP(bm.medidoAnterior/bm.valorContrato*100):'—'}</td></tr>`:''}${rows}</tbody></table></div>${bm.compartilhado?'<div class="text-sm text-muted" style="margin-top:6px">O saldo é compartilhado com outro(s) contrato(s) do mesmo grupo; a tabela mostra só os BMs deste contrato.</div>':''}`;
+  }
+  return h+`</div>`;
+}
+const MESV=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const ymLabelV=ym=>ym&&/^\d{4}-\d{2}$/.test(ym)?MESV[+ym.slice(5,7)-1]+'/'+ym.slice(0,4):(ym||'—');
+
+// ---------- Intercorrências ----------
+const IC_TIPOS=['Clima / chuva','Paralisação pela contratante','Falta de liberação / permissão','Falta de material','Falha de equipamento','Interferência de terceiros','Projeto / engenharia','Acidente / incidente','Mão de obra','Outros'];
+function intercorrenciasPanelHTML(p){
+  const list=p.intercorrencias||[];
+  return `<div class="v6-panel"><div class="v6-panel-head"><div><div class="v6-panel-title">Intercorrências registradas</div><div class="v6-panel-sub">Toque em um item para ver os detalhes, as evidências e os RDOs em que está descrita</div></div>${canEditObra()?'<button class="btn btn-primary btn-sm v6-edit" onclick="openIntercorrenciaEditor()">+ Intercorrência</button>':''}</div>${list.length?`<div class="v6-ic-list">${list.map(i=>`<button class="v6-ic" onclick="openIntercorrencia('${i.id}')"><div><div class="v6-ic-date">${fmtD(i.data)}</div>${i.tipo?`<span class="badge badge-blue" style="margin-top:4px;display:inline-block">${escH(i.tipo)}</span>`:''}</div><div class="v6-ic-desc">${escH(i.descricao)}</div><div class="v6-ic-meta"><b style="color:var(--text)">${fmtN(i.impactoDias,1)} dia(s)</b><br>${(i.fotos||[]).length?`📷 ${(i.fotos||[]).length} `:''}${(i.reportIds||[]).length?`📄 ${(i.reportIds||[]).length} RDO`:''}</div></button>`).join('')}</div>`:'<div class="text-sm text-muted">Nenhuma intercorrência registrada para este contrato.</div>'}</div>`;
+}
+function openIntercorrencia(id){
+  const p=V6.obra.panel; const i=(p.intercorrencias||[]).find(x=>x.id===id); if(!i) return;
+  const refs=(i.reportIds||[]).map(rid=>(p.reportRefs||[]).find(r=>r.id===rid)).filter(Boolean).sort((a,b)=>a.date.localeCompare(b.date));
+  const body=`<div class="v6-kpis" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="v6-kpi"><div class="l">Data</div><div class="v" style="font-size:17px">${fmtD(i.data)}</div></div><div class="v6-kpi"><div class="l">Tipo</div><div class="v" style="font-size:15px">${escH(i.tipo||'—')}</div></div><div class="v6-kpi"><div class="l">Impacto</div><div class="v" style="font-size:17px">${fmtN(i.impactoDias,1)} dia(s)</div></div></div>
+  <div class="v6-sec-title">Descrição</div><div style="font-size:14px;line-height:1.7;white-space:pre-wrap">${escH(i.descricao)}</div>
+  <div class="v6-sec-title">Imagens / evidências (${(i.fotos||[]).length})</div>${(i.fotos||[]).length?v6Gallery(i.fotos):'<div class="text-sm text-muted">Nenhuma imagem anexada.</div>'}
+  <div class="v6-sec-title">Descrita nos RDOs</div>${refs.length?`<div class="v6-list">${refs.map(r=>`<button class="v6-item" onclick="v6OpenReport('${r.id}')"><div class="v6-item-top"><span>📄 RDO de ${fmtD(r.date)}</span><span class="text-sm" style="color:var(--blue)">Ver relatório →</span></div><div class="v6-item-sub"><span>🕐 ${escH(r.shift||'—')}</span><span>👤 ${escH(r.supervisorName||'—')}</span><span>📍 ${escH(r.location||'—')}</span></div></button>`).join('')}</div>`:'<div class="text-sm text-muted">Nenhum RDO vinculado.</div>'}
+  <div class="text-sm text-muted" style="margin-top:14px">Registrada por ${escH(i.createdByName||'—')} em ${new Date(i.createdAt).toLocaleString('pt-BR')}</div>`;
+  openModal('Intercorrência — '+v6ContractName(i.contractId),body,`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${canEditObra()?`<button class="btn btn-danger v6-edit" onclick="deleteIntercorrencia('${i.id}')">Excluir</button><button class="btn btn-primary v6-edit" onclick="openIntercorrenciaEditor('${i.id}')">Editar</button>`:''}`);
+}
+function v6OpenReport(rid){ const r=DB.reports.find(x=>x.id===rid); if(!r){ toast('Relatório não encontrado na sua lista','error'); return; } closeModal(); adminViewReport(rid); }
+function openIntercorrenciaEditor(id){
+  if(!canEditObra()) return;
+  const p=V6.obra.panel; const cid=p.contractId; const i=id?(p.intercorrencias||[]).find(x=>x.id===id):null;
+  V6.photos.ic=i?[...(i.fotos||[])]:[];
+  const sel=new Set(i?i.reportIds:[]);
+  const reps=DB.reports.filter(r=>r.contractId===cid).sort((a,b)=>b.date.localeCompare(a.date)||String(a.shift).localeCompare(String(b.shift)));
+  const body=`<div class="form-row-2"><div class="form-group"><label>Data</label><input type="date" id="icData" value="${i?i.data:isoToday()}"></div><div class="form-group"><label>Impacto (dias)</label><input id="icImpacto" inputmode="decimal" value="${i?String(i.impactoDias).replace('.',','):'0'}"></div></div>
+  <div class="form-group"><label>Tipo</label><select id="icTipo">${IC_TIPOS.map(t=>`<option ${i&&i.tipo===t?'selected':''}>${t}</option>`).join('')}${i&&i.tipo&&!IC_TIPOS.includes(i.tipo)?`<option selected>${escH(i.tipo)}</option>`:''}</select></div>
+  <div class="form-group"><label>Descrição</label><textarea id="icDesc" rows="4" placeholder="O que aconteceu, onde, causa e consequência…">${i?escH(i.descricao):''}</textarea></div>
+  <div class="form-group"><label>Imagens / evidências</label><div class="v6-photo-grid" id="v6pg-ic"></div></div>
+  <div class="form-group"><label>RDOs em que está descrita</label><input type="date" id="icRepFilter" oninput="v6FilterIcReports()" style="margin-bottom:8px" title="Filtrar por data"><div class="v6-checklist" id="icReports">${reps.length?reps.map(r=>`<label data-date="${r.date}"><input type="checkbox" class="icRep" value="${r.id}" ${sel.has(r.id)?'checked':''}> ${fmtD(r.date)} · ${escH(r.shift||'—')} · ${escH(r.supervisorName||'—')} · ${escH(r.location||'')}</label>`).join(''):'<span class="text-muted text-sm">Nenhum RDO deste contrato.</span>'}</div></div>`;
+  openModal(i?'Editar intercorrência':'Nova intercorrência — '+v6ContractName(cid),body,`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" id="icSaveBtn" onclick="saveIntercorrencia('${id||''}')">Salvar</button>`);
+  v6RenderPhotoGrid('ic');
+}
+function v6FilterIcReports(){ const d=document.getElementById('icRepFilter').value; document.querySelectorAll('#icReports label').forEach(l=>{ l.style.display=!d||l.dataset.date===d?'':'none'; }); }
+async function saveIntercorrencia(id){
+  const p=V6.obra.panel; const data=document.getElementById('icData').value; const descricao=document.getElementById('icDesc').value.trim();
+  const impacto=Number(String(document.getElementById('icImpacto').value||'0').replace(',','.'));
+  if(!data){ toast('Informe a data','error'); return; } if(!descricao){ toast('Descreva a intercorrência','error'); return; } if(!isFinite(impacto)||impacto<0){ toast('Impacto em dias inválido','error'); return; }
+  const btn=document.getElementById('icSaveBtn'); btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
+  try{
+    await apiData('obra','saveIntercorrencia',{ id:id||null, contractId:p.contractId, data, tipo:document.getElementById('icTipo').value, descricao, impactoDias:impacto, fotos:V6.photos.ic||[], reportIds:[...document.querySelectorAll('.icRep:checked')].map(c=>c.value) });
+    closeModal(); toast(id?'Intercorrência atualizada':'Intercorrência registrada','success'); await v6ReloadObra();
+  }catch(e){ toast('Não foi possível salvar: '+e.message,'error'); btn.disabled=false; btn.innerHTML='Salvar'; }
+}
+function deleteIntercorrencia(id){
+  showConfirm('Excluir intercorrência?','Ela deixa de aparecer no Dashboard para todos os perfis.',async()=>{
+    try{ await apiData('obra','deleteIntercorrencia',{ id }); toast('Intercorrência excluída','warn'); await v6ReloadObra(); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); }
+  });
+}
+async function v6ReloadObra(){ const sec=document.getElementById('v6ObraSection'); if(sec&&!isFiscal()){ const keep=V6.obra.sel; await renderObraSection(sec); if(keep&&keep!==V6.obra.sel) await loadObraPanel(keep); } else if(V6.obra.sel) await loadObraPanel(V6.obra.sel); }
+
+// ---------- Dashboard do fiscal ----------
+async function renderFiscalDashboard(main){
+  const cs=DB.contracts;
+  main.innerHTML=`<div class="admin-page-title">Dashboard</div><div class="admin-page-sub">Contratos que você acompanha${cs.length?'':': nenhum contrato vinculado ao seu acesso'}</div><div class="v6-cards" id="v6ObraCards"></div><div id="v6ObraPanel"></div>`;
+  if(!cs.length) return;
+  try{ const ov=await apiData('obra','overview'); V6.obra.overview=ov.contratos||[]; }catch(e){ V6.obra.overview=[]; }
+  if(!V6.obra.sel||!cs.find(c=>c.id===V6.obra.sel)) V6.obra.sel=cs[0].id;
+  document.getElementById('v6ObraCards').innerHTML=cs.map(c=>{ const o=V6.obra.overview.find(x=>x.contractId===c.id); if(o) return obraCardHTML(o); return `<button class="v6-card ${c.id===V6.obra.sel?'sel':''}" data-cid="${c.id}" onclick="loadObraPanel('${c.id}')"><div class="v6-card-name"><span>${escH(c.name)}</span>${categoryBadge(c.category)}</div><div class="v6-card-row"><span>Avanço do BM frente ao saldo</span></div></button>`; }).join('');
+  await loadObraPanel(V6.obra.sel);
+}
+
+// ---------- Editor do cronograma (lançamento manual ou importação de planilha) ----------
+const CRONO_COLS={
+  curva:{ key:'curvaS', title:'Curva S geral', hint:'Uma linha por data de medição (ex.: fim de cada semana), com os percentuais ACUMULADOS da obra (0 a 100).', cols:[['data','Data','date'],['previsto','Previsto acumulado (%)','pct'],['realizado','Realizado acumulado (%)','pct']] },
+  semanal:{ key:'semanal', title:'Programação semanal', hint:'Uma linha por dia, com o avanço físico DO DIA em % da obra: previsto pela linha de base, programado para a semana e realizado.', cols:[['data','Data','date'],['previsto','Previsto do dia (%)','pct'],['programado','Programado do dia (%)','pct'],['realizado','Realizado do dia (%)','pct']] },
+  marcos:{ key:'marcos', title:'Etapas marco', hint:'Uma linha por etapa marco, com a data prevista, a data em que foi concluída (se já foi) e o % concluído.', cols:[['nome','Etapa','text'],['dataPrevista','Data prevista','date'],['dataReal','Data real','date'],['percentual','Conclusão (%)','pct']] },
+};
+function openCronogramaEditor(){
+  if(!canEditObra()) return;
+  const cr=V6.obra.panel.cronograma||{};
+  V6.crono={ curvaS:JSON.parse(JSON.stringify(cr.curvaS||[])), semanal:JSON.parse(JSON.stringify(cr.semanal||[])), marcos:JSON.parse(JSON.stringify(cr.marcos||[])) };
+  V6.cronoTab='curva';
+  v6OpenWide('Cronograma — '+v6ContractName(V6.obra.panel.contractId),'<div id="cronoEditor"></div>',`<button class="btn btn-secondary" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" id="cronoSaveBtn" onclick="saveCronograma()">Salvar cronograma</button>`);
+  renderCronoEditor();
+}
+function renderCronoEditor(){
+  const el=document.getElementById('cronoEditor'); if(!el) return; const t=CRONO_COLS[V6.cronoTab]; const rows=V6.crono[t.key];
+  const cell=(r,i,[f,,type])=>{ const v=r[f]; if(type==='date') return `<input type="date" value="${v||''}" onchange="v6CronoSet(${i},'${f}',this.value)">`; if(type==='pct') return `<input inputmode="decimal" value="${v===null||v===undefined?'':String(v).replace('.',',')}" onchange="v6CronoSet(${i},'${f}',this.value)" style="text-align:right">`; return `<input value="${escH(v||'')}" onchange="v6CronoSet(${i},'${f}',this.value)">`; };
+  el.innerHTML=`<div class="v6-tabs">${Object.entries(CRONO_COLS).map(([k,c])=>`<button class="btn btn-sm ${k===V6.cronoTab?'btn-primary':'btn-secondary'}" onclick="V6.cronoTab='${k}';renderCronoEditor()">${c.title} (${V6.crono[c.key].length})</button>`).join('')}<span style="flex:1"></span><button class="btn btn-secondary btn-sm" onclick="downloadCronoTemplate()">⬇ Baixar modelo Excel</button><button class="btn btn-secondary btn-sm" onclick="document.getElementById('cronoFile').click()">⬆ Importar Excel</button><input type="file" id="cronoFile" accept=".xlsx,.xls" style="display:none" onchange="importCronoFile(event)"></div>
+  <div class="text-sm text-muted" style="margin-bottom:10px">${t.hint} Use vírgula ou ponto como separador decimal.</div>
+  <div style="overflow-x:auto"><table class="v6-table"><thead><tr>${t.cols.map(c=>`<th>${c[1]}</th>`).join('')}<th></th></tr></thead><tbody>${rows.map((r,i)=>`<tr>${t.cols.map(c=>`<td>${cell(r,i,c)}</td>`).join('')}<td><button class="tbl-btn tbl-btn-del" onclick="V6.crono['${t.key}'].splice(${i},1);renderCronoEditor()">🗑</button></td></tr>`).join('')}</tbody></table></div>
+  <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="v6CronoAdd()">+ Adicionar linha</button>${rows.length?` <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="v6CronoClear()">Limpar ${t.title.toLowerCase()}</button>`:''}`;
+}
+function v6CronoNum(v){ if(v===null||v===undefined||String(v).trim()==='') return null; const n=Number(String(v).replace('%','').trim().replace(',','.')); return isFinite(n)?n:null; }
+function v6CronoSet(i,f,v){ const t=CRONO_COLS[V6.cronoTab]; const col=t.cols.find(c=>c[0]===f); V6.crono[t.key][i][f]=col[2]==='pct'?v6CronoNum(v):(v||null); }
+function v6CronoAdd(){ const t=CRONO_COLS[V6.cronoTab]; const rows=V6.crono[t.key]; const last=rows[rows.length-1]; const r={}; t.cols.forEach(([f,,type])=>{ r[f]=null; }); if(t.cols[0][2]==='date'&&last&&last.data) r.data=addDaysIso(last.data,V6.cronoTab==='curva'?7:1); if(V6.cronoTab==='marcos') r.nome=''; rows.push(r); renderCronoEditor(); }
+function v6CronoClear(){ const t=CRONO_COLS[V6.cronoTab]; V6.crono[t.key]=[]; renderCronoEditor(); }
+async function saveCronograma(){
+  const c=V6.crono;
+  const bad=[...c.curvaS,...c.semanal].filter(r=>!r.data).length+c.marcos.filter(m=>!String(m.nome||'').trim()).length;
+  if(bad){ toast(`${bad} linha(s) sem data (ou sem nome da etapa) serão ignoradas`,'warn'); }
+  const over=[...c.curvaS.flatMap(r=>[r.previsto,r.realizado]),...c.marcos.map(m=>m.percentual)].some(v=>v!==null&&v!==undefined&&(v<0||v>100));
+  if(over){ toast('Há percentuais fora de 0 a 100. Corrija antes de salvar.','error'); return; }
+  const btn=document.getElementById('cronoSaveBtn'); btn.disabled=true; btn.innerHTML='<div class="spinner"></div>';
+  try{ await apiData('obra','saveCronograma',{ contractId:V6.obra.panel.contractId, curvaS:c.curvaS, semanal:c.semanal, marcos:c.marcos }); closeModal(); toast('Cronograma salvo','success'); await v6ReloadObra(); }
+  catch(e){ toast('Não foi possível salvar: '+e.message,'error'); btn.disabled=false; btn.innerHTML='Salvar cronograma'; }
+}
+async function downloadCronoTemplate(){
+  if(typeof ExcelJS==='undefined'){ toast('Biblioteca de Excel não carregou','error'); return; }
+  const wb=new ExcelJS.Workbook(); const hdr={ font:{ bold:true, color:{ argb:'FFFFFFFF' } }, fill:{ type:'pattern', pattern:'solid', fgColor:{ argb:'FF0071E3' } } };
+  const add=(name,cols,rows,widths)=>{ const ws=wb.addWorksheet(name); ws.addRow(cols); ws.getRow(1).eachCell(c=>{ c.font=hdr.font; c.fill=hdr.fill; }); rows.forEach(r=>ws.addRow(r)); ws.columns.forEach((c,i)=>{ c.width=widths[i]||18; }); ws.getColumn(1).numFmt='dd/mm/yyyy'; return ws; };
+  const d=s=>{ const [y,m,dd]=s.split('-').map(Number); return new Date(Date.UTC(y,m-1,dd)); };
+  const base=mondayOf(isoToday());
+  add('Curva S',['Data','Previsto acumulado (%)','Realizado acumulado (%)'],[[d(addDaysIso(base,-14)),5,4],[d(addDaysIso(base,-7)),12,10],[d(base),20,null]],[14,24,24]);
+  add('Programação semanal',['Data','Previsto do dia (%)','Programado do dia (%)','Realizado do dia (%)'],[0,1,2,3,4].map(i=>[d(addDaysIso(base,i)),1.2,1.4,null]),[14,20,22,20]);
+  const wsM=add('Marcos',['Etapa','Data prevista','Data real','Conclusão (%)'],[['Mobilização',d(addDaysIso(base,-30)),d(addDaysIso(base,-31)),100],['Escavação',d(addDaysIso(base,30)),null,40]],[34,16,16,16]); wsM.getColumn(1).numFmt='@'; wsM.getColumn(2).numFmt='dd/mm/yyyy'; wsM.getColumn(3).numFmt='dd/mm/yyyy';
+  const info=wb.addWorksheet('Instruções'); [['Como preencher'],['• Percentuais de 0 a 100 (ex.: 12,5 = 12,5%). Células formatadas como porcentagem do Excel também são aceitas.'],['• Curva S: valores ACUMULADOS da obra em cada data de medição.'],['• Programação semanal: avanço DO DIA (% da obra) previsto, programado e realizado. Deixe o realizado em branco nos dias futuros.'],['• Marcos: uma etapa por linha. Data real fica em branco enquanto a etapa não terminar.'],['• Não renomeie as abas. A importação substitui os dados das abas presentes no arquivo (pode revisar antes de salvar).']].forEach(r=>info.addRow(r)); info.getColumn(1).width=120; info.getRow(1).font={ bold:true, size:13 };
+  const buf=await wb.xlsx.writeBuffer(); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([buf],{ type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })); a.download='Modelo_cronograma_obra.xlsx'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+}
+// Lê o Excel célula a célula: datas (data do Excel, texto dd/mm/aaaa ou aaaa-mm-dd) e percentuais
+// (número de 0 a 100, ou célula com formato de porcentagem, que vem como fração e é multiplicada por 100).
+function v6CellDate(c){ if(!c) return null; if(c.t==='d'&&c.v instanceof Date) return c.v.toISOString().slice(0,10); if(c.t==='n'&&c.v>20000&&c.v<80000){ return numToIso(Math.round(c.v)-25569); } const s=String(c.w??c.v??'').trim(); let m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/); if(m){ const y=m[3].length===2?'20'+m[3]:m[3]; return `${y}-${pad2v(m[2])}-${pad2v(m[1])}`; } m=s.match(/^(\d{4})-(\d{2})-(\d{2})/); return m?`${m[1]}-${m[2]}-${m[3]}`:null; }
+function v6CellPct(c){ if(!c||c.v===null||c.v===undefined||c.v==='') return null; if(c.t==='n'){ const isPct=/%/.test(c.z||'')||/%/.test(c.w||''); return isPct?Math.round(c.v*10000)/100:c.v; } return v6CronoNum(c.v); }
+function v6CellText(c){ return c?String(c.w??c.v??'').trim():''; }
+async function importCronoFile(e){
+  const file=e.target.files[0]; e.target.value=''; if(!file) return;
+  if(typeof XLSX==='undefined'){ toast('Biblioteca de leitura de Excel não carregou','error'); return; }
+  try{
+    const wb=XLSX.read(await file.arrayBuffer(),{ type:'array', cellDates:true, cellNF:true });
+    const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+    const find=re=>wb.SheetNames.find(n=>re.test(norm(n)));
+    const readSheet=(name,spec)=>{ const ws=wb.Sheets[name]; if(!ws||!ws['!ref']) return null; const rg=XLSX.utils.decode_range(ws['!ref']);
+      const heads=[]; for(let c=rg.s.c;c<=rg.e.c;c++){ heads.push(norm(v6CellText(ws[XLSX.utils.encode_cell({ r:rg.s.r, c })]))); }
+      const colOf={}; spec.forEach(([f,re])=>{ const i=heads.findIndex((h,ix)=>re.test(h)&&!Object.values(colOf).includes(ix)); if(i>=0) colOf[f]=i; });
+      const out=[]; for(let r=rg.s.r+1;r<=rg.e.r;r++){ const get=f=>colOf[f]===undefined?null:ws[XLSX.utils.encode_cell({ r, c:rg.s.c+colOf[f] })]; out.push(get); } return { colOf, rows:out }; };
+    const result={}; const msgs=[];
+    let n=find(/curva/); if(n){ const s=readSheet(n,[['data',/^data|semana|medi/],['previsto',/previst/],['realizado',/realiz/]]); if(s&&s.colOf.data!==undefined){ result.curvaS=s.rows.map(g=>({ data:v6CellDate(g('data')), previsto:v6CellPct(g('previsto')), realizado:v6CellPct(g('realizado')) })).filter(r=>r.data); msgs.push(`${result.curvaS.length} linha(s) da curva S`); } }
+    n=find(/semana|program/); if(n){ const s=readSheet(n,[['data',/^data|^dia/],['previsto',/previst/],['programado',/program/],['realizado',/realiz/]]); if(s&&s.colOf.data!==undefined){ result.semanal=s.rows.map(g=>({ data:v6CellDate(g('data')), previsto:v6CellPct(g('previsto')), programado:v6CellPct(g('programado')), realizado:v6CellPct(g('realizado')) })).filter(r=>r.data); msgs.push(`${result.semanal.length} dia(s) da programação`); } }
+    n=find(/marco|etapa/); if(n){ const s=readSheet(n,[['nome',/etapa|marco|nome|descri/],['dataPrevista',/previst/],['dataReal',/real|conclusao em|termino/],['percentual',/%|conclu|percent|avanc/]]); if(s&&s.colOf.nome!==undefined){ result.marcos=s.rows.map(g=>({ nome:v6CellText(g('nome')), dataPrevista:v6CellDate(g('dataPrevista')), dataReal:v6CellDate(g('dataReal')), percentual:v6CellPct(g('percentual'))??0 })).filter(r=>r.nome); msgs.push(`${result.marcos.length} marco(s)`); } }
+    if(!msgs.length){ toast('Não encontrei as abas “Curva S”, “Programação semanal” ou “Marcos”. Use o modelo Excel.','error'); return; }
+    Object.assign(V6.crono,result); renderCronoEditor(); toast('Importado: '+msgs.join(', ')+'. Revise e clique em Salvar.','success');
+  }catch(err){ console.error(err); toast('Não foi possível ler a planilha: '+err.message,'error'); }
+}
+
+// ---------- Supervisor: início e relatórios do contrato ----------
+function supHome(){
+  const u=APP.currentUser; const c=DB.contracts.find(c=>c.id===u.contractId);
+  document.getElementById('supHelloName').textContent=u.name.split(' ')[0];
+  document.getElementById('supHomeContract').textContent=c?'Contrato: '+c.name:'Você ainda não está alocado em um contrato';
+  document.getElementById('navSupName').textContent=u.name;
+  showScreen('screen-suphome');
+}
+function supNewReport(){ initForm(); showScreen('screen-form'); }
+async function supOpenReports(){
+  const u=APP.currentUser; const c=DB.contracts.find(c=>c.id===u.contractId);
+  document.getElementById('svTitle').textContent=c?c.name:'Meus relatórios';
+  showScreen('screen-supreports'); document.getElementById('svList').innerHTML=v6Spinner;
+  try{ const r=await apiData('reports','list'); DB.reports=r.reports||[]; await loadComments(); }catch(e){ toast('Erro ao carregar relatórios: '+e.message,'error'); }
+  svRender();
+}
+function svSetTab(t){ V6.sv.tab=t; svRender(); }
+function svRender(){
+  const s=V6.sv; document.getElementById('svTabDaily').className='btn btn-sm '+(s.tab==='daily'?'btn-primary':'btn-secondary'); document.getElementById('svTabInd').className='btn btn-sm '+(s.tab==='ind'?'btn-primary':'btn-secondary');
+  s.from=document.getElementById('svFrom').value; s.to=document.getElementById('svTo').value;
+  let reps=DB.reports.filter(r=>(!s.from||r.date>=s.from)&&(!s.to||r.date<=s.to));
+  const el=document.getElementById('svList');
+  if(!reps.length){ el.innerHTML='<div class="empty-state"><div class="empty-state-icon">📋</div><div class="empty-state-text">Nenhum relatório encontrado</div></div>'; return; }
+  if(s.tab==='ind'){
+    reps=reps.sort((a,b)=>b.date.localeCompare(a.date)||String(b.createdAt).localeCompare(String(a.createdAt)));
+    el.innerHTML=reps.map(r=>`<button class="v6-item" onclick="adminViewReport('${r.id}')"><div class="v6-item-top"><span>${fmtDate(r.date)} · ${escH(r.shift)}</span>${r.supervisorId===APP.currentUser.id?'<span class="badge badge-blue">Meu</span>':''}</div><div class="v6-item-sub"><span>👤 ${escH(r.supervisorName)}</span><span>📍 ${escH(r.location)}</span></div></button>`).join('');
+  } else {
+    const groups=getDailyGroups(null,s.from||null,s.to||null).filter(g=>reps.some(r=>r.contractId===g.contractId&&r.date===g.date));
+    el.innerHTML=groups.map(g=>{ const nc=dayComments(g.contractId,g.date).length; const closed=isDayClosed(g.date); return `<button class="v6-item" onclick="viewDailyGroup('${g.contractId}','${g.date}')"><div class="v6-item-top"><span>${fmtDate(g.date)}</span><span class="badge ${closed?'badge-green':'badge-warn'}">${closed?'Fechado':'Aberto até 06:00'}</span></div><div class="v6-item-sub"><span>📋 ${g.reports.length} relatório(s)</span><span>👤 ${[...new Set(g.reports.map(r=>r.supervisorName))].map(escH).join(', ')}</span>${nc?`<span>💬 ${nc} comentário(s) da fiscalização</span>`:''}</div></button>`; }).join('');
+  }
+}
+
+// ---------- TST: inspeções de campo ----------
+const INSP_TIPOS=['Inspeção de campo','Inspeção de EPI','Inspeção de equipamentos e ferramentas','Inspeção de frente de serviço','Auditoria comportamental','Outra'];
+const INSP_ITENS_PADRAO=['Uso correto de EPI','Permissão de trabalho / APR','Sinalização e isolamento da área','Condição de ferramentas e equipamentos','Organização e limpeza','Proteções coletivas'];
+const SIT_LABEL={ C:'Conforme', NC:'Não conforme', NA:'Não se aplica' };
+async function tstHome(){
+  const u=APP.currentUser;
+  document.getElementById('tstHelloName').textContent=u.name.split(' ')[0]; document.getElementById('navTstName').textContent=u.name;
+  showScreen('screen-tsthome'); document.getElementById('tstList').innerHTML=v6Spinner;
+  try{ const [r,t]=await Promise.all([apiData('inspections','list'),apiData('templates','list').catch(()=>({ templates:[] }))]); V6.insp=r.inspections||[]; V6.tstTpl=(t.templates||[]).find(x=>x.kind==='tst'&&x.storagePath)||null; DB.templates=t.templates||[]; }
+  catch(e){ toast('Erro ao carregar inspeções: '+e.message,'error'); V6.insp=[]; }
+  document.getElementById('tstTplBtn').classList.toggle('hidden',!V6.tstTpl);
+  document.getElementById('tstList').innerHTML=V6.insp.length?V6.insp.map(inspItemHTML).join(''):'<div class="empty-state"><div class="empty-state-icon">🦺</div><div class="empty-state-text">Nenhuma inspeção lançada</div></div>';
+}
+function inspItemHTML(i){ const nc=(i.itens||[]).filter(x=>x.situacao==='NC').length; return `<button class="v6-item" onclick="viewInspection('${i.id}')"><div class="v6-item-top"><span>${fmtDate(i.data)}${i.hora?' · '+escH(i.hora):''} · ${escH(i.tipo||'Inspeção de campo')}</span>${nc?`<span class="badge badge-red">${nc} NC</span>`:'<span class="badge badge-green">Sem NC</span>'}</div><div class="v6-item-sub"><span>📁 ${escH(i.contractName||'—')}</span><span>📍 ${escH(i.local||'—')}</span><span>🦺 ${escH(i.tstName||'—')}</span>${(i.fotos||[]).length?`<span>📷 ${(i.fotos||[]).length}</span>`:''}</div></button>`; }
+function tstNewInspection(){
+  const u=APP.currentUser; const cs=DB.contracts.filter(c=>c.active!==false);
+  document.getElementById('ifContract').innerHTML='<option value="">Selecione…</option>'+cs.map(c=>`<option value="${c.id}" ${c.id===u.contractId?'selected':''}>${escH(c.name)}</option>`).join('');
+  document.getElementById('ifData').value=isoToday(); const now=new Date(); document.getElementById('ifHora').value=pad2v(now.getHours())+':'+pad2v(now.getMinutes());
+  document.getElementById('ifTipo').innerHTML=INSP_TIPOS.map(t=>`<option>${t}</option>`).join('');
+  ['ifLocal','ifNC','ifAcoes','ifObs'].forEach(id=>document.getElementById(id).value='');
+  V6.inspItems=INSP_ITENS_PADRAO.map(item=>({ item, situacao:'C', obs:'' })); V6.photos.insp=[];
+  renderInspItems(); v6RenderPhotoGrid('insp'); showScreen('screen-inspform');
+}
+function renderInspItems(){ document.getElementById('ifItens').innerHTML=V6.inspItems.map((it,i)=>`<div class="v6-insp-item"><input value="${escH(it.item)}" placeholder="Item verificado" onchange="V6.inspItems[${i}].item=this.value"><select onchange="V6.inspItems[${i}].situacao=this.value">${Object.entries(SIT_LABEL).map(([k,l])=>`<option value="${k}" ${it.situacao===k?'selected':''}>${l}</option>`).join('')}</select><input class="obs" value="${escH(it.obs)}" placeholder="Observação" onchange="V6.inspItems[${i}].obs=this.value"><button type="button" class="tbl-btn tbl-btn-del" onclick="V6.inspItems.splice(${i},1);renderInspItems()">✕</button></div>`).join(''); }
+function addInspItem(){ V6.inspItems.push({ item:'', situacao:'C', obs:'' }); renderInspItems(); }
+function cancelInspection(){ showConfirm('Cancelar inspeção?','Os dados preenchidos serão perdidos.',()=>tstHome()); }
+async function submitInspection(){
+  const contractId=document.getElementById('ifContract').value; const data=document.getElementById('ifData').value; const local=document.getElementById('ifLocal').value.trim();
+  if(!contractId){ toast('Selecione o contrato','error'); return; } if(!data){ toast('Informe a data','error'); return; } if(!local){ toast('Informe o local / área inspecionada','error'); return; }
+  const itens=V6.inspItems.filter(i=>i.item.trim());
+  const btn=document.getElementById('ifSubmit'); btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Enviando…';
+  try{ await apiData('inspections','create',{ contractId, data, hora:document.getElementById('ifHora').value, local, tipo:document.getElementById('ifTipo').value, itens, naoConformidades:document.getElementById('ifNC').value.trim(), acoes:document.getElementById('ifAcoes').value.trim(), observacoes:document.getElementById('ifObs').value.trim(), fotos:V6.photos.insp||[] });
+    toast('Inspeção de campo registrada','success'); tstHome(); }
+  catch(e){ toast('Não foi possível enviar: '+e.message,'error'); }
+  finally{ btn.disabled=false; btn.innerHTML='✓ Enviar inspeção'; }
+}
+function inspBodyHTML(i){
+  const row=(l,v)=>`<div class="preview-row"><span class="preview-row-label">${l}</span><span class="preview-row-value">${v}</span></div>`;
+  return `<div class="preview-header-card" style="margin-bottom:16px"><div class="preview-title">${escH(i.tipo||'Inspeção de campo')}</div><div class="preview-meta" style="margin-top:10px"><span class="preview-meta-item">📅 ${fmtDate(i.data)}${i.hora?' '+escH(i.hora):''}</span><span class="preview-meta-item">📁 ${escH(i.contractName||'—')}</span><span class="preview-meta-item">🦺 ${escH(i.tstName||'—')}</span></div></div>
+  ${row('Local / área',escH(i.local||'—'))}
+  <div class="v6-sec-title">Itens verificados</div>${(i.itens||[]).length?`<table class="v6-table"><thead><tr><th>Item</th><th>Situação</th><th>Observação</th></tr></thead><tbody>${i.itens.map(x=>`<tr><td>${escH(x.item)}</td><td class="v6-sit-${x.situacao}">${SIT_LABEL[x.situacao]||x.situacao}</td><td>${escH(x.obs||'')}</td></tr>`).join('')}</tbody></table>`:'<div class="text-sm text-muted">Nenhum item informado.</div>'}
+  <div class="v6-sec-title">Não conformidades</div><div style="font-size:13px;white-space:pre-wrap">${escH(i.naoConformidades||'Nenhuma informada')}</div>
+  <div class="v6-sec-title">Ações corretivas / recomendações</div><div style="font-size:13px;white-space:pre-wrap">${escH(i.acoes||'—')}</div>
+  <div class="v6-sec-title">Observações</div><div style="font-size:13px;white-space:pre-wrap">${escH(i.observacoes||'—')}</div>
+  ${(i.fotos||[]).length?`<div class="v6-sec-title">Fotos</div>${v6Gallery(i.fotos)}`:''}`;
+}
+function viewInspection(id){
+  const i=V6.insp.find(x=>x.id===id); if(!i) return;
+  openModal('Inspeção de campo',inspBodyHTML(i),`<button class="btn btn-secondary" onclick="closeModal()">Fechar</button>${isAdminUser()&&!isDiretoria()?`<button class="btn btn-danger" onclick="deleteInspection('${i.id}')">Excluir</button>`:''}<button class="btn btn-secondary" onclick="exportInspectionPDF('${i.id}')">⬇ PDF</button><button class="btn btn-primary" onclick="exportInspectionXLSX('${i.id}')">⬇ Excel</button>`);
+}
+function deleteInspection(id){ showConfirm('Excluir inspeção?','Esta ação não pode ser desfeita.',async()=>{ try{ await apiData('inspections','delete',{ id }); V6.insp=V6.insp.filter(x=>x.id!==id); toast('Inspeção excluída','warn'); renderInspections(document.getElementById('adminMain')); }catch(e){ toast('Não foi possível excluir: '+e.message,'error'); } }); }
+async function downloadTemplateFile(id){ const t=(DB.templates||[]).find(x=>x.id===id)||V6.tstTpl; if(!t||!t.storagePath) return; try{ const buf=await fetchTemplateArrayBuffer(t.storagePath); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([buf])); a.download=t.fileName||'modelo.xlsx'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000); }catch(e){ toast(e.message,'error'); } }
+
+// Página "Inspeções de campo" (Gerência, Admin, Coordenador e Diretoria)
+let _inspFilt={ c:'', t:'', from:'', to:'' };
+async function renderInspections(main){
+  if(isFiscal()){ toast('Você não tem permissão para acessar esta área','error'); return; }
+  main.innerHTML=v6Spinner;
+  try{ const r=await apiData('inspections','list'); V6.insp=r.inspections||[]; if(!isCoordenador()){ const t=await apiData('templates','list').catch(()=>null); if(t) DB.templates=t.templates||[]; } }
+  catch(e){ main.innerHTML=`<div class="empty-state"><div class="empty-state-text">Erro ao carregar inspeções: ${escH(e.message)}</div></div>`; return; }
+  const tsts=[...new Map(V6.insp.map(i=>[i.tstId,i.tstName])).entries()];
+  main.innerHTML=`<div class="admin-page-title">Inspeções de campo</div><div class="admin-page-sub">Lançadas pelos TSTs. Ficam separadas dos relatórios de turno e não entram nos compilados nem nas exportações dos supervisores.</div>
+  <div class="v6-filters"><select id="inspFC" onchange="_inspFilt.c=this.value;renderInspTable()"><option value="">Todos os contratos</option>${DB.contracts.map(c=>`<option value="${c.id}" ${_inspFilt.c===c.id?'selected':''}>${escH(c.name)}</option>`).join('')}</select><select id="inspFT" onchange="_inspFilt.t=this.value;renderInspTable()"><option value="">Todos os TSTs</option>${tsts.map(([id,n])=>`<option value="${id}" ${_inspFilt.t===id?'selected':''}>${escH(n||'—')}</option>`).join('')}</select><input type="date" value="${_inspFilt.from}" onchange="_inspFilt.from=this.value;renderInspTable()"><span class="text-sm text-muted">até</span><input type="date" value="${_inspFilt.to}" onchange="_inspFilt.to=this.value;renderInspTable()"></div>
+  <div class="data-table-wrap" id="inspTableWrap"></div>`;
+  renderInspTable();
+}
+function renderInspTable(){
+  const f=_inspFilt; const list=V6.insp.filter(i=>(!f.c||i.contractId===f.c)&&(!f.t||i.tstId===f.t)&&(!f.from||i.data>=f.from)&&(!f.to||i.data<=f.to));
+  const el=document.getElementById('inspTableWrap'); if(!el) return;
+  el.innerHTML=list.length?`<table class="data-table"><thead><tr><th>Data</th><th>TST</th><th>Contrato</th><th>Local</th><th>Tipo</th><th>NC</th><th>Ações</th></tr></thead><tbody>${list.map(i=>{ const nc=(i.itens||[]).filter(x=>x.situacao==='NC').length; return `<tr><td>${fmtDate(i.data)}${i.hora?' '+escH(i.hora):''}</td><td>${escH(i.tstName||'—')}</td><td>${escH(i.contractName||'—')}</td><td>${escH(i.local||'—')}</td><td>${escH(i.tipo||'—')}</td><td>${nc?`<span class="badge badge-red">${nc}</span>`:'<span class="badge badge-green">0</span>'}</td><td><div class="table-actions"><button class="tbl-btn tbl-btn-view" onclick="viewInspection('${i.id}')">👁 Ver</button><button class="tbl-btn tbl-btn-edit" onclick="exportInspectionXLSX('${i.id}')">⬇ Excel</button>${isAdminUser()&&!isDiretoria()?`<button class="tbl-btn tbl-btn-del" onclick="deleteInspection('${i.id}')">🗑</button>`:''}</div></td></tr>`; }).join('')}</tbody></table>`:'<div class="empty-state"><div class="empty-state-icon">🦺</div><div class="empty-state-text">Nenhuma inspeção encontrada</div></div>';
+}
+// Exportação Excel: preenche o modelo único do TST (por rótulos) e acrescenta uma aba com todos os dados e fotos.
+function fillInspectionTemplate(ws,i){
+  const map=[[['DATA'],null,'date'],[['HORA','HORÁRIO'],i.hora],[['CONTRATO'],i.contractName],[['LOCAL','ÁREA'],i.local],[['TÉCNICO','TST','INSPETOR','RESPONSÁVEL'],i.tstName],[['TIPO'],i.tipo],[['NÃO CONFORM','NAO CONFORM'],i.naoConformidades],[['AÇÕES','ACOES','AÇÃO CORRETIVA','RECOMENDA'],i.acoes],[['OBSERVA'],i.observacoes]];
+  map.forEach(([labels,val,kind])=>{
+    const lab=findLabelCell(ws,labels); if(!lab) return; const master=ws.getCell(lab.row,lab.col).master||ws.getCell(lab.row,lab.col);
+    for(let c=lab.col+1;c<=lab.col+12;c++){ const cell=ws.getCell(lab.row,c); const m=cell.master||cell; if(m.address===master.address) continue; if(m.value!==null&&m.value!==undefined&&String(m.value).trim()!=='') return;
+      if(kind==='date'){ const [y,mo,d]=i.data.split('-').map(Number); m.value=new Date(Date.UTC(y,mo-1,d)); m.numFmt='dd/mm/yyyy'; } else m.value=val||''; return; }
+  });
+}
+async function v6FetchImage(src){ if(src.startsWith('data:')){ const ext=src.includes('image/png')?'png':'jpeg'; return { base64:src.split(',')[1], extension:ext, dataUrl:src }; } const r=await fetch(src); if(!r.ok) throw new Error('download '+r.status); const blob=await r.blob(); const ext=(blob.type.includes('png')||src.toLowerCase().includes('.png'))?'png':'jpeg'; const dataUrl=await new Promise(res=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.readAsDataURL(blob); }); return { buffer:await blob.arrayBuffer(), extension:ext, dataUrl }; }
+async function exportInspectionXLSX(id){
+  const i=V6.insp.find(x=>x.id===id); if(!i) return;
+  if(typeof ExcelJS==='undefined'){ toast('Biblioteca de exportação XLSX não carregou','error'); return; }
+  const wb=new ExcelJS.Workbook(); wb.creator=DB.appConfig.companyName||DB.appConfig.name||'FieldReport Pro'; const used=new Set();
+  const tpl=(DB.templates||[]).find(t=>t.kind==='tst'&&t.storagePath)||V6.tstTpl;
+  if(tpl){ try{ const buf=await fetchTemplateArrayBuffer(tpl.storagePath); const sheets=await appendTemplateSheets(wb,buf,'Inspeção '+fmtDate(i.data),used); (sheets||[]).forEach(ws=>fillInspectionTemplate(ws,i)); }catch(e){ console.error(e); toast('Não foi possível preencher o modelo do TST — gerando só a aba de dados.','warn'); } }
+  const ws=wb.addWorksheet(uniqueSheetName('Dados da inspeção',used)); ws.columns=[{width:38},{width:18},{width:48}];
+  const THIN={ style:'thin', color:{ argb:'FFBBBBBB' } }; const B={ top:THIN, left:THIN, bottom:THIN, right:THIN };
+  ws.mergeCells(1,1,1,3); ws.getCell(1,1).value='INSPEÇÃO DE CAMPO — SEGURANÇA DO TRABALHO'; ws.getCell(1,1).font={ bold:true, size:14 };
+  let r=3; [['Data',fmtDate(i.data)+(i.hora?' '+i.hora:'')],['Contrato',i.contractName],['Local / área',i.local],['Tipo',i.tipo],['Técnico (TST)',i.tstName]].forEach(([k,v])=>{ ws.getCell(r,1).value=k; ws.getCell(r,1).font={ bold:true }; ws.mergeCells(r,2,r,3); ws.getCell(r,2).value=v||'—'; r++; });
+  r++; ['ITEM VERIFICADO','SITUAÇÃO','OBSERVAÇÃO'].forEach((h,c)=>{ const cell=ws.getCell(r,c+1); cell.value=h; cell.font={ bold:true, color:{ argb:'FFFFFFFF' } }; cell.fill={ type:'pattern', pattern:'solid', fgColor:{ argb:'FF0071E3' } }; cell.border=B; }); r++;
+  (i.itens||[]).forEach(x=>{ [x.item,SIT_LABEL[x.situacao]||x.situacao,x.obs||''].forEach((v,c)=>{ const cell=ws.getCell(r,c+1); cell.value=v; cell.border=B; cell.alignment={ wrapText:true, vertical:'top' }; }); if(x.situacao==='NC') ws.getCell(r,2).font={ bold:true, color:{ argb:'FFC0001A' } }; r++; });
+  r++; [['NÃO CONFORMIDADES',i.naoConformidades],['AÇÕES CORRETIVAS / RECOMENDAÇÕES',i.acoes],['OBSERVAÇÕES',i.observacoes]].forEach(([k,v])=>{ ws.mergeCells(r,1,r,3); ws.getCell(r,1).value=k; ws.getCell(r,1).font={ bold:true }; r++; ws.mergeCells(r,1,r,3); ws.getCell(r,1).value=v||'—'; ws.getCell(r,1).alignment={ wrapText:true, vertical:'top' }; ws.getRow(r).height=Math.max(20,15*Math.ceil(String(v||'').length/110)); r+=2; });
+  if((i.fotos||[]).length){ ws.mergeCells(r,1,r,3); ws.getCell(r,1).value='REGISTROS FOTOGRÁFICOS'; ws.getCell(r,1).font={ bold:true }; r++;
+    for(let k=0;k<i.fotos.length;k++){ try{ const img=await v6FetchImage(i.fotos[k]); const idImg=img.buffer?wb.addImage({ buffer:img.buffer, extension:img.extension }):wb.addImage({ base64:img.base64, extension:img.extension }); const col=k%2===0?0:2; const row=r+Math.floor(k/2)*12; ws.addImage(idImg,{ tl:{ col:col+0.1, row:row-1+0.2 }, ext:{ width:260, height:195 } }); }catch(e){ console.error('foto',e); } } }
+  const buf=await wb.xlsx.writeBuffer(); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([buf],{ type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })); a.download=`Inspecao_${i.data}_${(i.tstName||'TST').replace(/\s+/g,'_')}.xlsx`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+}
+async function exportInspectionPDF(id){
+  const i=V6.insp.find(x=>x.id===id); if(!i) return; const { jsPDF }=window.jspdf; const doc=new jsPDF({ unit:'mm', format:'a4' }); const W=210,M=16; let y=0;
+  const cfg=DB.appConfig; doc.setFillColor(0,113,227); doc.rect(0,0,W,30,'F'); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(15); doc.text('INSPEÇÃO DE CAMPO — SEGURANÇA DO TRABALHO',M,13); doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.text(cfg.companyName||cfg.name||'FieldReport Pro',M,21); doc.setTextColor(30,30,30); y=40;
+  const line=(k,v)=>{ doc.setFont('helvetica','bold'); doc.text(k,M,y); doc.setFont('helvetica','normal'); const t=doc.splitTextToSize(String(v||'—'),W-2*M-40); doc.text(t,M+40,y); y+=6*t.length; };
+  const page=need=>{ if(y+need>285){ doc.addPage(); y=20; } };
+  doc.setFontSize(10); line('Data',fmtDate(i.data)+(i.hora?' '+i.hora:'')); line('Contrato',i.contractName); line('Local / área',i.local); line('Tipo',i.tipo); line('Técnico (TST)',i.tstName); y+=4;
+  doc.setFont('helvetica','bold'); doc.text('Itens verificados',M,y); y+=6; doc.setFont('helvetica','normal');
+  (i.itens||[]).forEach(x=>{ page(8); const t=doc.splitTextToSize(`${x.item}${x.obs?' — '+x.obs:''}`,W-2*M-36); if(x.situacao==='NC') doc.setTextColor(192,0,26); doc.text(SIT_LABEL[x.situacao]||x.situacao,M,y); doc.setTextColor(30,30,30); doc.text(t,M+36,y); y+=5*t.length+1; });
+  [['Não conformidades',i.naoConformidades],['Ações corretivas / recomendações',i.acoes],['Observações',i.observacoes]].forEach(([k,v])=>{ y+=3; page(14); doc.setFont('helvetica','bold'); doc.text(k,M,y); y+=6; doc.setFont('helvetica','normal'); const t=doc.splitTextToSize(String(v||'—'),W-2*M); page(5*t.length); doc.text(t,M,y); y+=5*t.length; });
+  if((i.fotos||[]).length){ y+=4; page(70); doc.setFont('helvetica','bold'); doc.text('Registros fotográficos',M,y); y+=4; let col=0;
+    for(const src of i.fotos){ try{ const img=await v6FetchImage(src); page(66); doc.addImage(img.dataUrl,img.extension==='png'?'PNG':'JPEG',M+col*90,y,85,63); col++; if(col===2){ col=0; y+=67; } }catch(e){ console.error(e); } } }
+  doc.save(`Inspecao_${i.data}.pdf`);
+}
+
 </script>
 <script>
 // ═══ GESTÃO FINANCEIRA (perfil Gerência) ═══════════════════════════════
@@ -1313,7 +2064,7 @@ function head(){
   const opts=compOptions();
   if(!S.comp){const w=list(S.entradas).map(e=>e.competencia).filter(Boolean).sort();S.comp=w.length?w[w.length-1]:ymNow();}
   if(S.comp!=="*"&&!opts.includes(S.comp))opts.unshift(S.comp);
-  return `<div class="fin-head"><div class="fin-title"><div class="admin-page-title">Gestão financeira</div><div class="admin-page-sub" style="margin-bottom:0">DRE gerencial, entradas por BM, despesas e caixa dos contratos</div></div>
+  return `${document.body.classList.contains('ro')?'<div class="v6-ro-note">Perfil Diretoria: somente visualização.</div>':''}<div class="fin-head"><div class="fin-title"><div class="admin-page-title">Gestão financeira</div><div class="admin-page-sub" style="margin-bottom:0">DRE gerencial, entradas por BM, despesas e caixa dos contratos</div></div>
   <label class="fin-comp" for="fin-comp">Competência <select id="fin-comp">${opts.map(o=>`<option value="${o}" ${o===S.comp?"selected":""}>${ymLabel(o)}</option>`).join("")}<option value="*" ${S.comp==="*"?"selected":""}>Acumulado (todas)</option></select></label></div>
   <nav class="fin-tabs" role="tablist">${FTABS.map(([k,l])=>`<button role="tab" data-ftab="${k}" aria-selected="${S.tab===k}">${l}</button>`).join("")}</nav>`;
 }
@@ -1504,6 +2255,7 @@ const numOrNull=id=>{const v=num(val(id));return isFinite(v)?v:null;};
 
 async function onSubmit(ev){
   const f=ev.target;if(!f.closest||!f.closest('#finRoot'))return;ev.preventDefault();
+  if(document.body.classList.contains('ro'))return msg('Perfil Diretoria: somente visualização','warn');
   if(f.id==="fin-form-c"){
     if(!val("fc-nome"))return msg("Informe o nome do contrato.","error");
     const item={nome:val("fc-nome"),numero:val("fc-numero"),empresa:val("fc-empresa"),gerencia:val("fc-gerencia"),fieldreportContractId:val("fc-fr")||null,valor:numOrNull("fc-valor")??0,aditivos:numOrNull("fc-aditivos")??0,
@@ -1529,6 +2281,7 @@ async function onSubmit(ev){
 function onClick(ev){
   const t=ev.target.closest("#finRoot button, #finRoot tr[data-fopen]");if(!t)return;
   if(t.dataset.ftab){S.tab=t.dataset.ftab;draw();return;}
+  if(document.body.classList.contains('ro'))return;
   if(t.dataset.fopen){S.tab="contratos";S.edit.c=t.dataset.fopen;draw();document.getElementById("fin-form-c")?.scrollIntoView({block:"start"});return;}
   if(t.dataset.fedit){const k=t.dataset.fedit;S.edit[k]=t.dataset.id;draw();document.getElementById("fin-form-"+k)?.scrollIntoView({block:"start"});return;}
   if(t.dataset.fcancel){S.edit[t.dataset.fcancel]=null;draw();return;}
@@ -1544,6 +2297,7 @@ const diasTimer={};
 function onChange(ev){
   const el=ev.target;if(!el.closest||!el.closest('#finRoot'))return;
   if(el.id==="fin-comp"){S.comp=el.value;draw();return;}
+  if(document.body.classList.contains('ro'))return;
   if(el.dataset.fdias){const id=el.dataset.fdias;const v=num(el.value);clearTimeout(diasTimer[id]);
     diasTimer[id]=setTimeout(async()=>{if(await save("entradas",id,{diasPrevisao:isFinite(v)?Math.round(v):null},"Previsão atualizada"))draw();},250);}
   if(el.dataset.fst){const id=el.dataset.fst;save("entradas",id,{status:el.value},"Situação atualizada").then(r=>r&&draw());}
